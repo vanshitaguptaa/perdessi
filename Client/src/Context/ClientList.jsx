@@ -25,6 +25,7 @@ const ClientListProvider = ({ children }) => {
         },
       });
 
+
       if (savedResponse.status) {
         dispatch({ type: "Success", payload: savedResponse.data });
       }

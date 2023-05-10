@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-// import { ClientListContext } from "../Context/ClientList";
+import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const Personal = () => {
   const {
     state: { serviceId, service },
   } = location;
-  // const { clients, isError } = useContext(ClientListContext);
+  const { clients, isError } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [loanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
@@ -32,11 +32,11 @@ const Personal = () => {
     salarySlip: "",
   });
 
-  // useEffect(() => {
-  //   if (isError === false) {
-  //     setClientData(clients.clients);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (isError === false) {
+      setClientData(clients.clients);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });

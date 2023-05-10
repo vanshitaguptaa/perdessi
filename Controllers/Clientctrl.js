@@ -101,6 +101,33 @@ export const Addclientctrl = async (req, resp) => {
   }
 }
 
+export const getClientForCurrentUser = async (req, resp) => {
+  try {
+    let employeeId = req.user._id;
+
+    const savedClient = await Clientmodel.find({
+      empolyeeid: employeeId,
+    }).populate("empolyeeid");
+
+    if (savedClient < 1) {
+      return resp
+        .status(401)
+        .json({ status: false, message: "current employee has no client" });
+    }
+
+    return resp.status(201).json({
+      status: true,
+      message: "successfully fetched client for current employeee",
+      clients: savedClient,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(522)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const MyClintsctrl = async (req, resp) => {
   try {
     const already = await Clientmodel.find({ empolyeeid: req.params.id }).populate(
