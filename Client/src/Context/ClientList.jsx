@@ -36,9 +36,6 @@ const ClientListProvider = ({ children }) => {
   };
 
 
-  console.log(clientState)
-
-
   useEffect(() => {
      getClientList();
   }, [])

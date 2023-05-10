@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { ClientListContext } from "../Context/ClientList";
 import { useContext } from "react";
 
-
 const Tableclient = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState();
@@ -12,23 +11,26 @@ const Tableclient = () => {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [pan, setPan] = useState();
-  const clients  = useContext(ClientListContext);
+  const { clients, isError } = useContext(ClientListContext);
 
-
-  console.log(clients)
+  // useEffect(() => {
+  //   axios.get("http://localhost:5000/api/v1/crm/getallclient").then((res) => {
+  //     console.log(res.data.already);
+  //     setData(res.data.already);
+  //     // setId(res.data.already._id)
+  //   });
+  // }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v1/crm/getallclient").then((res) => {
-      console.log(res.data.already);
-      setData(res.data.already);
-      // setId(res.data.already._id)
-    });
-  }, []);
+    if (isError === false) {
+      setData(clients.clients);
+    }
+  }, [clients]);
 
   const viewclick = () => {
     console.log("CLICKED");
   };
-  
+
   const handleEdit = async () => {
     console.log("edit");
     const response = await axios
@@ -41,7 +43,6 @@ const Tableclient = () => {
   };
 
   
-  console.log(data);
   // console.log(id)
 
   return (
@@ -57,7 +58,7 @@ const Tableclient = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((e, id) => {
+        {data && data.map((e, id) => {
           return (
             <tr>
               <td class="border px-1 py-2 text-center text-center">{id + 1}</td>
