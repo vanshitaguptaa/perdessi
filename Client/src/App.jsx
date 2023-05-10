@@ -29,6 +29,7 @@ import MortgageLoan from './components/formdashborad/MortgageLoan';
 import CreditCardLoan from './components/formdashborad/CreditCardLoan';
 import GoldLoan from './components/formdashborad/GoldLoan';
 import HomeLoan from './components/formdashborad/HomeLoan';
+import Updateempolyee from './pages/Updateempolyee';
 
 // import HomeLone from './components/servicespages/HomeLone';
 // import BusinessLone from './components/servicespages/BusinessLone';
@@ -60,6 +61,7 @@ function App() {
         <Route exact path="/allemployee" element={<Allemployees />} />
         <Route exact path="/leadform" element={<Leadform />} />
         <Route exact path="/myprofile" element={<Myprofile />} />
+        <Route exact path="/update" element={<Updateempolyee />} />
         <Route exact path="/login" element={<Login/>} />
         <Route exact path="/addemployee" element={<Addemployee/>} />
         <Route exact path="/Personal Loan" element={<PersonalLoan/>} />

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
-import Profileform from "../components/Profileform";
 import { useNavigate } from "react-router-dom";
+import Profiledetail from "./Profiledetail";
+import axios from "axios";
 
 const Myprofile = () => {
   const navigate = useNavigate();
+  const [Profiledata, setProfiledata] = useState({});
   const [authScreen, setAuthScreen] = useState(true);
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
@@ -17,6 +19,23 @@ const Myprofile = () => {
   }
   let currentDate = new Date();
 
+    
+  const fetchid= async()=>{
+    const response = await axios({
+      method: "get",
+      url: "http://localhost:5000/api/v1/crm//getEmpolyeeID",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    
+    // console.log(response);
+    if (response) {
+      setProfiledata(response.data.fetchdata)
+      // console.log(Profiledata)
+    }
+  }
+
   useEffect(() => {
     if (!tokenData) {
       navigate("/login");
@@ -25,6 +44,7 @@ const Myprofile = () => {
         localStorage.removeItem("token");
         navigate("/login");
       }
+      fetchid();
       setTimeout(() => {
         setAuthScreen(false);
       }, 500);
@@ -57,7 +77,7 @@ const Myprofile = () => {
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
         {/*  Site header */}
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        {/* <Profileform/> */}
+        <Profiledetail Profiledata={Profiledata} />
       </div>
     </div>
   );
