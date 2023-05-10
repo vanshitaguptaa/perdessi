@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { ClientListContext } from "../Context/ClientList";
+import { useContext } from "react";
 
 
 const Tableclient = () => {
@@ -10,6 +12,10 @@ const Tableclient = () => {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [pan, setPan] = useState();
+  const clients  = useContext(ClientListContext);
+
+
+  console.log(clients)
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/v1/crm/getallclient").then((res) => {

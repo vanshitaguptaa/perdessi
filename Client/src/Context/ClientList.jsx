@@ -25,6 +25,7 @@ const ClientListProvider = ({ children }) => {
         },
       });
 
+
       if (savedResponse.status) {
         dispatch({ type: "Success", payload: savedResponse.data });
       }
@@ -33,6 +34,9 @@ const ClientListProvider = ({ children }) => {
       dispatch({ type: "Failed" });
     }
   };
+
+
+  console.log(clientState)
 
 
   useEffect(() => {
