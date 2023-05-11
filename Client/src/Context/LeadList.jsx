@@ -5,9 +5,10 @@ import { leadReducer } from "../reducer/leadReducer";
 export const LeadListContext = createContext();
 
 const tokenData = localStorage.getItem("token");
-let token = JSON.parse(tokenData).usertoken;
-
-console.log(token)
+let token;
+if (tokenData) {
+   token = JSON.parse(tokenData).usertoken;
+}
 
 const LeadListProvider = ({ children }) => {
   const [leadState, dispatch] = useReducer(leadReducer, {
@@ -38,10 +39,14 @@ const LeadListProvider = ({ children }) => {
 
   useEffect(() => {
     getLeadsforEmployee();
-  }, [])
-  
-  console.log(leadState)
-  return <LeadListContext.Provider value={leadState}>{children}</LeadListContext.Provider>;
+  }, []);
+
+  console.log(leadState);
+  return (
+    <LeadListContext.Provider value={leadState}>
+      {children}
+    </LeadListContext.Provider>
+  );
 };
 
 export default LeadListProvider;
