@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const GoldLoanSchema = new mongoose.Schema({
+const NewCorrectionPanApplication = new mongoose.Schema({
   service: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "services",
@@ -13,14 +13,20 @@ const GoldLoanSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
-  Aadharcard: {
+  ProofOfIdentity: {
     type: String,
   },
-  Pancard: {
+  ProofOfResidency: {
+    type: String,
+  },
+  DateofBirthProof: {
     type: String,
   },
 });
 
-const GoldLoanModel = mongoose.model("GoldLoan", GoldLoanSchema);
+const NewCorrectionPanApplicationModel = mongoose.model(
+  "NewCorrectionPanApplication",
+  NewCorrectionPanApplication
+);
 
-export default GoldLoanModel;
+export default NewCorrectionPanApplicationModel;

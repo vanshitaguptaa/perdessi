@@ -5,6 +5,7 @@ import {
   GetAllClintsctrl,
   MyClintsctrl,
   SendMAilTOAllctrl,
+  getClientForCurrentUser
 } from "../Controllers/Clientctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 
@@ -26,5 +27,8 @@ Route.get("/myclient/:id", MyClintsctrl);
 
 // Edit Client List
 Route.patch("/myclient/:id", EditClintsctrl);
+
+// get client for employee who is login
+Route.get("/getclientforemployee", employeeTokenCheck, getClientForCurrentUser)
 
 export default Route;

@@ -1,57 +1,65 @@
 import mongoose from "mongoose";
 
-
 const CarLoanSchema = new mongoose.Schema({
-    SalariedIdentityProof: {
-        type: String
-    },
-    SalariedAddressProof: {
-        type: String
-    },
-    SalariedAgeProof: {
-        type: String
-    },
-    SalariedBankStatement: {
-        type: String
-    },
-    SalariedProofOfIncome: {
-        type: String
-    },
-    SalariedSignatureVerificationProof: {
-        type: String
-    },
-    SalariedProformaInvoice: {
-        type: String
-    },
-    SelfEmployedIdentityProof: {
-        type: String
-    },
-    SelfEmployeeAddressProof: {
-        type: String
-    },
-    SelfEmployeeAgeProof: {
-        type: String
-    },
-    SelfEmployeeBankStatement: {
-        type: String
-    },
-    SelfEmployeeBusinessOwnership: {
-        type: String
-    },
-    SelfEmployeeProofOIncome: {
-        type: String
-    },
-    SelfEmployeeSignatureVerification: {
-        type: String
-    },
-    SelfEmployeeProformaInvoice: {
-        type: String
-    }
+  service: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "services",
+  },
+  client: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "clients",
+  },
+  employee: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "employee",
+  },
+  SalariedIdentityProof: {
+    type: String,
+  },
+  SalariedAddressProof: {
+    type: String,
+  },
+  SalariedAgeProof: {
+    type: String,
+  },
+  SalariedBankStatement: {
+    type: String,
+  },
+  SalariedProofOfIncome: {
+    type: String,
+  },
+  SalariedSignatureVerificationProof: {
+    type: String,
+  },
+  SalariedProformaInvoice: {
+    type: String,
+  },
+  SelfEmployedIdentityProof: {
+    type: String,
+  },
+  SelfEmployeeAddressProof: {
+    type: String,
+  },
+  SelfEmployeeAgeProof: {
+    type: String,
+  },
+  SelfEmployeeBankStatement: {
+    type: String,
+  },
+  SelfEmployeeBusinessOwnership: {
+    type: String,
+  },
+  SelfEmployeeProofOIncome: {
+    type: String,
+  },
+  SelfEmployeeSignatureVerification: {
+    type: String,
+  },
+  SelfEmployeeProformaInvoice: {
+    type: String,
+  },
 });
-
 
 const CarLoanModel = mongoose.model("CarLoan", CarLoanSchema);
 
-module.exports = CarLoanModel;
-
-
+export default CarLoanModel;

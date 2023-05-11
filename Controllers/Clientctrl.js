@@ -102,6 +102,7 @@ export const Addclientctrl = async (req, resp) => {
   }
 }
 
+
 export const SendMAilTOAllctrl = async (req, resp) => {
   try {
     const already = await Clientmodel.find({})
@@ -115,7 +116,8 @@ export const SendMAilTOAllctrl = async (req, resp) => {
             pass:  process.env.PASSWORD
         }
       }
-      let transporter = nodemailer.createTransport(config);
+      
+    let transporter = nodemailer.createTransport(config);
 
     let message = {
         from : process.env.EMAIL,
@@ -125,8 +127,6 @@ export const SendMAilTOAllctrl = async (req, resp) => {
         html: `<b>${body.Mail}</b>`,
     }
     //***** Sending Mail ******//
-    try {
-        
       console.log(message);
       transporter.sendMail(message)
       console.log("Email Just Send")
@@ -134,12 +134,7 @@ export const SendMAilTOAllctrl = async (req, resp) => {
         status: true,
         message: "Mail Just Send to All Client"
       });
-  } catch (error) {
-      console.log("Facing error in sending mail");
-  }
-
-    })
-
+      
   } catch (error) {
     console.log(error);
     return resp
@@ -147,6 +142,35 @@ export const SendMAilTOAllctrl = async (req, resp) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 }
+
+
+export const getClientForCurrentUser = async (req, resp) => {
+  try {
+    let employeeId = req.user._id;
+
+    const savedClient = await Clientmodel.find({
+      empolyeeid: employeeId,
+    }).populate("empolyeeid");
+
+    if (savedClient < 1) {
+      return resp
+        .status(401)
+        .json({ status: false, message: "current employee has no client" });
+    }
+
+    return resp.status(201).json({
+      status: true,
+      message: "successfully fetched client for current employeee",
+      clients: savedClient,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(522)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 
 export const MyClintsctrl = async (req, resp) => {
   try {

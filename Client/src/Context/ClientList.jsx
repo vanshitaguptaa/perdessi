@@ -5,7 +5,10 @@ import axios from "axios";
 export const ClientListContext = createContext();
 
 const tokenData = localStorage.getItem("token");
-let token = JSON.parse(tokenData).usertoken;
+let token;
+if (tokenData) {
+  token = JSON.parse(tokenData).usertoken;
+}
 
 const ClientListProvider = ({ children }) => {
   const [clientState, dispatch] = useReducer(clientReducer, {
@@ -34,13 +37,16 @@ const ClientListProvider = ({ children }) => {
     }
   };
 
-
   useEffect(() => {
-     getClientList();
-  }, [])
-  
-  console.log(clientState)
-  return <ClientListContext.Provider value={ clientState }>{children}</ClientListContext.Provider>;
+    getClientList();
+  }, []);
+
+  console.log(clientState);
+  return (
+    <ClientListContext.Provider value={clientState}>
+      {children}
+    </ClientListContext.Provider>
+  );
 };
 
 export default ClientListProvider;

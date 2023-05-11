@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MortgageLoanSchema = new mongoose.Schema({
+const UdyamCertificateSchema = new mongoose.Schema({
   service: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "services",
@@ -13,32 +13,35 @@ const MortgageLoanSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
-  LoanAmount: {
-    type: Number,
-  },
-  latestSalarySlip: {
+  AdharCard: {
     type: String,
   },
-  threeMonthsBankStatement: {
+  PanCard: {
     type: String,
   },
-  panCard: {
+  BankAccountDetails: {
     type: String,
   },
-  idProof: {
+  BusinessAdress: {
     type: String,
   },
-  addressProof: {
+  DetailsOfBusinessActivites: {
     type: String,
   },
-  documentOfThePropertyTobeMortgage: {
+  InformationOfTheInvestment: {
     type: String,
   },
-  itReturns: {
+  InformationOfTheTurnOver: {
+    type: String,
+  },
+  DuplicateBillOfSale: {
     type: String,
   },
 });
 
-const MortgageLoanModel = mongoose.model("MortgageLoan", MortgageLoanSchema);
+const UdyamCertificateModel = mongoose.model(
+  "UdyamCertification",
+  UdyamCertificateSchema
+);
 
-export default MortgageLoanModel;
+export default UdyamCertificateModel;

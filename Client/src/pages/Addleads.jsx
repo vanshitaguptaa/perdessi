@@ -12,7 +12,7 @@ import { AiFillHome } from "react-icons/ai";
 import { AiFillIdcard } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 
 const data = [
   {
@@ -102,6 +102,45 @@ const Addleads = () => {
     }
   }, []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [serviceData, setServiceData] = useState("");
+
+  useEffect(() => {
+    let mounted = true;
+
+    if (mounted) {
+      try {
+        axios({
+          method: "get",
+          url: "http://localhost:5000/api/v1/crm/getservice",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          if (res.data.status) {
+            setServiceData(res.data.response);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+  
+
+  let middleIndex;
+  let firstHalf;
+  let secondHalf;
+  if (serviceData) {
+    middleIndex = Math.ceil(serviceData.length / 2);
+    firstHalf = serviceData.slice(0, middleIndex);
+    secondHalf = serviceData.slice(middleIndex);
+  }
+
+
 
   if (authScreen) {
     return (
@@ -137,22 +176,25 @@ const Addleads = () => {
                 <h1 className="text-center text-white">Digital Process</h1>
               </div>
               <div className="grid grid-cols-3 gap-4 m-5">
-                {data.map((e) => {
-                    return (
-                      <Link to={`/${e.heading}`} state={{service: e.heading, serviceId: e._id}}>
-                        <div className="flex items-center justify-between p-3 border border-slate-300 rounded-md bg-white">
-                          <h6 className="text-slate-700 font-bold pr-1">
-                            {e.heading}
-                          </h6>
-                          <div
-                            className={`w-10 h-10 ${e.bgcolor} rounded-full p-2`}
-                          >
-                            {e.icon}
-                          </div>
+                {firstHalf && firstHalf.map((e) => {
+                  return (
+                    <Link
+                      to={`/${e.service_name}`}
+                      state={{ service: e.service_name, serviceId: e._id }}
+                    >
+                      <div className="flex items-center justify-between p-3 border border-slate-300 rounded-md bg-white">
+                        <h6 className="text-slate-700 font-bold pr-1">
+                          {e.service_name}
+                        </h6>
+                        <div
+                          className={`w-10 h-10 ${e.bgcolor} rounded-full p-2`}
+                        >
+                          {e.icon}
                         </div>
-                      </Link>
-                    );
-                  })}
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
             <div className="rounded border border-slate-300 mt-5">
@@ -160,17 +202,20 @@ const Addleads = () => {
                 <h1 className="text-center text-white">Paper Process</h1>
               </div>
               <div className="grid grid-cols-3 gap-4 m-5 ">
-                {data2.map((e) => {
+                {secondHalf && secondHalf.map((e) => {
                   return (
-                    <Link to={`/${e.heading}`} state={{service: e.heading, serviceId: e._id}}>
+                    <Link
+                      to={`/${e.service_name}`}
+                      state={{ service: e.service_name, serviceId: e._id }}
+                    >
                       <div className="flex items-center justify-between p-3 border border-slate-300 rounded-md bg-white">
                         <h6 className="text-slate-700 font-bold pr-1">
-                        {e.heading}
+                          {e.service_name}
                         </h6>
                         <div
                           className={`w-10 h-10 ${e.bgcolor} rounded-full p-2`}
                         >
-                        {e.icon}
+                          {e.icon}
                         </div>
                       </div>
                     </Link>

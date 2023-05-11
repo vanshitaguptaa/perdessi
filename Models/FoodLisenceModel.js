@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MortgageLoanSchema = new mongoose.Schema({
+const FoodLisenceSchema = new mongoose.Schema({
   service: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "services",
@@ -13,32 +13,35 @@ const MortgageLoanSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
-  LoanAmount: {
-    type: Number,
-  },
-  latestSalarySlip: {
+  NRMOfLisence: {
     type: String,
   },
-  threeMonthsBankStatement: {
+  NewRegistration: {
     type: String,
   },
-  panCard: {
+  ProprietorshipDeclaration: {
     type: String,
   },
-  idProof: {
+  CSGWNocNoted: {
     type: String,
   },
-  addressProof: {
+  OnlineSaleOfAlcohol: {
     type: String,
   },
-  documentOfThePropertyTobeMortgage: {
+  AdditionalDocumentForExpoters: {
     type: String,
   },
-  itReturns: {
+  SampleFoodRecallPlanAndGuide: {
+    type: String,
+  },
+  BISLiscense: {
+    type: String,
+  },
+  Repacker: {
     type: String,
   },
 });
 
-const MortgageLoanModel = mongoose.model("MortgageLoan", MortgageLoanSchema);
+const FoodLisenceModel = mongoose.model("FoodLisence", FoodLisenceSchema);
 
-export default MortgageLoanModel;
+export default FoodLisenceModel;
