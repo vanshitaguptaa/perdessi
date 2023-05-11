@@ -129,9 +129,6 @@ const Addleads = () => {
       mounted = false;
     };
   }, []);
-
-  
-
   
 
   let middleIndex;
