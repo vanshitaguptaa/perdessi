@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MortgageLoanSchema = new mongoose.Schema({
+const ShopActSchema = new mongoose.Schema({
   service: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "services",
@@ -16,29 +16,36 @@ const MortgageLoanSchema = new mongoose.Schema({
   LoanAmount: {
     type: Number,
   },
-  latestSalarySlip: {
+  AdharCard: {
     type: String,
   },
-  threeMonthsBankStatement: {
+  PanCard: {
     type: String,
   },
-  panCard: {
+  DetailsOfBusiness: {
     type: String,
   },
-  idProof: {
+  NatureOfBusiness: {
     type: String,
   },
-  addressProof: {
+  ElectricityBill: {
     type: String,
   },
-  documentOfThePropertyTobeMortgage: {
+  RentAgreement: {
     type: String,
   },
-  itReturns: {
+  MOA: {
+    type: String,
+  },
+  AON: {
+    type: String,
+  },
+  CIN: {
     type: String,
   },
 });
 
-const MortgageLoanModel = mongoose.model("MortgageLoan", MortgageLoanSchema);
 
-export default MortgageLoanModel;
+const ShopActModel = mongoose.model("ShopAct", ShopActSchema);
+
+export default ShopActModel;

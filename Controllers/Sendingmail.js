@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 
 export const SendBirthdaymail = (userEmail)=>{
-    console.log(userEmail,process.env.EMAIL,typeof  process.env.PASSWORD)
+    // console.log(userEmail,process.env.EMAIL,typeof  process.env.PASSWORD)
     let config = {
         service : 'gmail',
         secure: true,
@@ -23,6 +23,7 @@ export const SendBirthdaymail = (userEmail)=>{
     }
     //***** Sending Mail ******//
     try {
+        console.log(message);
         transporter.sendMail(message)
         console.log("Email Just Send")
     } catch (error) {
@@ -30,4 +31,5 @@ export const SendBirthdaymail = (userEmail)=>{
     }
 
 }
+
 
