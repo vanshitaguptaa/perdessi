@@ -6,18 +6,39 @@ import {
   createLeadForMortgageLoan,
   createLeadForGoldLoan,
   createLeadForCreditCard,
+  createLeadForCarLoan,
+  createLeadForNewCorrectionPanApplication,
+  createLeadForPassport,
+  createLeadForGSTRegistration,
+  createLeadForFoodLisence,
+  createLeadForShopAct,
+  createLeadForUdyamCertificate,
   getBusinessLoanForEmployee,
   getCreditCardLoanForEmployee,
   getGoldLoanForEmployee,
   getHomeLoanForEmployee,
   getMortgageLoanForEmployee,
   getPersonalLoanForEmployee,
+  getCarLoanForEmployee,
+  getNewCorrectionPanApplicationForEmployee,
+  getPassportForEmplyoee,
+  getGSTRegistrationForEmployee,
+  getFoodLisenceForEmployee,
+  getShopActForEmployee,
+  getUdyamCertificateForEmployee,
   editBusinessLoanServiceController,
   editCreditCardServiceController,
   editGoldLoanServiceController,
   editHomeLoanServiceController,
   editMortgageLoanServiceController,
   editPersonalLoanServiceController,
+  editCarLoanServiceController,
+  editNewCorrectionPanApplication,
+  editPassportServiceController,
+  editGSTRegistrationController,
+  editFoodLisenceController,
+  editShopActController,
+  editUdyamCertificateController,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -150,6 +171,91 @@ const multipleUploadForCreditCard = upload.fields([
   { name: "FormSixteen", maxCount: 1 },
 ]);
 
+const multipleUploadForCarLoan = upload.fields([
+  { name: "SalariedIdentityProof", maxCount: 1 },
+  { name: "SalariedAddressProof", maxCount: 1 },
+  { name: "SalariedAgeProof", maxCount: 1 },
+  { name: "SalariedBankStatement", maxCount: 1 },
+  { name: "SalariedProofOfIncome", maxCount: 1 },
+  { name: "SalariedSignatureVerificationProof", maxCount: 1 },
+  { name: "SalariedProformaInvoice", maxCount: 1 },
+  { name: "SelfEmployedIdentityProof", maxCount: 1 },
+  { name: "SelfEmployeeAddressProof", maxCount: 1 },
+  { name: "SelfEmployeeAgeProof", maxCount: 1 },
+  { name: "SelfEmployeeBankStatement", maxCount: 1 },
+  { name: "SelfEmployeeBusinessOwnership", maxCount: 1 },
+  { name: "SelfEmployeeProofOIncome", maxCount: 1 },
+  { name: "SelfEmployeeSignatureVerification", maxCount: 1 },
+  { name: "SelfEmployeeProformaInvoice", maxCount: 1 },
+]);
+
+const multipleUploadForNewCorrectionPanApplication = upload.fields([
+  { name: "ProofOfIdentity", maxCount: 1 },
+  { name: "ProofOfResidency", maxCount: 1 },
+  { name: "DateofBirthProof", maxCount: 1 },
+]);
+
+const multipleUploadForPassport = upload.fields([
+  { name: "BirthProof", maxCount: 1 },
+  { name: "AddressProof", maxCount: 1 },
+]);
+
+const multipleUploadForGSTRegistration = upload.fields([
+  { name: "IndividualPanCard", maxCount: 1 },
+  { name: "IndividualAdharCard", maxCount: 1 },
+  { name: "IndividualPhotograph", maxCount: 1 },
+  { name: "IndividualBankAccountDetails", maxCount: 1 },
+  { name: "IndividualAddress", maxCount: 1 },
+  { name: "HUFPanCard", maxCount: 1 },
+  { name: "AdharcardOfKartaHUF", maxCount: 1 },
+  { name: "HUFPhotographOfTheOwner", maxCount: 1 },
+  { name: "HUFBankAccountDetails", maxCount: 1 },
+  { name: "HUFAddressProof", maxCount: 1 },
+  { name: "CompanyPanCard", maxCount: 1 },
+  { name: "CompanyCertificateOfIncorporation", maxCount: 1 },
+  { name: "CompanyArticlesOfAssoication", maxCount: 1 },
+  {
+    name: "CompanyPanCardOfAuthorizedSignature",
+    maxCount: 1,
+  },
+  { name: "CompanyAdharCardOfAuthorizedSignature", maxCount: 1 },
+  { name: "CompanyBoardresolutionappointingauthorizedsignatory", maxCount: 1 },
+  { name: "CompanyBankAccountDetails", maxCount: 1 },
+  { name: "CompanyAddressProof", maxCount: 1 },
+]);
+
+const multipleUploadForShopAct = upload.fields([
+  { name: "AdharCard", maxCount: 1 },
+  { name: "PanCard", maxCount: 1 },
+  { name: "ElectricityBill", maxCount: 1 },
+  { name: "RentAgreement", maxCount: 1 },
+  { name: "MOA", maxCount: 1 },
+  { name: "AON", maxCount: 1 },
+  { name: "CIN", maxCount: 1 },
+])
+
+const multipleUploadForUdyamCertificate = upload.fields([
+  { name: "AdharCard", maxCount: 1 },
+  { name: "PanCard", maxCount: 1 },
+  { name: "BankAccountDetails", maxCount: 1 },
+  { name: "DuplicateBillOfSale", maxCount: 1 },
+  { name: "DetailsOfBusinessActivites", maxCount: 1 },
+  { name: "InformationOfTheInvestment", maxCount: 1 },
+  { name: "InformationOfTheTurnOver", maxCount: 1 },
+])
+
+const multipleUploadForFoodLisence = upload.fields([
+  { name: "NRMOfLisence", maxCount: 1 },
+  { name: "NewRegistration", maxCount: 1 },
+  { name: "ProprietorshipDeclaration", maxCount: 1 },
+  { name: "CSGWNocNoted", maxCount: 1 },
+  { name: "OnlineSaleOfAlcohol", maxCount: 1 },
+  { name: "AdditionalDocumentForExpoters", maxCount: 1 },
+  { name: "SampleFoodRecallPlanAndGuide", maxCount: 1 },
+  { name: "BISLiscense", maxCount: 1 },
+  { name: "Repacker", maxCount: 1 },
+])
+
 // Lead Created
 Route.post(
   "/createleadforHomeloan",
@@ -193,6 +299,55 @@ Route.post(
   createLeadForCreditCard
 );
 
+Route.post(
+  "/createleadforcarloan",
+  employeeTokenCheck,
+  multipleUploadForCarLoan,
+  createLeadForCarLoan
+);
+
+Route.post(
+  "/createleadfornewcorrectionpanapplication",
+  employeeTokenCheck,
+  multipleUploadForNewCorrectionPanApplication,
+  createLeadForNewCorrectionPanApplication
+);
+
+Route.post(
+  "/createleadforpassport",
+  employeeTokenCheck,
+  multipleUploadForPassport,
+  createLeadForPassport
+);
+
+Route.post(
+  "/createleadforgstregistration",
+  employeeTokenCheck,
+  multipleUploadForGSTRegistration,
+  createLeadForGSTRegistration
+);
+
+Route.post(
+  "/createleadforshopact",
+  employeeTokenCheck,
+  multipleUploadForShopAct,
+  createLeadForShopAct
+);
+
+Route.post(
+  "/createleadforudyamcertificate",
+  employeeTokenCheck,
+  multipleUploadForUdyamCertificate,
+  createLeadForUdyamCertificate
+);
+
+Route.post(
+  "/createleadforfoodlisence",
+  employeeTokenCheck,
+  multipleUploadForFoodLisence,
+  createLeadForFoodLisence
+);
+
 // Get My Lead
 // Route.get("/mylead", employeeTokenCheck, MyLeadsctrl);
 Route.get(
@@ -226,6 +381,44 @@ Route.get(
   getCreditCardLoanForEmployee
 );
 
+Route.get("/getcarloanforemployee", employeeTokenCheck, getCarLoanForEmployee);
+
+Route.get(
+  "/getnewcorrectionpanapplicationforemployee",
+  employeeTokenCheck,
+  getNewCorrectionPanApplicationForEmployee
+);
+
+Route.get(
+  "/getpassportforemployee",
+  employeeTokenCheck,
+  getPassportForEmplyoee
+);
+
+Route.get(
+  "/getGSTRegistrationforemployee",
+  employeeTokenCheck,
+  getGSTRegistrationForEmployee
+);
+
+Route.get(
+  "/getshopactforemployee",
+  employeeTokenCheck,
+  getShopActForEmployee
+);
+
+Route.get(
+  "/getudyamcertificateforemployee",
+  employeeTokenCheck,
+  getUdyamCertificateForEmployee
+);
+
+Route.get(
+  "/getfoodlisenceoremployee",
+  employeeTokenCheck,
+  getFoodLisenceForEmployee
+);
+
 // Edit Client List
 Route.patch(
   "/updatehomeloan",
@@ -256,6 +449,55 @@ Route.patch(
   "/updatecreditcard",
   employeeTokenCheck,
   editCreditCardServiceController
+);
+
+Route.patch(
+  "/updatecarloan",
+  employeeTokenCheck,
+  multipleUploadForCarLoan,
+  editCarLoanServiceController
+);
+
+Route.patch(
+  "/updatenewcorrectionpanapplication",
+  employeeTokenCheck,
+  multipleUploadForNewCorrectionPanApplication,
+  editNewCorrectionPanApplication
+);
+
+Route.patch(
+  "/updatepassport",
+  employeeTokenCheck,
+  multipleUploadForPassport,
+  editPassportServiceController
+);
+
+Route.patch(
+  "updateGSTRegistration",
+  employeeTokenCheck,
+  multipleUploadForGSTRegistration,
+  editGSTRegistrationController
+);
+
+Route.patch(
+  "/updateshopact",
+  employeeTokenCheck,
+  multipleUploadForShopAct,
+  editShopActController
+);
+
+Route.patch(
+  "/updateudyamcertificate",
+  employeeTokenCheck,
+  multipleUploadForUdyamCertificate,
+  editUdyamCertificateController
+);
+
+Route.patch(
+  "updatefoodlisence",
+  employeeTokenCheck,
+  multipleUploadForFoodLisence,
+  editFoodLisenceController
 );
 
 export default Route;
