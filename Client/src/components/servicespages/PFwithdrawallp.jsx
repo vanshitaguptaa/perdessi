@@ -1,18 +1,18 @@
 import React from 'react'
 import Navbar from '../Navbar'
 import Navlinks from '../Navlinks'
-import Businessdetails from '../servicesdetails/Businessdetails'
+import Pfwithdrawal from '../servicesdetails/Pfwithdrawal'
 import Footer from '../Footer'
 
-const BusinessLone = () => {
+const PFwithdrawallp = () => {
   return (
     <>
         <Navbar/>
         <Navlinks/>
-        <Businessdetails/>
+        <Pfwithdrawal/>
         <Footer/>
     </>
   )
 }
 
-export default BusinessLone
+export default PFwithdrawallp
