@@ -57,6 +57,7 @@ function App() {
         <Route exact path="/addlead" element={<Addleads/>} />
         <Route exact path="/mylead" element={<Mylead />} />
         <Route exact path="/myclient" element={<Myclient />} />
+        <Route exact path="/mylead/:service" element={<Myclient />} />
         <Route exact path="/transferlead" element={<Transferlead />} />
         <Route exact path="/allemployee" element={<Allemployees />} />
         <Route exact path="/leadform" element={<Leadform />} />
@@ -70,12 +71,6 @@ function App() {
         <Route exact path="/Credit Card" element={<CreditCardLoan/>} />
         <Route exact path="/Gold Loan" element={<GoldLoan/>} />
         <Route exact path="/Home Loan" element={<HomeLoan/>} />
-        {/* <Route exact path="/homeloan" element={<HomeLone/>} />
-        <Route exact path="/businessloan" element={<BusinessLone/>} />
-        <Route exact path="/homelead" element={<HomeloneForm/>} />
-        <Route exact path="/homelonelead" element={<HomeleadData/>} />
-        <Route exact path="/businesslonelead" element={<BusinessleadData/>} /> */}
-
       </Routes>
     </>
   );
