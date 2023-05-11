@@ -17,10 +17,11 @@ const Innerdashborad = () => {
   }
 
   const fetchid= async()=>{
+    
     const response = await axios({
       method: "post",
       url: "http://localhost:5000/api/v1/crm/sendmail",
-      body: data,
+      data: data,
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },

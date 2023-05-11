@@ -105,7 +105,8 @@ export const Addclientctrl = async (req, resp) => {
 export const SendMAilTOAllctrl = async (req, resp) => {
   try {
     const already = await Clientmodel.find({});
-    const body = req.body;
+    const { Subject, Mail } = req.body;
+
     already.map((d) => {
       let config = {
         service: "gmail",
@@ -121,14 +122,14 @@ export const SendMAilTOAllctrl = async (req, resp) => {
       let message = {
         from: process.env.EMAIL,
         to: d.email,
-        subject: body.Subject,
-        text: body.Mail,
-        html: `<b>${body.Mail}</b>`,
+        subject: Subject,
+        text: Mail,
+        html: `<b>${Mail}</b>`,
       };
       //***** Sending Mail ******//
-      console.log(message);
+
       transporter.sendMail(message);
-      console.log("Email Just Send");
+
       return resp.status(201).json({
         status: true,
         message: "Mail Just Send to All Client",
