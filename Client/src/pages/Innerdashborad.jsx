@@ -56,7 +56,6 @@ const Innerdashborad = () => {
                 <AiOutlineClose />
               </h1>
             </div>
-            <form action="" method="post">
             {/* Senders */}
             <div className="py-2 mx-3 border-b border-gray-300 border-solid">
               <h4>
@@ -95,7 +94,6 @@ const Innerdashborad = () => {
                 <BsSendFill />
               </div>
             </div>
-            </form>
           </div>
         </>
       ) : (
