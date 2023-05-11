@@ -144,7 +144,7 @@ export const SendMAilTOAllctrl = async (req, resp) => {
     console.log(error);
     return resp
       .status(500)
-      .json({ status: false, message: "something went wrong", err: error });
+      .json({ status: false, message: "Something went wrong", err: error });
   }
 };
 
