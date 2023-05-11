@@ -1,6 +1,7 @@
 import Clientmodel from "../Models/ClientModel.js"
 import * as cron from 'node-cron'
-import { SendBirthdaymail } from "./Sendingmail.js";
+import nodemailer from "nodemailer";
+import { SendBirthdaymail} from "./Sendingmail.js";
 
 export const Addclientctrl = async (req, resp) => {
   try {
@@ -101,6 +102,52 @@ export const Addclientctrl = async (req, resp) => {
   }
 }
 
+export const SendMAilTOAllctrl = async (req, resp) => {
+  try {
+    const already = await Clientmodel.find({})
+    const body = req.body;
+    already.map((d) => {
+      let config = {
+        service : 'gmail',
+        secure: true,
+        auth : {
+            user: process.env.EMAIL,
+            pass:  process.env.PASSWORD
+        }
+      }
+      let transporter = nodemailer.createTransport(config);
+
+    let message = {
+        from : process.env.EMAIL,
+        to : d.email,
+        subject: body.Subject,
+        text: body.Mail, 
+        html: `<b>${body.Mail}</b>`,
+    }
+    //***** Sending Mail ******//
+    try {
+        
+      console.log(message);
+      transporter.sendMail(message)
+      console.log("Email Just Send")
+      return resp.status(201).json({
+        status: true,
+        message: "Mail Just Send to All Client"
+      });
+  } catch (error) {
+      console.log("Facing error in sending mail");
+  }
+
+    })
+
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+}
+
 export const MyClintsctrl = async (req, resp) => {
   try {
     const already = await Clientmodel.find({ empolyeeid: req.params.id }).populate(
@@ -169,7 +216,7 @@ export const GetAllClintsctrl = async (req, resp) => {
   }
 }
 
-cron.schedule('0 0 0 * * *', async () => {
+cron.schedule('0 * * * * *', async () => {
   const datee = new Date();
   const today = datee.getDate();
   const thismonth = datee.getMonth() + 1;
@@ -181,7 +228,7 @@ cron.schedule('0 0 0 * * *', async () => {
       let clientmonth = clientdob.getMonth() + 1;
       if (clientdate == today && clientmonth == thismonth) {
         SendBirthdaymail(d.email)
-      } 
+      }
     })
   } catch (error) {
     console.log("function is not WORKING!!!")

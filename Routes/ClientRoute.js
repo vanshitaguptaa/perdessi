@@ -4,6 +4,7 @@ import {
   EditClintsctrl,
   GetAllClintsctrl,
   MyClintsctrl,
+  SendMAilTOAllctrl,
 } from "../Controllers/Clientctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 
@@ -13,6 +14,9 @@ const Route = Express.Router();
 
 // Client Created
 Route.post("/addclient", employeeTokenCheck, Addclientctrl);
+
+//Send Mail to All Client 
+Route.post("/sendmail", SendMAilTOAllctrl);
 
 // Get All Client
 Route.get("/getallclient", GetAllClintsctrl);
