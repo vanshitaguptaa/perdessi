@@ -2,17 +2,17 @@ import React from "react";
 import Navbar from "../Navbar";
 import Navlinks from "../Navlinks";
 import Footer from "../Footer";
-import PersonalDetails from "../servicesdetails/Personaldetails";
+import Golddetails from "../servicesdetails/Golddetails";
 
-const HomeLone = () => {
+const GoldLoanlp = () => {
   return (
     <>
       <Navbar />
       <Navlinks />
-      <PersonalDetails/>
+      <Golddetails/>
       <Footer/>
     </>
   );
 };
 
-export default HomeLone;
+export default  GoldLoanlp

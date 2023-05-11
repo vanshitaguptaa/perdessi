@@ -4,7 +4,7 @@ import Navlinks from "../Navlinks";
 import Footer from "../Footer";
 import Passportdetails from "../servicesdetails/Passportdetails";
 
-const Passport = () => {
+const Passportlp = () => {
   return (
     <>
       <Navbar />
@@ -15,4 +15,4 @@ const Passport = () => {
   );
 };
 
-export default Passport;
+export default Passportlp;

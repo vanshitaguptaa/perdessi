@@ -2,17 +2,17 @@ import React from "react";
 import Navbar from "../Navbar";
 import Navlinks from "../Navlinks";
 import Footer from "../Footer";
-import Golddetails from "../servicesdetails/Golddetails";
+import Homedetails from "../servicesdetails/Homedetails";
 
-const HomeLone = () => {
+const HomeLonelp = () => {
   return (
     <>
       <Navbar />
       <Navlinks />
-      <Golddetails/>
+      <Homedetails/>
       <Footer/>
     </>
   );
 };
 
-export default HomeLone;
+export default HomeLonelp;

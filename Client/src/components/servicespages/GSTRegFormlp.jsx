@@ -2,17 +2,17 @@ import React from "react";
 import Navbar from "../Navbar";
 import Navlinks from "../Navlinks";
 import Footer from "../Footer";
-import PanCorrection from "../servicesdetails/PanCorrectiondetails";
+import GSTregdetails from "../servicesdetails/GSTregdetails";
 
-const PanApplication = () => {
+const GSTRegFormlp = () => {
   return (
     <>
       <Navbar />
       <Navlinks />
-      <PanCorrection/>
+      <GSTregdetails/>
       <Footer/>
     </>
   );
 };
 
-export default PanApplication ;
+export default GSTRegFormlp;

@@ -17,21 +17,23 @@ import Myprofile from "./pages/Myprofile";
 import Login from "./pages/Login";
 import Addemployee from "./pages/Addemployee";
 import Home from "./pages/Home";
-import HomeLone from "./components/servicespages/HomeLone";
-import BusinessLone from "./components/servicespages/BusinessLone";
-import PersonalLoan from "./components/servicespages/PersonalLone";
-import MortageLoan from "./components/servicespages/MortageLone";
-import GoldLoan from "./components/servicespages/GoldLoan";
-import Balancetransfer from "./components/servicespages/BalanceTransfer";
-import Creditcard from "./components/servicespages/CreditCard";
-import Passport from "./components/servicespages/Passport";
-import PanApplication from "./components/servicespages/PanApplication";
-import PFwithdrawal from "./components/servicespages/PFwithdrawal";
-import GSTregForm from "./components/servicespages/GSTRegForm";
-import UdyamCertificate from "./components/servicespages/UdyamCertificate";
-import Foodlicense from "./components/servicespages/Foodlicense";
+import HomeLonelp from "./components/servicespages/HomeLonelp";
+import BusinessLonelp from "./components/servicespages/BusinessLonelp";
+import PersonalLoanlp from "./components/servicespages/PersonalLonelp";
+import MortageLoanlp from "./components/servicespages/MortageLonelp";
+import GoldLoanlp from "./components/servicespages/GoldLoanlp";
+import Balancetransferlp from "./components/servicespages/BalanceTransferlp";
+import Passportlp from "./components/servicespages/Passportlp";
+import PanApplicationlp from "./components/servicespages/PanApplicationlp";
+import PFwithdrawallp from "./components/servicespages/PFwithdrawallp";
+import GSTregFormlp from "./components/servicespages/GSTRegFormlp";
+import UdyamCertificatelp from "./components/servicespages/UdyamCertificatelp";
+import Foodlicenselp from "./components/servicespages/Foodlicenselp";
 import Aboutus from "../src/pages/Aboutus";
 import Contactus from "../src/pages/Contactus";
+import MortgageLoanlp from "./components/servicespages/MortageLonelp";
+import CreditCardlp from "./components/servicespages/CreditCardlp";
+import GSTRegFormlp from "./components/servicespages/GSTRegFormlp";
 
 function App() {
   const location = useLocation();
@@ -58,19 +60,19 @@ function App() {
         <Route exact path="/myprofile" element={<Myprofile />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/addemployee" element={<Addemployee />} />
-        <Route exact path="/homeloan" element={<HomeLone />} />
-        <Route exact path="/businessloan" element={<BusinessLone />} />
-        <Route exact path="/personalloan" element={<PersonalLoan />} />
-        <Route exact path="/mortageloan" element={<MortageLoan />} />
-        <Route exact path="/goldloan" element={<GoldLoan />} />
-        <Route exact path="/homeloanbalancetransfer" element={<Balancetransfer />}/>
-        <Route exact path="/creditcard" element={<Creditcard />}/>
-        <Route exact path="/passport" element={<Passport />}/>
-        <Route exact path="/panapplication" element={<PanApplication />}/>
-        <Route exact path="/pfwithdrawal" element={<PFwithdrawal />}/>
-        <Route exact path="/gstregistration" element={<GSTregForm />}/>
-        <Route exact path="/udyamcertificate" element={<UdyamCertificate />}/>
-        <Route exact path="/foodlicense" element={<Foodlicense/>}/>
+        <Route exact path="/homeloan" element={<HomeLonelp />} />
+        <Route exact path="/businessloan" element={<BusinessLonelp />} />
+        <Route exact path="/personalloan" element={<PersonalLoanlp />} />
+        <Route exact path="/mortageloan" element={<MortgageLoanlp />} />
+        <Route exact path="/goldloan" element={<GoldLoanlp />} />
+        <Route exact path="/homeloanbalancetransfer" element={<Balancetransferlp />}/>
+        <Route exact path="/creditcard" element={<CreditCardlp />}/>
+        <Route exact path="/passport" element={<Passportlp />}/>
+        <Route exact path="/panapplication" element={<PanApplicationlp />}/>
+        <Route exact path="/pfwithdrawal" element={<PFwithdrawallp />}/>
+        <Route exact path="/gstregistration" element={<GSTRegFormlp />}/>
+        <Route exact path="/udyamcertificate" element={<UdyamCertificatelp />}/>
+        <Route exact path="/foodlicense" element={<Foodlicenselp/>}/>
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
       </Routes>

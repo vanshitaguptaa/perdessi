@@ -4,7 +4,7 @@ import Navlinks from '../Navlinks'
 import Footer from '../Footer'
 import UdyamCertificatedetails from '../servicesdetails/UdyamCertificatedetails'
 
-const UdyamCertificate = () => {
+const UdyamCertificatelp = () => {
   return (
     <div>
 
@@ -15,5 +15,4 @@ const UdyamCertificate = () => {
     </div>
   )
 }
-
-export default UdyamCertificate
+export default  UdyamCertificatelp 

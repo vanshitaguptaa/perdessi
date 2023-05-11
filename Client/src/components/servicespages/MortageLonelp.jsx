@@ -4,7 +4,7 @@ import Navlinks from "../Navlinks";
 import Footer from "../Footer";
 import Mortagedetails from "../servicesdetails/Mortagedetails";
 
-const HomeLone = () => {
+const MortgageLoanlp = () => {
   return (
     <>
       <Navbar />
@@ -15,4 +15,4 @@ const HomeLone = () => {
   );
 };
 
-export default HomeLone;
+export default MortgageLoanlp;

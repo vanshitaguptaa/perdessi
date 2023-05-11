@@ -4,7 +4,7 @@ import Navlinks from '../Navlinks'
 import Pfwithdrawal from '../servicesdetails/Pfwithdrawal'
 import Footer from '../Footer'
 
-const PFwithdrawal = () => {
+const PFwithdrawallp = () => {
   return (
     <>
         <Navbar/>
@@ -15,4 +15,4 @@ const PFwithdrawal = () => {
   )
 }
 
-export default PFwithdrawal
+export default PFwithdrawallp

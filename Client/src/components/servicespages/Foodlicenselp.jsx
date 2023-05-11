@@ -5,7 +5,7 @@ import Footer from '../Footer'
 import UdyamCertificatedetails from '../servicesdetails/UdyamCertificatedetails'
 import FoodLicensedetails from '../servicesdetails/FoodLicensedetails'
 
-const Foodlicense = () => {
+const Foodlicenselp = () => {
   return (
     <div>
 
@@ -17,4 +17,4 @@ const Foodlicense = () => {
   )
 }
 
-export default Foodlicense
+export default Foodlicenselp

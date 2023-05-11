@@ -2,17 +2,17 @@ import React from "react";
 import Navbar from "../Navbar";
 import Navlinks from "../Navlinks";
 import Footer from "../Footer";
-import Creditcarddetails from "../servicesdetails/Creditcarddetails";
+import PanCorrection from "../servicesdetails/PanCorrectiondetails";
 
-const CreditCard = () => {
+const PanApplicationlp = () => {
   return (
     <>
       <Navbar />
       <Navlinks />
-      <Creditcarddetails/>
+      <PanCorrection/>
       <Footer/>
     </>
   );
 };
 
-export default CreditCard;
+export default PanApplicationlp ;

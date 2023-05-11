@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CustomerFeedback = () => {
+const CustomerFeedbacklp = () => {
   return (
     <div>
     <section class="text-neutral-700 dark:text-neutral-300 w-4/5 text-center " style={{margin:'auto'}}>
@@ -103,4 +103,4 @@ const CustomerFeedback = () => {
   )
 }
 
-export default CustomerFeedback
+export default CustomerFeedbacklp

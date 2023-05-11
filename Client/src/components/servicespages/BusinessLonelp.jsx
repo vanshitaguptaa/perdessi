@@ -4,7 +4,7 @@ import Navlinks from '../Navlinks'
 import Businessdetails from '../servicesdetails/Businessdetails'
 import Footer from '../Footer'
 
-const BusinessLone = () => {
+const BusinessLonelp = () => {
   return (
     <>
         <Navbar/>
@@ -15,4 +15,4 @@ const BusinessLone = () => {
   )
 }
 
-export default BusinessLone
+export default BusinessLonelp
