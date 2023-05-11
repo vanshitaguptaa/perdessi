@@ -12,7 +12,7 @@ function classNames(...classes) {
 const Navbar = () => {
   return (
     <div>
-      <Disclosure as="nav" className="bg-gradient-to-r from-orange-400 to-orange-600">
+      <Disclosure as="nav" className=" bg-[#172236]">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -30,42 +30,33 @@ const Navbar = () => {
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className="flex flex-shrink-0 items-center">
-                    <img
-                      className="block h-8 w-auto lg:hidden"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
-                    />
-                    <img
-                      className="hidden h-8 w-auto lg:block"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
-                    />
+                  
                   </div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
                       <Link
-                        to="#"
-                        class="bg-orange-700 text-white rounded-md px-3 py-2 text-sm font-medium"
+                        to="/"
+                        class="bg-blue-400  text-white rounded-md px-3 py-2 text-sm font-medium active:bg-violet-700"
                         aria-current="page"
                       >
                         Home
                       </Link>
                       <Link
-                        to="#"
-                        class="text-white hover:bg-orange-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                        to="/aboutus"
+                        class="text-white  hover:bg-blue-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium active:bg-violet-700"
                       >
                         About Us
                       </Link>
                       <Link
-                        to="#"
-                        class="text-white hover:bg-orange-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                        to="/career"
+                        class="text-white hover:bg-blue-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium active:bg-violet-700"
                       >
                         Career
                       </Link>
 
                       <Link
-                        to="#"
-                        class="text-white hover:bg-orange-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                        to="/contactus"
+                        class="text-white hover:bg-blue-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                       >
                         Contact Us
                       </Link>

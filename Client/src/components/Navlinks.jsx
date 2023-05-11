@@ -10,11 +10,11 @@ function classNames(...classes) {
 
 const Navlinks = () => {
   return (
-    <div className="bg-gradient-to-r from-orange-400 to-orange-600">
+    <div className="bg-[#172236]">
       <div className="container mx-auto px-4 flex justify-between items-center py-5">
-        <Menu as="div" className="relative inline-block text-left">
+        <Menu as="div" className="relative  text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset  bg-[#172236]">
               Banking Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -63,7 +63,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/personalloan"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -76,7 +76,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/mortageloan"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -89,7 +89,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/goldloan"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -102,7 +102,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/homeloanbalancetransfer"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -112,13 +112,14 @@ const Navlinks = () => {
                     </Link>
                   )}
                 </Menu.Item>
+               
               </div>
             </Menu.Items>
           </Transition>
         </Menu>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236]">
               B2C Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -200,7 +201,7 @@ const Navlinks = () => {
         </Menu>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236] ">
               G2C Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -223,7 +224,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/passport"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -236,7 +237,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/creditcard"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -249,7 +250,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/panapplication"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -262,7 +263,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/pfwithdrawal"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -278,7 +279,7 @@ const Navlinks = () => {
         </Menu>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236]">
               GST Suvidha Kendra
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -301,7 +302,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/gstregistration"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -340,7 +341,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/udyamcertificate"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -405,7 +406,7 @@ const Navlinks = () => {
                 <Menu.Item>
                   {({ active }) => (
                     <Link
-                      to="#"
+                      to="/foodlicense"
                       className={classNames(
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block px-4 py-2 text-sm"
@@ -419,9 +420,9 @@ const Navlinks = () => {
             </Menu.Items>
           </Transition>
         </Menu>
-        <Menu as="div" className="relative inline-block text-left">
+        {/* <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 ">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#6d5b98]">
               Travel Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -483,7 +484,7 @@ const Navlinks = () => {
               </div>
             </Menu.Items>
           </Transition>
-        </Menu>
+        </Menu> */}
       </div>
     </div>
   );
