@@ -1,7 +1,7 @@
-import Clientmodel from "../Models/ClientModel.js"
-import * as cron from 'node-cron'
+import Clientmodel from "../Models/ClientModel.js";
+import * as cron from "node-cron";
 import nodemailer from "nodemailer";
-import { SendBirthdaymail} from "./Sendingmail.js";
+import { SendBirthdaymail } from "./Sendingmail.js";
 
 export const Addclientctrl = async (req, resp) => {
   try {
@@ -18,7 +18,7 @@ export const Addclientctrl = async (req, resp) => {
       state,
       zip,
       dob,
-      gender
+      gender,
     } = req.body;
 
     if (
@@ -100,49 +100,47 @@ export const Addclientctrl = async (req, resp) => {
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
-}
-
+};
 
 export const SendMAilTOAllctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find({})
+    const already = await Clientmodel.find({});
     const body = req.body;
     already.map((d) => {
       let config = {
-        service : 'gmail',
+        service: "gmail",
         secure: true,
-        auth : {
-            user: process.env.EMAIL,
-            pass:  process.env.PASSWORD
-        }
-      }
-      
-    let transporter = nodemailer.createTransport(config);
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.PASSWORD,
+        },
+      };
 
-    let message = {
-        from : process.env.EMAIL,
-        to : d.email,
+      let transporter = nodemailer.createTransport(config);
+
+      let message = {
+        from: process.env.EMAIL,
+        to: d.email,
         subject: body.Subject,
-        text: body.Mail, 
+        text: body.Mail,
         html: `<b>${body.Mail}</b>`,
-    }
-    //***** Sending Mail ******//
+      };
+      //***** Sending Mail ******//
       console.log(message);
-      transporter.sendMail(message)
-      console.log("Email Just Send")
+      transporter.sendMail(message);
+      console.log("Email Just Send");
       return resp.status(201).json({
         status: true,
-        message: "Mail Just Send to All Client"
+        message: "Mail Just Send to All Client",
       });
-      
+    });
   } catch (error) {
     console.log(error);
     return resp
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
-}
-
+};
 
 export const getClientForCurrentUser = async (req, resp) => {
   try {
@@ -171,90 +169,85 @@ export const getClientForCurrentUser = async (req, resp) => {
   }
 };
 
-
 export const MyClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find({ empolyeeid: req.params.id }).populate(
-      {
-        path: 'empolyeeid',
-        select: 'first_name last_name email'
-      }
-    )
+    const already = await Clientmodel.find({
+      empolyeeid: req.params.id,
+    }).populate({
+      path: "empolyeeid",
+      select: "first_name last_name email",
+    });
     if (already) {
-      return resp.status(200).send(
-        {
-          Succes: true,
-          already
-        }
-      );
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
     }
   } catch (error) {
     resp.status(500).send({
       success: false,
-      message: 'Data Not Fatched',
-    })
+      message: "Data Not Fatched",
+    });
   }
-}
+};
 
 export const EditClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const already = await Clientmodel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
 
     if (already) {
-      return resp.status(200).send(
-        {
-          Succes: true,
-          already
-        }
-      );
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
     }
   } catch (error) {
     resp.status(500).send({
       success: false,
-      message: 'Data Not Fatched',
-    })
+      message: "Data Not Fatched",
+    });
   }
-}
+};
 
 export const GetAllClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find().populate(
-      {
-        path: 'empolyeeid',
-        select: 'first_name last_name email'
-      }
-    )
+    const already = await Clientmodel.find().populate({
+      path: "empolyeeid",
+      select: "first_name last_name email",
+    });
     if (already) {
-      return resp.status(200).send(
-        {
-          Succes: true,
-          already
-        }
-      );
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
     }
   } catch (error) {
     resp.status(500).send({
       success: false,
-      message: 'Data Not Fatched',
-    })
+      message: "Data Not Fatched",
+    });
   }
-}
+};
 
-cron.schedule('0 * * * * *', async () => {
+cron.schedule("0 * * * * *", async () => {
   const datee = new Date();
   const today = datee.getDate();
   const thismonth = datee.getMonth() + 1;
   try {
-    const already = await Clientmodel.find({})
+    const already = await Clientmodel.find({});
     already.map((d) => {
       let clientdob = d.dob;
       let clientdate = clientdob.getDate();
       let clientmonth = clientdob.getMonth() + 1;
       if (clientdate == today && clientmonth == thismonth) {
-        SendBirthdaymail(d.email)
+        SendBirthdaymail(d.email);
       }
-    })
+    });
   } catch (error) {
-    console.log("function is not WORKING!!!")
+    console.log("function is not WORKING!!!");
   }
 });
