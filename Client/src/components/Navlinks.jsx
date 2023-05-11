@@ -14,7 +14,7 @@ const Navlinks = () => {
       <div className="container mx-auto px-4 flex justify-between items-center py-5">
         <Menu as="div" className="relative  text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset  bg-[#172236]">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset  bg-[#172236]">
               Banking Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -119,7 +119,7 @@ const Navlinks = () => {
         </Menu>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236]">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236]">
               B2C Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -201,7 +201,7 @@ const Navlinks = () => {
         </Menu>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236] ">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236] ">
               G2C Services
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
@@ -279,7 +279,7 @@ const Navlinks = () => {
         </Menu>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236]">
+            <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 bg-[#172236]">
               GST Suvidha Kendra
               <ChevronDownIcon
                 className="-mr-1 h-5 w-5 text-gray-400"
