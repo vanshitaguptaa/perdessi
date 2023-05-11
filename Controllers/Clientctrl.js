@@ -104,42 +104,47 @@ export const Addclientctrl = async (req, resp) => {
 
 export const SendMAilTOAllctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find({});
+    const clients = await Clientmodel.find({});
     const { Subject, Mail } = req.body;
 
-    already.map((d) => {
-      let config = {
-        service: "gmail",
-        secure: true,
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-        },
-      };
+    const config = {
+      service: "gmail",
+      secure: true,
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    };
 
-      let transporter = nodemailer.createTransport(config);
+    const transporter = nodemailer.createTransport(config);
 
-      let message = {
+    const mailPromises = [];
+
+    for (const client of clients) {
+      const message = {
         from: process.env.EMAIL,
-        to: d.email,
+        to: client.email,
         subject: Subject,
         text: Mail,
         html: `<b>${Mail}</b>`,
       };
-      //***** Sending Mail ******//
 
-      transporter.sendMail(message);
+      mailPromises.push(transporter.sendMail(message));
+    }
 
-      return resp.status(201).json({
-        status: true,
-        message: "Mail Just Send to All Client",
-      });
+    await Promise.all(mailPromises);
+
+    console.log("Emails Sent");
+
+    return resp.status(201).json({
+      status: true,
+      message: "Mail Just Sent to All Clients",
     });
   } catch (error) {
     console.log(error);
     return resp
       .status(500)
-      .json({ status: false, message: "something went wrong", err: error });
+      .json({ status: false, message: "Something went wrong", err: error });
   }
 };
 
