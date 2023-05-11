@@ -13,6 +13,9 @@ const GSTRegistrationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
+  LoanAmount: {
+    type: Number,
+  },
   IndividualPanCard: {
     type: String,
   },

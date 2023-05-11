@@ -13,6 +13,9 @@ const CarLoanSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
+  LoanAmount: {
+    type: Number,
+  },
   SalariedIdentityProof: {
     type: String,
   },

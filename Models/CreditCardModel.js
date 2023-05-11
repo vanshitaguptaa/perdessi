@@ -13,6 +13,9 @@ const CreditCardSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "employee",
   },
+  LoanAmount: {
+    type: Number,
+  },
   AadharCard: {
     type: String,
   },
