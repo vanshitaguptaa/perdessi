@@ -76,14 +76,7 @@ function App() {
         <Route exact path="/foodlicense" element={<Foodlicenselp/>}/>
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
-        <Route exact path="/update" element={<Updateempolyee />} />
-        <Route exact path="/addemployee" element={<Addemployee/>} />
-        <Route exact path="/Personal Loan" element={<PersonalLoan/>} />
-        <Route exact path="/Business Loan" element={<BusinessLoan/>} />
-        <Route exact path="/Mortgage Loan" element={<MortgageLoan/>} />
-        <Route exact path="/Credit Card" element={<CreditCardLoan/>} />
-        <Route exact path="/Gold Loan" element={<GoldLoan/>} />
-        <Route exact path="/Home Loan" element={<HomeLoan/>} />
+        {/* <Route exact path="/update" element={<Updateempolyee />} /> */}
       </Routes>
     </>
   );
