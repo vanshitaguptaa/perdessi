@@ -239,7 +239,7 @@ export const GetAllClintsctrl = async (req, resp) => {
   }
 };
 
-cron.schedule("0 * * * * *", async () => {
+cron.schedule("0 0 0 * * *", async () => {
   const datee = new Date();
   const today = datee.getDate();
   const thismonth = datee.getMonth() + 1;
