@@ -5,7 +5,7 @@ import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Mortgage = () => {
+const GSTregistration = () => {
     const tokenData = localStorage.getItem("token");
     const token = JSON.parse(tokenData).usertoken;
     const location = useLocation();
@@ -16,14 +16,26 @@ const Mortgage = () => {
     const [clientData, setClientData] = useState("");
     const [LoanAmount, setLoanAmount] = useState("");
     const [client, setClient] = useState("");
-    const [latestSalarySlip, setlatestSalarySlip] = useState(null);
-    const [threeMonthsBankStatement, setthreeMonthsBankStatement] = useState(null);
-    const [panCard, setpanCard] = useState(null);
-    const [idProof, setidProof] = useState(null);
-    const [addressProof, setaddressProof] = useState(null);
-    const [documentOfThePropertyTobeMortgage, setdocumentOfThePropertyTobeMortgage] = useState(null);
-    const [itReturns, setitReturns] = useState(null);
-    
+    const [IndividualPanCard, setIndividualPanCard] = useState(null);
+    const [IndividualAdharCard, setIndividualAdharCard] = useState(null);
+    const [IndividualPhotograph, setIndividualPhotograph] = useState(null);
+    const [IndividualBankAccountDetails, setIndividualBankAccountDetails] = useState(null);
+    const [IndividualAddress, setIndividualAddress] = useState(null);
+    const [HUFPanCard, setHUFPanCard] = useState(null);
+    const [AdharcardOfKartaHUF, setAdharcardOfKartaHUF] = useState(null);
+    const [HUFPhotographOfTheOwner, setHUFPhotographOfTheOwner] = useState(null);
+    const [HUFBankAccountDetails, setHUFBankAccountDetails] = useState(null);
+    const [HUFAddressProof, setHUFAddressProof] = useState(null);
+    const [CompanyPanCard, setCompanyPanCard] = useState(null);
+    const [CompanyCertificateOfIncorporation, setCompanyCertificateOfIncorporation] = useState(null);
+    const [CompanyArticlesOfAssoication, setCompanyArticlesOfAssoication] = useState(null);
+    const [CompanyPanCardOfAuthorizedSignature, setCompanyPanCardOfAuthorizedSignature] = useState(null);
+    const [CompanyAdharCardOfAuthorizedSignature, setCompanyAdharCardOfAuthorizedSignature] = useState(null);
+    const [CompanyBoardresolutionappointingauthorizedsignatory, setCompanyBoardresolutionappointingauthorizedsignatory] = useState("");
+    const [CompanyBankAccountDetails, setCompanyBankAccountDetails] = useState(null);
+    const [CompanyAddressProof, setCompanyAddressProofs] = useState(null);
+   
+
   
     useEffect(() => {
       if (isError === false) {
@@ -37,14 +49,27 @@ const Mortgage = () => {
       const formData = new FormData();
       formData.append("clientId", client);
       formData.append("loadAmount", LoanAmount);
-      formData.append("latestSalarySlip", latestSalarySlip);
-      formData.append("threeMonthsBankStatement", threeMonthsBankStatement);
-      formData.append("panCard", panCard);
-      formData.append("idProof", idProof);
-      formData.append("addressProof", addressProof);
-      formData.append("documentOfThePropertyTobeMortgage", documentOfThePropertyTobeMortgage);
-      formData.append("itReturns", itReturns);
-     
+      formData.append("service", serviceId);
+      formData.append("IndividualPanCard", IndividualPanCard);
+      formData.append("IndividualAdharCard", IndividualAdharCard);
+      formData.append("IndividualPhotograph", IndividualPhotograph);
+      formData.append("IndividualBankAccountDetails", IndividualBankAccountDetails);
+      formData.append("IndividualAddress", IndividualAddress);
+      formData.append("HUFPanCard", HUFPanCard);
+      formData.append("AdharcardOfKartaHUF", AdharcardOfKartaHUF);
+      formData.append("HUFPhotographOfTheOwner", HUFPhotographOfTheOwner);
+      formData.append("HUFBankAccountDetails", HUFBankAccountDetails);
+      formData.append("HUFAddressProof", HUFAddressProof);
+      formData.append("CompanyPanCard", CompanyPanCard);
+      formData.append("CompanyCertificateOfIncorporation", CompanyCertificateOfIncorporation);
+      formData.append("CompanyArticlesOfAssoication", CompanyArticlesOfAssoication);
+      formData.append("CompanyPanCardOfAuthorizedSignature", CompanyPanCardOfAuthorizedSignature);
+      formData.append("CompanyAdharCardOfAuthorizedSignature", CompanyAdharCardOfAuthorizedSignature);
+      formData.append("CompanyBoardresolutionappointingauthorizedsignatory", CompanyBoardresolutionappointingauthorizedsignatory);
+      formData.append("CompanyBankAccountDetails", CompanyBankAccountDetails);
+      formData.append("CompanyAddressProof", CompanyAddressProof);
+      
+
   
       // try {
       //   const leadApiCall = await axios({
@@ -134,8 +159,7 @@ const Mortgage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        
+      <div className="flex flex-wrap -mx-3 mb-2">     
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -154,18 +178,16 @@ const Mortgage = () => {
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
+            for="grid-zip"
           >
-            It Returns*
+            Individual Pan Card*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setitReturns(e.target.files[0]);
-            }}
+            id="grid-zip"
+            type="text"
+            defaultValue={service}
+            readOnly
           />
         </div>
       </div>
@@ -175,7 +197,7 @@ const Mortgage = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-city"
           >
-            Latest Salary Slip*
+            Aadhar Card*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -183,17 +205,16 @@ const Mortgage = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setlatestSalarySlip(e.target.files[0]);
+              setAadharcard(e.target.files[0]);
             }}
           />
         </div>
-        
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-zip"
           >
-            Three Months Bank Statement*
+            Pan Card*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -201,83 +222,13 @@ const Mortgage = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setthreeMonthsBankStatement(e.target.files[0]);
+              setPancard(e.target.files[0]);
             }}
           />
         </div>
       </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Pan Card*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setpanCard(e.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Id Proof*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setidProof(e.target.files[0]);
-            }}
-          />
-        </div>
-      </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Address Proof*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setaddressProof(e.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Document Of The Property To Be Mortgage*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setdocumentOfThePropertyTobeMortgage(e.target.files[0]);
-            }}
-          />
-        </div>
-      </div>
+      
+      
       
       <div className="mt-5 flex justify-center">
         <button
@@ -292,4 +243,4 @@ const Mortgage = () => {
 );
 }
 
-export default Mortgage
+export default GSTregistration

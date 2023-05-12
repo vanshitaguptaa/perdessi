@@ -30,6 +30,9 @@ import CreditCardLoan from './components/formdashborad/CreditCardLoan';
 import GoldLoan from './components/formdashborad/GoldLoan';
 import HomeLoan from './components/formdashborad/HomeLoan';
 import Updateempolyee from './pages/Updateempolyee';
+import Carloan from './components/formdashborad/Carloan';
+import Car from './components/formdata/Car';
+import GstApplication from './components/formdashborad/GstApplication';
 
 // import HomeLone from './components/servicespages/HomeLone';
 // import BusinessLone from './components/servicespages/BusinessLone';
@@ -66,10 +69,12 @@ function App() {
         <Route exact path="/addemployee" element={<Addemployee/>} />
         <Route exact path="/Personal Loan" element={<PersonalLoan/>} />
         <Route exact path="/Business Loan" element={<BusinessLoan/>} />
-        <Route exact path="/Mortgage Loan" element={<MortgageLoan/>} />
+        <Route exact path="/Mortgage  Loan" element={<MortgageLoan/>} />
         <Route exact path="/Credit Card" element={<CreditCardLoan/>} />
         <Route exact path="/Gold Loan" element={<GoldLoan/>} />
-        <Route exact path="/Home Loan" element={<HomeLoan/>} />
+        <Route exact path="/Home  Loan" element={<HomeLoan/>} />
+        <Route exact path="/car Loan" element={<Carloan/>} />
+        <Route exact path="/GST registration application" element={<GstApplication/>} />
         {/* <Route exact path="/homeloan" element={<HomeLone/>} />
         <Route exact path="/businessloan" element={<BusinessLone/>} />
         <Route exact path="/homelead" element={<HomeloneForm/>} />
