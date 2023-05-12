@@ -100,9 +100,9 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
 
 export const createLeadForPersonalLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -114,7 +114,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
     const PersonalLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -126,6 +126,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
     const savedResponse = await newPersonalLoanData.save();
 
+
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
@@ -134,7 +135,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return resp
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });

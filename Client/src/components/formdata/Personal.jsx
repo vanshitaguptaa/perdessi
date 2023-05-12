@@ -25,6 +25,7 @@ const Personal = () => {
   const [SelfEmployeedIncomeProof, setIncome] = useState(null);
   const [SalariedThreeMonthsBankStatement, setBankStatement] = useState(null);
   // const [sixbankStatement, setSixBankStatement] = useState(null);
+  const [employment, setEmployment] = useState("");
   const [SalariedThreeMonthSalarySlip, setThreesalaryslip] = useState(null);
   const [SelfEmployeedSixMonthBankStatement, setSeSixBankStatement] =
     useState(null);
@@ -41,65 +42,58 @@ const Personal = () => {
   const handleLeadForm = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("client", client);
-    formData.append("LoanAmount", LoanAmount);
-    formData.append("serviceId", serviceId);
-    formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
-    // formData.append("Adharimage", adharImage);
-    formData.append(
-      "SalariedThreeMonthsBankStatement",
-      SalariedThreeMonthsBankStatement
-    );
-    formData.append(
-      "SelfEmployeedSixMonthBankStatement",
-      SelfEmployeedSixMonthBankStatement
-    );
-    formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
-    formData.append(
-      "SalariedThreeMonthSalarySlip",
-      SalariedThreeMonthSalarySlip
-    );
-    formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
-    formData.append(
-      "SelfEmployeedProofofContinuityofBusiness",
-      SelfEmployeedProofofContinuityofBusiness
-    );
-    formData.append(
-      "SelfEmployeedProofofIdentity",
-      SelfEmployeedProofofIdentity
-    );
-    formData.append(
-      "SelfEmployeedProofofResidence",
-      SelfEmployeedProofofResidence
-    );
-    formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
-    // formData.append("sixbankStatement", sixbankStatement);
-    // formData.append("sixsalaryslip", sixsalaryslip);
-    formData.append(
-      "SelfEmployeedOfficeAddressProof",
-      SelfEmployeedOfficeAddressProof
-    );
+    try {
+      const formData = new FormData();
+      formData.append("serviceId", serviceId);
+      formData.append("clientId", client);
+      formData.append("loanAmount", LoanAmount);
+      formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
+      formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
+      formData.append(
+        "SalariedThreeMonthsBankStatement",
+        SalariedThreeMonthsBankStatement
+      );
+      formData.append(
+        "SalariedThreeMonthSalarySlip",
+        SalariedThreeMonthSalarySlip
+      );
+      formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
+      formData.append(
+        "SelfEmployeedProofofIdentity",
+        SelfEmployeedProofofIdentity
+      );
+      formData.append(
+        "SelfEmployeedProofofResidence",
+        SelfEmployeedProofofResidence
+      );
+      formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
+      formData.append(
+        "SelfEmployeedSixMonthBankStatement",
+        SelfEmployeedSixMonthBankStatement
+      );
+      formData.append(
+        "SelfEmployeedOfficeAddressProof",
+        SelfEmployeedOfficeAddressProof
+      );
+      formData.append(
+        "SelfEmployeedProofofContinuityofBusiness",
+        SelfEmployeedProofofContinuityofBusiness
+      );
+      
+      const leadApiCall = await axios({
+        method: "post",
+        url: "http://localhost:5000/api/v1/crm/createleadforPersonalloan",
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
+      console.log(leadApiCall);
+    } catch (error) {
+      console.log(error);
     }
-
-    // try {
-    //   const leadApiCall = await axios({
-    //     method: "post",
-    //     url: "http://localhost:5000/api/v1/crm/createlead",
-    //     data: formData,
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   });
-
-    //   console.log(leadApiCall);
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
@@ -183,7 +177,7 @@ const Personal = () => {
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
                 onChange={(e) => {
-                  setClient(e.target.value);
+                  setEmployment(e.target.value);
                 }}
               >
                 <option value="Select a client" selected>
@@ -223,11 +217,11 @@ const Personal = () => {
             />
           </div>
         </div>
-        {client === "Select a client" ? (
+        {employment === "Select a client" ? (
           ""
         ) : (
           <div>
-            {client === "Salaried" ? (
+            {employment === "Salaried" ? (
               <div>
                 <h3 className="my-5 block uppercase tracking-wide text-gray-700 text-xl underline font-bold">
                   Salaried

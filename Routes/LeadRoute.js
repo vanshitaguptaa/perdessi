@@ -148,6 +148,7 @@ const multipleUploadForPersonalLoan = upload.fields([
   { name: "SelfEmployeedProofofContinuityofBusiness", maxCount: 1 },
 ]);
 
+
 const multipleUploadForMortgageLoan = upload.fields([
   { name: "latestSalarySlip", maxCount: 1 },
   { name: "threeMonthsBankStatement", maxCount: 1 },
@@ -232,7 +233,7 @@ const multipleUploadForShopAct = upload.fields([
   { name: "MOA", maxCount: 1 },
   { name: "AON", maxCount: 1 },
   { name: "CIN", maxCount: 1 },
-])
+]);
 
 const multipleUploadForUdyamCertificate = upload.fields([
   { name: "AdharCard", maxCount: 1 },
@@ -242,7 +243,7 @@ const multipleUploadForUdyamCertificate = upload.fields([
   { name: "DetailsOfBusinessActivites", maxCount: 1 },
   { name: "InformationOfTheInvestment", maxCount: 1 },
   { name: "InformationOfTheTurnOver", maxCount: 1 },
-])
+]);
 
 const multipleUploadForFoodLisence = upload.fields([
   { name: "NRMOfLisence", maxCount: 1 },
@@ -254,11 +255,11 @@ const multipleUploadForFoodLisence = upload.fields([
   { name: "SampleFoodRecallPlanAndGuide", maxCount: 1 },
   { name: "BISLiscense", maxCount: 1 },
   { name: "Repacker", maxCount: 1 },
-])
+]);
 
 // Lead Created
 Route.post(
-  "/createleadforHomeloan",
+  "/createleadforhomeloan",
   employeeTokenCheck,
   multipleUploadForHomeLoan,
   CreateLeadctrlForHomeLoan
@@ -401,11 +402,7 @@ Route.get(
   getGSTRegistrationForEmployee
 );
 
-Route.get(
-  "/getshopactforemployee",
-  employeeTokenCheck,
-  getShopActForEmployee
-);
+Route.get("/getshopactforemployee", employeeTokenCheck, getShopActForEmployee);
 
 Route.get(
   "/getudyamcertificateforemployee",
