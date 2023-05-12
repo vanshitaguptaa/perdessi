@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const GoldLoanSchema = new mongoose.Schema({
+const PassportSchema = new mongoose.Schema({
   service: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "services",
@@ -16,14 +16,14 @@ const GoldLoanSchema = new mongoose.Schema({
   LoanAmount: {
     type: Number,
   },
-  Aadharcard: {
+  BirthProof: {
     type: String,
   },
-  Pancard: {
+  AddressProof: {
     type: String,
   },
 });
 
-const GoldLoanModel = mongoose.model("GoldLoan", GoldLoanSchema);
+const PassportModel = mongoose.model("Passport", PassportSchema);
 
-export default GoldLoanModel;
+export default PassportModel;

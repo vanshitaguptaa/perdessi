@@ -2,17 +2,17 @@ import React from "react";
 import Navbar from "../Navbar";
 import Navlinks from "../Navlinks";
 import Footer from "../Footer";
-import Homedetails from "../servicesdetails/Homedetails";
+import GSTregdetails from "../servicesdetails/GSTregdetails";
 
-const HomeLone = () => {
+const GSTRegFormlp = () => {
   return (
     <>
       <Navbar />
       <Navlinks />
-      <Homedetails/>
+      <GSTregdetails/>
       <Footer/>
     </>
   );
 };
 
-export default HomeLone;
+export default GSTRegFormlp;
