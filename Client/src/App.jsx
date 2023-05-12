@@ -28,7 +28,6 @@ import Leadform from "./pages/Leadform";
 import Myprofile from "./pages/Myprofile";
 import Login from "./pages/Login";
 import Addemployee from "./pages/Addemployee";
-import Home from "./pages/Home";
 import HomeLonelp from "./components/servicespages/HomeLonelp";
 import BusinessLonelp from "./components/servicespages/BusinessLonelp";
 import PersonalLoanlp from "./components/servicespages/PersonalLonelp";
