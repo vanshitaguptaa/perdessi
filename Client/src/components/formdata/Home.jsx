@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-// import { ClientListContext } from "../Context/ClientList";
+import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,55 +12,91 @@ const Home = () => {
     const {
       state: { serviceId, service },
     } = location;
-    // const { clients, isError } = useContext(ClientListContext);
+    const { clients, isError } = useContext(ClientListContext);
     const [clientData, setClientData] = useState("");
-    const [loanAmount, setLoanAmount] = useState("");
+    const [LoanAmount, setLoanAmount] = useState("");
     const [client, setClient] = useState("");
-    const [gender, setGender] = useState("");
-    const [mobile, setMobile] = useState("");
-    const [DOB, setDOB] = useState("");
-    const [pan, setPan] = useState("");
-    const [zip, setZip] = useState("");
-    const [panImage, setPanImage] = useState(null);
-    const [adharImage, setAdharImage] = useState(null);
-    const [bankStatement, setBankStatement] = useState(null);
+    const [employeeIdentityCard, setEmployeeIdentityCard] = useState("");
+    const [loanApplication, setLoanApplication] = useState("");
+    const [proofOfIdentity, setProofOfIdentity] = useState("");
+    const [proofOfResidency, setProofOfResidency] = useState("");
+    const [permissionOfConstruction, setPermissionOfConstruction] = useState("");
+    const [registeredAgreementForSales, setRegisteredAgreementForSales] = useState("");
+    const [allotmentletter, setAllotmentletter] = useState("");
+    const [stampedAgreement, setStampedAgreement] = useState("");
+    const [occupancyCertificate, setOccupancyCertificate] = useState("");
+    const [shareCertification, setShareCertification] = useState("");
+    const [maintainanceBill, setMaintainanceBill] = useState("");
+    const [electricityBill, setElectricityBill] = useState("");
+    const [propertyTaxReceipt, setPropertyTaxReceipt] = useState("");
+    const [paymentMadetoBuilderRecept, setPaymentMadetoBuilderRecept] = useState("");
+    const [sixMonthBankStatement, setSixMonthBankStatement] = useState("");
+    const [loanAccountStatement, setLoanAccountStatement] = useState("");
+    const [threeMonthSalarySlip, setThreeMonthSalarySlip] = useState("");
+    const [twoYearOfFormsixteenOrItReturn, setTwoYearOfFormsixteenOrItReturn] = useState("");
+    const [businessAddressProof, setBusinessAddressProof] = useState("");
+    const [ThreeYearItReturn, setThreeYearItReturn] = useState("");
+    const [businessLisenceDetail, setBusinessLisenceDetail] = useState("");
+    const [TDScertification, setTDScertification] = useState("");
+    const [certificationOfQualification, setcertificationOfQualification] = useState("");
+    const [approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed, setApprovedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed] = useState("");
+
   
-    // useEffect(() => {
-    //   if (isError === false) {
-    //     setClientData(clients.clients);
-    //   }
-    // }, []);
+    useEffect(() => {
+      if (isError === false) {
+        setClientData(clients.clients);
+      }
+    }, []);
   
     const handleLeadForm = async (e) => {
       e.preventDefault();
   
       const formData = new FormData();
       formData.append("clientId", client);
-      formData.append("loadAmount", loanAmount);
-      formData.append("gender", gender);
-      formData.append("mobile", mobile);
-      formData.append("DOB", DOB);
-      formData.append("pan", pan);
-      formData.append("zip", zip);
+      formData.append("loadAmount", LoanAmount);
       formData.append("service", serviceId);
-      formData.append("Panimage", panImage);
-      formData.append("Adharimage", adharImage);
-      formData.append("Bankstatement", bankStatement);
+      formData.append("employeeIdentityCard", employeeIdentityCard);
+      formData.append("loanApplication", loanApplication);
+      formData.append("proofOfIdentity", proofOfIdentity);
+      formData.append("proofOfResidency", proofOfResidency);
+      formData.append("permissionOfConstruction", permissionOfConstruction);
+      formData.append("registeredAgreementForSales", registeredAgreementForSales);
+      formData.append("allotmentletter", allotmentletter);
+      formData.append("stampedAgreement", stampedAgreement);
+      formData.append("occupancyCertificate", occupancyCertificate);
+      formData.append("shareCertification", shareCertification);
+      formData.append("maintainanceBill", maintainanceBill);
+      formData.append("electricityBill", electricityBill);
+      formData.append("propertyTaxReceipt", propertyTaxReceipt);
+      formData.append("paymentMadetoBuilderRecept", paymentMadetoBuilderRecept);
+      formData.append("sixMonthBankStatement", sixMonthBankStatement);
+      formData.append("loanAccountStatement", loanAccountStatement);
+      formData.append("threeMonthSalarySlip", threeMonthSalarySlip);
+      formData.append("twoYearOfFormsixteenOrItReturn", twoYearOfFormsixteenOrItReturn);
+      formData.append("businessAddressProof", businessAddressProof);
+      formData.append("ThreeYearItReturn", ThreeYearItReturn);
+      formData.append("businessLisenceDetail", businessLisenceDetail);
+      formData.append("TDScertification", TDScertification);
+      formData.append("certificationOfQualification", certificationOfQualification);
+      formData.append("approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed", approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed);
   
-      try {
-        const leadApiCall = await axios({
-          method: "post",
-          url: "http://localhost:5000/api/v1/crm/createlead",
-          data: formData,
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+      // try {
+      //   const leadApiCall = await axios({
+      //     method: "post",
+      //     url: "http://localhost:5000/api/v1/crm/createlead",
+      //     data: formData,
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   });
   
-        console.log(leadApiCall);
-      } catch (error) {
-        console.log(error);
+      //   console.log(leadApiCall);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
       }
     };
   
@@ -85,7 +121,7 @@ const Home = () => {
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             id="grid-first-name"
             type="number"
-            placeholder="Jane"
+            placeholder=""
             onChange={(e) => {
               setLoanAmount(e.target.value);
             }}
@@ -132,154 +168,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-first-name"
-          >
-            First Name*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="Jane"
-          />
-        </div>
-        <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-first-name"
-          >
-            Middle Name*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            id="grid-first-name"
-            type="text"
-            placeholder="Jane"
-          />
-        </div>
-        <div className="w-full md:w-1/3 px-3">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-last-name"
-          >
-            Last Name*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
-            type="text"
-            placeholder="Doe"
-          />
-        </div>
-      </div> */}
-      <div className="flex flex-wrap -mx-3 mb-6">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-state"
-          >
-            Gender*
-          </label>
-          <div className="relative">
-            <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-state"
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            >
-              <option>Select Gender</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
-            </select>
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg
-                className="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div className="w-1/2 px-3">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-password"
-          >
-            Mobile*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-password"
-            type="number"
-            placeholder=""
-            onChange={(e) => {
-              setMobile(e.target.value);
-            }}
-          />
-        </div>
-      </div>
       <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            DOB*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="date"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setDOB(e.target.value);
-            }}
-          />
-        </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            PAN*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="text"
-            placeholder=""
-            onChange={(e) => {
-              setPan(e.target.value);
-            }}
-          />
-        </div>
-      </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            ZIP*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="number"
-            placeholder=""
-            onChange={(e) => {
-              setZip(e.target.value);
-            }}
-          />
-        </div>
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
           <label
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -310,7 +199,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setEmployeeIdentityCard(e.target.files[0]);
             }}
           />
         </div>
@@ -327,7 +216,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setLoanApplication(e.target.files[0]);
             }}
           />
         </div>
@@ -346,7 +235,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setProofOfIdentity(e.target.files[0]);
             }}
           />
         </div>
@@ -363,7 +252,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setProofOfResidency(e.target.files[0]);
             }}
           />
         </div>
@@ -382,7 +271,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setPermissionOfConstruction(e.target.files[0]);
             }}
           />
         </div>
@@ -399,7 +288,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setRegisteredAgreementForSales(e.target.files[0]);
             }}
           />
         </div>
@@ -418,7 +307,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setAllotmentletter(e.target.files[0]);
             }}
           />
         </div>
@@ -435,7 +324,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setStampedAgreement(e.target.files[0]);
             }}
           />
         </div>
@@ -454,7 +343,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setOccupancyCertificate(e.target.files[0]);
             }}
           />
         </div>
@@ -471,7 +360,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setShareCertification(e.target.files[0]);
             }}
           />
         </div>
@@ -490,7 +379,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setMaintainanceBill(e.target.files[0]);
             }}
           />
         </div>
@@ -507,7 +396,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setElectricityBill(e.target.files[0]);
             }}
           />
         </div>
@@ -526,7 +415,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setPropertyTaxReceipt(e.target.files[0]);
             }}
           />
         </div>
@@ -543,7 +432,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setApprovedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed(e.target.files[0]);
             }}
           />
         </div>
@@ -562,7 +451,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setPaymentMadetoBuilderRecept(e.target.files[0]);
             }}
           />
         </div>
@@ -579,7 +468,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setSixMonthBankStatement(e.target.files[0]);
             }}
           />
         </div>
@@ -598,7 +487,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setLoanAccountStatement(e.target.files[0]);
             }}
           />
         </div>
@@ -615,7 +504,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setThreeMonthSalarySlip(e.target.files[0]);
             }}
           />
         </div>
@@ -634,7 +523,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setTwoYearOfFormsixteenOrItReturn(e.target.files[0]);
             }}
           />
         </div>
@@ -651,7 +540,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setBusinessAddressProof(e.target.files[0]);
             }}
           />
         </div>
@@ -670,7 +559,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setThreeYearItReturn(e.target.files[0]);
             }}
           />
         </div>
@@ -687,7 +576,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setBusinessLisenceDetail(e.target.files[0]);
             }}
           />
         </div>
@@ -706,7 +595,7 @@ const Home = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setPanImage(e.target.files[0]);
+              setTDScertification(e.target.files[0]);
             }}
           />
         </div>
@@ -723,7 +612,7 @@ const Home = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharImage(e.target.files[0]);
+              setcertificationOfQualification(e.target.files[0]);
             }}
           />
         </div>

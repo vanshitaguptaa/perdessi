@@ -5,7 +5,7 @@ import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Personal = () => {
+const Car = () => {
   const tokenData = localStorage.getItem("token");
   const token = JSON.parse(tokenData).usertoken;
   const location = useLocation();
@@ -16,21 +16,33 @@ const Personal = () => {
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("Select a client");
-  // const [zip, setZip] = useState("");
-  const [SalariedProofOfIdentity, setIndentity] = useState(null);
-  const [SalariedTwoPassportPhoto, setPassport] = useState(null);
-  const [SelfEmployeedProofofIdentity, setSEIndentity] = useState(null);
-  const [SalariedProofOfResidence, setResidence] = useState(null);
-  const [SelfEmployeedProofofResidence, setseResidence] = useState(null);
-  const [SelfEmployeedIncomeProof, setIncome] = useState(null);
-  const [SalariedThreeMonthsBankStatement, setBankStatement] = useState(null);
-  // const [sixbankStatement, setSixBankStatement] = useState(null);
-  const [SalariedThreeMonthSalarySlip, setThreesalaryslip] = useState(null);
-  const [SelfEmployeedSixMonthBankStatement, setSeSixBankStatement] =
+  const [SalariedIdentityProof, setSalariedIdentityProof] = useState(null);
+  const [SalariedAddressProof, setSalariedAddressProof] = useState(null);
+  const [SalariedAgeProof, setSalariedAgeProof] = useState(null);
+  const [SalariedBankStatement, setSalariedBankStatement] = useState(null);
+  const [SalariedProofOfIncome, setSalariedProofOfIncome] = useState(null);
+  const [
+    SalariedSignatureVerificationProof,
+    setSalariedSignatureVerificationProof,
+  ] = useState(null);
+  const [SalariedProformaInvoice, setSalariedProformaInvoice] = useState(null);
+  const [SelfEmployedIdentityProof, setSelfEmployedIdentityProof] =
     useState(null);
-  const [SelfEmployeedProofofContinuityofBusiness, setBusiness] =
+  const [SelfEmployeeAddressProof, setSelfEmployeeAddressProof] =
     useState(null);
-  const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
+  const [SelfEmployeeAgeProof, setSelfEmployeeAgeProof] = useState(null);
+  const [SelfEmployeeBankStatement, setSelfEmployeeBankStatement] =
+    useState(null);
+  const [SelfEmployeeBusinessOwnership, setSelfEmployeeBusinessOwnership] =
+    useState(null);
+  const [SelfEmployeeProofOIncome, setSelfEmployeeProofOIncome] =
+    useState(null);
+  const [
+    SelfEmployeeSignatureVerification,
+    setSelfEmployeeSignatureVerification,
+  ] = useState(null);
+  const [SelfEmployeeProformaInvoice, setSelfEmployeeProformaInvoice] =
+    useState(null);
 
   useEffect(() => {
     if (isError === false) {
@@ -42,48 +54,33 @@ const Personal = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("client", client);
-    formData.append("LoanAmount", LoanAmount);
-    formData.append("serviceId", serviceId);
-    formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
-    // formData.append("Adharimage", adharImage);
+    formData.append("clientId", client);
+    formData.append("loadAmount", LoanAmount);
+    formData.append("service", serviceId);
+    formData.append("SalariedIdentityProof", SalariedIdentityProof);
+    formData.append("SalariedAddressProof", SalariedAddressProof);
+    formData.append("SalariedAgeProof", SalariedAgeProof);
+    formData.append("SalariedBankStatement", SalariedBankStatement);
+    formData.append("SalariedProofOfIncome", SalariedProofOfIncome);
     formData.append(
-      "SalariedThreeMonthsBankStatement",
-      SalariedThreeMonthsBankStatement
+      "SalariedSignatureVerificationProof",
+      SalariedSignatureVerificationProof
     );
+    formData.append("SalariedProformaInvoice", SalariedProformaInvoice);
+    formData.append("SelfEmployedIdentityProof", SelfEmployedIdentityProof);
+    formData.append("SelfEmployeeAddressProof", SelfEmployeeAddressProof);
+    formData.append("SelfEmployeeAgeProof", SelfEmployeeAgeProof);
+    formData.append("SelfEmployeeBankStatement", SelfEmployeeBankStatement);
     formData.append(
-      "SelfEmployeedSixMonthBankStatement",
-      SelfEmployeedSixMonthBankStatement
+      "SelfEmployeeBusinessOwnership",
+      SelfEmployeeBusinessOwnership
     );
-    formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
+    formData.append("SelfEmployeeProofOIncome", SelfEmployeeProofOIncome);
     formData.append(
-      "SalariedThreeMonthSalarySlip",
-      SalariedThreeMonthSalarySlip
+      "SelfEmployeeSignatureVerification",
+      SelfEmployeeSignatureVerification
     );
-    formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
-    formData.append(
-      "SelfEmployeedProofofContinuityofBusiness",
-      SelfEmployeedProofofContinuityofBusiness
-    );
-    formData.append(
-      "SelfEmployeedProofofIdentity",
-      SelfEmployeedProofofIdentity
-    );
-    formData.append(
-      "SelfEmployeedProofofResidence",
-      SelfEmployeedProofofResidence
-    );
-    formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
-    // formData.append("sixbankStatement", sixbankStatement);
-    // formData.append("sixsalaryslip", sixsalaryslip);
-    formData.append(
-      "SelfEmployeedOfficeAddressProof",
-      SelfEmployeedOfficeAddressProof
-    );
-
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    formData.append("SelfEmployeeProformaInvoice", SelfEmployeeProformaInvoice);
 
     // try {
     //   const leadApiCall = await axios({
@@ -100,9 +97,10 @@ const Personal = () => {
     // } catch (error) {
     //   console.log(error);
     // }
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
   };
-
-  // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
     <div className="flex justify-center items-center">
       <form
@@ -238,7 +236,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Indentity*
+                     Salaried Identity Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -246,7 +244,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setIndentity(e.target.files[0]);
+                        setSalariedIdentityProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -255,7 +253,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Residence*
+                      Salaried Address Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -263,7 +261,7 @@ const Personal = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) => setResidence(e.target.files[0])}
+                      onChange={(e) => setSalariedAddressProof(e.target.files[0])}
                     />
                   </div>
                 </div>
@@ -273,7 +271,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Three Months Bank Statement*
+                      Salaried Age Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -281,7 +279,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setBankStatement(e.target.files[0]);
+                        setSalariedAgeProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -290,7 +288,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Three Month Salary Slip*
+                      Salaried Bank Statement*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -298,7 +296,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setThreesalaryslip(e.target.files[0]);
+                        setSalariedBankStatement(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -309,7 +307,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Two Passport Photo*
+                      Salaried Proof Of Income*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -317,7 +315,43 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setPassport(e.target.files[0]);
+                        setSalariedProofOfIncome(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Salaried Signature Verification Proof*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSalariedSignatureVerificationProof(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-2">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Salaried Proof income Invoice*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSalariedProformaInvoice(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -334,7 +368,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Indentity*
+                      Self Employed Identity Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -342,7 +376,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSEIndentity(e.target.files[0]);
+                        setSelfEmployedIdentityProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -351,7 +385,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Residence*
+                      Self Employee Address Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -359,7 +393,7 @@ const Personal = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) => setseResidence(e.target.files[0])}
+                      onChange={(e) => setSelfEmployeeAddressProof(e.target.files[0])}
                     />
                   </div>
                 </div>
@@ -369,7 +403,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Income Proof*
+                      Self Employee Age Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -377,7 +411,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setIncome(e.target.files[0]);
+                        setSelfEmployeeAgeProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -386,7 +420,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Six Month Bank Statement*
+                      Self Employee Bank Statement*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -394,7 +428,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSeSixBankStatement(e.target.files[0]);
+                        setSelfEmployeeBankStatement(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -405,7 +439,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Office Address Proof*
+                      Self Employee Business Ownership*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -413,7 +447,7 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setAddressproof(e.target.files[0]);
+                        setSelfEmployeeBusinessOwnership(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -422,7 +456,7 @@ const Personal = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Continuity Of Business*
+                      Self Employee Proof Of Income*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -430,7 +464,43 @@ const Personal = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setBusiness(e.target.files[0]);
+                        setSelfEmployeeProofOIncome(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-2">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Self Employee Signature Verification*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSelfEmployeeSignatureVerification(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Self Employee Preform Invoice*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSelfEmployeeProformaInvoice(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -453,4 +523,4 @@ const Personal = () => {
   );
 };
 
-export default Personal;
+export default Car;

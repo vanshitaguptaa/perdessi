@@ -3,7 +3,19 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./css/style.css";
 
-// Import pages
+
+import Home from './pages/Home';
+import Personal from './components/formdata/Personal';
+import PersonalLoan from './components/formdashborad/PersonalLoan';
+import BusinessLoan from './components/formdashborad/BusinessLoan';
+import MortgageLoan from './components/formdashborad/MortgageLoan';
+import CreditCardLoan from './components/formdashborad/CreditCardLoan';
+import GoldLoan from './components/formdashborad/GoldLoan';
+import HomeLoan from './components/formdashborad/HomeLoan';
+import Updateempolyee from './pages/Updateempolyee';
+import Carloan from './components/formdashborad/Carloan';
+import Car from './components/formdata/Car';
+import GstApplication from './components/formdashborad/GstApplication';
 import Dashboard from "./pages/Dashboard";
 import AddClient from "./pages/AddClient";
 import Addleads from "./pages/Addleads";
@@ -35,6 +47,7 @@ import MortgageLoanlp from "./components/servicespages/MortageLonelp";
 import CreditCardlp from "./components/servicespages/CreditCardlp";
 import GSTRegFormlp from "./components/servicespages/GSTRegFormlp";
 
+
 function App() {
   const location = useLocation();
 
@@ -59,6 +72,15 @@ function App() {
         <Route exact path="/allemployee" element={<Allemployees />} />
         <Route exact path="/leadform" element={<Leadform />} />
         <Route exact path="/myprofile" element={<Myprofile />} />
+        <Route exact path="/update" element={<Updateempolyee />} />
+        <Route exact path="/Personal Loan" element={<PersonalLoan/>} />
+        <Route exact path="/Business Loan" element={<BusinessLoan/>} />
+        <Route exact path="/Mortgage  Loan" element={<MortgageLoan/>} />
+        <Route exact path="/Credit Card" element={<CreditCardLoan/>} />
+        <Route exact path="/Gold Loan" element={<GoldLoan/>} />
+        <Route exact path="/Home  Loan" element={<HomeLoan/>} />
+        <Route exact path="/car Loan" element={<Carloan/>} />
+        <Route exact path="/GST registration application" element={<GstApplication/>} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/addemployee" element={<Addemployee />} />
         <Route exact path="/homeloan" element={<HomeLonelp />} />
@@ -76,7 +98,6 @@ function App() {
         <Route exact path="/foodlicense" element={<Foodlicenselp/>}/>
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
-        {/* <Route exact path="/update" element={<Updateempolyee />} /> */}
       </Routes>
     </>
   );

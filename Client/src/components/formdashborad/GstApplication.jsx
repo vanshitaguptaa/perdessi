@@ -3,9 +3,9 @@ import Sidebar from "../../partials/Sidebar";
 import Header from "../../partials/Header";
 import WelcomeBanner from "../../partials/dashboard/WelcomeBanner";
 import { useNavigate } from "react-router-dom";
-import Gold from "../formdata/Gold";
+import GSTregistration from "../formdata/GSTregistration";
 
-const GoldLoan = () => {
+const GstApplication = () => {
     const navigate = useNavigate();
     const [authScreen, setAuthScreen] = useState(true);
     let tokenData = localStorage.getItem("token");
@@ -60,7 +60,7 @@ const GoldLoan = () => {
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main>
             <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-              <Gold />
+              <GSTregistration />
             </div>
           </main>
         </div>
@@ -68,4 +68,4 @@ const GoldLoan = () => {
     );
 }
 
-export default GoldLoan
+export default GstApplication
