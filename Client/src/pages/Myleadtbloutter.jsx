@@ -55,6 +55,19 @@ function Myleadtbloutter() {
         setloandetail(res.data.savedLeads);
       });
     }
+    if (service === "Mortgage  Loan") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getmortgageloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
   };
   console.log(loandetail);
   // console.log(typeof loandetail);

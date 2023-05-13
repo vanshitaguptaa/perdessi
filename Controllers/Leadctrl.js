@@ -143,9 +143,9 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
 export const createLeadForMortgageLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -157,7 +157,7 @@ export const createLeadForMortgageLoan = async (req, resp) => {
     const MortgageLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -186,9 +186,9 @@ export const createLeadForMortgageLoan = async (req, resp) => {
 
 export const createLeadForGoldLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -200,7 +200,7 @@ export const createLeadForGoldLoan = async (req, resp) => {
     const GoldLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -229,9 +229,9 @@ export const createLeadForGoldLoan = async (req, resp) => {
 
 export const createLeadForCreditCard = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -243,7 +243,7 @@ export const createLeadForCreditCard = async (req, resp) => {
     const CreditCardData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -272,9 +272,9 @@ export const createLeadForCreditCard = async (req, resp) => {
 
 export const createLeadForCarLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -286,7 +286,7 @@ export const createLeadForCarLoan = async (req, resp) => {
     const CarLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -315,9 +315,9 @@ export const createLeadForCarLoan = async (req, resp) => {
 
 export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -329,7 +329,7 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
     const NewCorrectionPanApplicationData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -359,9 +359,9 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
 
 export const createLeadForPassport = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -373,7 +373,7 @@ export const createLeadForPassport = async (req, resp) => {
     const PassportData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -402,9 +402,9 @@ export const createLeadForPassport = async (req, resp) => {
 
 export const createLeadForGSTRegistration = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -416,7 +416,7 @@ export const createLeadForGSTRegistration = async (req, resp) => {
     const GSTRegistrationData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -450,13 +450,12 @@ export const createLeadForShopAct = async (req, resp) => {
     const {
       serviceId,
       clientId,
-      employeeId,
       loanAmount,
       detailsOfBusiness,
       natureOfBusiness,
     } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -468,7 +467,7 @@ export const createLeadForShopAct = async (req, resp) => {
     const ShopActData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
       DetailsOfBusiness: detailsOfBusiness,
       NatureOfBusiness: natureOfBusiness,
@@ -499,10 +498,10 @@ export const createLeadForShopAct = async (req, resp) => {
 
 export const createLeadForUdyamCertificate = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount, businessAdress } =
+    const { serviceId, clientId, loanAmount, businessAdress } =
       req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -514,7 +513,7 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
     const UdyamCertificateData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
       BusinessAdress: businessAdress,
     };
@@ -546,9 +545,9 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
 
 export const createLeadForFoodLisence = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -560,7 +559,7 @@ export const createLeadForFoodLisence = async (req, resp) => {
     const FoodLisenceData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -591,7 +590,7 @@ export const getHomeLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await HomeLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -616,7 +615,7 @@ export const getBusinessLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await BusinessloanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -666,7 +665,7 @@ export const getMortgageLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await MortgageLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -691,7 +690,7 @@ export const getGoldLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GoldLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -716,7 +715,7 @@ export const getCreditCardLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CreditCardModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -741,7 +740,7 @@ export const getCarLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CarLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -766,7 +765,7 @@ export const getNewCorrectionPanApplicationForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await NewCorrectionPanApplicationModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -791,7 +790,7 @@ export const getPassportForEmplyoee = async (req, resp) => {
   try {
     const savedMyLead = await PassportModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -816,7 +815,7 @@ export const getGSTRegistrationForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GSTResgistraionModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -841,7 +840,7 @@ export const getShopActForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await ShopActModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -866,7 +865,7 @@ export const getUdyamCertificateForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await UdyamCertificateModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -891,7 +890,7 @@ export const getFoodLisenceForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await FoodLisenceModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp

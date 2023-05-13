@@ -4,11 +4,10 @@ import React, { useState, useEffect } from "react";
 const MyleadTable = ({ loandetail }) => {
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
+  const [authScreen, setAuthScreen] = useState(true);
 
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
-
-  console.log(loandetail);
 
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
@@ -19,31 +18,6 @@ const MyleadTable = ({ loandetail }) => {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
-
-  // Function for Fetch Data in Pop
-  const Fetchpopdata = async (id) => {
-    console.log(`Pop is Working for this is ${id}`);
-
-    await axios({
-      method: "get",
-      url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      console.log(res.data.response);
-      setpopupdata(res.data.response);
-      console.log(popupdata);
-    });
-    popupdata ? setview(true) : setview(false);
-  };
-
-  const change_into_date = (dte) => {
-    const data = new Date(dte);
-    const newdate = data.toLocaleDateString();
-    // console.log(data.toLocaleDateString());
-    return newdate;
-  };
 
   useEffect(() => {
     if (!tokenData) {
@@ -59,6 +33,104 @@ const MyleadTable = ({ loandetail }) => {
     }
   }, []);
 
+  // Function for Fetch Data in Pop
+  const Fetchpopdata = async (id, serviceName) => {
+    console.log(`Pop is Working for this is ${id}`);
+
+    if (serviceName === "personal loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if(serviceName === "Mortgage  Loan"){
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      })
+    }
+    popupdata ? setview(true) : setview(false);
+  };
+
+  const change_into_date = (dte) => {
+    const data = new Date(dte);
+    const newdate = data.toLocaleDateString();
+    // console.log(data.toLocaleDateString());
+    return newdate;
+  };
+
+  const renderImage = (propsData) => {
+    console.log(propsData)
+    if(propsData.service.service_name === "personal loan"){
+      return Object.entries(propsData).map(([key, value]) => {
+        if (key === "service" || key === "client" || key === "employee") {
+          return null;
+        } else {
+          return Object.entries(value).map(([keyOne, valueOne]) => {
+            if (keyOne === "path") {
+              let url = valueOne.split("public")[1].substring(1);
+              return (
+                <div className="">
+                  <h1>{key}</h1>
+                  <img className="" src={`http://localhost:5000/${url}`} alt="" srcset="" />
+                </div>
+              );
+            }
+            if(Array.isArray(value)){
+               return value.map((curr) => {
+                return <div>
+                  <h1>{curr.fieldname}</h1>
+                  <img src={`http://localhost:5000/${curr.path.split("public")[1].substring(1)}`} alt="" srcset="" />
+                </div>
+               })
+            }
+          });
+        }
+      });
+    }else {
+      return Object.entries(propsData).map(([key, value]) => {
+         if(key === "service" || key === "client" || key === "employee" || key === "_id" || key === "__v" || key === "LoanAmount"){
+          return null;
+         }else {
+           return <div>
+            <h1>{key}</h1>
+            <img src={`http://localhost:5000/${value.split("public")[1].substring(1)}`} alt="" srcset="" />
+           </div>
+         }
+      })
+    }
+  };
+
+
+
+  if (authScreen) {
+    return (
+      <div className="lds-roller-container">
+        <div className="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="flex flex-col gap-6">
@@ -119,7 +191,7 @@ const MyleadTable = ({ loandetail }) => {
                         data-te-ripple-init
                         data-te-ripple-color="light"
                         onClick={() => {
-                          Fetchpopdata(e._id);
+                          Fetchpopdata(e._id, e.service.service_name);
                           // setview(true);
                         }}
                       >
@@ -211,8 +283,12 @@ const MyleadTable = ({ loandetail }) => {
                     joining date:{" "}
                     {change_into_date(popupdata.employee.joiningdate)}
                   </p>
-                  <p className="font-semibold">Religion: {popupdata.employee.religion}</p>
-                  <p className="font-semibold">Marital Status: {popupdata.employee.martialStatus}</p>
+                  <p className="font-semibold">
+                    Religion: {popupdata.employee.religion}
+                  </p>
+                  <p className="font-semibold">
+                    Marital Status: {popupdata.employee.martialStatus}
+                  </p>
                 </div>
               </div>
               <div className="backdrop-blur-md extra-information-div -mt-4 pb-4 grid grid-rows-2 grid-cols-2">
@@ -239,9 +315,10 @@ const MyleadTable = ({ loandetail }) => {
                   </h5>
                   <div className="grid grid-rows-2">
                     <div className="">
+                      {renderImage(popupdata)}
+                      {/* <img src={""} alt="" />
                       <img src={""} alt="" />
-                      <img src={""} alt="" />
-                      <img src={""} alt="" />
+                      <img src={""} alt="" /> */}
                     </div>
                   </div>
                 </div>
