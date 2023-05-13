@@ -39,6 +39,8 @@ import {
   editFoodLisenceController,
   editShopActController,
   editUdyamCertificateController,
+  getHomeLoanLeadById,
+  getPersonalLoanById
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -348,6 +350,13 @@ Route.post(
   multipleUploadForFoodLisence,
   createLeadForFoodLisence
 );
+
+
+// get lead by ID
+Route.get("/gethomeloanbyid", employeeTokenCheck, getHomeLoanLeadById);
+Route.get("/getpersonalloanbyuid", employeeTokenCheck, getPersonalLoanById);
+Route.get("/getbusinessloanbyid", employeeTokenCheck)
+
 
 // Get My Lead
 // Route.get("/mylead", employeeTokenCheck, MyLeadsctrl);
