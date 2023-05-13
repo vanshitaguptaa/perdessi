@@ -5,7 +5,7 @@ import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const GSTregistration = () => {
+const Shop = () => {
     const tokenData = localStorage.getItem("token");
     const token = JSON.parse(tokenData).usertoken;
     const location = useLocation();
@@ -16,27 +16,16 @@ const GSTregistration = () => {
     const [clientData, setClientData] = useState("");
     const [LoanAmount, setLoanAmount] = useState("");
     const [client, setClient] = useState("");
-    const [IndividualPanCard, setIndividualPanCard] = useState(null);
-    const [IndividualAdharCard, setIndividualAdharCard] = useState(null);
-    const [IndividualPhotograph, setIndividualPhotograph] = useState(null);
-    const [IndividualBankAccountDetails, setIndividualBankAccountDetails] = useState(null);
-    const [IndividualAddress, setIndividualAddress] = useState(null);
-    const [HUFPanCard, setHUFPanCard] = useState(null);
-    const [AdharcardOfKartaHUF, setAdharcardOfKartaHUF] = useState(null);
-    const [HUFPhotographOfTheOwner, setHUFPhotographOfTheOwner] = useState(null);
-    const [HUFBankAccountDetails, setHUFBankAccountDetails] = useState(null);
-    const [HUFAddressProof, setHUFAddressProof] = useState(null);
-    const [CompanyPanCard, setCompanyPanCard] = useState(null);
-    const [CompanyCertificateOfIncorporation, setCompanyCertificateOfIncorporation] = useState(null);
-    const [CompanyArticlesOfAssoication, setCompanyArticlesOfAssoication] = useState(null);
-    const [CompanyPanCardOfAuthorizedSignature, setCompanyPanCardOfAuthorizedSignature] = useState(null);
-    const [CompanyAdharCardOfAuthorizedSignature, setCompanyAdharCardOfAuthorizedSignature] = useState(null);
-    const [CompanyBoardresolutionappointingauthorizedsignatory, setCompanyBoardresolutionappointingauthorizedsignatory] = useState("");
-    const [CompanyBankAccountDetails, setCompanyBankAccountDetails] = useState(null);
-    const [CompanyAddressProof, setCompanyAddressProofs] = useState(null);
-   
+    const [PanCard, setPanCard] = useState(null);
+    const [AdharCard, setAdharCard] = useState(null);
+    const [DetailsOfBusiness, setDetailsOfBusiness] = useState(null);
+    const [NatureOfBusiness, setNatureOfBusiness] = useState(null);
+    const [ElectricityBill, setElectricityBill] = useState(null);
+    const [RentAgreement, setRentAgreement] = useState(null);
+    const [MOA, setMOA] = useState(null);
+    const [AON, setAON] = useState(null);
+    const [CIN, setCIN] = useState(null);
 
-  
     useEffect(() => {
       if (isError === false) {
         setClientData(clients.clients);
@@ -50,25 +39,15 @@ const GSTregistration = () => {
       formData.append("clientId", client);
       formData.append("loadAmount", LoanAmount);
       formData.append("service", serviceId);
-      formData.append("IndividualPanCard", IndividualPanCard);
-      formData.append("IndividualAdharCard", IndividualAdharCard);
-      formData.append("IndividualPhotograph", IndividualPhotograph);
-      formData.append("IndividualBankAccountDetails", IndividualBankAccountDetails);
-      formData.append("IndividualAddress", IndividualAddress);
-      formData.append("HUFPanCard", HUFPanCard);
-      formData.append("AdharcardOfKartaHUF", AdharcardOfKartaHUF);
-      formData.append("HUFPhotographOfTheOwner", HUFPhotographOfTheOwner);
-      formData.append("HUFBankAccountDetails", HUFBankAccountDetails);
-      formData.append("HUFAddressProof", HUFAddressProof);
-      formData.append("CompanyPanCard", CompanyPanCard);
-      formData.append("CompanyCertificateOfIncorporation", CompanyCertificateOfIncorporation);
-      formData.append("CompanyArticlesOfAssoication", CompanyArticlesOfAssoication);
-      formData.append("CompanyPanCardOfAuthorizedSignature", CompanyPanCardOfAuthorizedSignature);
-      formData.append("CompanyAdharCardOfAuthorizedSignature", CompanyAdharCardOfAuthorizedSignature);
-      formData.append("CompanyBoardresolutionappointingauthorizedsignatory", CompanyBoardresolutionappointingauthorizedsignatory);
-      formData.append("CompanyBankAccountDetails", CompanyBankAccountDetails);
-      formData.append("CompanyAddressProof", CompanyAddressProof);
-      
+      formData.append("PanCard", PanCard);
+      formData.append("AdharCard", AdharCard);
+      formData.append("DetailsOfBusiness", DetailsOfBusiness);
+      formData.append("NatureOfBusiness", NatureOfBusiness);
+      formData.append("ElectricityBill", ElectricityBill);
+      formData.append("RentAgreement", RentAgreement);
+      formData.append("MOA", MOA);
+      formData.append("AON", AON);
+      formData.append("CIN", CIN);
 
   
       // try {
@@ -175,22 +154,6 @@ const GSTregistration = () => {
             readOnly
           />
         </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            Individual Pan Card*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="file"
-            onChange={(e) => {
-              setIndividualPanCard(e.target.files[0]);
-            }}
-          />
-        </div>
       </div>
       <div className="flex flex-wrap -mx-3 mb-2">
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -198,7 +161,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-city"
           >
-            Individual Adhar Card*
+            Pan Card*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -206,7 +169,7 @@ const GSTregistration = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setIndividualAdharCard(e.target.files[0]);
+                setPanCard(e.target.files[0]);
             }}
           />
         </div>
@@ -215,7 +178,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-zip"
           >
-            Individual Photograph*
+            Adhar Card*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -223,7 +186,7 @@ const GSTregistration = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setIndividualPhotograph(e.target.files[0]);
+                setAdharCard(e.target.files[0]);
             }}
           />
         </div>
@@ -234,7 +197,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-city"
           >
-            Individual Bank Account Details*
+            Details Of Business*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -242,7 +205,7 @@ const GSTregistration = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setIndividualBankAccountDetails(e.target.files[0]);
+            setDetailsOfBusiness(e.target.files[0]);
             }}
           />
         </div>
@@ -251,7 +214,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-zip"
           >
-            Individual Address*
+            Nature Of Business*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -259,7 +222,7 @@ const GSTregistration = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setIndividualAddress(e.target.files[0]);
+                setNatureOfBusiness(e.target.files[0]);
             }}
           />
         </div>
@@ -270,7 +233,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-city"
           >
-            HUF Pan Card*
+            Electricity Bill*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -278,7 +241,7 @@ const GSTregistration = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setHUFPanCard(e.target.files[0]);
+                setElectricityBill(e.target.files[0]);
             }}
           />
         </div>
@@ -287,7 +250,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-zip"
           >
-            Adharcard Of Karta HUF*
+            Rent Agreement*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -295,7 +258,7 @@ const GSTregistration = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setAdharcardOfKartaHUF(e.target.files[0]);
+                setRentAgreement(e.target.files[0]);
             }}
           />
         </div>
@@ -306,7 +269,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-city"
           >
-           HUF Photograph Of TheOwner*
+            MOA*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -314,7 +277,7 @@ const GSTregistration = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setHUFPhotographOfTheOwner(e.target.files[0]);
+                setMOA(e.target.files[0]);
             }}
           />
         </div>
@@ -323,7 +286,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-zip"
           >
-            HUF Bank Account Details*
+            AON*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -331,7 +294,7 @@ const GSTregistration = () => {
             type="file"
             placeholder=""
             onChange={(e) => {
-              setHUFBankAccountDetails(e.target.files[0]);
+                setAON(e.target.files[0]);
             }}
           />
         </div>
@@ -342,7 +305,7 @@ const GSTregistration = () => {
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-city"
           >
-            HUF Address Proof*
+            CIN*
           </label>
           <input
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -350,159 +313,11 @@ const GSTregistration = () => {
             type="file"
             placeholder="Albuquerque"
             onChange={(e) => {
-              setHUFAddressProof(e.target.files[0]);
+                setCIN(e.target.files[0]);
             }}
           />
         </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            Company Pan Card*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="file"
-            placeholder=""
-            onChange={(e) => {
-              setCompanyPanCard(e.target.files[0]);
-            }}
-          />
-        </div>
-      </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Company Certificate Of Incorporation*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setCompanyCertificateOfIncorporation(e.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            Company Articles Of Assoication*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="file"
-            placeholder=""
-            onChange={(e) => {
-              setCompanyArticlesOfAssoication(e.target.files[0]);
-            }}
-          />
-        </div>
-      </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Company PanCard Of Authorized Signature*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setCompanyPanCardOfAuthorizedSignature(e.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            Company Adhar Card Of Authorized Signature*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="file"
-            placeholder=""
-            onChange={(e) => {
-              setCompanyAdharCardOfAuthorizedSignature(e.target.files[0]);
-            }}
-          />
-        </div>
-      </div>
-     
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Company Board resolution appointing authorized signatory*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setCompanyBoardresolutionappointingauthorizedsignatory(e.target.files[0]);
-            }}
-          />
-        </div>
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-zip"
-          >
-            Company Bank Account Details*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip"
-            type="file"
-            placeholder=""
-            onChange={(e) => {
-              setCompanyBankAccountDetails(e.target.files[0]);
-            }}
-          />
-        </div>
-      </div>
-      <div className="flex flex-wrap -mx-3 mb-2">
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-city"
-          >
-            Company Address Proof*
-          </label>
-          <input
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-city"
-            type="file"
-            placeholder="Albuquerque"
-            onChange={(e) => {
-              setCompanyAddressProofs(e.target.files[0]);
-            }}
-          />
-        </div>
-        
-      </div>
-      
-      
+      </div> 
       <div className="mt-5 flex justify-center">
         <button
           type="submit"
@@ -516,4 +331,4 @@ const GSTregistration = () => {
 );
 }
 
-export default GSTregistration
+export default Shop

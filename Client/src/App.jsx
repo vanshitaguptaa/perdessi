@@ -31,8 +31,9 @@ import GoldLoan from './components/formdashborad/GoldLoan';
 import HomeLoan from './components/formdashborad/HomeLoan';
 import Updateempolyee from './pages/Updateempolyee';
 import Carloan from './components/formdashborad/Carloan';
-import Car from './components/formdata/Car';
 import GstApplication from './components/formdashborad/GstApplication';
+import PassportSchema from './components/formdashborad/PassportSchema';
+import UdyamCertificate from './components/formdashborad/UdyamCertificate';
 
 // import HomeLone from './components/servicespages/HomeLone';
 // import BusinessLone from './components/servicespages/BusinessLone';
@@ -75,6 +76,8 @@ function App() {
         <Route exact path="/Home  Loan" element={<HomeLoan/>} />
         <Route exact path="/car Loan" element={<Carloan/>} />
         <Route exact path="/GST registration application" element={<GstApplication/>} />
+        <Route exact path="/Passport" element={<PassportSchema/>} />
+        <Route exact path="/UDYAM Registration" element={<UdyamCertificate/>} />
         {/* <Route exact path="/homeloan" element={<HomeLone/>} />
         <Route exact path="/businessloan" element={<BusinessLone/>} />
         <Route exact path="/homelead" element={<HomeloneForm/>} />
