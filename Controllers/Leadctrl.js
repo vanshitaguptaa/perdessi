@@ -1312,7 +1312,13 @@ export const getHomeLoanLeadById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-    const savedHomeLoan = await HomeLoanModel.findById(homeleadID);
+
+
+    const savedHomeLoan = await HomeLoanModel.findById(homeleadID).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
 
     if (!savedHomeLoan) {
       return res.status(422).json({
@@ -1343,7 +1349,9 @@ export const getPersonalLoanById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-    const savedPersonalLoan = await PersonalLoanModel.findById(personalLoanId);
+    const savedPersonalLoan = await PersonalLoanModel.findById(
+      personalLoanId
+    ).populate(["service", "client", "employee"]);
 
     if (!savedPersonalLoan) {
       return res.status(422).json({
@@ -1374,7 +1382,9 @@ export const getBusinessLoanById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-    const savedBusinessLoan = await BusinessloanModel.findById(businessLoanId);
+    const savedBusinessLoan = await BusinessloanModel.findById(
+      businessLoanId
+    ).populate(["service", "client", "employee"]);
 
     if (!savedBusinessLoan) {
       return res.status(422).json({
@@ -1395,7 +1405,6 @@ export const getBusinessLoanById = async (req, res) => {
   }
 };
 
-
 export const getMortgageLoanById = async (req, res) => {
   try {
     const { mortgageLoanId } = req.query;
@@ -1406,7 +1415,9 @@ export const getMortgageLoanById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-    const savedMortgageLoan = await MortgageLoanModel.findById(mortgageLoanId);
+    const savedMortgageLoan = await MortgageLoanModel.findById(
+      mortgageLoanId
+    ).populate(["service", "client", "employee"]);
 
     if (!savedMortgageLoan) {
       return res.status(422).json({
@@ -1437,7 +1448,11 @@ export const getGoldLoanById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-    const savedGoldLoan = await GoldLoanModel.findById(goldLoanId);
+    const savedGoldLoan = await GoldLoanModel.findById(goldLoanId).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
 
     if (!savedGoldLoan) {
       return res.status(422).json({
@@ -1458,7 +1473,6 @@ export const getGoldLoanById = async (req, res) => {
   }
 };
 
-
 export const getCreditCardById = async (req, res) => {
   try {
     const { creditCardId } = req.query;
@@ -1469,7 +1483,9 @@ export const getCreditCardById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-    const savedCreditCard = await CreditCardModel.findById(creditCardId);
+    const savedCreditCard = await CreditCardModel.findById(
+      creditCardId
+    ).populate(["service", "client", "employee"]);
 
     if (!savedCreditCard) {
       return res.status(422).json({
