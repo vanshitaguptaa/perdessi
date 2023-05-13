@@ -23,7 +23,7 @@ const MyleadTable = ({ loandetail }) => {
   // Function for Fetch Data in Pop
   const Fetchpopdata = async (id) => {
     console.log(`Pop is Working for this is ${id}`);
-    
+
     await axios({
       method: "get",
       url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
@@ -31,9 +31,18 @@ const MyleadTable = ({ loandetail }) => {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-      console.log(res);
-      // setpopupdata(res.data.savedLeads);
+      console.log(res.data.response);
+      setpopupdata(res.data.response);
+      console.log(popupdata);
     });
+    popupdata ? setview(true) : setview(false);
+  };
+
+  const change_into_date = (dte) => {
+    const data = new Date(dte);
+    const newdate = data.toLocaleDateString();
+    // console.log(data.toLocaleDateString());
+    return newdate;
   };
 
   useEffect(() => {
@@ -145,45 +154,80 @@ const MyleadTable = ({ loandetail }) => {
       {view ? (
         <>
           <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-11/12 w-11/12 z-20 absolute top-24 left-10 rounded-2xl">
-            <div className="grid grid-rows-2 pt-8 pl-10 h-full ">
+            <div className="grid grid-rows-2 pt-8 pl-10 h-full text-white">
               <div className="backdrop-blur-md grid gap-24 grid-cols-2">
-                <div className="grid gap-4 grid-cols-2">
-                  <img className="rounded-xl " src={url} alt="Profile"></img>
+                <div className="grid gap-4 ">
                   <div>
-                    <h3 className="font-bold text-2xl uppercase"></h3>
-                    <p className="font-bold uppercase"> </p>
-                    <p className="font-semibold"> </p>
+                    <h3 className="font-bold text-2xl uppercase">
+                      {" "}
+                      client details
+                    </h3>
+                    <p className="font-bold uppercase">
+                      Client Name: {popupdata.client.first_name}{" "}
+                      {popupdata.client.last_name}
+                    </p>
+                    <p className="font-semibold">
+                      Email: {popupdata.client.email}
+                    </p>
                     <p className="font-semibold">
                       {/* Date of Joining: {change_into_date()} */}
                     </p>
-                    <p className="font-semibold">{}</p>
+                    <p className="font-semibold">Address: {}</p>
+                    <p className="font-semibold">
+                      Mobile No: {popupdata.client.phone}
+                    </p>
+                    <p className="font-semibold">
+                      Aadhar No: {popupdata.client.aadhar}
+                    </p>
+                    <p className="font-semibold uppercase">
+                      PAN No: {popupdata.client.pan}
+                    </p>
+                    <p className="font-semibold uppercase">
+                      Gender: {popupdata.client.gender}
+                    </p>
+                    <p className="font-semibold uppercase">
+                      DOB: {change_into_date(popupdata.client.dob)}
+                    </p>
                   </div>
                 </div>
                 <div className=" pl-3 h-44">
-                  {/* <p>Phone: {Profiledata.EmployeeId.MobileNo}</p> */}
-                  <p className="font-semibold">Email: {}</p>
-                  <p className="font-semibold">
-                    {/* Birthday: {change_into_date()} */}
+                  <h3 className="font-bold text-2xl uppercase">
+                    empolyee details
+                  </h3>
+                  <p className="font-semibold uppercase">
+                    name: {popupdata.employee.first_name}{" "}
+                    {popupdata.employee.last_name}
                   </p>
-                  <p className="font-semibold">Address: {}</p>
-                  <p className="font-semibold">Gender: {}</p>
-                  <p className="font-semibold">Aadhar No: {}</p>
-                  <p className="font-semibold">Report to: {}</p>
+                  <p className="font-semibold uppercase">
+                    {/* Birthday: {} */}
+                  </p>
+                  <p className="font-semibold uppercase">
+                    phone no: {popupdata.employee.number}
+                  </p>
+                  <p className="font-semibold uppercase">
+                    report to: {popupdata.employee.reportto}
+                  </p>
+                  <p className="font-semibold uppercase">
+                    joining date:{" "}
+                    {change_into_date(popupdata.employee.joiningdate)}
+                  </p>
+                  <p className="font-semibold">Religion: {popupdata.employee.religion}</p>
+                  <p className="font-semibold">Marital Status: {popupdata.employee.martialStatus}</p>
                 </div>
               </div>
               <div className="backdrop-blur-md extra-information-div -mt-4 pb-4 grid grid-rows-2 grid-cols-2">
                 <div className="">
                   <h5 className="font-bold text-2xl uppercase">
-                    Personal information
+                    loan information
                   </h5>
                   <div className="grid grid-cols-2">
                     <div>
-                      <p className="font-semibold">Nationality:</p>
-                      <p className="font-semibold">Religion:</p>
-                      <p className="font-semibold">Marital Status:</p>
+                      <p className="font-semibold">Amount:</p>
+                      <p className="font-semibold"></p>
+                      <p className="font-semibold"></p>
                     </div>
                     <div className="">
-                      <p className="font-semibold">{}</p>
+                      <p className="font-semibold">{popupdata.LoanAmount}</p>
                       <p className="font-semibold">{}</p>
                       <p className="font-semibold">{}</p>
                     </div>
@@ -191,18 +235,13 @@ const MyleadTable = ({ loandetail }) => {
                 </div>
                 <div className="">
                   <h5 className="font-bold text-2xl uppercase">
-                    Emergency Contacts
+                    all Documents
                   </h5>
-                  <div className="grid grid-cols-2">
-                    <div>
-                      <p className="font-semibold">Name</p>
-                      <p className="font-semibold">Relationship</p>
-                      <p className="font-semibold">Phone</p>
-                    </div>
+                  <div className="grid grid-rows-2">
                     <div className="">
-                      <p className="font-semibold">{}</p>
-                      <p className="font-semibold">{}</p>
-                      <p className="font-semibold">{}</p>
+                      <img src={""} alt="" />
+                      <img src={""} alt="" />
+                      <img src={""} alt="" />
                     </div>
                   </div>
                 </div>
