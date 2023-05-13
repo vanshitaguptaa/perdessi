@@ -126,7 +126,6 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
     const savedResponse = await newPersonalLoanData.save();
 
-
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
@@ -135,7 +134,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return resp
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
@@ -1297,6 +1296,194 @@ export const editFoodLisenceController = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getHomeLoanLeadById = async (req, res) => {
+  try {
+    const { homeleadID } = req.query;
+
+    if (!homeleadID) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedHomeLoan = await HomeLoanModel.findById(homeleadID);
+
+    if (!savedHomeLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedHomeLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanById = async (req, res) => {
+  try {
+    const { personalLoanId } = req.query;
+
+    if (!personalLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedPersonalLoan = await PersonalLoanModel.findById(personalLoanId);
+
+    if (!savedPersonalLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedPersonalLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanById = async (req, res) => {
+  try {
+    const { businessLoanId } = req.query;
+
+    if (!businessLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedBusinessLoan = await BusinessloanModel.findById(businessLoanId);
+
+    if (!savedBusinessLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedBusinessLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getMortgageLoanById = async (req, res) => {
+  try {
+    const { mortgageLoanId } = req.query;
+
+    if (!mortgageLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedMortgageLoan = await MortgageLoanModel.findById(mortgageLoanId);
+
+    if (!savedMortgageLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedMortgageLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanById = async (req, res) => {
+  try {
+    const { goldLoanId } = req.query;
+
+    if (!goldLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedGoldLoan = await GoldLoanModel.findById(goldLoanId);
+
+    if (!savedGoldLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedGoldLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getCreditCardById = async (req, res) => {
+  try {
+    const { creditCardId } = req.query;
+
+    if (!creditCardId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedCreditCard = await CreditCardModel.findById(creditCardId);
+
+    if (!savedCreditCard) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedCreditCard,
+    });
+  } catch (error) {
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
