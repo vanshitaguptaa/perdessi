@@ -14,9 +14,9 @@ import FoodLisenceModel from "../Models/FoodLisenceModel.js";
 
 export const CreateLeadctrlForHomeLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -28,7 +28,7 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
     const homeLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -57,12 +57,12 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
 
 export const createLeadForBusinessLoanModel = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
-        message: "Please provide service, client and loanAmount properly",
+        message: "Please provide service, client and employeeID properly",
       });
     }
 
@@ -71,7 +71,7 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
     const businessLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -143,9 +143,9 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
 export const createLeadForMortgageLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -157,7 +157,7 @@ export const createLeadForMortgageLoan = async (req, resp) => {
     const MortgageLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -186,9 +186,9 @@ export const createLeadForMortgageLoan = async (req, resp) => {
 
 export const createLeadForGoldLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -200,7 +200,7 @@ export const createLeadForGoldLoan = async (req, resp) => {
     const GoldLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -229,9 +229,9 @@ export const createLeadForGoldLoan = async (req, resp) => {
 
 export const createLeadForCreditCard = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -243,7 +243,7 @@ export const createLeadForCreditCard = async (req, resp) => {
     const CreditCardData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -258,7 +258,7 @@ export const createLeadForCreditCard = async (req, resp) => {
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
-        message: "successfully created lead for Credit card model",
+        message: "successfully created lead for Gold loan model",
         savedData: savedResponse,
       });
     }
@@ -272,9 +272,9 @@ export const createLeadForCreditCard = async (req, resp) => {
 
 export const createLeadForCarLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -286,7 +286,7 @@ export const createLeadForCarLoan = async (req, resp) => {
     const CarLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -301,7 +301,7 @@ export const createLeadForCarLoan = async (req, resp) => {
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
-        message: "successfully created lead for Car loan model",
+        message: "successfully created lead for Gold loan model",
         savedData: savedResponse,
       });
     }
@@ -402,9 +402,9 @@ export const createLeadForPassport = async (req, resp) => {
 
 export const createLeadForGSTRegistration = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -433,7 +433,7 @@ export const createLeadForGSTRegistration = async (req, resp) => {
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
-        message: "successfully created lead for GST loan model",
+        message: "successfully created lead for Gold loan model",
         savedData: savedResponse,
       });
     }
