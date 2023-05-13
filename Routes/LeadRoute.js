@@ -41,7 +41,16 @@ import {
   editUdyamCertificateController,
   getHomeLoanLeadById,
   getPersonalLoanById,
-  getBusinessLoanById
+  getBusinessLoanById,
+  getMortgageLoanById,
+  getGoldLoanById,
+  getCarLoanById,
+  getNewCorrectionPanApplicationbyId,
+  getGSTRegistrationById,
+  getPassportById,
+  getShopActById,
+  getUdyamCertificateById,
+  getFoodLisencebyId,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -150,7 +159,6 @@ const multipleUploadForPersonalLoan = upload.fields([
   { name: "SelfEmployeedOfficeAddressProof", maxCount: 1 },
   { name: "SelfEmployeedProofofContinuityofBusiness", maxCount: 1 },
 ]);
-
 
 const multipleUploadForMortgageLoan = upload.fields([
   { name: "latestSalarySlip", maxCount: 1 },
@@ -352,12 +360,36 @@ Route.post(
   createLeadForFoodLisence
 );
 
-
 // get lead by ID
 Route.get("/gethomeloanbyid", employeeTokenCheck, getHomeLoanLeadById);
 Route.get("/getpersonalloanbyuid", employeeTokenCheck, getPersonalLoanById);
 Route.get("/getbusinessloanbyid", employeeTokenCheck, getBusinessLoanById);
-
+Route.get("/getmortgageloanbyid", employeeTokenCheck, getMortgageLoanById);
+Route.get("/getgoldloanbyid", employeeTokenCheck, getGoldLoanById);
+Route.get(
+  "/getcreditcardbyid",
+  employeeTokenCheck,
+  getCreditCardLoanForEmployee
+);
+Route.get("/getcarloanbyid", employeeTokenCheck, getCarLoanById);
+Route.get(
+  "/getnewcorrectionpanapplication",
+  employeeTokenCheck,
+  getNewCorrectionPanApplicationbyId
+);
+Route.get("/getpassportbyid", employeeTokenCheck, getPassportById);
+Route.get(
+  "/getGSTregistrationbyid",
+  employeeTokenCheck,
+  getGSTRegistrationById
+);
+Route.get("/getshopactbyid", employeeTokenCheck, getShopActById);
+Route.get(
+  "/getudyamcertificatebyid",
+  employeeTokenCheck,
+  getUdyamCertificateById
+);
+Route.get("/getfoodlisencebyid", employeeTokenCheck, getFoodLisencebyId);
 
 // Get My Lead
 // Route.get("/mylead", employeeTokenCheck, MyLeadsctrl);

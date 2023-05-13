@@ -1312,8 +1312,6 @@ export const getHomeLoanLeadById = async (req, res) => {
         .json({ status: false, message: "no home lead id is giving" });
     }
 
-
-
     const savedHomeLoan = await HomeLoanModel.findById(homeleadID).populate([
       "service",
       "client",
@@ -1505,3 +1503,243 @@ export const getCreditCardById = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
+
+
+export const getCarLoanById = async (req, res) => {
+  try {
+    const { carLoanId } = req.query;
+
+    if (!carLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedCarLoan = await CarLoanModel.findById(
+      carLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedCarLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedCarLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getNewCorrectionPanApplicationbyId = async (req, res) => {
+  try {
+    const { newCorrectionPanApplicationId } = req.query;
+
+    if (!newCorrectionPanApplicationId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedNewCcrrectionPanApplication = await NewCorrectionPanApplicationModel.findById(
+      newCorrectionPanApplicationId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedNewCcrrectionPanApplication) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedNewCcrrectionPanApplication,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getPassportById = async (req, res) => {
+  try {
+    const { passportById } = req.query;
+
+    if (!passportById) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedPassport = await PassportModel.findById(
+      passportById
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedPassport) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedPassport,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationById = async (req, res) => {
+  try {
+    const { GSTRegistrationId } = req.query;
+
+    if (!GSTRegistrationId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedGSTResgistration = await GSTResgistraionModel.findById(
+      GSTRegistrationId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedGSTResgistration) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedGSTResgistration,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getShopActById = async (req, res) => {
+  try {
+    const { shopActId } = req.query;
+
+    if (!shopActId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedShopAct = await ShopActModel.findById(
+      shopActId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedShopAct) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedShopAct,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateById = async (req, res) => {
+  try {
+    const { UdyamCertificateId } = req.query;
+
+    if (!UdyamCertificateId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedUdyamCertificate = await UdyamCertificateModel.findById(
+      UdyamCertificateId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedUdyamCertificate) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedUdyamCertificate,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getFoodLisencebyId = async (req, res) => {
+  try {
+    const { foodlisenceById } = req.query;
+
+    if (!foodlisenceById) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedFoodLisence = await FoodLisenceModel.findById(
+      foodlisenceById
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedFoodLisence) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedFoodLisence,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+
+
