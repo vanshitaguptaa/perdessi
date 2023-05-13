@@ -45,6 +45,7 @@ import Contactus from "../src/pages/Contactus";
 import MortgageLoanlp from "./components/servicespages/MortageLonelp";
 import CreditCardlp from "./components/servicespages/CreditCardlp";
 import GSTRegFormlp from "./components/servicespages/GSTRegFormlp";
+import Myleadtbloutter from "./pages/Myleadtbloutter";
 
 
 function App() {
@@ -66,7 +67,7 @@ function App() {
         <Route exact path="/addlead" element={<Addleads />} />
         <Route exact path="/mylead" element={<Mylead />} />
         <Route exact path="/myclient" element={<Myclient />} />
-        <Route exact path="/mylead/:service" element={<Myclient />} />
+        <Route exact path="/mylead/service/:service" element={<Myleadtbloutter />} />
         <Route exact path="/transferlead" element={<Transferlead />} />
         <Route exact path="/allemployee" element={<Allemployees />} />
         <Route exact path="/leadform" element={<Leadform />} />

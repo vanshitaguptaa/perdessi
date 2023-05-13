@@ -641,7 +641,7 @@ export const getPersonalLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await PersonalLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
