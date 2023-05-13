@@ -10,22 +10,45 @@ const MyleadTable = ({ loandetail }) => {
 
   console.log(loandetail);
 
+  let tokenData = localStorage.getItem("token");
+  let tokenExpiry;
+  let token;
+  if (tokenData) {
+    // tokenExpiry = JSON.parse(tokenData).expiry;
+    tokenExpiry = new Date(JSON.parse(tokenData).expiry);
+    token = JSON.parse(tokenData).usertoken;
+  }
+  let currentDate = new Date();
+
   // Function for Fetch Data in Pop
   const Fetchpopdata = async (id) => {
     console.log(`Pop is Working for this is ${id}`);
-    {/*
+    
     await axios({
       method: "get",
-      url: "http://localhost:5000/api/v1/crm/getpersonalloanforemployee",
+      url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-      console.log(res.data.savedLeads);
+      console.log(res);
       // setpopupdata(res.data.savedLeads);
     });
-  */}
   };
+
+  useEffect(() => {
+    if (!tokenData) {
+      navigate("/login");
+    } else {
+      if (currentDate > tokenExpiry) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+      setTimeout(() => {
+        setAuthScreen(false);
+      }, 500);
+    }
+  }, []);
 
   return (
     <>
@@ -88,7 +111,7 @@ const MyleadTable = ({ loandetail }) => {
                         data-te-ripple-color="light"
                         onClick={() => {
                           Fetchpopdata(e._id);
-                          setview(true);
+                          // setview(true);
                         }}
                       >
                         View
