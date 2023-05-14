@@ -9,6 +9,7 @@ import {
   getClientForCurrentUser
 } from "../Controllers/Clientctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
+import { adminTokenCheck } from "../Middleware/TokencheckAdmin.js";
 
 const app = Express();
 
@@ -20,8 +21,8 @@ Route.post("/addclient", employeeTokenCheck, Addclientctrl);
 //Send Mail to All Client 
 Route.post("/sendmail", SendMAilTOAllctrl);
 
-// Get All Client
-Route.get("/getallclient", GetAllClintsctrl);
+// Get All Client for admin
+Route.get("/getallclient", adminTokenCheck  ,GetAllClintsctrl);
 
 // My Client List
 Route.get("/myclient/:id", MyClintsctrl);
@@ -34,5 +35,9 @@ Route.get("/getclientforemployee", employeeTokenCheck, getClientForCurrentUser);
 
 // get client by id 
 Route.get("/getclientbyid", employeeTokenCheck, getClientById);
+
+// get client by id for admin 
+Route.get("/getclientforadminbyId", adminTokenCheck, getClientById);
+
 
 export default Route;

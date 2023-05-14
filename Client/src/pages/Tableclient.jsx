@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ClientListContext } from "../Context/ClientList";
 import { useContext } from "react";
 
+
 const Tableclient = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState();
@@ -12,6 +13,13 @@ const Tableclient = () => {
   const [phone, setPhone] = useState();
   const [pan, setPan] = useState();
   const { clients, isError } = useContext(ClientListContext);
+  const tokenData = localStorage.getItem("token");
+  let token;
+  if (tokenData) {
+    token = JSON.parse(tokenData).usertoken;
+  }
+
+  console.log(clients);
 
   // useEffect(() => {
   //   axios.get("http://localhost:5000/api/v1/crm/getallclient").then((res) => {
@@ -26,6 +34,8 @@ const Tableclient = () => {
       setData(clients.clients);
     }
   }, [clients]);
+
+  console.log(data);
 
   const viewclick = () => {
     console.log("CLICKED");
@@ -42,9 +52,6 @@ const Tableclient = () => {
     }
   };
 
-  
-  // console.log(id)
-
   return (
     <table class="table-fixed w-full overflow-y-auto h-32 bg-white">
       <thead>
@@ -58,37 +65,42 @@ const Tableclient = () => {
         </tr>
       </thead>
       <tbody>
-        {data && data.map((e, id) => {
-          return (
-            <tr>
-              <td class="border px-1 py-2 text-center text-center">{id + 1}</td>
-              <td class="border px-1 py-2 text-center text-center">
-                {e.first_name || e.firstName} {e.last_name || e.lastname}
-              </td>
-              <td class="border px-1 py-2 text-center text-center">
-                {e.phone}
-              </td>
-              <td class="border px-1 py-2 text-center text-center">
-                {e.email}
-              </td>
-              <td class="border px-1 py-2 text-center text-center">{e.pan}</td>
-              <td class="border px-1 py-2 text-center text-center">
-                <button
-                  className="bg-blue-500 mx-2 p-2 text-white"
-                  onClick={viewclick}
-                >
-                  View
-                </button>
-                <button
-                  className="bg-green-500 p-2 text-white"
-                  onClick={handleEdit}
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-          );
-        })}
+        {data &&
+          data.map((e, id) => {
+            return (
+              <tr>
+                <td class="border px-1 py-2 text-center text-center">
+                  {id + 1}
+                </td>
+                <td class="border px-1 py-2 text-center text-center">
+                  {e.first_name || e.firstName} {e.last_name || e.lastname}
+                </td>
+                <td class="border px-1 py-2 text-center text-center">
+                  {e.phone}
+                </td>
+                <td class="border px-1 py-2 text-center text-center">
+                  {e.email}
+                </td>
+                <td class="border px-1 py-2 text-center text-center">
+                  {e.pan}
+                </td>
+                <td class="border px-1 py-2 text-center text-center">
+                  <button
+                    className="bg-blue-500 mx-2 p-2 text-white"
+                    onClick={viewclick}
+                  >
+                    View
+                  </button>
+                  <button
+                    className="bg-green-500 p-2 text-white"
+                    onClick={handleEdit}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
       </tbody>
     </table>
   );

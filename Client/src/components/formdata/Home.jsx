@@ -13,6 +13,7 @@ const Home = () => {
     state: { serviceId, service },
   } = location;
   const { clients, isError } = useContext(ClientListContext);
+
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
@@ -20,7 +21,8 @@ const Home = () => {
   const [loanApplication, setLoanApplication] = useState(null);
   const [proofOfIdentity, setProofOfIdentity] = useState(null);
   const [proofOfResidency, setProofOfResidency] = useState(null);
-  const [permissionOfConstruction, setPermissionOfConstruction] = useState(null);
+  const [permissionOfConstruction, setPermissionOfConstruction] =
+    useState(null);
   const [registeredAgreementForSales, setRegisteredAgreementForSales] =
     useState(null);
   const [allotmentletter, setAllotmentletter] = useState(null);

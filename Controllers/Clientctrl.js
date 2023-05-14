@@ -254,10 +254,12 @@ export const getClientById = async (req, res) => {
 
 export const GetAllClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find().populate({
-      path: "empolyeeid",
-      select: "first_name last_name email",
-    });
+    const already = await Clientmodel.find({}).populate("empolyeeid");
+
+    if(already < 1){
+      return resp.status(404).json({status: false, message: "No data present in database"});
+    }
+
     if (already) {
       return resp.status(200).send({
         Succes: true,
