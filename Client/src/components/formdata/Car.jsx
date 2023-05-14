@@ -15,7 +15,7 @@ const Car = () => {
   const { clients, isError } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
-  const [client, setClient] = useState("Select a client");
+  const [Selectclient, setSelectClient] = useState("Select a client");
   const [SalariedIdentityProof, setSalariedIdentityProof] = useState(null);
   const [SalariedAddressProof, setSalariedAddressProof] = useState(null);
   const [SalariedAgeProof, setSalariedAgeProof] = useState(null);
@@ -56,6 +56,7 @@ const Car = () => {
     try {
       const formData = new FormData();
       formData.append("clientId", client);
+      formData.append("Selectclient", Selectclient);
       formData.append("loanAmount", LoanAmount);
       formData.append("serviceId", serviceId);
       formData.append("SalariedIdentityProof", SalariedIdentityProof);
@@ -181,7 +182,7 @@ const Car = () => {
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
                 onChange={(e) => {
-                  setClient(e.target.value);
+                  setSelectClient(e.target.value);
                 }}
               >
                 <option value="Select a client" selected>
@@ -221,11 +222,11 @@ const Car = () => {
             />
           </div>
         </div>
-        {client === "Select a client" ? (
+        {Selectclient === "Select a client" ? (
           ""
         ) : (
           <div>
-            {client === "Salaried" ? (
+            {Selectclient === "Salaried" ? (
               <div>
                 <h3 className="my-5 block uppercase tracking-wide text-gray-700 text-xl underline font-bold">
                   Salaried

@@ -16,37 +16,37 @@ const Home = () => {
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
-  const [employeeIdentityCard, setEmployeeIdentityCard] = useState("");
-  const [loanApplication, setLoanApplication] = useState("");
-  const [proofOfIdentity, setProofOfIdentity] = useState("");
-  const [proofOfResidency, setProofOfResidency] = useState("");
-  const [permissionOfConstruction, setPermissionOfConstruction] = useState("");
+  const [employeeIdentityCard, setEmployeeIdentityCard] = useState(null);
+  const [loanApplication, setLoanApplication] = useState(null);
+  const [proofOfIdentity, setProofOfIdentity] = useState(null);
+  const [proofOfResidency, setProofOfResidency] = useState(null);
+  const [permissionOfConstruction, setPermissionOfConstruction] = useState(null);
   const [registeredAgreementForSales, setRegisteredAgreementForSales] =
-    useState("");
-  const [allotmentletter, setAllotmentletter] = useState("");
-  const [stampedAgreement, setStampedAgreement] = useState("");
-  const [occupancyCertificate, setOccupancyCertificate] = useState("");
-  const [shareCertification, setShareCertification] = useState("");
-  const [maintainanceBill, setMaintainanceBill] = useState("");
-  const [electricityBill, setElectricityBill] = useState("");
-  const [propertyTaxReceipt, setPropertyTaxReceipt] = useState("");
+    useState(null);
+  const [allotmentletter, setAllotmentletter] = useState(null);
+  const [stampedAgreement, setStampedAgreement] = useState(null);
+  const [occupancyCertificate, setOccupancyCertificate] = useState(null);
+  const [shareCertification, setShareCertification] = useState(null);
+  const [maintainanceBill, setMaintainanceBill] = useState(null);
+  const [electricityBill, setElectricityBill] = useState(null);
+  const [propertyTaxReceipt, setPropertyTaxReceipt] = useState(null);
   const [paymentMadetoBuilderRecept, setPaymentMadetoBuilderRecept] =
-    useState("");
-  const [sixMonthBankStatement, setSixMonthBankStatement] = useState("");
-  const [loanAccountStatement, setLoanAccountStatement] = useState("");
-  const [threeMonthSalarySlip, setThreeMonthSalarySlip] = useState("");
+    useState(null);
+  const [sixMonthBankStatement, setSixMonthBankStatement] = useState(null);
+  const [loanAccountStatement, setLoanAccountStatement] = useState(null);
+  const [threeMonthSalarySlip, setThreeMonthSalarySlip] = useState(null);
   const [twoYearOfFormsixteenOrItReturn, setTwoYearOfFormsixteenOrItReturn] =
-    useState("");
-  const [businessAddressProof, setBusinessAddressProof] = useState("");
-  const [ThreeYearItReturn, setThreeYearItReturn] = useState("");
-  const [businessLisenceDetail, setBusinessLisenceDetail] = useState("");
-  const [TDScertification, setTDScertification] = useState("");
+    useState(null);
+  const [businessAddressProof, setBusinessAddressProof] = useState(null);
+  const [ThreeYearItReturn, setThreeYearItReturn] = useState(null);
+  const [businessLisenceDetail, setBusinessLisenceDetail] = useState(null);
+  const [TDScertification, setTDScertification] = useState(null);
   const [certificationOfQualification, setcertificationOfQualification] =
-    useState("");
+    useState(null);
   const [
     approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed,
     setApprovedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed,
-  ] = useState("");
+  ] = useState(null);
 
   useEffect(() => {
     if (isError === false) {

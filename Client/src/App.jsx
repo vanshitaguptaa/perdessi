@@ -14,7 +14,6 @@ import GoldLoan from './components/formdashborad/GoldLoan';
 import HomeLoan from './components/formdashborad/HomeLoan';
 import Updateempolyee from './pages/Updateempolyee';
 import Carloan from './components/formdashborad/Carloan';
-import Car from './components/formdata/Car';
 import GstApplication from './components/formdashborad/GstApplication';
 import Dashboard from "./pages/Dashboard";
 import AddClient from "./pages/AddClient";
@@ -45,7 +44,12 @@ import Contactus from "../src/pages/Contactus";
 import MortgageLoanlp from "./components/servicespages/MortageLonelp";
 import CreditCardlp from "./components/servicespages/CreditCardlp";
 import GSTRegFormlp from "./components/servicespages/GSTRegFormlp";
+import PassportSchema from "./components/formdashborad/PassportSchema";
+import ShopActSchema from "./components/formdashborad/ShopActSchema";
+import FoodLicience from "./components/formdashborad/FoodLicience";
+import UdyamCertificate from "./components/formdashborad/UdyamCertificate";
 import Myleadtbloutter from "./pages/Myleadtbloutter";
+
 
 
 function App() {
@@ -90,7 +94,7 @@ function App() {
         <Route exact path="/goldloan" element={<GoldLoanlp />} />
         <Route exact path="/homeloanbalancetransfer" element={<Balancetransferlp />}/>
         <Route exact path="/creditcard" element={<CreditCardlp />}/>
-        <Route exact path="/passport" element={<Passportlp />}/>
+        <Route exact path="/passportlp" element={<Passportlp />}/>
         <Route exact path="/panapplication" element={<PanApplicationlp />}/>
         <Route exact path="/pfwithdrawal" element={<PFwithdrawallp />}/>
         <Route exact path="/gstregistration" element={<GSTRegFormlp />}/>
@@ -98,6 +102,10 @@ function App() {
         <Route exact path="/foodlicense" element={<Foodlicenselp/>}/>
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
+        <Route exact path="/passport" element={<PassportSchema/>}/>
+        <Route exact path="/Shop Act" element={<ShopActSchema/>}/>
+        <Route exact path="/Food Lisence" element={<FoodLicience/>}/>
+        <Route exact path="/UDYAM Registration" element={<UdyamCertificate/>}/>
       </Routes>
     </>
   );
