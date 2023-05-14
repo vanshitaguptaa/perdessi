@@ -21,6 +21,22 @@ export const Addclientctrl = async (req, resp) => {
       gender,
     } = req.body;
 
+    console.log(
+      first_name,
+      middlename,
+      last_name,
+      email,
+      phone,
+      pan,
+      aadhar,
+      gst,
+      city,
+      state,
+      zip,
+      dob,
+      gender
+    );
+
     if (
       !first_name ||
       !middlename ||
@@ -237,13 +253,11 @@ export const getClientById = async (req, res) => {
         .json({ status: false, message: "there are not client saved" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched saved client",
-        response: savedClient,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched saved client",
+      response: savedClient,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -256,8 +270,10 @@ export const GetAllClintsctrl = async (req, resp) => {
   try {
     const already = await Clientmodel.find({}).populate("empolyeeid");
 
-    if(already < 1){
-      return resp.status(404).json({status: false, message: "No data present in database"});
+    if (already < 1) {
+      return resp
+        .status(404)
+        .json({ status: false, message: "No data present in database" });
     }
 
     if (already) {

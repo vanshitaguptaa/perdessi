@@ -40,7 +40,7 @@ function Myleadtbloutter() {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
-  let role = localStorage.getItem("role");
+  
 
   const FetchLoaddetail = async (service) => {
     if (service === "personal loan") {
