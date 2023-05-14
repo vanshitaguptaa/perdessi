@@ -21,6 +21,9 @@ import DashboardCard12 from "../partials/dashboard/DashboardCard12";
 import DashboardCard13 from "../partials/dashboard/DashboardCard13";
 import Banner from "../partials/Banner";
 import Innerdashborad from "./Innerdashborad";
+import BarChart from "../components/graphs/BarChart";
+import ShapeChart from "../components/graphs/ShapeGraph";
+import LoanInfoCard from "../utils/LoanInfoCard";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -80,12 +83,15 @@ function Dashboard() {
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
             <WelcomeBanner />
-
+              
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               <Innerdashborad/>
             </div>
           </div>
         </main>
+        <LoanInfoCard/>
+        <BarChart/>
+        <ShapeChart/>
       </div>
     </div>
   );

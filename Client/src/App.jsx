@@ -34,6 +34,7 @@ import Contactus from "../src/pages/Contactus";
 import MortgageLoanlp from "./components/servicespages/MortageLonelp";
 import CreditCardlp from "./components/servicespages/CreditCardlp";
 import GSTRegFormlp from "./components/servicespages/GSTRegFormlp";
+import Applyloanlp from "./components/servicespages/Applyloanlp";
 
 function App() {
   const location = useLocation();
@@ -68,7 +69,7 @@ function App() {
         <Route exact path="/goldloan" element={<GoldLoanlp />} />
         <Route exact path="/homeloanbalancetransfer" element={<Balancetransferlp />}/>
         <Route exact path="/creditcard" element={<CreditCardlp />}/>
-        <Route exact path="/passport" element={<Passportlp />}/>
+        <Route exact path="/passportlp" element={<Passportlp />}/>
         <Route exact path="/panapplication" element={<PanApplicationlp />}/>
         <Route exact path="/pfwithdrawal" element={<PFwithdrawallp />}/>
         <Route exact path="/gstregistration" element={<GSTRegFormlp />}/>
@@ -76,14 +77,15 @@ function App() {
         <Route exact path="/foodlicense" element={<Foodlicenselp/>}/>
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
-        <Route exact path="/update" element={<Updateempolyee />} />
+        <Route exact path="/applyloanlp" element={<Applyloanlp/>}/>
+        {/* <Route exact path="/update" element={<Updateempolyee />} />
         <Route exact path="/addemployee" element={<Addemployee/>} />
         <Route exact path="/Personal Loan" element={<PersonalLoan/>} />
         <Route exact path="/Business Loan" element={<BusinessLoan/>} />
         <Route exact path="/Mortgage Loan" element={<MortgageLoan/>} />
         <Route exact path="/Credit Card" element={<CreditCardLoan/>} />
-        <Route exact path="/Gold Loan" element={<GoldLoan/>} />
-        <Route exact path="/Home Loan" element={<HomeLoan/>} />
+        <Route exact path="/Gold Loan" element={<GoldLoan/>} /> */}
+        {/* <Route exact path="/Home Loan" element={<HomeLoan/>} /> */}
       </Routes>
     </>
   );

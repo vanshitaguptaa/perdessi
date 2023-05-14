@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       {/* <!-- Footer container --> */}
       <footer
-        className="bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left"
+        className="mx-auto bg-neutral-100 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left"
         style={{ background: "#cacadede" }}
       >
         <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
@@ -94,7 +94,7 @@ const Footer = () => {
                 >
                   <path d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
                 </svg>
-                Tailwind ELEMENTS
+                Sathee Enterprises
               </h6>
               <p>
                 Here you can use rows and columns to organize your footer
@@ -108,28 +108,28 @@ const Footer = () => {
                 Home
               </h6>
               <p className="mb-4">
-                <Link to="#!" className="text-neutral-600 dark:text-neutral-200">
+                <Link to="/aboutus" className="text-neutral-600 dark:text-neutral-200">
                   About
                 </Link>
               </p>
               <p className="mb-4">
-                <Link to="#!" className="text-neutral-600 dark:text-neutral-200">
+                <Link to="/career" className="text-neutral-600 dark:text-neutral-200">
                   Career
                 </Link>
               </p>
               <p className="mb-4">
-                <Link to="#!" className="text-neutral-600 dark:text-neutral-200">
+                <Link to="/services" className="text-neutral-600 dark:text-neutral-200">
                   Services
                 </Link>
               </p>
               <p>
-                <Link to="#!" className="text-neutral-600 dark:text-neutral-200">
+                <Link to="/contactus" className="text-neutral-600 dark:text-neutral-200">
                   Contact
                 </Link>
               </p>
             </div>
             {/* <!-- Useful links section --> */}
-            <div className="">
+            {/* <div className="">
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
                 Useful links
               </h6>
@@ -153,7 +153,7 @@ const Footer = () => {
                   Help
                 </Link>
               </p>
-            </div>
+            </div> */}
             {/* <!-- Contact section --> */}
             <div>
               <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
@@ -224,7 +224,7 @@ const Footer = () => {
             className="font-semibold text-neutral-600 dark:text-neutral-400"
             to="https://tailwind-elements.com/"
           >
-            Tailwind Elements
+            Sathee Enterprises
           </Link>
         </div>
       </footer>

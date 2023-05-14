@@ -60,6 +60,12 @@ const Navbar = () => {
                       >
                         Contact Us
                       </Link>
+                      <Link
+                        to="/applyloanlp"
+                        class="text-white hover:bg-blue-400 hover:text-white rounded-md px-3 py-2 text-sm font-medium "
+                      >
+                        Apply Loan
+                      </Link>
                     </div>
                   </div>
                 </div>
