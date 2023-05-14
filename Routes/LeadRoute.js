@@ -51,6 +51,19 @@ import {
   getShopActById,
   getUdyamCertificateById,
   getFoodLisencebyId,
+  getHomeLoanLeadByMobileNo,
+  getBusinessLoanByMobileNumber,
+  getPersonalLoanByMobileNumber,
+  getMortgageLoanByMobileNumber,
+  getCreditCardByMobile,
+  getGoldLoanByMobileNumber,
+  getCarLoanByMobileNumber,
+  getNewCorrectionPanApplicationbyMobileNumber,
+  getPassportByMobileNumber,
+  getGSTRegistrationByMobileNumber,
+  getShopActByMobileNumber,
+  getUdyamCertificateByMobileNumber,
+  getFoodLisencebyMobileNumber,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -390,6 +403,21 @@ Route.get(
   getUdyamCertificateById
 );
 Route.get("/getfoodlisencebyid", employeeTokenCheck, getFoodLisencebyId);
+
+// Get by Mobile Number
+Route.get("/gethomeloanbymobile", employeeTokenCheck, getHomeLoanLeadByMobileNo);
+Route.get("/getbusinessloanbymobile", employeeTokenCheck, getBusinessLoanByMobileNumber);
+Route.get("/getpersonalloanbymobile", employeeTokenCheck, getPersonalLoanByMobileNumber);
+Route.get("/getmortgageloanbymobile", employeeTokenCheck, getMortgageLoanByMobileNumber);
+Route.get("/getgoldloanbymobile", employeeTokenCheck, getGoldLoanByMobileNumber);
+Route.get("/getcreditcardloanbymobile", employeeTokenCheck, getCreditCardByMobile);
+Route.get("/getcarloanbymobile", employeeTokenCheck, getCarLoanByMobileNumber);
+Route.get("/getnewcorrectionpanapplicationbymobile", employeeTokenCheck, getNewCorrectionPanApplicationbyMobileNumber);
+Route.get("/getpassportbymobile", employeeTokenCheck, getPassportByMobileNumber);
+Route.get("/getgstregistrationbymobile", employeeTokenCheck, getGSTRegistrationByMobileNumber);
+Route.get("/getshopactbymobile", employeeTokenCheck, getShopActByMobileNumber);
+Route.get("/getudyamcertificatebymobile", employeeTokenCheck, getUdyamCertificateByMobileNumber);
+Route.get("/getfoodlisencebymobilenumber", employeeTokenCheck, getFoodLisencebyMobileNumber);
 
 // Get My Lead
 // Route.get("/mylead", employeeTokenCheck, MyLeadsctrl);
