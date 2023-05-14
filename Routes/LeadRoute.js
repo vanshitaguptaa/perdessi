@@ -39,6 +39,32 @@ import {
   editFoodLisenceController,
   editShopActController,
   editUdyamCertificateController,
+  getHomeLoanLeadById,
+  getPersonalLoanById,
+  getBusinessLoanById,
+  getMortgageLoanById,
+  getGoldLoanById,
+  getCarLoanById,
+  getNewCorrectionPanApplicationbyId,
+  getGSTRegistrationById,
+  getPassportById,
+  getShopActById,
+  getUdyamCertificateById,
+  getFoodLisencebyId,
+  getHomeLoanLeadByMobileNo,
+  getBusinessLoanByMobileNumber,
+  getPersonalLoanByMobileNumber,
+  getMortgageLoanByMobileNumber,
+  getCreditCardByMobile,
+  getGoldLoanByMobileNumber,
+  getCarLoanByMobileNumber,
+  getNewCorrectionPanApplicationbyMobileNumber,
+  getPassportByMobileNumber,
+  getGSTRegistrationByMobileNumber,
+  getShopActByMobileNumber,
+  getUdyamCertificateByMobileNumber,
+  getFoodLisencebyMobileNumber,
+  getCreditCardById,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -147,7 +173,6 @@ const multipleUploadForPersonalLoan = upload.fields([
   { name: "SelfEmployeedOfficeAddressProof", maxCount: 1 },
   { name: "SelfEmployeedProofofContinuityofBusiness", maxCount: 1 },
 ]);
-
 
 const multipleUploadForMortgageLoan = upload.fields([
   { name: "latestSalarySlip", maxCount: 1 },
@@ -348,6 +373,52 @@ Route.post(
   multipleUploadForFoodLisence,
   createLeadForFoodLisence
 );
+
+// get lead by ID
+Route.get("/gethomeloanbyid", employeeTokenCheck, getHomeLoanLeadById);
+Route.get("/getpersonalloanbyuid", employeeTokenCheck, getPersonalLoanById);
+Route.get("/getbusinessloanbyid", employeeTokenCheck, getBusinessLoanById);
+Route.get("/getmortgageloanbyid", employeeTokenCheck, getMortgageLoanById);
+Route.get("/getgoldloanbyid", employeeTokenCheck, getGoldLoanById);
+Route.get(
+  "/getcreditcardbyid",
+  employeeTokenCheck,
+  getCreditCardById
+);
+Route.get("/getcarloanbyid", employeeTokenCheck, getCarLoanById);
+Route.get(
+  "/getnewcorrectionpanapplication",
+  employeeTokenCheck,
+  getNewCorrectionPanApplicationbyId
+);
+Route.get("/getpassportbyid", employeeTokenCheck, getPassportById);
+Route.get(
+  "/getGSTregistrationbyid",
+  employeeTokenCheck,
+  getGSTRegistrationById
+);
+Route.get("/getshopactbyid", employeeTokenCheck, getShopActById);
+Route.get(
+  "/getudyamcertificatebyid",
+  employeeTokenCheck,
+  getUdyamCertificateById
+);
+Route.get("/getfoodlisencebyid", employeeTokenCheck, getFoodLisencebyId);
+
+// Get by Mobile Number
+Route.get("/gethomeloanbymobile", employeeTokenCheck, getHomeLoanLeadByMobileNo);
+Route.get("/getbusinessloanbymobile", employeeTokenCheck, getBusinessLoanByMobileNumber);
+Route.get("/getpersonalloanbymobile", employeeTokenCheck, getPersonalLoanByMobileNumber);
+Route.get("/getmortgageloanbymobile", employeeTokenCheck, getMortgageLoanByMobileNumber);
+Route.get("/getgoldloanbymobile", employeeTokenCheck, getGoldLoanByMobileNumber);
+Route.get("/getcreditcardloanbymobile", employeeTokenCheck, getCreditCardByMobile);
+Route.get("/getcarloanbymobile", employeeTokenCheck, getCarLoanByMobileNumber);
+Route.get("/getnewcorrectionpanapplicationbymobile", employeeTokenCheck, getNewCorrectionPanApplicationbyMobileNumber);
+Route.get("/getpassportbymobile", employeeTokenCheck, getPassportByMobileNumber);
+Route.get("/getgstregistrationbymobile", employeeTokenCheck, getGSTRegistrationByMobileNumber);
+Route.get("/getshopactbymobile", employeeTokenCheck, getShopActByMobileNumber);
+Route.get("/getudyamcertificatebymobile", employeeTokenCheck, getUdyamCertificateByMobileNumber);
+Route.get("/getfoodlisencebymobilenumber", employeeTokenCheck, getFoodLisencebyMobileNumber);
 
 // Get My Lead
 // Route.get("/mylead", employeeTokenCheck, MyLeadsctrl);

@@ -46,7 +46,7 @@ const Business = () => {
   }, []);
 
   console.log(LoanAmount);
-  console.log(serviceId)
+  console.log(serviceId);
 
   const handleLeadForm = async (e) => {
     e.preventDefault();

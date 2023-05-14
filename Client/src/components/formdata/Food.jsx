@@ -53,7 +53,7 @@ const Food = () => {
   
         const leadApiCall = await axios({
           method: "post",
-          url: "http://localhost:5000/api/v1/crm/createleadforGoldloan",
+          url: "http://localhost:5000/api/v1/crm/createleadforfoodlisence",
           data: formData,
           headers: {
             Authorization: `Bearer ${token}`,

@@ -219,6 +219,39 @@ export const EditClintsctrl = async (req, resp) => {
   }
 };
 
+export const getClientById = async (req, res) => {
+  try {
+    const { clientId } = req.query;
+
+    if (!clientId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "client id is not giving" });
+    }
+
+    const savedClient = await Clientmodel.findById(clientId);
+
+    if (!savedClient) {
+      return res
+        .status(422)
+        .json({ status: false, message: "there are not client saved" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched saved client",
+        response: savedClient,
+      });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const GetAllClintsctrl = async (req, resp) => {
   try {
     const already = await Clientmodel.find().populate({

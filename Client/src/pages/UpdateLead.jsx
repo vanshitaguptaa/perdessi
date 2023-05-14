@@ -1,11 +1,11 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useContext } from "react";
-import { ClientListContext } from "../../Context/ClientList";
+import { ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Car = () => {
+const UpdateLead = () => {
   const tokenData = localStorage.getItem("token");
   const token = JSON.parse(tokenData).usertoken;
   const location = useLocation();
@@ -15,36 +15,228 @@ const Car = () => {
   const { clients, isError } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
-  const [Selectclient, setSelectClient] = useState("Select a client");
-  const [SalariedIdentityProof, setSalariedIdentityProof] = useState(null);
-  const [SalariedAddressProof, setSalariedAddressProof] = useState(null);
-  const [SalariedAgeProof, setSalariedAgeProof] = useState(null);
-  const [SalariedBankStatement, setSalariedBankStatement] = useState(null);
-  const [SalariedProofOfIncome, setSalariedProofOfIncome] = useState(null);
-  const [
-    SalariedSignatureVerificationProof,
-    setSalariedSignatureVerificationProof,
-  ] = useState(null);
-  const [SalariedProformaInvoice, setSalariedProformaInvoice] = useState(null);
-  const [SelfEmployedIdentityProof, setSelfEmployedIdentityProof] =
+  const [client, setClient] = useState("Select a client");
+  // const [zip, setZip] = useState("");
+  const [SalariedProofOfIdentity, setIndentity] = useState(null);
+  const [SalariedTwoPassportPhoto, setPassport] = useState(null);
+  const [SelfEmployeedProofofIdentity, setSEIndentity] = useState(null);
+  const [SalariedProofOfResidence, setResidence] = useState(null);
+  const [SelfEmployeedProofofResidence, setseResidence] = useState(null);
+  const [SelfEmployeedIncomeProof, setIncome] = useState(null);
+  const [SalariedThreeMonthsBankStatement, setBankStatement] = useState(null);
+  // const [sixbankStatement, setSixBankStatement] = useState(null);
+  const [employment, setEmployment] = useState("");
+  const [SalariedThreeMonthSalarySlip, setThreesalaryslip] = useState(null);
+  const [SelfEmployeedSixMonthBankStatement, setSeSixBankStatement] =
     useState(null);
-  const [SelfEmployeeAddressProof, setSelfEmployeeAddressProof] =
+  const [SelfEmployeedProofofContinuityofBusiness, setBusiness] =
     useState(null);
-  const [SelfEmployeeAgeProof, setSelfEmployeeAgeProof] = useState(null);
-  const [SelfEmployeeBankStatement, setSelfEmployeeBankStatement] =
-    useState(null);
-  const [SelfEmployeeBusinessOwnership, setSelfEmployeeBusinessOwnership] =
-    useState(null);
-  const [SelfEmployeeProofOIncome, setSelfEmployeeProofOIncome] =
-    useState(null);
-  const [
-    SelfEmployeeSignatureVerification,
-    setSelfEmployeeSignatureVerification,
-  ] = useState(null);
-  const [SelfEmployeeProformaInvoice, setSelfEmployeeProformaInvoice] =
-    useState(null);
+  const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
+  const [popupdata, setpopupdata] = useState([]);
+
+ const { id, serviceName } = useParams();
+ 
+  const Fetchpopdata = async (id, serviceName) => {
+    console.log(`Pop is Working for this is ${id}`);
+
+    if (serviceName === "personal loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Mortgage  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Business Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Home  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Business Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Mortgage  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Home  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Gold Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getgoldloanbyid?goldLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Credit Card") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcreditcardbyid?creditCardId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "New Correction Pan application") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplication?newCorrectionPanApplicationId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Shop Act") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getshopactbyid?shopActId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "passport") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpassportbyid?passportById=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "GST registration application") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getGSTregistrationbyid?GSTRegistrationId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "UDYAM Registration") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebyid?UdyamCertificateId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Car Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcarloanbyid?carLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Food Lisence") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getfoodlisencebyid?foodlisenceById=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    popupdata ? setview(true) : setview(false);
+  };
+
 
   useEffect(() => {
+    Fetchpopdata(id, serviceName);
     if (isError === false) {
       setClientData(clients.clients);
     }
@@ -55,54 +247,63 @@ const Car = () => {
 
     try {
       const formData = new FormData();
-      formData.append("clientId", client);
-      formData.append("Selectclient", Selectclient);
-      formData.append("loanAmount", LoanAmount);
       formData.append("serviceId", serviceId);
-      formData.append("SalariedIdentityProof", SalariedIdentityProof);
-      formData.append("SalariedAddressProof", SalariedAddressProof);
-      formData.append("SalariedAgeProof", SalariedAgeProof);
-      formData.append("SalariedBankStatement", SalariedBankStatement);
-      formData.append("SalariedProofOfIncome", SalariedProofOfIncome);
+      formData.append("clientId", client);
+      formData.append("loanAmount", LoanAmount);
+      formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
+      formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
       formData.append(
-        "SalariedSignatureVerificationProof",
-        SalariedSignatureVerificationProof
-      );
-      formData.append("SalariedProformaInvoice", SalariedProformaInvoice);
-      formData.append("SelfEmployedIdentityProof", SelfEmployedIdentityProof);
-      formData.append("SelfEmployeeAddressProof", SelfEmployeeAddressProof);
-      formData.append("SelfEmployeeAgeProof", SelfEmployeeAgeProof);
-      formData.append("SelfEmployeeBankStatement", SelfEmployeeBankStatement);
-      formData.append(
-        "SelfEmployeeBusinessOwnership",
-        SelfEmployeeBusinessOwnership
-      );
-      formData.append("SelfEmployeeProofOIncome", SelfEmployeeProofOIncome);
-      formData.append(
-        "SelfEmployeeSignatureVerification",
-        SelfEmployeeSignatureVerification
+        "SalariedThreeMonthsBankStatement",
+        SalariedThreeMonthsBankStatement
       );
       formData.append(
-        "SelfEmployeeProformaInvoice",
-        SelfEmployeeProformaInvoice
+        "SalariedThreeMonthSalarySlip",
+        SalariedThreeMonthSalarySlip
       );
-
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforcarloan",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
+      formData.append(
+        "SelfEmployeedProofofIdentity",
+        SelfEmployeedProofofIdentity
+      );
+      formData.append(
+        "SelfEmployeedProofofResidence",
+        SelfEmployeedProofofResidence
+      );
+      formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
+      formData.append(
+        "SelfEmployeedSixMonthBankStatement",
+        SelfEmployeedSixMonthBankStatement
+      );
+      formData.append(
+        "SelfEmployeedOfficeAddressProof",
+        SelfEmployeedOfficeAddressProof
+      );
+      formData.append(
+        "SelfEmployeedProofofContinuityofBusiness",
+        SelfEmployeedProofofContinuityofBusiness
+      );
+      
+    //   const leadApiCall = await axios({
+    //     method: "post",
+    //     url: "http://localhost:5000/api/v1/crm/createleadforPersonalloan",
+    //     data: formData,
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   });
 
       console.log(leadApiCall);
     } catch (error) {
       console.log(error);
     }
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
   };
 
+  // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
+  if (serviceName === "personal loan"){
   return (
     <div className="flex justify-center items-center">
       <form
@@ -183,7 +384,7 @@ const Car = () => {
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
                 onChange={(e) => {
-                  setSelectClient(e.target.value);
+                  setEmployment(e.target.value);
                 }}
               >
                 <option value="Select a client" selected>
@@ -223,11 +424,11 @@ const Car = () => {
             />
           </div>
         </div>
-        {Selectclient === "Select a client" ? (
+        {employment === "Select a client" ? (
           ""
         ) : (
           <div>
-            {Selectclient === "Salaried" ? (
+            {employment === "Salaried" ? (
               <div>
                 <h3 className="my-5 block uppercase tracking-wide text-gray-700 text-xl underline font-bold">
                   Salaried
@@ -238,7 +439,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Salaried Identity Proof*
+                      Proof Of Indentity*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -246,7 +447,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSalariedIdentityProof(e.target.files[0]);
+                        setIndentity(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -255,7 +456,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Salaried Address Proof*
+                      Proof Of Residence*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -263,9 +464,7 @@ const Car = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) =>
-                        setSalariedAddressProof(e.target.files[0])
-                      }
+                      onChange={(e) => setResidence(e.target.files[0])}
                     />
                   </div>
                 </div>
@@ -275,7 +474,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Salaried Age Proof*
+                      Three Months Bank Statement*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -283,7 +482,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSalariedAgeProof(e.target.files[0]);
+                        setBankStatement(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -292,7 +491,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Salaried Bank Statement*
+                      Three Month Salary Slip*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -300,45 +499,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSalariedBankStatement(e.target.files[0]);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap -mx-3 mb-2">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-city"
-                    >
-                      Salaried Proof Of Income*
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-city"
-                      type="file"
-                      placeholder="Albuquerque"
-                      onChange={(e) => {
-                        setSalariedProofOfIncome(e.target.files[0]);
-                      }}
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-city"
-                    >
-                      Salaried Signature Verification Proof*
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-city"
-                      type="file"
-                      placeholder="Albuquerque"
-                      onChange={(e) => {
-                        setSalariedSignatureVerificationProof(
-                          e.target.files[0]
-                        );
+                        setThreesalaryslip(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -349,7 +510,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Salaried Proof income Invoice*
+                      Two Passport Photo*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -357,7 +518,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSalariedProformaInvoice(e.target.files[0]);
+                        setPassport(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -374,7 +535,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Self Employed Identity Proof*
+                      Proof Of Indentity*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -382,7 +543,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSelfEmployedIdentityProof(e.target.files[0]);
+                        setSEIndentity(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -391,7 +552,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Self Employee Address Proof*
+                      Proof Of Residence*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -399,9 +560,7 @@ const Car = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) =>
-                        setSelfEmployeeAddressProof(e.target.files[0])
-                      }
+                      onChange={(e) => setseResidence(e.target.files[0])}
                     />
                   </div>
                 </div>
@@ -411,7 +570,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Self Employee Age Proof*
+                      Income Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -419,7 +578,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSelfEmployeeAgeProof(e.target.files[0]);
+                        setIncome(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -428,7 +587,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Self Employee Bank Statement*
+                      Six Month Bank Statement*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -436,43 +595,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSelfEmployeeBankStatement(e.target.files[0]);
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-wrap -mx-3 mb-2">
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-city"
-                    >
-                      Self Employee Business Ownership*
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-city"
-                      type="file"
-                      placeholder="Albuquerque"
-                      onChange={(e) => {
-                        setSelfEmployeeBusinessOwnership(e.target.files[0]);
-                      }}
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label
-                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                      for="grid-city"
-                    >
-                      Self Employee Proof Of Income*
-                    </label>
-                    <input
-                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                      id="grid-city"
-                      type="file"
-                      placeholder="Albuquerque"
-                      onChange={(e) => {
-                        setSelfEmployeeProofOIncome(e.target.files[0]);
+                        setSeSixBankStatement(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -483,7 +606,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Self Employee Signature Verification*
+                      Office Address Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -491,7 +614,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSelfEmployeeSignatureVerification(e.target.files[0]);
+                        setAddressproof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -500,7 +623,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Self Employee Preform Invoice*
+                      Proof Of Continuity Of Business*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -508,7 +631,7 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSelfEmployeeProformaInvoice(e.target.files[0]);
+                        setBusiness(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -528,7 +651,8 @@ const Car = () => {
         </div>
       </form>
     </div>
-  );
+  )
+}
 };
 
-export default Car;
+export default UpdateLead   ;
