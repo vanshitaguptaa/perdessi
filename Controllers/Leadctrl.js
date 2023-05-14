@@ -14,9 +14,9 @@ import FoodLisenceModel from "../Models/FoodLisenceModel.js";
 
 export const CreateLeadctrlForHomeLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -28,7 +28,7 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
     const homeLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -57,12 +57,12 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
 
 export const createLeadForBusinessLoanModel = async (req, resp) => {
   try {
-    const { serviceId, clientId, loanAmount } = req.body;
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !loanAmount) {
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
       return resp.status(422).json({
         status: false,
-        message: "Please provide service, client and loanAmount properly",
+        message: "Please provide service, client and employeeID properly",
       });
     }
 
@@ -71,7 +71,7 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
     const businessLoanData = {
       service: serviceId,
       client: clientId,
-      employee: req.user._id,
+      employee: employeeId,
       LoanAmount: loanAmount,
     };
 
@@ -126,7 +126,6 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
     const savedResponse = await newPersonalLoanData.save();
 
-
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
@@ -135,7 +134,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return resp
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
@@ -259,7 +258,7 @@ export const createLeadForCreditCard = async (req, resp) => {
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
-        message: "successfully created lead for Credit card model",
+        message: "successfully created lead for Gold loan model",
         savedData: savedResponse,
       });
     }
@@ -302,7 +301,7 @@ export const createLeadForCarLoan = async (req, resp) => {
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
-        message: "successfully created lead for Car loan model",
+        message: "successfully created lead for Gold loan model",
         savedData: savedResponse,
       });
     }
@@ -316,9 +315,9 @@ export const createLeadForCarLoan = async (req, resp) => {
 
 export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -330,7 +329,7 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
     const NewCorrectionPanApplicationData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -360,9 +359,9 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
 
 export const createLeadForPassport = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -374,7 +373,7 @@ export const createLeadForPassport = async (req, resp) => {
     const PassportData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -417,7 +416,7 @@ export const createLeadForGSTRegistration = async (req, resp) => {
     const GSTRegistrationData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -434,7 +433,7 @@ export const createLeadForGSTRegistration = async (req, resp) => {
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
-        message: "successfully created lead for GST loan model",
+        message: "successfully created lead for Gold loan model",
         savedData: savedResponse,
       });
     }
@@ -451,13 +450,12 @@ export const createLeadForShopAct = async (req, resp) => {
     const {
       serviceId,
       clientId,
-      employeeId,
       loanAmount,
       detailsOfBusiness,
       natureOfBusiness,
     } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -469,7 +467,7 @@ export const createLeadForShopAct = async (req, resp) => {
     const ShopActData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
       DetailsOfBusiness: detailsOfBusiness,
       NatureOfBusiness: natureOfBusiness,
@@ -500,10 +498,10 @@ export const createLeadForShopAct = async (req, resp) => {
 
 export const createLeadForUdyamCertificate = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount, businessAdress } =
+    const { serviceId, clientId, loanAmount, businessAdress } =
       req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -515,7 +513,7 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
     const UdyamCertificateData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
       BusinessAdress: businessAdress,
     };
@@ -547,9 +545,9 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
 
 export const createLeadForFoodLisence = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -561,7 +559,7 @@ export const createLeadForFoodLisence = async (req, resp) => {
     const FoodLisenceData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -592,7 +590,7 @@ export const getHomeLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await HomeLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -617,7 +615,7 @@ export const getBusinessLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await BusinessloanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -642,7 +640,7 @@ export const getPersonalLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await PersonalLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -667,7 +665,7 @@ export const getMortgageLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await MortgageLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -692,7 +690,7 @@ export const getGoldLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GoldLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -717,7 +715,7 @@ export const getCreditCardLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CreditCardModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -742,7 +740,7 @@ export const getCarLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CarLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -767,7 +765,7 @@ export const getNewCorrectionPanApplicationForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await NewCorrectionPanApplicationModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -792,7 +790,7 @@ export const getPassportForEmplyoee = async (req, resp) => {
   try {
     const savedMyLead = await PassportModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -817,7 +815,7 @@ export const getGSTRegistrationForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GSTResgistraionModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -842,7 +840,7 @@ export const getShopActForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await ShopActModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -867,7 +865,7 @@ export const getUdyamCertificateForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await UdyamCertificateModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -892,7 +890,7 @@ export const getFoodLisenceForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await FoodLisenceModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -1302,3 +1300,445 @@ export const editFoodLisenceController = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
+
+export const getHomeLoanLeadById = async (req, res) => {
+  try {
+    const { homeleadID } = req.query;
+
+    if (!homeleadID) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedHomeLoan = await HomeLoanModel.findById(homeleadID).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedHomeLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedHomeLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanById = async (req, res) => {
+  try {
+    const { personalLoanId } = req.query;
+
+    if (!personalLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedPersonalLoan = await PersonalLoanModel.findById(
+      personalLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedPersonalLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedPersonalLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanById = async (req, res) => {
+  try {
+    const { businessLoanId } = req.query;
+
+    if (!businessLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedBusinessLoan = await BusinessloanModel.findById(
+      businessLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedBusinessLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedBusinessLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getMortgageLoanById = async (req, res) => {
+  try {
+    const { mortgageLoanId } = req.query;
+
+    if (!mortgageLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedMortgageLoan = await MortgageLoanModel.findById(
+      mortgageLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedMortgageLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedMortgageLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanById = async (req, res) => {
+  try {
+    const { goldLoanId } = req.query;
+
+    if (!goldLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedGoldLoan = await GoldLoanModel.findById(goldLoanId).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedGoldLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedGoldLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardById = async (req, res) => {
+  try {
+    const { creditCardId } = req.query;
+
+    if (!creditCardId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedCreditCard = await CreditCardModel.findById(
+      creditCardId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedCreditCard) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedCreditCard,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getCarLoanById = async (req, res) => {
+  try {
+    const { carLoanId } = req.query;
+
+    if (!carLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedCarLoan = await CarLoanModel.findById(
+      carLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedCarLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedCarLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getNewCorrectionPanApplicationbyId = async (req, res) => {
+  try {
+    const { newCorrectionPanApplicationId } = req.query;
+
+    if (!newCorrectionPanApplicationId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedNewCcrrectionPanApplication = await NewCorrectionPanApplicationModel.findById(
+      newCorrectionPanApplicationId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedNewCcrrectionPanApplication) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedNewCcrrectionPanApplication,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getPassportById = async (req, res) => {
+  try {
+    const { passportById } = req.query;
+
+    if (!passportById) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedPassport = await PassportModel.findById(
+      passportById
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedPassport) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedPassport,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationById = async (req, res) => {
+  try {
+    const { GSTRegistrationId } = req.query;
+
+    if (!GSTRegistrationId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedGSTResgistration = await GSTResgistraionModel.findById(
+      GSTRegistrationId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedGSTResgistration) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedGSTResgistration,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getShopActById = async (req, res) => {
+  try {
+    const { shopActId } = req.query;
+
+    if (!shopActId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedShopAct = await ShopActModel.findById(
+      shopActId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedShopAct) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedShopAct,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateById = async (req, res) => {
+  try {
+    const { UdyamCertificateId } = req.query;
+
+    if (!UdyamCertificateId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedUdyamCertificate = await UdyamCertificateModel.findById(
+      UdyamCertificateId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedUdyamCertificate) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedUdyamCertificate,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getFoodLisencebyId = async (req, res) => {
+  try {
+    const { foodlisenceById } = req.query;
+
+    if (!foodlisenceById) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedFoodLisence = await FoodLisenceModel.findById(
+      foodlisenceById
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedFoodLisence) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedFoodLisence,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+
+
