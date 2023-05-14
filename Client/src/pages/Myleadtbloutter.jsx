@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
@@ -40,8 +40,9 @@ function Myleadtbloutter() {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
+  
 
-  const FetchLoaddetail = async(service) => {
+  const FetchLoaddetail = async (service) => {
     if (service === "personal loan") {
       console.log("personal loan is riunning");
       await axios({
@@ -225,6 +226,7 @@ function Myleadtbloutter() {
       });
     }
   };
+
   console.log(loandetail);
   // console.log(typeof loandetail);
 

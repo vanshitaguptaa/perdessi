@@ -5,6 +5,7 @@ import App from "./App";
 import ClientListProvider from "./Context/ClientList";
 import LeadListProvider from "./Context/LeadList";
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>

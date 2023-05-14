@@ -5,6 +5,8 @@ import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
+
 const Business = () => {
   const tokenData = localStorage.getItem("token");
   const token = JSON.parse(tokenData).usertoken;
@@ -40,7 +42,7 @@ const Business = () => {
   const [TrueCopyBoardResolution, setTrueCopyBoardResolution] = useState(null);
 
   useEffect(() => {
-    if (isError === false) {
+   if (isError === false) {
       setClientData(clients.clients);
     }
   }, []);

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const schema = yup
   .object()
@@ -23,7 +23,7 @@ const schema = yup
   })
   .required();
 
-const Addclientform = () => {
+const Updateclientform = () => {
   const navigate = useNavigate();
   const {
     register,
@@ -32,28 +32,55 @@ const Addclientform = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const tokenData = localStorage.getItem("token");
-  const token = JSON.parse(tokenData).usertoken;
+  const {id}= useParams();
+  const [popupdata, setpopupdata] = useState([]);
+  const [authScreen, setAuthScreen] = useState(true);
 
-  const response = (data) => {
-    console.log(data);
-    if (data.success) {
-      toast.success(data.message, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-      navigate("/myclient");
-    } else {
-      toast.error(data.message, {
-        position: toast.POSITION.TOP_RIGHT,
-      });
-    }
+  let tokenData = localStorage.getItem("token");
+  let tokenExpiry;
+  let token;
+  if (tokenData) {
+    // tokenExpiry = JSON.parse(tokenData).expiry;
+    tokenExpiry = new Date(JSON.parse(tokenData).expiry);
+    token = JSON.parse(tokenData).usertoken;
+  }
+  let currentDate = new Date();
+
+
+  const singlefetch = async (id) => {
+    await axios({
+      method: "get",
+      url: `http://localhost:5000/api/v1/crm/getclientbyid?clientId=${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+    //   console.log(res.data.response);
+      setpopupdata(res.data.response);
+
+    });
   };
+
+  useEffect(() => {
+    if (!tokenData) {
+      navigate("/login");
+    } else {
+      if (currentDate > tokenExpiry) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+      singlefetch(id)
+      setTimeout(() => {
+        setAuthScreen(false);
+      }, 500);
+    }
+  }, []);
 
   const onSubmit = async (data) => {
     try {
       const response = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/addclient",
+        method: "patch",
+        url: `http://localhost:5000/api/v1/crm/myclient/${id}`,
         data: data,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -83,6 +110,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
+              
+              defaultValue={popupdata.first_name}
               {...register("first_name")}
             />
             <small className="text-red-600">{errors.first_name?.message}</small>
@@ -99,6 +128,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
+              
+              defaultValue={popupdata.middle_name}
               {...register("middlename")}
             />
             <small className="text-red-600">{errors.middlename?.message}</small>
@@ -115,6 +146,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
+              
+              defaultValue={popupdata.last_name}
               {...register("last_name")}
             />
             <small className="text-red-600">{errors.last_name?.message}</small>
@@ -133,6 +166,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="email"
               placeholder=""
+              
+              defaultValue={popupdata.email}
               {...register("email")}
             />
             <small className="text-red-600">{errors.email?.message}</small>
@@ -149,6 +184,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="number"
               placeholder=""
+              
+              defaultValue={popupdata.phone}
               {...register("phone")}
             />
             <small className="text-red-600">{errors.phone?.message}</small>
@@ -161,10 +198,11 @@ const Addclientform = () => {
               PAN Number
             </label>
             <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white uppercase"
               id="grid-first-name"
               type="text"
               placeholder=""
+              defaultValue={popupdata.pan}
               {...register("pan")}
             />
             <small className="text-red-600">{errors.pan?.message}</small>
@@ -183,6 +221,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="number"
               placeholder=""
+              
+              defaultValue={popupdata.aadhar}
               {...register("aadhar")}
             />
             <small className="text-red-600">{errors.aadhar?.message}</small>
@@ -199,6 +239,8 @@ const Addclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
+              
+              defaultValue={popupdata.gst}
               {...register("gst")}
             />
             <small className="text-red-600">{errors.gst?.message}</small>
@@ -217,6 +259,8 @@ const Addclientform = () => {
               id="grid-city"
               type="text"
               placeholder=""
+              
+              defaultValue={popupdata.city}
               {...register("city")}
             />
             <small className="text-red-600">{errors.city?.message}</small>
@@ -235,7 +279,7 @@ const Addclientform = () => {
                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 id="grid-state"
               >
-                <option value="Uttar Pradesh">Select State</option>
+                <option value={popupdata.state}>{popupdata.state}</option>
                 <option value="Uttar Pradesh">Uttar Pradesh</option>
                 <option value="Delhi">Delhi</option>
                 <option value="Mumbai">Mumbai</option>
@@ -266,6 +310,8 @@ const Addclientform = () => {
               id="grid-zip"
               type="number"
               placeholder=""
+              
+              defaultValue={popupdata.zip}
               {...register("zip")}
             />
             <small className="text-red-600">{errors.zip?.message}</small>
@@ -283,4 +329,4 @@ const Addclientform = () => {
   );
 };
 
-export default Addclientform;
+export default Updateclientform;

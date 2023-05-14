@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import { useNavigate } from "react-router-dom";
-import Profiledetail from "./Profiledetail";
-import axios from "axios";
+import Updateclientform from "../components/Updateclientform";
 
-const Myprofile = () => {
+const Updateclient = () => {
   const navigate = useNavigate();
-  const [Profiledata, setProfiledata] = useState({});
   const [authScreen, setAuthScreen] = useState(true);
-  let tokenData = localStorage.getItem("token");
+  const tokenData = localStorage.getItem("token");
   let tokenExpiry;
   let token;
   if (tokenData) {
@@ -17,7 +15,7 @@ const Myprofile = () => {
     tokenExpiry = new Date(JSON.parse(tokenData).expiry);
     token = JSON.parse(tokenData).usertoken;
   }
-  let currentDate = new Date();
+  const currentDate = new Date();
 
   useEffect(() => {
     if (!tokenData) {
@@ -33,26 +31,6 @@ const Myprofile = () => {
     }
   }, []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const fetchid = async () => {
-    const response = await axios({
-      method: "get",
-      url: "http://localhost:5000/api/v1/crm/getEmpolyeeID",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    // console.log(response);
-    if (response) {
-      setProfiledata(response.data.fetchdata);
-      // console.log(Profiledata)
-    }
-  };
-
-  useEffect(() => {
-    fetchid();
-  }, []);
 
   if (authScreen) {
     return (
@@ -79,10 +57,13 @@ const Myprofile = () => {
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
         {/*  Site header */}
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <Profiledetail Profiledata={Profiledata} />
+        <div className="">
+          <h1 className="text-3xl m-5">Client Form</h1>
+          <Updateclientform />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Myprofile;
+export default Updateclient;
