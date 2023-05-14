@@ -12,6 +12,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
   const { pathname } = location;
+  const [role, setrole] = useState("");
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
@@ -23,6 +24,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   // close on click outside
   useEffect(() => {
+    Role_Fun();
     const clickHandler = ({ target }) => {
       if (!sidebar.current || !trigger.current) return;
       if (
@@ -35,17 +37,18 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     };
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
-  });
+  }, []);
 
   // close if the esc key is pressed
   useEffect(() => {
+    Role_Fun();
     const keyHandler = ({ keyCode }) => {
       if (!sidebarOpen || keyCode !== 27) return;
       setSidebarOpen(false);
     };
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
-  });
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded);
@@ -55,6 +58,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
       document.querySelector("body").classList.remove("sidebar-expanded");
     }
   }, [sidebarExpanded]);
+
+  // Dividation Between Empolyee and Admin
+  const Role_Fun = () => {
+    let user_role = localStorage.getItem("role");
+    setrole(user_role);
+    console.log(role);
+  };
 
   return (
     <div>
@@ -134,7 +144,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </svg>
           </NavLink>
         </div>
-        
 
         {/* Links */}
         <div className="space-y-8">
@@ -211,20 +220,20 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <div className="flex items-center">
                   <MdDashboard className="ml-3 text-white text-2xl" />
                   <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                    <Link to="/">Dashboard</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                   </span>
                 </div>
               </div>
               <div className="space-y-8 my-5">
-              <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <TiUserAdd className="ml-3 text-white text-2xl" />
-                      <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                        <Link to="/myprofile">My Profile</Link>
-                      </span>
-                    </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <TiUserAdd className="ml-3 text-white text-2xl" />
+                    <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                      <Link to="/myprofile">My Profile</Link>
+                    </span>
                   </div>
-                  </div>
+                </div>
+              </div>
               <div className="space-y-8 my-5">
                 <div>
                   <h3 className="text-xs uppercase text-slate-500 font-semibold pl-3">
@@ -286,47 +295,59 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <RiFolderTransferFill className="ml-3 text-white text-2xl" />
-                      <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                        <Link to="/transferlead">Transfer Leads</Link>
-                      </span>
-                    </div>
-                  </div>
+                  {role === "employee" ? (
+                    <></>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <RiFolderTransferFill className="ml-3 text-white text-2xl" />
+                          <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                            <Link to="/transferlead">Transfer Leads</Link>
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
-              <div className="space-y-8 my-5">
-                <div>
-                  <h3 className="text-xs uppercase text-slate-500 font-semibold pl-3">
-                    <span
-                      className="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
-                      aria-hidden="true"
-                    >
-                      •••
-                    </span>
-                    <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                      Employees
-                    </span>
-                  </h3>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <BsFillPersonFill className="ml-3 text-white text-2xl" />
-                      <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                        <Link to="/allemployee">All Employees</Link>
-                      </span>
+              {role === "employee" ? (
+                <></>
+              ) : (
+                <>
+                  <div className="space-y-8 my-5">
+                    <div>
+                      <h3 className="text-xs uppercase text-slate-500 font-semibold pl-3">
+                        <span
+                          className="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
+                          aria-hidden="true"
+                        >
+                          •••
+                        </span>
+                        <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">
+                          Employees
+                        </span>
+                      </h3>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <BsFillPersonFill className="ml-3 text-white text-2xl" />
+                          <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                            <Link to="/allemployee">All Employees</Link>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <BsFillPersonFill className="ml-3 text-white text-2xl" />
+                          <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                            <Link to="/addemployee">Add Employees</Link>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <BsFillPersonFill className="ml-3 text-white text-2xl" />
-                      <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                        <Link to="/addemployee">Add Employees</Link>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </>
+              )}
             </ul>
           </div>
 

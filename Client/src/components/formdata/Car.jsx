@@ -15,7 +15,7 @@ const Car = () => {
   const { clients, isError } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
-  const [client, setClient] = useState("Select a client");
+  const [Selectclient, setSelectClient] = useState("Select a client");
   const [SalariedIdentityProof, setSalariedIdentityProof] = useState(null);
   const [SalariedAddressProof, setSalariedAddressProof] = useState(null);
   const [SalariedAgeProof, setSalariedAgeProof] = useState(null);
@@ -53,52 +53,53 @@ const Car = () => {
   const handleLeadForm = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("clientId", client);
-    formData.append("loadAmount", LoanAmount);
-    formData.append("service", serviceId);
-    formData.append("SalariedIdentityProof", SalariedIdentityProof);
-    formData.append("SalariedAddressProof", SalariedAddressProof);
-    formData.append("SalariedAgeProof", SalariedAgeProof);
-    formData.append("SalariedBankStatement", SalariedBankStatement);
-    formData.append("SalariedProofOfIncome", SalariedProofOfIncome);
-    formData.append(
-      "SalariedSignatureVerificationProof",
-      SalariedSignatureVerificationProof
-    );
-    formData.append("SalariedProformaInvoice", SalariedProformaInvoice);
-    formData.append("SelfEmployedIdentityProof", SelfEmployedIdentityProof);
-    formData.append("SelfEmployeeAddressProof", SelfEmployeeAddressProof);
-    formData.append("SelfEmployeeAgeProof", SelfEmployeeAgeProof);
-    formData.append("SelfEmployeeBankStatement", SelfEmployeeBankStatement);
-    formData.append(
-      "SelfEmployeeBusinessOwnership",
-      SelfEmployeeBusinessOwnership
-    );
-    formData.append("SelfEmployeeProofOIncome", SelfEmployeeProofOIncome);
-    formData.append(
-      "SelfEmployeeSignatureVerification",
-      SelfEmployeeSignatureVerification
-    );
-    formData.append("SelfEmployeeProformaInvoice", SelfEmployeeProformaInvoice);
+    try {
+      const formData = new FormData();
+      formData.append("clientId", client);
+      formData.append("Selectclient", Selectclient);
+      formData.append("loanAmount", LoanAmount);
+      formData.append("serviceId", serviceId);
+      formData.append("SalariedIdentityProof", SalariedIdentityProof);
+      formData.append("SalariedAddressProof", SalariedAddressProof);
+      formData.append("SalariedAgeProof", SalariedAgeProof);
+      formData.append("SalariedBankStatement", SalariedBankStatement);
+      formData.append("SalariedProofOfIncome", SalariedProofOfIncome);
+      formData.append(
+        "SalariedSignatureVerificationProof",
+        SalariedSignatureVerificationProof
+      );
+      formData.append("SalariedProformaInvoice", SalariedProformaInvoice);
+      formData.append("SelfEmployedIdentityProof", SelfEmployedIdentityProof);
+      formData.append("SelfEmployeeAddressProof", SelfEmployeeAddressProof);
+      formData.append("SelfEmployeeAgeProof", SelfEmployeeAgeProof);
+      formData.append("SelfEmployeeBankStatement", SelfEmployeeBankStatement);
+      formData.append(
+        "SelfEmployeeBusinessOwnership",
+        SelfEmployeeBusinessOwnership
+      );
+      formData.append("SelfEmployeeProofOIncome", SelfEmployeeProofOIncome);
+      formData.append(
+        "SelfEmployeeSignatureVerification",
+        SelfEmployeeSignatureVerification
+      );
+      formData.append(
+        "SelfEmployeeProformaInvoice",
+        SelfEmployeeProformaInvoice
+      );
 
-    // try {
-    //   const leadApiCall = await axios({
-    //     method: "post",
-    //     url: "http://localhost:5000/api/v1/crm/createlead",
-    //     data: formData,
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   });
+      const leadApiCall = await axios({
+        method: "post",
+        url: "http://localhost:5000/api/v1/crm/createleadforcarloan",
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-    //   console.log(leadApiCall);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
+      console.log(leadApiCall);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -181,7 +182,7 @@ const Car = () => {
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
                 onChange={(e) => {
-                  setClient(e.target.value);
+                  setSelectClient(e.target.value);
                 }}
               >
                 <option value="Select a client" selected>
@@ -221,11 +222,11 @@ const Car = () => {
             />
           </div>
         </div>
-        {client === "Select a client" ? (
+        {Selectclient === "Select a client" ? (
           ""
         ) : (
           <div>
-            {client === "Salaried" ? (
+            {Selectclient === "Salaried" ? (
               <div>
                 <h3 className="my-5 block uppercase tracking-wide text-gray-700 text-xl underline font-bold">
                   Salaried
@@ -236,7 +237,7 @@ const Car = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                     Salaried Identity Proof*
+                      Salaried Identity Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -261,7 +262,9 @@ const Car = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) => setSalariedAddressProof(e.target.files[0])}
+                      onChange={(e) =>
+                        setSalariedAddressProof(e.target.files[0])
+                      }
                     />
                   </div>
                 </div>
@@ -332,7 +335,9 @@ const Car = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSalariedSignatureVerificationProof(e.target.files[0]);
+                        setSalariedSignatureVerificationProof(
+                          e.target.files[0]
+                        );
                       }}
                     />
                   </div>
@@ -393,7 +398,9 @@ const Car = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) => setSelfEmployeeAddressProof(e.target.files[0])}
+                      onChange={(e) =>
+                        setSelfEmployeeAddressProof(e.target.files[0])
+                      }
                     />
                   </div>
                 </div>

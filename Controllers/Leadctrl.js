@@ -4,12 +4,19 @@ import PersonalLoanModel from "../Models/PersonalLoanModel.js";
 import MortgageLoanModel from "../Models/MortgageLoanModel.js";
 import GoldLoanModel from "../Models/GoldLoanModel.js";
 import CreditCardModel from "../Models/CreditCardModel.js";
+import CarLoanModel from "../Models/CarLoanModel.js";
+import NewCorrectionPanApplicationModel from "../Models/NewCorrectionPanApplication.js";
+import PassportModel from "../Models/PassportModel.js";
+import GSTResgistraionModel from "../Models/GSTRegistrationModel.js";
+import ShopActModel from "../Models/ServiceModel.js";
+import UdyamCertificateModel from "../Models/UdyamCertificationModel.js";
+import FoodLisenceModel from "../Models/FoodLisenceModel.js";
 
 export const CreateLeadctrlForHomeLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -21,7 +28,7 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
     const homeLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -50,12 +57,12 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
 
 export const createLeadForBusinessLoanModel = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
-        message: "Please provide service, client and employeeID properly",
+        message: "Please provide service, client and loanAmount properly",
       });
     }
 
@@ -64,7 +71,7 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
     const businessLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -93,9 +100,9 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
 
 export const createLeadForPersonalLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -107,7 +114,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
     const PersonalLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -119,6 +126,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
     const savedResponse = await newPersonalLoanData.save();
 
+
     if (savedResponse) {
       return resp.status(201).json({
         status: true,
@@ -127,7 +135,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return resp
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
@@ -136,9 +144,9 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
 export const createLeadForMortgageLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -150,7 +158,7 @@ export const createLeadForMortgageLoan = async (req, resp) => {
     const MortgageLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -179,9 +187,9 @@ export const createLeadForMortgageLoan = async (req, resp) => {
 
 export const createLeadForGoldLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -193,7 +201,7 @@ export const createLeadForGoldLoan = async (req, resp) => {
     const GoldLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -222,9 +230,9 @@ export const createLeadForGoldLoan = async (req, resp) => {
 
 export const createLeadForCreditCard = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -236,7 +244,7 @@ export const createLeadForCreditCard = async (req, resp) => {
     const CreditCardData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -247,6 +255,323 @@ export const createLeadForCreditCard = async (req, resp) => {
     const newCreditCardData = new CreditCardModel(CreditCardData);
 
     const savedResponse = await newCreditCardData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for Credit card model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForCarLoan = async (req, resp) => {
+  try {
+    const { serviceId, clientId, loanAmount } = req.body;
+
+    if (!serviceId || !clientId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const CarLoanData = {
+      service: serviceId,
+      client: clientId,
+      employee: req.user._id,
+      LoanAmount: loanAmount,
+    };
+
+    for (const key in documentObject) {
+      CarLoanData[key] = documentObject[key][0].path;
+    }
+
+    const newCarLoanData = new CarLoanModel(CarLoanData);
+
+    const savedResponse = await newCarLoanData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for Car loan model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
+  try {
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const NewCorrectionPanApplicationData = {
+      service: serviceId,
+      client: clientId,
+      employee: employeeId,
+      LoanAmount: loanAmount,
+    };
+
+    for (const key in documentObject) {
+      NewCorrectionPanApplicationData[key] = documentObject[key][0].path;
+    }
+
+    const newNewCorrectionPanApplicationData =
+      new NewCorrectionPanApplicationModel(NewCorrectionPanApplicationData);
+
+    const savedResponse = await newNewCorrectionPanApplicationData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for Gold loan model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForPassport = async (req, resp) => {
+  try {
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const PassportData = {
+      service: serviceId,
+      client: clientId,
+      employee: employeeId,
+      LoanAmount: loanAmount,
+    };
+
+    for (const key in documentObject) {
+      PassportData[key] = documentObject[key][0].path;
+    }
+
+    const newPassportData = new PassportModel(PassportData);
+
+    const savedResponse = await newPassportData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for Gold loan model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForGSTRegistration = async (req, resp) => {
+  try {
+    const { serviceId, clientId, loanAmount } = req.body;
+
+    if (!serviceId || !clientId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const GSTRegistrationData = {
+      service: serviceId,
+      client: clientId,
+      employee: employeeId,
+      LoanAmount: loanAmount,
+    };
+
+    for (const key in documentObject) {
+      GSTRegistrationData[key] = documentObject[key][0].path;
+    }
+
+    const newGSTRegistrationData = new GSTResgistraionModel(
+      GSTRegistrationData
+    );
+
+    const savedResponse = await newGSTRegistrationData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for GST loan model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForShopAct = async (req, resp) => {
+  try {
+    const {
+      serviceId,
+      clientId,
+      employeeId,
+      loanAmount,
+      detailsOfBusiness,
+      natureOfBusiness,
+    } = req.body;
+
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const ShopActData = {
+      service: serviceId,
+      client: clientId,
+      employee: employeeId,
+      LoanAmount: loanAmount,
+      DetailsOfBusiness: detailsOfBusiness,
+      NatureOfBusiness: natureOfBusiness,
+    };
+
+    for (const key in documentObject) {
+      ShopActData[key] = documentObject[key][0].path;
+    }
+
+    const newShopActData = new ShopActModel(ShopActData);
+
+    const savedResponse = await newShopActData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for Gold loan model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForUdyamCertificate = async (req, resp) => {
+  try {
+    const { serviceId, clientId, employeeId, loanAmount, businessAdress } =
+      req.body;
+
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const UdyamCertificateData = {
+      service: serviceId,
+      client: clientId,
+      employee: employeeId,
+      LoanAmount: loanAmount,
+      BusinessAdress: businessAdress,
+    };
+
+    for (const key in documentObject) {
+      UdyamCertificateData[key] = documentObject[key][0].path;
+    }
+
+    const newUdyamCertificateData = new UdyamCertificateModel(
+      UdyamCertificateData
+    );
+
+    const savedResponse = await newUdyamCertificateData.save();
+
+    if (savedResponse) {
+      return resp.status(201).json({
+        status: true,
+        message: "successfully created lead for Gold loan model",
+        savedData: savedResponse,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const createLeadForFoodLisence = async (req, resp) => {
+  try {
+    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+
+    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+      return resp.status(422).json({
+        status: false,
+        message: "Please provide service, client and employeeID properly",
+      });
+    }
+
+    const documentObject = req.files;
+
+    const FoodLisenceData = {
+      service: serviceId,
+      client: clientId,
+      employee: employeeId,
+      LoanAmount: loanAmount,
+    };
+
+    for (const key in documentObject) {
+      FoodLisenceData[key] = documentObject[key][0].path;
+    }
+
+    const newFoodLisenceData = new FoodLisenceModel(FoodLisenceData);
+
+    const savedResponse = await newFoodLisenceData.save();
 
     if (savedResponse) {
       return resp.status(201).json({
@@ -391,6 +716,181 @@ export const getGoldLoanForEmployee = async (req, resp) => {
 export const getCreditCardLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CreditCardModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await CarLoanModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await NewCorrectionPanApplicationModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportForEmplyoee = async (req, resp) => {
+  try {
+    const savedMyLead = await PassportModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await GSTResgistraionModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await ShopActModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await UdyamCertificateModel.find({
+      employee: req.user._id,
+    }).populate(["empolyeeid", "serviceid", "Client"]);
+
+    if (savedMyLead < 1) {
+      return resp
+        .status(204)
+        .json({ status: false, message: "no data is available to display" });
+    }
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisenceForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await FoodLisenceModel.find({
       employee: req.user._id,
     }).populate(["empolyeeid", "serviceid", "Client"]);
 
@@ -576,6 +1076,216 @@ export const editCreditCardServiceController = async (req, res) => {
     let valueToEdit = req.files[fieldToEdit][0];
 
     const updatedResponse = await CreditCardModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editCarLoanServiceController = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await CarLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editNewCorrectionPanApplication = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await NewCorrectionPanApplicationModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editPassportServiceController = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await PassportModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editGSTRegistrationController = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await GSTResgistraionModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editShopActController = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await ShopActModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editUdyamCertificateController = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await UdyamCertificateModel.updateOne(
+      { _id: leadId },
+      { $set: { [fieldToEdit]: valueToEdit } }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editFoodLisenceController = async (req, res) => {
+  try {
+    let { leadId, fieldToEdit } = req.body;
+
+    if (!leadId || !fieldToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "please provide field to edit" });
+    }
+
+    let valueToEdit = req.files[fieldToEdit][0];
+
+    const updatedResponse = await FoodLisenceModel.updateOne(
       { _id: leadId },
       { $set: { [fieldToEdit]: valueToEdit } }
     );

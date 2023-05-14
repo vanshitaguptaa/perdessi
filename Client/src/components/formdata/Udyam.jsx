@@ -35,6 +35,7 @@ const Udyam = () => {
     const handleLeadForm = async (e) => {
       e.preventDefault();
   
+      try {
       const formData = new FormData();
       formData.append("clientId", client);
       formData.append("loadAmount", LoanAmount);
@@ -49,21 +50,20 @@ const Udyam = () => {
       formData.append("DuplicateBillOfSale", DuplicateBillOfSale);
 
   
-      // try {
-      //   const leadApiCall = await axios({
-      //     method: "post",
-      //     url: "http://localhost:5000/api/v1/crm/createlead",
-      //     data: formData,
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   });
+        // const leadApiCall = await axios({
+        //   method: "post",
+        //   url: "http://localhost:5000/api/v1/crm/createlead",
+        //   data: formData,
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        // });
   
-      //   console.log(leadApiCall);
-      // } catch (error) {
-      //   console.log(error);
-      // }
+        console.log(leadApiCall);
+      } catch (error) {
+        console.log(error);
+      }
       for (var pair of formData.entries()) {
         console.log(pair[0] + ", " + pair[1]);
       }

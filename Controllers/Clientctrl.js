@@ -1,5 +1,6 @@
-import Clientmodel from "../Models/ClientModel.js"
-import * as cron from 'node-cron'
+import Clientmodel from "../Models/ClientModel.js";
+import * as cron from "node-cron";
+import nodemailer from "nodemailer";
 import { SendBirthdaymail } from "./Sendingmail.js";
 
 export const Addclientctrl = async (req, resp) => {
@@ -17,7 +18,7 @@ export const Addclientctrl = async (req, resp) => {
       state,
       zip,
       dob,
-      gender
+      gender,
     } = req.body;
 
     if (
@@ -99,7 +100,53 @@ export const Addclientctrl = async (req, resp) => {
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
-}
+};
+
+export const SendMAilTOAllctrl = async (req, resp) => {
+  try {
+    const clients = await Clientmodel.find({});
+    const { Subject, Mail } = req.body;
+
+    const config = {
+      service: "gmail",
+      secure: true,
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    };
+
+    const transporter = nodemailer.createTransport(config);
+
+    const mailPromises = [];
+
+    for (const client of clients) {
+      const message = {
+        from: process.env.EMAIL,
+        to: client.email,
+        subject: Subject,
+        text: Mail,
+        html: `<b>${Mail}</b>`,
+      };
+
+      mailPromises.push(transporter.sendMail(message));
+    }
+
+    await Promise.all(mailPromises);
+
+    console.log("Emails Sent");
+
+    return resp.status(201).json({
+      status: true,
+      message: "Mail Just Sent to All Clients",
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "Something went wrong", err: error });
+  }
+};
 
 export const getClientForCurrentUser = async (req, resp) => {
   try {
@@ -130,87 +177,83 @@ export const getClientForCurrentUser = async (req, resp) => {
 
 export const MyClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find({ empolyeeid: req.params.id }).populate(
-      {
-        path: 'empolyeeid',
-        select: 'first_name last_name email'
-      }
-    )
+    const already = await Clientmodel.find({
+      empolyeeid: req.params.id,
+    }).populate({
+      path: "empolyeeid",
+      select: "first_name last_name email",
+    });
     if (already) {
-      return resp.status(200).send(
-        {
-          Succes: true,
-          already
-        }
-      );
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
     }
   } catch (error) {
     resp.status(500).send({
       success: false,
-      message: 'Data Not Fatched',
-    })
+      message: "Data Not Fatched",
+    });
   }
-}
+};
 
 export const EditClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const already = await Clientmodel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
 
     if (already) {
-      return resp.status(200).send(
-        {
-          Succes: true,
-          already
-        }
-      );
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
     }
   } catch (error) {
     resp.status(500).send({
       success: false,
-      message: 'Data Not Fatched',
-    })
+      message: "Data Not Fatched",
+    });
   }
-}
+};
 
 export const GetAllClintsctrl = async (req, resp) => {
   try {
-    const already = await Clientmodel.find().populate(
-      {
-        path: 'empolyeeid',
-        select: 'first_name last_name email'
-      }
-    )
+    const already = await Clientmodel.find().populate({
+      path: "empolyeeid",
+      select: "first_name last_name email",
+    });
     if (already) {
-      return resp.status(200).send(
-        {
-          Succes: true,
-          already
-        }
-      );
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
     }
   } catch (error) {
     resp.status(500).send({
       success: false,
-      message: 'Data Not Fatched',
-    })
+      message: "Data Not Fatched",
+    });
   }
-}
+};
 
-cron.schedule('0 0 0 * * *', async () => {
+cron.schedule("0 0 0 * * *", async () => {
   const datee = new Date();
   const today = datee.getDate();
   const thismonth = datee.getMonth() + 1;
   try {
-    const already = await Clientmodel.find({})
+    const already = await Clientmodel.find({});
     already.map((d) => {
       let clientdob = d.dob;
       let clientdate = clientdob.getDate();
       let clientmonth = clientdob.getMonth() + 1;
       if (clientdate == today && clientmonth == thismonth) {
-        SendBirthdaymail(d.email)
-      } 
-    })
+        SendBirthdaymail(d.email);
+      }
+    });
   } catch (error) {
-    console.log("function is not WORKING!!!")
+    console.log("function is not WORKING!!!");
   }
 });

@@ -32,27 +32,27 @@ const Passport = () => {
   
       const formData = new FormData();
       formData.append("clientId", client);
-      formData.append("loadAmount", LoanAmount);
-      formData.append("service", serviceId);
+      formData.append("loanAmount", LoanAmount);
+      formData.append("serviceId", serviceId);
       formData.append("BirthProof", BirthProof);
       formData.append("AddressProof", AddressProof);
 
   
-      // try {
-      //   const leadApiCall = await axios({
-      //     method: "post",
-      //     url: "http://localhost:5000/api/v1/crm/createlead",
-      //     data: formData,
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   });
+      try {
+        const leadApiCall = await axios({
+          method: "post",
+          url: "http://localhost:5000/api/v1/crm/createlead",
+          data: formData,
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
   
-      //   console.log(leadApiCall);
-      // } catch (error) {
-      //   console.log(error);
-      // }
+        console.log(leadApiCall);
+      } catch (error) {
+        console.log(error);
+      }
       for (var pair of formData.entries()) {
         console.log(pair[0] + ", " + pair[1]);
       }

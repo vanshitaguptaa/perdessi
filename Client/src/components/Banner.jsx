@@ -16,7 +16,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden my-20">
       <Slider {...settings}>
         <div>
           <img src="https://i.ytimg.com/vi/0kgug4sntCU/maxresdefault.jpg" />
