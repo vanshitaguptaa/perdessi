@@ -41,7 +41,7 @@ const Passport = () => {
       try {
         const leadApiCall = await axios({
           method: "post",
-          url: "http://localhost:5000/api/v1/crm/createlead",
+          url: "http://localhost:5000/api/v1/crm/createleadforpassport",
           data: formData,
           headers: {
             Authorization: `Bearer ${token}`,

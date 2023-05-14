@@ -102,6 +102,7 @@ const Car = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="flex justify-center items-center">
       <form
