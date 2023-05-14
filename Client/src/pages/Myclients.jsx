@@ -7,6 +7,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Myclient = () => {
   const navigate = useNavigate();
+  const [view, setview] = useState(false);
+  const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
@@ -76,7 +78,6 @@ const Myclient = () => {
           </main>
         </div>
       </div>
-
       
     </>
   );
