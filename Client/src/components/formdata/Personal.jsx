@@ -79,7 +79,7 @@ const Personal = () => {
         "SelfEmployeedProofofContinuityofBusiness",
         SelfEmployeedProofofContinuityofBusiness
       );
-      
+
       const leadApiCall = await axios({
         method: "post",
         url: "http://localhost:5000/api/v1/crm/createleadforPersonalloan",

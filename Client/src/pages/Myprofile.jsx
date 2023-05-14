@@ -19,23 +19,6 @@ const Myprofile = () => {
   }
   let currentDate = new Date();
 
-    
-  const fetchid= async()=>{
-    const response = await axios({
-      method: "get",
-      url: "http://localhost:5000/api/v1/crm/getEmpolyeeID",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    
-    // console.log(response);
-    if (response) {
-      setProfiledata(response.data.fetchdata)
-      // console.log(Profiledata)
-    }
-  }
-
   useEffect(() => {
     if (!tokenData) {
       navigate("/login");
@@ -44,13 +27,32 @@ const Myprofile = () => {
         localStorage.removeItem("token");
         navigate("/login");
       }
-      fetchid();
       setTimeout(() => {
         setAuthScreen(false);
       }, 500);
     }
   }, []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const fetchid = async () => {
+    const response = await axios({
+      method: "get",
+      url: "http://localhost:5000/api/v1/crm/getEmpolyeeID",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    // console.log(response);
+    if (response) {
+      setProfiledata(response.data.fetchdata);
+      // console.log(Profiledata)
+    }
+  };
+
+  useEffect(() => {
+    fetchid();
+  }, []);
 
   if (authScreen) {
     return (

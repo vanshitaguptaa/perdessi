@@ -1776,13 +1776,11 @@ export const getHomeLoanLeadByMobileNo = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -1805,7 +1803,9 @@ export const getBusinessLoanByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedBusinessLoan = await BusinessloanModel.find({ employee: req.user._id })
+    const savedBusinessLoan = await BusinessloanModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -1822,13 +1822,11 @@ export const getBusinessLoanByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -1851,7 +1849,9 @@ export const getPersonalLoanByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedPersonalLoan = await PersonalLoanModel.find({ employee: req.user._id })
+    const savedPersonalLoan = await PersonalLoanModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -1868,13 +1868,11 @@ export const getPersonalLoanByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -1882,7 +1880,6 @@ export const getPersonalLoanByMobileNumber = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getMortgageLoanByMobileNumber = async (req, res) => {
   try {
@@ -1898,7 +1895,9 @@ export const getMortgageLoanByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedMortgageLoan = await MortgageLoanModel.find({ employee: req.user._id })
+    const savedMortgageLoan = await MortgageLoanModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -1915,13 +1914,11 @@ export const getMortgageLoanByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -1929,7 +1926,6 @@ export const getMortgageLoanByMobileNumber = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getGoldLoanByMobileNumber = async (req, res) => {
   try {
@@ -1945,7 +1941,9 @@ export const getGoldLoanByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedMortgageLoan = await MortgageLoanModel.find({ employee: req.user._id })
+    const savedMortgageLoan = await MortgageLoanModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -1962,13 +1960,11 @@ export const getGoldLoanByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -1991,7 +1987,9 @@ export const getCreditCardByMobile = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedCreditCard = await CreditCardModel.find({ employee: req.user._id })
+    const savedCreditCard = await CreditCardModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -2008,13 +2006,11 @@ export const getCreditCardByMobile = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2022,7 +2018,6 @@ export const getCreditCardByMobile = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getCarLoanByMobileNumber = async (req, res) => {
   try {
@@ -2055,13 +2050,11 @@ export const getCarLoanByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2070,7 +2063,10 @@ export const getCarLoanByMobileNumber = async (req, res) => {
   }
 };
 
-export const getNewCorrectionPanApplicationbyMobileNumber = async (req, res) => {
+export const getNewCorrectionPanApplicationbyMobileNumber = async (
+  req,
+  res
+) => {
   try {
     const { mobileNo } = req.query;
 
@@ -2084,9 +2080,10 @@ export const getNewCorrectionPanApplicationbyMobileNumber = async (req, res) => 
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedNewCcrrectionPanApplication = await NewCorrectionPanApplicationModel.find({ employee: req.user._id })
-      .populate(["service", "client", "employee"])
-      .exec();
+    const savedNewCcrrectionPanApplication =
+      await NewCorrectionPanApplicationModel.find({ employee: req.user._id })
+        .populate(["service", "client", "employee"])
+        .exec();
 
     const matchingEmployee = savedNewCcrrectionPanApplication.filter((curr) => {
       let mobileNumber = curr.client.phone;
@@ -2101,13 +2098,11 @@ export const getNewCorrectionPanApplicationbyMobileNumber = async (req, res) => 
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2147,13 +2142,11 @@ export const getPassportByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2161,7 +2154,6 @@ export const getPassportByMobileNumber = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getGSTRegistrationByMobileNumber = async (req, res) => {
   try {
@@ -2177,7 +2169,9 @@ export const getGSTRegistrationByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedGSTResgistration = await GSTResgistraionModel.find({ employee: req.user._id })
+    const savedGSTResgistration = await GSTResgistraionModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -2194,13 +2188,11 @@ export const getGSTRegistrationByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2240,13 +2232,11 @@ export const getShopActByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2269,7 +2259,9 @@ export const getUdyamCertificateByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedUdyamCertificate = await UdyamCertificateModel.find({ employee: req.user._id })
+    const savedUdyamCertificate = await UdyamCertificateModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -2286,13 +2278,11 @@ export const getUdyamCertificateByMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: matchingEmployee,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
   } catch (error) {
     console.log(error);
     return res
@@ -2300,7 +2290,6 @@ export const getUdyamCertificateByMobileNumber = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getFoodLisencebyMobileNumber = async (req, res) => {
   try {
@@ -2316,7 +2305,9 @@ export const getFoodLisencebyMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedFoodLisence = await FoodLisenceModel.find({ employee: req.user._id })
+    const savedFoodLisence = await FoodLisenceModel.find({
+      employee: req.user._id,
+    })
       .populate(["service", "client", "employee"])
       .exec();
 
@@ -2333,15 +2324,357 @@ export const getFoodLisencebyMobileNumber = async (req, res) => {
         .json({ status: false, message: "There is no data with this number" });
     }
 
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+// get lead for admin
+
+export const getHomeLoanForAdmin = async (req, res) => {
+  try {
+    const savedHomeLoan = await HomeLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedHomeLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
     return res
       .status(201)
       .json({
         status: true,
         message: "successfully fetched data",
-        response: matchingEmployee,
+        response: savedHomeLoan,
       });
   } catch (error) {
-    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanForAdmin = async (req, res) => {
+  try {
+    const savedBusinessLoan = await BusinessloanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedBusinessLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedBusinessLoan,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getPersonalLoanForAdmin = async (req, res) => {
+  try {
+    const savedPersonalLoan = await PersonalLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedPersonalLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedPersonalLoan,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getMortgageLoanForAdmin = async (req, res) => {
+  try {
+    const savedMortgageLoan = await MortgageLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedMortgageLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedMortgageLoan,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getGoldLoanForAdmin = async (req, res) => {
+  try {
+    const savedGoldLoan = await GoldLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedGoldLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedGoldLoan,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getCreditCardForAdmin = async (req, res) => {
+  try {
+    const savedCreditCard = await CreditCardModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedCreditCard < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedCreditCard,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanByForAdmin = async (req, res) => {
+  try {
+    const savedCarLoan = await CarLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedCarLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedCarLoan,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationForAdmin = async (req, res) => {
+  try {
+    const savedNewCorrectionPanApplication = await NewCorrectionPanApplicationModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedNewCorrectionPanApplication < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedNewCorrectionPanApplication,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationByForAdmin = async (req, res) => {
+  try {
+    const savedGSTRegistration = await GSTResgistraionModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedGSTRegistration < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedGSTRegistration,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportForAdmin = async (req, res) => {
+  try {
+    const savedPassport = await PassportModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedPassport < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedPassport,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActForAdmin = async (req, res) => {
+  try {
+    const savedShopAct = await ShopActModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedShopAct < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedShopAct,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateForAdmin = async (req, res) => {
+  try {
+    const savedUdyamCertificate = await UdyamCertificateModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedUdyamCertificate < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedUdyamCertificate,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisenceForAdmin = async (req, res) => {
+  try {
+    const savedFoodLisence = await FoodLisenceModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedFoodLisence < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res
+      .status(201)
+      .json({
+        status: true,
+        message: "successfully fetched data",
+        response: savedFoodLisence,
+      });
+  } catch (error) {
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });

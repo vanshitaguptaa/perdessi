@@ -4,6 +4,7 @@ import { ClientListContext } from "../Context/ClientList";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Tableclient = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState();
@@ -15,7 +16,7 @@ const Tableclient = () => {
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
-  const { clients, isError } = useContext(ClientListContext);
+
   const navigate = useNavigate();
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
@@ -50,6 +51,8 @@ const Tableclient = () => {
     }
   }, [clients]);
 
+  console.log(data);
+
   const viewclick = () => {
     console.log("CLICKED");
   };
@@ -64,6 +67,7 @@ const Tableclient = () => {
       console.log(response.data);
     }
   };
+
 
   // console.log(id)
 
@@ -108,22 +112,22 @@ const Tableclient = () => {
             data.map((e, id) => {
               return (
                 <tr>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {id + 1}
                   </td>
                   <td class="border px-1 py-2 text-center text-center">
                     {e.first_name || e.firstName} {e.last_name || e.lastname}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.phone}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.email}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.pan}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     <button
                       className="bg-blue-500 mx-2 p-2 text-white"
                       onClick={() => {
@@ -207,7 +211,6 @@ const Tableclient = () => {
       )}
       {/* Above Code is for POP_UP */}
     </>
-  );
 };
 
 export default Tableclient;
