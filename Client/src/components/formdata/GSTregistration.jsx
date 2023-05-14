@@ -223,7 +223,7 @@ const GSTregistration = () => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
-              Aadhar Card*
+              Individual Adhar Card*
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -231,7 +231,7 @@ const GSTregistration = () => {
               type="file"
               placeholder="Albuquerque"
               onChange={(e) => {
-                setAadharcard(e.target.files[0]);
+                setIndividualAdharCard(e.target.files[0]);
               }}
             />
           </div>
@@ -240,7 +240,7 @@ const GSTregistration = () => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
             >
-              Pan Card*
+              Individual Photograph*
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -248,10 +248,282 @@ const GSTregistration = () => {
               type="file"
               placeholder=""
               onChange={(e) => {
-                setPancard(e.target.files[0]);
+                setIndividualPhotograph(e.target.files[0]);
               }}
             />
           </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              Individual Bank Account Details*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setIndividualBankAccountDetails(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              Individual Address*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setIndividualAddress(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              HUF Pan Card*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setHUFPanCard(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              Adharcard Of Karta HUF*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setAdharcardOfKartaHUF(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              HUF Photograph Of The Owner*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setHUFPhotographOfTheOwner(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              HUF Bank Account Details*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setHUFBankAccountDetails(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              HUF Address  Proof*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setHUFAddressProof(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              Company Pan Card*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setCompanyPanCard(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              Company Certificate Of Incorporation*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setCompanyCertificateOfIncorporation(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              Company Articles Of Assoication*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setCompanyArticlesOfAssoication(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              Company Pan Card Of Authorized Signature*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setCompanyPanCardOfAuthorizedSignature(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              Company Adhar Card Of Authorized Signature*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setCompanyAdharCardOfAuthorizedSignature(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              Company Board resolution appointing authorized signatory*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setCompanyBoardresolutionappointingauthorizedsignatory(e.target.files[0]);
+              }}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-zip"
+            >
+              Company Bank Account Details*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-zip"
+              type="file"
+              placeholder=""
+              onChange={(e) => {
+                setCompanyBankAccountDetails(e.target.files[0]);
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex flex-wrap -mx-3 mb-2">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              for="grid-city"
+            >
+              Company Address Proof*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="file"
+              placeholder="Albuquerque"
+              onChange={(e) => {
+                setCompanyAddressProofs(e.target.files[0]);
+              }}
+            />
+          </div>
+          
         </div>
 
         <div className="mt-5 flex justify-center">
