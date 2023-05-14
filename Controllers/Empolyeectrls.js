@@ -34,6 +34,23 @@ export const getEmpolyeeID = async (req, resp) => {
   }
 };
 
+export const getEmpolyeeIDforadmin = async (req, resp) => {
+  try {
+    const fetchdata = await employeeModel
+      .findOne({ _id: req.params.id })
+      .select("-password");
+    resp.status(200).send({
+      fetchdata: fetchdata,
+    });
+  } catch (error) {
+    resp.status(500).send({
+      success: false,
+      message: "Customer Data Not Fatched Yet",
+      fetchdata,
+    });
+  }
+};
+
 export const addemployee = async (req, resp) => {
   try {
     const already = await employeeModel.findOne({ email: req.body.email });
@@ -170,6 +187,27 @@ export const updatepass = async (req, resp) => {
     resp.status(500).send({
       success: false,
       message: "API is not Working",
+    });
+  }
+};
+export const updateempolyeedata = async (req, resp) => {
+  try {
+    const already = await employeeModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (already) {
+      return resp.status(200).send({
+        Succes: true,
+        already,
+      });
+    }
+  } catch (error) {
+    resp.status(500).send({
+      success: false,
+      message: "Data Not Fatched",
     });
   }
 };
