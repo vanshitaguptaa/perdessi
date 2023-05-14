@@ -229,7 +229,7 @@ export const getClientById = async (req, res) => {
         .json({ status: false, message: "client id is not giving" });
     }
 
-    const savedClient = await Clientmodel.findById(clientId);
+    const savedClient = await Clientmodel.findById(clientId).populate(["empolyeeid"]);
 
     if (!savedClient) {
       return res

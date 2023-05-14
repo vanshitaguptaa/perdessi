@@ -38,7 +38,7 @@ const schema = yup
     PanNo: yup.string().required(),
 }).required();
 
-const Updateform = ({Profiledata}) => {
+const Updateform = ({Profiledata,id}) => {
   const navigate = useNavigate();
   const {
     register,
@@ -64,7 +64,7 @@ const Updateform = ({Profiledata}) => {
   const onSubmit = (data) => {
     console.log(data)
     console.log("client");
-    fetch("http://localhost:5000/api/v1/crm/updateempolyee/:id", {
+    fetch(`http://localhost:5000/api/v1/crm/updateempolyee/${id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: {

@@ -225,7 +225,6 @@ const MyleadTable = ({ loandetail }) => {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
-        console.log(res.data.response);
         setpopupdata(res.data.response);
       });
     }
