@@ -51,6 +51,7 @@ import {
   getShopActById,
   getUdyamCertificateById,
   getFoodLisencebyId,
+  getCreditCardById,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -369,7 +370,7 @@ Route.get("/getgoldloanbyid", employeeTokenCheck, getGoldLoanById);
 Route.get(
   "/getcreditcardbyid",
   employeeTokenCheck,
-  getCreditCardLoanForEmployee
+  getCreditCardById
 );
 Route.get("/getcarloanbyid", employeeTokenCheck, getCarLoanById);
 Route.get(

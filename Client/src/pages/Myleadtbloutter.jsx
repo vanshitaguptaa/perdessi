@@ -55,11 +55,167 @@ function Myleadtbloutter() {
         setloandetail(res.data.savedLeads);
       });
     }
+    if (service === "Business Loan") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getbusinessloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
     if (service === "Mortgage  Loan") {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getmortgageloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Home  Loan") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/gethomeloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Home Loan Balance Transfer") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/gethomeloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Gold Loan") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getgoldloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Credit Card") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getcreditcardforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "New Correction Pan application") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Shop Act") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getshopactforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "passport") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getpassportforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "GST registration application") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getGSTRegistrationforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "UDYAM Registration") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getudyamcertificateforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Car Loan") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getcarloanforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.savedLeads);
+        setloandetail(res.data.savedLeads);
+      });
+    }
+    if (service === "Food Lisence") {
+      console.log("personal loan is riunning");
+      await axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getfoodlisenceoremployee",
         headers: {
           Authorization: `Bearer ${token}`,
         },
