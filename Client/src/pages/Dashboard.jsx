@@ -21,6 +21,8 @@ import DashboardCard12 from "../partials/dashboard/DashboardCard12";
 import DashboardCard13 from "../partials/dashboard/DashboardCard13";
 import Banner from "../partials/Banner";
 import Innerdashborad from "./Innerdashborad";
+import DashboardData from "../components/DashboardData";
+import AllleadGraph from "../components/AllleadGraph";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -80,6 +82,14 @@ function Dashboard() {
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
             <WelcomeBanner />
+
+            <div className="sm:flex sm:justify-between sm:items-center mb-8">
+              <DashboardData/>
+            </div>
+            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+            <h1 className="font-bold text-2xl underline">All Leads Analysis Details:-</h1>
+              <AllleadGraph/>
+            </div>
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               <Innerdashborad/>
