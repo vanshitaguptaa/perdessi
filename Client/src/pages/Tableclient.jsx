@@ -4,6 +4,7 @@ import { ClientListContext } from "../Context/ClientList";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Tableclient = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState();
@@ -49,6 +50,8 @@ const Tableclient = () => {
       setData(clients.clients);
     }
   }, [clients]);
+
+  console.log(data);
 
   const viewclick = () => {
     console.log("CLICKED");
@@ -108,22 +111,22 @@ const Tableclient = () => {
             data.map((e, id) => {
               return (
                 <tr>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {id + 1}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.first_name || e.firstName} {e.last_name || e.lastname}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.phone}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.email}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     {e.pan}
                   </td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
                     <button
                       className="bg-blue-500 mx-2 p-2 text-white"
                       onClick={() => {
