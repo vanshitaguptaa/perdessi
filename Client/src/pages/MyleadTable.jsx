@@ -49,17 +49,185 @@ const MyleadTable = ({ loandetail }) => {
         setpopupdata(res.data.response);
       });
     }
-    if(serviceName === "Mortgage  Loan"){
+    if (serviceName === "Mortgage  Loan") {
       await axios({
         method: "get",
         url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }).then((res) => {
         console.log(res.data.response);
         setpopupdata(res.data.response);
-      })
+      });
+    }
+    if (serviceName === "Business Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Home  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Business Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Mortgage  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Home  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Gold Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getgoldloanbyid?goldLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Credit Card") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcreditcardbyid?creditCardId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "New Correction Pan application") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplication?newCorrectionPanApplicationId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Shop Act") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getshopactbyid?shopActId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "passport") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpassportbyid?passportById=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "GST registration application") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getGSTregistrationbyid?GSTRegistrationId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "UDYAM Registration") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebyid?UdyamCertificateId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Car Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcarloanbyid?carLoanId=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
+    }
+    if (serviceName === "Food Lisence") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getfoodlisencebyid?foodlisenceById=${id}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res.data.response);
+        setpopupdata(res.data.response);
+      });
     }
     popupdata ? setview(true) : setview(false);
   };
@@ -72,8 +240,8 @@ const MyleadTable = ({ loandetail }) => {
   };
 
   const renderImage = (propsData) => {
-    console.log(propsData)
-    if(propsData.service.service_name === "personal loan"){
+    console.log(propsData);
+    if (propsData.service.service_name === "personal loan") {
       return Object.entries(propsData).map(([key, value]) => {
         if (key === "service" || key === "client" || key === "employee") {
           return null;
@@ -82,38 +250,66 @@ const MyleadTable = ({ loandetail }) => {
             if (keyOne === "path") {
               let url = valueOne.split("public")[1].substring(1);
               return (
-                <div className="">
-                  <h1>{key}</h1>
-                  <img className="" src={`http://localhost:5000/${url}`} alt="" srcset="" />
+                <div className="w-72 ">
+                  <h1 className="pb-2">{`${key} :-`}</h1>
+                  <img
+                    className="w-72"
+                    src={`http://localhost:5000/${url}`}
+                    alt=""
+                    srcset=""
+                  />
                 </div>
               );
             }
-            if(Array.isArray(value)){
-               return value.map((curr) => {
-                return <div>
-                  <h1>{curr.fieldname}</h1>
-                  <img src={`http://localhost:5000/${curr.path.split("public")[1].substring(1)}`} alt="" srcset="" />
-                </div>
-               })
+            if (Array.isArray(value)) {
+              return value.map((curr) => {
+                return (
+                  <div className="w-72 ">
+                    <h1 className="pb-2">{`${curr.fieldname} :-`}</h1>
+                    <img
+                      className="w-72"
+                      src={`http://localhost:5000/${curr.path
+                        .split("public")[1]
+                        .substring(1)}`}
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                );
+              });
             }
           });
         }
       });
-    }else {
+    } else {
       return Object.entries(propsData).map(([key, value]) => {
-         if(key === "service" || key === "client" || key === "employee" || key === "_id" || key === "__v" || key === "LoanAmount"){
+        if (
+          key === "service" ||
+          key === "client" ||
+          key === "employee" ||
+          key === "_id" ||
+          key === "__v" ||
+          key === "LoanAmount"
+        ) {
           return null;
-         }else {
-           return <div>
-            <h1>{key}</h1>
-            <img src={`http://localhost:5000/${value.split("public")[1].substring(1)}`} alt="" srcset="" />
-           </div>
-         }
-      })
+        } else {
+          return (
+            <div>
+              <h1>{`${key} :-`}</h1>
+              <img
+                className="w-72"
+                src={`http://localhost:5000/${value
+                  .split("public")[1]
+                  .substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            </div>
+          );
+        }
+      });
     }
   };
-
-
 
   if (authScreen) {
     return (
@@ -225,9 +421,10 @@ const MyleadTable = ({ loandetail }) => {
       {/* LOAN detail POP-UP */}
       {view ? (
         <>
-          <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-11/12 w-11/12 z-20 absolute top-24 left-10 rounded-2xl">
-            <div className="grid grid-rows-2 pt-8 pl-10 h-full text-white">
-              <div className="backdrop-blur-md grid gap-24 grid-cols-2">
+          <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-fit w-11/12 z-20 absolute top-24 left-10 rounded-2xl">
+
+            <div className="pt-8 pl-10 h-fit w-full text-white">
+              <div className="backdrop-blur-md h-52 grid gap-24 grid-cols-2">
                 <div className="grid gap-4 ">
                   <div>
                     <h3 className="font-bold text-2xl uppercase">
@@ -262,7 +459,7 @@ const MyleadTable = ({ loandetail }) => {
                     </p>
                   </div>
                 </div>
-                <div className=" pl-3 h-44">
+                <div className=" pl-3 ">
                   <h3 className="font-bold text-2xl uppercase">
                     empolyee details
                   </h3>
@@ -291,7 +488,7 @@ const MyleadTable = ({ loandetail }) => {
                   </p>
                 </div>
               </div>
-              <div className="backdrop-blur-md extra-information-div -mt-4 pb-4 grid grid-rows-2 grid-cols-2">
+              <div className="backdrop-blur-md extra-information-div mt-10 pb-4 grid grid-rows-2 grid-cols-2">
                 <div className="">
                   <h5 className="font-bold text-2xl uppercase">
                     loan information
@@ -309,20 +506,7 @@ const MyleadTable = ({ loandetail }) => {
                     </div>
                   </div>
                 </div>
-                <div className="">
-                  <h5 className="font-bold text-2xl uppercase">
-                    all Documents
-                  </h5>
-                  <div className="grid grid-rows-2">
-                    <div className="">
-                      {renderImage(popupdata)}
-                      {/* <img src={""} alt="" />
-                      <img src={""} alt="" />
-                      <img src={""} alt="" /> */}
-                    </div>
-                  </div>
-                </div>
-                <div className="">
+                {/* <div className="">
                   <h5 className="font-bold text-2xl uppercase">
                     Bank information
                   </h5>
@@ -340,17 +524,23 @@ const MyleadTable = ({ loandetail }) => {
                       <p className="font-semibold">{}</p>
                     </div>
                   </div>
+                </div> */}
+              </div>
+              <div className=" w-full">
+                <h5 className="font-bold text-2xl uppercase">all Documents</h5>
+                <div className="grid grid-cols-3 gap-4 p-3 w-full">
+                  {renderImage(popupdata)}
                 </div>
-                <div>
-                  <button
-                    onClick={() => {
-                      setview(false);
-                    }}
-                    className="rounded-full bg-cyan-300 p-3 text-white font-semibold"
-                  >
-                    Back
-                  </button>
-                </div>
+              </div>
+              <div className="my-4">
+                <button
+                  onClick={() => {
+                    setview(false);
+                  }}
+                  className="rounded-full bg-cyan-300 p-3 text-white font-semibold"
+                >
+                  Back
+                </button>
               </div>
             </div>
           </div>
