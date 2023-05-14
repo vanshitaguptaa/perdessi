@@ -367,7 +367,7 @@ const GSTregistration = () => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
-              HUF Address  Proof*
+              HUF Address Proof*
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -483,7 +483,9 @@ const GSTregistration = () => {
               type="file"
               placeholder="Albuquerque"
               onChange={(e) => {
-                setCompanyBoardresolutionappointingauthorizedsignatory(e.target.files[0]);
+                setCompanyBoardresolutionappointingauthorizedsignatory(
+                  e.target.files[0]
+                );
               }}
             />
           </div>
@@ -523,7 +525,6 @@ const GSTregistration = () => {
               }}
             />
           </div>
-          
         </div>
 
         <div className="mt-5 flex justify-center">
