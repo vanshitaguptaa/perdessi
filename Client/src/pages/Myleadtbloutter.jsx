@@ -57,7 +57,6 @@ function Myleadtbloutter() {
       });
     }
     if (service === "Business Loan") {
-      console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getbusinessloanforemployee",

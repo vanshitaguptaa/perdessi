@@ -334,20 +334,6 @@ const MyleadTable = ({ loandetail }) => {
   }
   return (
     <>
-      <div className="flex flex-col w-full gap-6">
-        {/* Serach Box */}
-        <div className="flex items-center">
-          <div className="flex border border-purple-200 rounded">
-            <input
-              type="text"
-              className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Search..."
-            />
-            <button className="px-4 text-white bg-purple-600 border-l rounded ">
-              Search
-            </button>
-          </div>
-        </div>
         {/* Data  */}
         <div className="flex flex-row gap-6">
           {loandetail &&
@@ -422,13 +408,11 @@ const MyleadTable = ({ loandetail }) => {
               );
             })}
         </div>
-      </div>
 
       {/* LOAN detail POP-UP */}
       {view ? (
         <>
           <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-fit w-11/12 z-20 absolute top-24 left-10 rounded-2xl">
-
             <div className="pt-8 pl-10 h-fit w-full text-white">
               <div className="backdrop-blur-md h-52 grid gap-24 grid-cols-2">
                 <div className="grid gap-4 ">
