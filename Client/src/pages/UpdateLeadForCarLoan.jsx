@@ -1,309 +1,112 @@
 import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { ClientListContext } from "../Context/ClientList";
+import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const UpdateLead = () => {
+const Car = () => {
   const tokenData = localStorage.getItem("token");
   const token = JSON.parse(tokenData).usertoken;
   const location = useLocation();
   const {
-    state: { serviceId, service },
+    state: { serviceID },
   } = location;
-  const { clients, isError } = useContext(ClientListContext);
+  const role = localStorage.getItem("role");
+  const { clientState } = useContext(ClientListContext);
+  const { clientAdminState } = useContext(ClientAdminContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
-  const [client, setClient] = useState("Select a client");
-  // const [zip, setZip] = useState("");
-  const [SalariedProofOfIdentity, setIndentity] = useState(null);
-  const [SalariedTwoPassportPhoto, setPassport] = useState(null);
-  const [SelfEmployeedProofofIdentity, setSEIndentity] = useState(null);
-  const [SalariedProofOfResidence, setResidence] = useState(null);
-  const [SelfEmployeedProofofResidence, setseResidence] = useState(null);
-  const [SelfEmployeedIncomeProof, setIncome] = useState(null);
-  const [SalariedThreeMonthsBankStatement, setBankStatement] = useState(null);
-  // const [sixbankStatement, setSixBankStatement] = useState(null);
-  const [employment, setEmployment] = useState("");
-  const [SalariedThreeMonthSalarySlip, setThreesalaryslip] = useState(null);
-  const [SelfEmployeedSixMonthBankStatement, setSeSixBankStatement] =
+  const [Selectclient, setSelectClient] = useState("Select a client");
+  const [SalariedIdentityProof, setSalariedIdentityProof] = useState(null);
+  const [SalariedAddressProof, setSalariedAddressProof] = useState(null);
+  const [SalariedAgeProof, setSalariedAgeProof] = useState(null);
+  const [SalariedBankStatement, setSalariedBankStatement] = useState(null);
+  const [SalariedProofOfIncome, setSalariedProofOfIncome] = useState(null);
+  const [
+    SalariedSignatureVerificationProof,
+    setSalariedSignatureVerificationProof,
+  ] = useState(null);
+  const [SalariedProformaInvoice, setSalariedProformaInvoice] = useState(null);
+  const [SelfEmployedIdentityProof, setSelfEmployedIdentityProof] =
     useState(null);
-  const [SelfEmployeedProofofContinuityofBusiness, setBusiness] =
+  const [SelfEmployeeAddressProof, setSelfEmployeeAddressProof] =
     useState(null);
-  const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
-  const [popupdata, setpopupdata] = useState([]);
+  const [SelfEmployeeAgeProof, setSelfEmployeeAgeProof] = useState(null);
+  const [SelfEmployeeBankStatement, setSelfEmployeeBankStatement] =
+    useState(null);
+  const [SelfEmployeeBusinessOwnership, setSelfEmployeeBusinessOwnership] =
+    useState(null);
+  const [SelfEmployeeProofOIncome, setSelfEmployeeProofOIncome] =
+    useState(null);
+  const [
+    SelfEmployeeSignatureVerification,
+    setSelfEmployeeSignatureVerification,
+  ] = useState(null);
+  const [SelfEmployeeProformaInvoice, setSelfEmployeeProformaInvoice] =
+    useState(null);
 
- const { id, serviceName } = useParams();
- 
-  const Fetchpopdata = async (id, serviceName) => {
-    console.log(`Pop is Working for this is ${id}`);
-
-    if (serviceName === "personal loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Mortgage  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Business Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Home  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Business Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Mortgage  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Home  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Gold Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getgoldloanbyid?goldLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Credit Card") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getcreditcardbyid?creditCardId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "New Correction Pan application") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplication?newCorrectionPanApplicationId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Shop Act") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getshopactbyid?shopActId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "passport") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getpassportbyid?passportById=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "GST registration application") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getGSTregistrationbyid?GSTRegistrationId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "UDYAM Registration") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebyid?UdyamCertificateId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Car Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getcarloanbyid?carLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Food Lisence") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getfoodlisencebyid?foodlisenceById=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    popupdata ? setview(true) : setview(false);
-  };
-
-
-  useEffect(() => {
-    Fetchpopdata(id, serviceName);
-    if (isError === false) {
-      setClientData(clients.clients);
-    }
-  }, []);
+    useEffect(() => {
+      if(role === "admin"){
+       setClientData(clientAdminState.clientAdmin.already);
+      }else if (clientState.isError === false) {
+       setClientData(clientState.clients.clients)
+      }
+    }, [])
 
   const handleLeadForm = async (e) => {
     e.preventDefault();
 
     try {
       const formData = new FormData();
-      formData.append("serviceId", serviceId);
       formData.append("clientId", client);
+      formData.append("Selectclient", Selectclient);
       formData.append("loanAmount", LoanAmount);
-      formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
-      formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
+      formData.append("serviceId", serviceID);
+      formData.append("SalariedIdentityProof", SalariedIdentityProof);
+      formData.append("SalariedAddressProof", SalariedAddressProof);
+      formData.append("SalariedAgeProof", SalariedAgeProof);
+      formData.append("SalariedBankStatement", SalariedBankStatement);
+      formData.append("SalariedProofOfIncome", SalariedProofOfIncome);
       formData.append(
-        "SalariedThreeMonthsBankStatement",
-        SalariedThreeMonthsBankStatement
+        "SalariedSignatureVerificationProof",
+        SalariedSignatureVerificationProof
+      );
+      formData.append("SalariedProformaInvoice", SalariedProformaInvoice);
+      formData.append("SelfEmployedIdentityProof", SelfEmployedIdentityProof);
+      formData.append("SelfEmployeeAddressProof", SelfEmployeeAddressProof);
+      formData.append("SelfEmployeeAgeProof", SelfEmployeeAgeProof);
+      formData.append("SelfEmployeeBankStatement", SelfEmployeeBankStatement);
+      formData.append(
+        "SelfEmployeeBusinessOwnership",
+        SelfEmployeeBusinessOwnership
+      );
+      formData.append("SelfEmployeeProofOIncome", SelfEmployeeProofOIncome);
+      formData.append(
+        "SelfEmployeeSignatureVerification",
+        SelfEmployeeSignatureVerification
       );
       formData.append(
-        "SalariedThreeMonthSalarySlip",
-        SalariedThreeMonthSalarySlip
+        "SelfEmployeeProformaInvoice",
+        SelfEmployeeProformaInvoice
       );
-      formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
-      formData.append(
-        "SelfEmployeedProofofIdentity",
-        SelfEmployeedProofofIdentity
-      );
-      formData.append(
-        "SelfEmployeedProofofResidence",
-        SelfEmployeedProofofResidence
-      );
-      formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
-      formData.append(
-        "SelfEmployeedSixMonthBankStatement",
-        SelfEmployeedSixMonthBankStatement
-      );
-      formData.append(
-        "SelfEmployeedOfficeAddressProof",
-        SelfEmployeedOfficeAddressProof
-      );
-      formData.append(
-        "SelfEmployeedProofofContinuityofBusiness",
-        SelfEmployeedProofofContinuityofBusiness
-      );
-      
-    //   const leadApiCall = await axios({
-    //     method: "post",
-    //     url: "http://localhost:5000/api/v1/crm/createleadforPersonalloan",
-    //     data: formData,
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   });
+
+      const leadApiCall = await axios({
+        method: "post",
+        url: "http://localhost:5000/api/v1/crm/createleadforcarloan",
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log(leadApiCall);
     } catch (error) {
       console.log(error);
     }
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
   };
 
-  // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
-  if (serviceName === "personal loan"){
   return (
     <div className="flex justify-center items-center">
       <form
@@ -384,7 +187,7 @@ const UpdateLead = () => {
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
                 onChange={(e) => {
-                  setEmployment(e.target.value);
+                  setSelectClient(e.target.value);
                 }}
               >
                 <option value="Select a client" selected>
@@ -419,16 +222,16 @@ const UpdateLead = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="text"
-              defaultValue={service}
+            //   defaultValue={service}
               readOnly
             />
           </div>
         </div>
-        {employment === "Select a client" ? (
+        {Selectclient === "Select a client" ? (
           ""
         ) : (
           <div>
-            {employment === "Salaried" ? (
+            {Selectclient === "Salaried" ? (
               <div>
                 <h3 className="my-5 block uppercase tracking-wide text-gray-700 text-xl underline font-bold">
                   Salaried
@@ -439,7 +242,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Indentity*
+                      Salaried Identity Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -447,7 +250,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setIndentity(e.target.files[0]);
+                        setSalariedIdentityProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -456,7 +259,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Residence*
+                      Salaried Address Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -464,7 +267,9 @@ const UpdateLead = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) => setResidence(e.target.files[0])}
+                      onChange={(e) =>
+                        setSalariedAddressProof(e.target.files[0])
+                      }
                     />
                   </div>
                 </div>
@@ -474,7 +279,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Three Months Bank Statement*
+                      Salaried Age Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -482,7 +287,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setBankStatement(e.target.files[0]);
+                        setSalariedAgeProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -491,7 +296,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Three Month Salary Slip*
+                      Salaried Bank Statement*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -499,7 +304,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setThreesalaryslip(e.target.files[0]);
+                        setSalariedBankStatement(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -510,7 +315,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Two Passport Photo*
+                      Salaried Proof Of Income*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -518,7 +323,45 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setPassport(e.target.files[0]);
+                        setSalariedProofOfIncome(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Salaried Signature Verification Proof*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSalariedSignatureVerificationProof(
+                          e.target.files[0]
+                        );
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-2">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Salaried Proof income Invoice*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSalariedProformaInvoice(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -535,7 +378,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Indentity*
+                      Self Employed Identity Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -543,7 +386,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSEIndentity(e.target.files[0]);
+                        setSelfEmployedIdentityProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -552,7 +395,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Residence*
+                      Self Employee Address Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -560,7 +403,9 @@ const UpdateLead = () => {
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
-                      onChange={(e) => setseResidence(e.target.files[0])}
+                      onChange={(e) =>
+                        setSelfEmployeeAddressProof(e.target.files[0])
+                      }
                     />
                   </div>
                 </div>
@@ -570,7 +415,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Income Proof*
+                      Self Employee Age Proof*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -578,7 +423,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setIncome(e.target.files[0]);
+                        setSelfEmployeeAgeProof(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -587,7 +432,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Six Month Bank Statement*
+                      Self Employee Bank Statement*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -595,7 +440,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setSeSixBankStatement(e.target.files[0]);
+                        setSelfEmployeeBankStatement(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -606,7 +451,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Office Address Proof*
+                      Self Employee Business Ownership*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -614,7 +459,7 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setAddressproof(e.target.files[0]);
+                        setSelfEmployeeBusinessOwnership(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -623,7 +468,7 @@ const UpdateLead = () => {
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Continuity Of Business*
+                      Self Employee Proof Of Income*
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -631,7 +476,43 @@ const UpdateLead = () => {
                       type="file"
                       placeholder="Albuquerque"
                       onChange={(e) => {
-                        setBusiness(e.target.files[0]);
+                        setSelfEmployeeProofOIncome(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 mb-2">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Self Employee Signature Verification*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSelfEmployeeSignatureVerification(e.target.files[0]);
+                      }}
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      for="grid-city"
+                    >
+                      Self Employee Preform Invoice*
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-city"
+                      type="file"
+                      placeholder="Albuquerque"
+                      onChange={(e) => {
+                        setSelfEmployeeProformaInvoice(e.target.files[0]);
                       }}
                     />
                   </div>
@@ -651,8 +532,7 @@ const UpdateLead = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
 };
 
-export default UpdateLead   ;
+export default Car;
