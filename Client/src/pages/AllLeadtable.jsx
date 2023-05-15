@@ -29,6 +29,7 @@ function AllLeadtable() {
   const [authScreen, setAuthScreen] = useState(true);
   const { service } = useParams();
   const [loandetail, setloandetail] = useState([]);
+  const [number, setnumber] = useState("");
 
   //   *********__________Login Token Expiry__________***********
   let tokenData = localStorage.getItem("token");
@@ -44,7 +45,7 @@ function AllLeadtable() {
 
   const FetchLoaddetail = async (service) => {
     if (service === "personal loan") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getpersonalloanforadmin",
@@ -57,7 +58,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Business Loan") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getbusinessloanforadmin",
@@ -70,7 +71,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Mortgage  Loan") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getmortgageloanforadmin",
@@ -83,7 +84,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Home  Loan") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/gethomeloanforadmin",
@@ -96,7 +97,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Home Loan Balance Transfer") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/gethomeloanforemployee",
@@ -109,7 +110,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Gold Loan") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getgoldloanforadmin",
@@ -122,7 +123,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Credit Card") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getcreditcardforadmin",
@@ -135,7 +136,7 @@ function AllLeadtable() {
       });
     }
     if (service === "New Correction Pan application") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationforadmin",
@@ -148,7 +149,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Shop Act") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getshopactforadmin",
@@ -161,7 +162,7 @@ function AllLeadtable() {
       });
     }
     if (service === "passport") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getpassportforadmin",
@@ -174,7 +175,7 @@ function AllLeadtable() {
       });
     }
     if (service === "GST registration application") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getGSTRegistrationforadmin",
@@ -187,7 +188,7 @@ function AllLeadtable() {
       });
     }
     if (service === "UDYAM Registration") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getudyamcertificateforadmin",
@@ -200,7 +201,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Car Loan") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getcarloanforadmin",
@@ -213,7 +214,7 @@ function AllLeadtable() {
       });
     }
     if (service === "Food Lisence") {
-      console.log("personal loan is riunning");
+      // console.log("personal loan is riunning");
       await axios({
         method: "get",
         url: "http://localhost:5000/api/v1/crm/getfoodlisenceforadmin",
@@ -227,6 +228,291 @@ function AllLeadtable() {
     }
   };
 
+  // searching __
+  const Searchbynum = async () => {
+    if (service === "personal loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpersonalloanbymobile?mobileNo=${number}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Business Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getbusinessloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Mortgage  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Home  Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Home Loan Balance Transfer") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Gold Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getgoldloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Credit Card") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcreditcardloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "New Correction Pan application") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Shop Act") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getshopactbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "passport") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpassportbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "GST registration application") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getgstregistrationbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "UDYAM Registration") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Car Loan") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcarloanbymobile?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+    if (service === "Food Lisence") {
+      await axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getfoodlisencebymobilenumber?mobileNo=${num}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.savedLeads);
+          setloandetail(res.data.savedLeads);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      }).catch((err)=>{
+        console.log("inside the catch")
+        console.log(err.data.response.message)
+      })
+    }
+  };
+
+  const length = loandetail;
   console.log(loandetail);
   // console.log(typeof loandetail);
 
@@ -278,7 +564,30 @@ function AllLeadtable() {
             <WelcomeBanner />
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
-              <MyleadTable loandetail={loandetail} />
+              <div className="flex flex-col w-full gap-6">
+                {/* Serach Box */}
+                <div className="flex items-center">
+                  <div className="flex border border-purple-200 rounded">
+                    <input
+                      type="text"
+                      className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                      placeholder="Search By Number"
+                      onChange={(e) => {
+                        setnumber(e.target.value);
+                      }}
+                    />
+                    <button
+                      className="px-4 text-white bg-purple-600 border-l rounded "
+                      onClick={() => {
+                        Searchbynum();
+                      }}
+                    >
+                      Search
+                    </button>
+                  </div>
+                </div>
+                <MyleadTable loandetail={loandetail} length={length} />
+              </div>
             </div>
           </div>
         </main>
