@@ -1772,7 +1772,7 @@ export const getHomeLoanLeadByMobileNo = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -1818,7 +1818,7 @@ export const getBusinessLoanByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -1864,7 +1864,7 @@ export const getPersonalLoanByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -1910,7 +1910,7 @@ export const getMortgageLoanByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -1956,7 +1956,7 @@ export const getGoldLoanByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2002,7 +2002,7 @@ export const getCreditCardByMobile = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2046,7 +2046,7 @@ export const getCarLoanByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2094,7 +2094,7 @@ export const getNewCorrectionPanApplicationbyMobileNumber = async (
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2138,7 +2138,7 @@ export const getPassportByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2184,7 +2184,7 @@ export const getGSTRegistrationByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2228,7 +2228,7 @@ export const getShopActByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2274,7 +2274,7 @@ export const getUdyamCertificateByMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
@@ -2320,7 +2320,7 @@ export const getFoodLisencebyMobileNumber = async (req, res) => {
 
     if (matchingEmployee.length < 1) {
       return res
-        .status(404)
+        .status(201)
         .json({ status: false, message: "There is no data with this number" });
     }
 
