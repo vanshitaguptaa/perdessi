@@ -17,6 +17,7 @@ const Tableclient = () => {
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
   const { clients, isError } = useContext(ClientListContext);
+
   const navigate = useNavigate();
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
@@ -67,6 +68,7 @@ const Tableclient = () => {
       console.log(response.data);
     }
   };
+
 
   // console.log(id)
 
