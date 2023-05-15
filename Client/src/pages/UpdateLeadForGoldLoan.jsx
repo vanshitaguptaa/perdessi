@@ -20,43 +20,65 @@ const Gold = () => {
   const [client, setClient] = useState("");
   const [Aadharcard, setAadharcard] = useState(null);
   const [Pancard, setPancard] = useState(null);
+  const [popupdata, setpopupdata] = useState("");
 
   useEffect(() => {
-    if(role === "admin"){
-     setClientData(clientAdminState.clientAdmin.already);
-    }else if (clientState.isError === false) {
-     setClientData(clientState.clients.clients);
-    }
-  }, [])
-
-  const handleLeadForm = async (e) => {
-    e.preventDefault();
-
+    console.log("inside this effect");
     try {
-      const formData = new FormData();
-      formData.append("clientId", client);
-      formData.append("loanAmount", LoanAmount);
-      formData.append("serviceId", serviceID);
-      formData.append("Aadharcard", Aadharcard);
-      formData.append("Pancard", Pancard);
-
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforGoldloan",
-        data: formData,
+      axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getgoldloanbyid?goldLoanId=${serviceID}`,
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
         },
+      }).then((res) => {
+        console.log(res);
+        setpopupdata(res.data.response);
       });
-
-      console.log(leadApiCall);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [serviceID]);
+
+  useEffect(() => {
+    if (role === "admin") {
+      setClientData(clientAdminState.clientAdmin.already);
+    } else if (clientState.isError === false) {
+      setClientData(clientState.clients.clients);
+    }
+  }, []);
+
+  // const handleLeadForm = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("clientId", client);
+  //     formData.append("loanAmount", LoanAmount);
+  //     formData.append("serviceId", serviceID);
+  //     formData.append("Aadharcard", Aadharcard);
+  //     formData.append("Pancard", Pancard);
+
+  //     const leadApiCall = await axios({
+  //       method: "post",
+  //       url: "http://localhost:5000/api/v1/crm/createleadforGoldloan",
+  //       data: formData,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+
+  //     console.log(leadApiCall);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
+
+  console.log(serviceID);
+
   return (
     <div className="flex justify-center items-center">
       <form
@@ -73,15 +95,19 @@ const Gold = () => {
             >
               Loan Amount*
             </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
-              type="number"
-              placeholder="Jane"
-              onChange={(e) => {
-                setLoanAmount(e.target.value);
-              }}
-            />
+            {popupdata && (
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="grid-first-name"
+                type="number"
+                placeholder=""
+                onChange={(e) => {
+                  setLoanAmount(e.target.value);
+                }}
+                defaultValue={popupdata.LoanAmount}
+                readOnly
+              />
+            )}
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -91,27 +117,19 @@ const Gold = () => {
               My Client*
             </label>
             <div className="relative">
-              <select
-                className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
-                onChange={(e) => {
-                  setClient(e.target.value);
-                }}
-              >
-                <option value="" disabled selected>
-                  Select a client
-                </option>
-                {clientData &&
-                  clientData.map((client) => {
-                    return (
-                      <>
-                        <option key={client._id} value={client._id}>
-                          {client.first_name}
-                        </option>
-                      </>
-                    );
-                  })}
-              </select>
+              {popupdata && (
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="grid-first-name"
+                  type="text"
+                  placeholder=""
+                  onChange={(e) => {
+                    setLoanAmount(e.target.value);
+                  }}
+                  defaultValue={popupdata.client.first_name}
+                  readOnly
+                />
+              )}
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
                   className="fill-current h-4 w-4"
@@ -132,17 +150,28 @@ const Gold = () => {
             >
               Service*
             </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-zip"
-              type="text"
-            //   defaultValue={service}
-              readOnly
-            />
+            {popupdata && (
+              <input
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-zip"
+                type="text"
+                defaultValue={popupdata.service.service_name}
+                readOnly
+              />
+            )}
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.Aadharcard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
@@ -160,6 +189,15 @@ const Gold = () => {
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.Aadharcard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
