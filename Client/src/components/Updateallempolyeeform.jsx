@@ -38,7 +38,7 @@ const schema = yup
     PanNo: yup.string().required(),
 }).required();
 
-const Updateform = ({Profiledata,id}) => {
+const Updateallempolyeeform = ({Profiledata,id}) => {
   const navigate = useNavigate();
   const {
     register,
@@ -553,4 +553,4 @@ const Updateform = ({Profiledata,id}) => {
   );
 };
 
-export default Updateform;
+export default Updateallempolyeeform;
