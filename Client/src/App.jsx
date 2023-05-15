@@ -49,13 +49,23 @@ import ShopActSchema from "./components/formdashborad/ShopActSchema";
 import FoodLicience from "./components/formdashborad/FoodLicience";
 import UdyamCertificate from "./components/formdashborad/UdyamCertificate";
 import Myleadtbloutter from "./pages/Myleadtbloutter";
-import UpdateLead from "./pages/UpdateLead";
+import UpdateLeadForHomeLoan from "./pages/UpdateLeadForHomeLoan";
 import Updateclient from "./pages/Updateemployee";
 import Updateallempolyee from "./pages/updateallempoye";
 import AllLead from "./pages/AllLead";
 import AllLeadtable from "./pages/AllLeadtable";
 import AllClient from "./pages/AllClient";
-
+import UpdateLeadForBusinessLoan from "./pages/UpdateLeadForBusinessLoan";
+import UpdateLeadForPersonalLoan from "./pages/UpdateLeadForPersonalLoan";
+import UpdateLeadForMortgageLoan from "./pages/UpdateLeadForMortgageLoan";
+import UpdateLeadForGoldLoan from "./pages/UpdateLeadForGoldLoan";
+import UpdateLeadForCreditCard from "./pages/UpdateLeadForCreditCard";
+import UpdateLeadForCarLoan from "./pages/UpdateLeadForCarLoan";
+import UpdateLeadForGSTLoan from "./pages/UpdateLeadForGST";
+import UpdateLeadForPassport from "./pages/UpdateLeadForPassport";
+import UpdateLeadForShopAct from "./pages/UpdateLeadForShopAct";
+import UpdateLeadForUdyamCertificate from "./pages/UpdateLeadForUdyam";
+import UpdateLeadForFoodLisece from "./pages/UpdateLeadForFoodLisence";
 
 
 
@@ -118,7 +128,18 @@ function App() {
         <Route exact path="/Shop Act" element={<ShopActSchema/>}/>
         <Route exact path="/Food Lisence" element={<FoodLicience/>}/>
         <Route exact path="/UDYAM Registration" element={<UdyamCertificate/>}/>
-        <Route exact path="/updatelead/:serviceName/:id" element={<UpdateLead/>}/>
+        <Route exact path="/updatelead/Home  Loan" element={<UpdateLeadForHomeLoan/>}/>
+        <Route exact path="/updatelead/Business Loan" element={<UpdateLeadForBusinessLoan/>}/>
+        <Route exact path="/updatelead/personal Loan" element={<UpdateLeadForPersonalLoan/>}/>
+        <Route exact path="/updatelead/Mortgage  Loan" element={<UpdateLeadForMortgageLoan/>}/>
+        <Route exact path="/updatelead/Gold Loan" element={<UpdateLeadForGoldLoan/>}/>
+        <Route exact path="/updatelead/Credit Card" element={<UpdateLeadForCreditCard/>}/>
+        <Route exact path="/updatelead/car Loan" element={<UpdateLeadForCarLoan/>}/>
+        <Route exact path="/updatelead/GST registration application" element={<UpdateLeadForGSTLoan/>}/>
+        <Route exact path="/updatelead/UDYAM Registration" element={<UpdateLeadForUdyamCertificate/>}/>
+        <Route exact path="/updatelead/Shop Act" element={<UpdateLeadForShopAct/>}/>
+        <Route exact path="/updatelead/passport" element={<UpdateLeadForPassport/>}/>
+        <Route exact path="/updatelead/Food Lisence" element={<UpdateLeadForFoodLisece/>}/>
       </Routes>
     </>
   );
