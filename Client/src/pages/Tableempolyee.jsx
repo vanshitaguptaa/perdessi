@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const viewclick = () => {
   console.log("CLICKED");
@@ -22,6 +23,7 @@ const Tableempolyee = () => {
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
+  const navigate = useNavigate();
 
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
@@ -68,7 +70,7 @@ const Tableempolyee = () => {
       },
     }).then((res) => {
       console.log(res.data);
-      setpopupdata(res.data.response);
+      setpopupdata(res.data.fetchdata);
       popupdata ? setview(true) : setview(false);
     });
   };
@@ -117,7 +119,9 @@ const Tableempolyee = () => {
                   </button>
                   <button
                     className="bg-green-500 p-2 text-white"
-                    onClick={handleEdit}
+                    onClick={() => {
+                      navigate(`/updateallemployee/${e._id}`);
+                    }}
                   >
                     Edit
                   </button>
@@ -178,7 +182,7 @@ const Tableempolyee = () => {
                     <div className="">
                       <p className="font-semibold">{popupdata.nationality}</p>
                       <p className="font-semibold">{popupdata.religion}</p>
-                      <p className="font-semibold">{popupdata.MartialStatus}</p>
+                      <p className="font-semibold">{popupdata.martialStatus}</p>
                     </div>
                   </div>
                 </div>
@@ -219,8 +223,8 @@ const Tableempolyee = () => {
                     <div className="">
                       <p className="font-semibold">{popupdata.BankName}</p>
                       <p className="font-semibold">{popupdata.BankAccNo}</p>
-                      <p className="font-semibold">{popupdata.IFSCcode}</p>
-                      <p className="font-semibold">{popupdata.PanNo}</p>
+                      <p className="font-semibold uppercase">{popupdata.IFSCcode}</p>
+                      <p className="font-semibold uppercase">{popupdata.PanNo}</p>
                     </div>
                   </div>
                 </div>
@@ -229,9 +233,17 @@ const Tableempolyee = () => {
                     onClick={() => {
                       navigate(`/updateallemployee/${popupdata._id}`);
                     }}
-                    className="rounded-full bg-violet-500 p-3 text-white font-semibold"
+                    className="rounded-full bg-cyan-300 p-3 text-white font-semibold"
                   >
                     Update Profile
+                  </button>
+                  <button
+                    onClick={() => {
+                      setview(false);
+                    }}
+                    className="rounded-full bg-cyan-300 p-3 mx-2 text-white font-semibold"
+                  >
+                    Back
                   </button>
                 </div>
               </div>

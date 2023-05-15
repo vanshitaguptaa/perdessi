@@ -3,8 +3,8 @@ import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
 import { useNavigate, useParams } from "react-router-dom";
-import Updateform from "../components/Updateform";
 import axios from "axios";
+import Updateallempolyeeform from "../components/Updateallempolyeeform";
 
 const Updateallempolyee = () => {
   const navigate = useNavigate();
@@ -86,7 +86,7 @@ const Updateallempolyee = () => {
             <WelcomeBanner />
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
-              <Updateform Profiledata={Profiledata} id={id} />
+              <Updateallempolyeeform Profiledata={Profiledata} id={id} />
             </div>
           </div>
         </main>

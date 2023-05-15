@@ -230,6 +230,7 @@ const MyleadTable = ({ loandetail }) => {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
+        console.log(res.data.response);
         setpopupdata(res.data.response);
       });
     }
@@ -333,7 +334,7 @@ const MyleadTable = ({ loandetail }) => {
   }
   return (
     <>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col w-full gap-6">
         {/* Serach Box */}
         <div className="flex items-center">
           <div className="flex border border-purple-200 rounded">

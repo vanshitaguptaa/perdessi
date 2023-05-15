@@ -52,6 +52,9 @@ import Myleadtbloutter from "./pages/Myleadtbloutter";
 import UpdateLead from "./pages/UpdateLead";
 import Updateclient from "./pages/Updateemployee";
 import Updateallempolyee from "./pages/updateallempoye";
+import AllLead from "./pages/AllLead";
+import AllLeadtable from "./pages/AllLeadtable";
+import AllClient from "./pages/AllClient";
 
 
 
@@ -75,8 +78,11 @@ function App() {
         <Route exact path="/updateclient/:id" element={<Updateclient />} />
         <Route exact path="/addlead" element={<Addleads />} />
         <Route exact path="/mylead" element={<Mylead />} />
+        <Route exact path="/allLead" element={<AllLead />} />
         <Route exact path="/myclient" element={<Myclient />} />
+        <Route exact path="/Allclient" element={<AllClient />} />
         <Route exact path="/mylead/service/:service" element={<Myleadtbloutter />} />
+        <Route exact path="/allLead/service/:service" element={<AllLeadtable />} />
         <Route exact path="/transferlead" element={<Transferlead />} />
         <Route exact path="/allemployee" element={<Allemployees />} />
         <Route exact path="/updateallemployee/:id" element={<Updateallempolyee />} />
