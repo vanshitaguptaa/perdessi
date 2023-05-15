@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { ClientListContext } from "../../Context/ClientList";
+import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,7 +12,9 @@ const Personal = () => {
   const {
     state: { serviceId, service },
   } = location;
-  const { clients, isError } = useContext(ClientListContext);
+  const role = localStorage.getItem("role");
+  const { clientState } = useContext(ClientListContext);
+  const { clientAdminState } = useContext(ClientAdminContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("Select a client");
@@ -34,10 +36,12 @@ const Personal = () => {
   const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
 
   useEffect(() => {
-    if (isError === false) {
-      setClientData(clients.clients);
+    if(role === "admin"){
+     setClientData(clientAdminState.clientAdmin.already);
+    }else if (clientState.isError === false) {
+     setClientData(clientState.clients.clients)
     }
-  }, []);
+  }, [])
 
   const handleLeadForm = async (e) => {
     e.preventDefault();

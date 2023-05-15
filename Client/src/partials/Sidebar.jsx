@@ -263,6 +263,20 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       </span>
                     </div>
                   </div>
+                  {role === "employee" ? (
+                    <></>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <BsFillPeopleFill className="ml-3 text-white text-2xl" />
+                          <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                            <Link to="/allclient">All Client</Link>
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -299,6 +313,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     <></>
                   ) : (
                     <>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <BsFillPeopleFill className="ml-3 text-white text-2xl" />
+                          <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                            <Link to="/allLead">All Lead</Link>
+                          </span>
+                        </div>
+                      </div>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
                           <RiFolderTransferFill className="ml-3 text-white text-2xl" />

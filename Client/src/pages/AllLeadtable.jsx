@@ -24,7 +24,7 @@ import Innerdashborad from "./Innerdashborad";
 import MyleadTable from "./MyleadTable";
 import axios from "axios";
 
-function Myleadtbloutter() {
+function AllLeadtable() {
   const navigate = useNavigate();
   const [authScreen, setAuthScreen] = useState(true);
   const { service } = useParams();
@@ -40,27 +40,27 @@ function Myleadtbloutter() {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
-  
+  let role = localStorage.getItem("role");
 
   const FetchLoaddetail = async (service) => {
     if (service === "personal loan") {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getpersonalloanforemployee",
+        url: "http://localhost:5000/api/v1/crm/getpersonalloanforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
-        console.log(res.data.savedLeads);
-        setloandetail(res.data.savedLeads);
+        console.log(res.data.response);
+        setloandetail(res.data.response);
       });
     }
     if (service === "Business Loan") {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getbusinessloanforemployee",
+        url: "http://localhost:5000/api/v1/crm/getbusinessloanforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -73,7 +73,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getmortgageloanforemployee",
+        url: "http://localhost:5000/api/v1/crm/getmortgageloanforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,7 +86,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/gethomeloanforemployee",
+        url: "http://localhost:5000/api/v1/crm/gethomeloanforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -112,7 +112,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getgoldloanforemployee",
+        url: "http://localhost:5000/api/v1/crm/getgoldloanforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -125,7 +125,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getcreditcardforemployee",
+        url: "http://localhost:5000/api/v1/crm/getcreditcardforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -138,7 +138,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationforemployee",
+        url: "http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -151,7 +151,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getshopactforemployee",
+        url: "http://localhost:5000/api/v1/crm/getshopactforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -164,7 +164,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getpassportforemployee",
+        url: "http://localhost:5000/api/v1/crm/getpassportforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -177,7 +177,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getGSTRegistrationforemployee",
+        url: "http://localhost:5000/api/v1/crm/getGSTRegistrationforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -190,7 +190,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getudyamcertificateforemployee",
+        url: "http://localhost:5000/api/v1/crm/getudyamcertificateforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -203,7 +203,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getcarloanforemployee",
+        url: "http://localhost:5000/api/v1/crm/getcarloanforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -216,7 +216,7 @@ function Myleadtbloutter() {
       console.log("personal loan is riunning");
       await axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getfoodlisenceoremployee",
+        url: "http://localhost:5000/api/v1/crm/getfoodlisenceforadmin",
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -287,4 +287,4 @@ function Myleadtbloutter() {
   );
 }
 
-export default Myleadtbloutter;
+export default AllLeadtable;

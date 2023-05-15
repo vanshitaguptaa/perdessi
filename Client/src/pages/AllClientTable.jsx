@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { ClientListContext } from "../Context/ClientList";
+import { ClientAdminContext } from "../Context/ClientList";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Tableclient = () => {
+
+const AllClientTable = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState();
   const [fname, setFname] = useState();
@@ -15,7 +16,7 @@ const Tableclient = () => {
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
-
+  const { adminDispatch } = useContext(ClientAdminContext);
   const navigate = useNavigate();
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
@@ -29,8 +30,6 @@ const Tableclient = () => {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
-
-  const { clientState, dispatch } = useContext(ClientListContext);
 
   useEffect(() => {
     if (!tokenData) {
@@ -46,26 +45,26 @@ const Tableclient = () => {
     }
   }, []);
 
-  useEffect(() => {
-    dispatch({ type: "Loading" });
+   useEffect(() => {
+    adminDispatch({ type: "Loading" });
     try {
       axios({
         method: "get",
-        url: "http://localhost:5000/api/v1/crm/getclientforemployee",
+        url: "http://localhost:5000/api/v1/crm/getallclient",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.status) {
-          dispatch({ type: "Success", payload: res.data });
+          adminDispatch({ type: "Success", payload: res.data });
         }
-        setData(res.data.clients)
+        setData(res.data.already)
       });
     } catch (error) {
       console.log(error);
-      dispatch({ type: "Failed" });
+      adminDispatch({ type: "Failed" });
     }
-  }, []);
+   }, [])
 
 
   const viewclick = () => {
@@ -126,13 +125,21 @@ const Tableclient = () => {
             data.map((e, id) => {
               return (
                 <tr>
-                  <td class="border px-1 py-2 text-center">{id + 1}</td>
-                  <td class="border px-1 py-2 text-center text-center">
+                  <td class="border px-1 py-2 text-center">
+                    {id + 1}
+                  </td>
+                  <td class="border px-1 py-2 text-center">
                     {e.first_name || e.firstName} {e.last_name || e.lastname}
                   </td>
-                  <td class="border px-1 py-2 text-center">{e.phone}</td>
-                  <td class="border px-1 py-2 text-center">{e.email}</td>
-                  <td class="border px-1 py-2 text-center">{e.pan}</td>
+                  <td class="border px-1 py-2 text-center">
+                    {e.phone}
+                  </td>
+                  <td class="border px-1 py-2 text-center">
+                    {e.email}
+                  </td>
+                  <td class="border px-1 py-2 text-center">
+                    {e.pan}
+                  </td>
                   <td class="border px-1 py-2 text-center">
                     <button
                       className="bg-blue-500 mx-2 p-2 text-white"
@@ -144,9 +151,7 @@ const Tableclient = () => {
                     </button>
                     <button
                       className="bg-green-500 p-2 text-white"
-                      onClick={() => {
-                        navigate(`/updateclient/${e._id}`);
-                      }}
+                      onClick={()=>{navigate(`/updateclient/${e._id}`)}}
                     >
                       Edit
                     </button>
@@ -169,13 +174,9 @@ const Tableclient = () => {
                       {popupdata.first_name} {popupdata.last_name}
                     </h3>
                     <p className="font-bold uppercase">{popupdata.role}</p>
+                    <p className="font-semibold">Agent: {popupdata.empolyeeid.first_name} {popupdata.empolyeeid.last_name}</p>
                     <p className="font-semibold">
-                      Agent: {popupdata.empolyeeid.first_name}{" "}
-                      {popupdata.empolyeeid.last_name}
-                    </p>
-                    <p className="font-semibold">
-                      Date of Creating:{" "}
-                      {change_into_date(popupdata.joiningdate)}
+                      Date of Creating: {change_into_date(popupdata.joiningdate)}
                     </p>
                   </div>
                 </div>
@@ -184,11 +185,11 @@ const Tableclient = () => {
                   <p className="font-semibold">
                     Birthday: {change_into_date(popupdata.dob)}
                   </p>
-                  <p className="font-semibold">
-                    Address: {popupdata.city},{popupdata.state}
-                  </p>
+                  <p className="font-semibold">Address: {popupdata.city},{popupdata.state}</p>
                   <p className="font-semibold">Gender: {popupdata.gender}</p>
-                  <p className="font-semibold">Aadhar No: {popupdata.aadhar}</p>
+                  <p className="font-semibold">
+                    Aadhar No: {popupdata.aadhar}
+                  </p>
                   <p className="font-semibold">
                     Contact number: {popupdata.phone}
                   </p>
@@ -226,5 +227,4 @@ const Tableclient = () => {
   );
 };
 
-export default Tableclient;
-
+export default AllClientTable;

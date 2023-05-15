@@ -50,6 +50,12 @@ import FoodLicience from "./components/formdashborad/FoodLicience";
 import UdyamCertificate from "./components/formdashborad/UdyamCertificate";
 import Myleadtbloutter from "./pages/Myleadtbloutter";
 import UpdateLead from "./pages/UpdateLead";
+import Updateclient from "./pages/Updateemployee";
+import Updateallempolyee from "./pages/updateallempoye";
+import AllLead from "./pages/AllLead";
+import AllLeadtable from "./pages/AllLeadtable";
+import AllClient from "./pages/AllClient";
+
 
 
 
@@ -69,12 +75,17 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/addclient" element={<AddClient />} />
+        <Route exact path="/updateclient/:id" element={<Updateclient />} />
         <Route exact path="/addlead" element={<Addleads />} />
         <Route exact path="/mylead" element={<Mylead />} />
+        <Route exact path="/allLead" element={<AllLead />} />
         <Route exact path="/myclient" element={<Myclient />} />
+        <Route exact path="/Allclient" element={<AllClient />} />
         <Route exact path="/mylead/service/:service" element={<Myleadtbloutter />} />
+        <Route exact path="/allLead/service/:service" element={<AllLeadtable />} />
         <Route exact path="/transferlead" element={<Transferlead />} />
         <Route exact path="/allemployee" element={<Allemployees />} />
+        <Route exact path="/updateallemployee/:id" element={<Updateallempolyee />} />
         <Route exact path="/leadform" element={<Leadform />} />
         <Route exact path="/myprofile" element={<Myprofile />} />
         <Route exact path="/update" element={<Updateempolyee />} />

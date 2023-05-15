@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
-import Tableclient from "./Tableclient";
 import { Link, useNavigate } from "react-router-dom";
+import AllClientTable from "./AllClientTable";
 
-
-const Myclient = () => {
+const AllClient = () => {
   const navigate = useNavigate();
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
@@ -73,14 +72,15 @@ const Myclient = () => {
                 Add Client
               </button>
               <div className="sm:flex sm:justify-between sm:items-center mb-8">
-                <Tableclient />
+                <AllClientTable />
               </div>
             </div>
           </main>
         </div>
       </div>
+      
     </>
   );
 };
 
-export default Myclient;
+export default AllClient;

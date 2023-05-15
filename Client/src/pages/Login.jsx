@@ -7,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const schema = yup
   .object()
   .shape({
@@ -21,11 +22,6 @@ const schema = yup
 
 const Login = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-  }, []);
 
   const {
     register,

@@ -38,7 +38,7 @@ const schema = yup
     PanNo: yup.string().required(),
 }).required();
 
-const Updateform = ({Profiledata}) => {
+const Updateallempolyeeform = ({Profiledata,id}) => {
   const navigate = useNavigate();
   const {
     register,
@@ -64,7 +64,7 @@ const Updateform = ({Profiledata}) => {
   const onSubmit = (data) => {
     console.log(data)
     console.log("client");
-    fetch("http://localhost:5000/api/v1/crm/updateempolyee/:id", {
+    fetch(`http://localhost:5000/api/v1/crm/updateempolyee/${id}`, {
       method: "PATCH",
       body: JSON.stringify(data),
       headers: {
@@ -142,7 +142,6 @@ const Updateform = ({Profiledata}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.adharno}
-              readOnly
               {...register("adharno")}
             />
             <small className="text-red-600">{errors.adharno?.message}</small>
@@ -196,7 +195,6 @@ const Updateform = ({Profiledata}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.reportto}
-              readOnly
               {...register("reportto")}
             />
             <small className="text-red-600">{errors.reportto?.message}</small>
@@ -233,7 +231,6 @@ const Updateform = ({Profiledata}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.age}
-              readOnly
               {...register("age")}
             />
             <small className="text-red-600">{errors.age?.message}</small>
@@ -347,7 +344,6 @@ const Updateform = ({Profiledata}) => {
               type="date"
               placeholder=""
               defaultValue={Date(Profiledata.joiningdate)}
-              readOnly
               {...register("joiningdate")}
             />
             <small className="text-red-600">{errors.joiningdate?.message}</small>
@@ -437,7 +433,6 @@ const Updateform = ({Profiledata}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.BankName}
-              readOnly
               {...register("BankName")}
             />
             <small className="text-red-600">{errors.BankName?.message}</small>
@@ -455,7 +450,6 @@ const Updateform = ({Profiledata}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.BranchName}
-              readOnly
               {...register("BranchName")}
             />
             <small className="text-red-600">{errors.BranchName?.message}</small>
@@ -473,7 +467,6 @@ const Updateform = ({Profiledata}) => {
               type="date"
               placeholder=""
               defaultValue={Date(Profiledata.dob)}
-              readOnly
               {...register("dob")}
             />
             <small className="text-red-600">{errors.dob?.message}</small>
@@ -491,7 +484,6 @@ const Updateform = ({Profiledata}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.IFSCcode}
-              readOnly
               {...register("IFSCcode")}
             />
             <small className="text-red-600">{errors.IFSCcode?.message}</small>
@@ -511,7 +503,6 @@ const Updateform = ({Profiledata}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.ACholdername}
-              readOnly
               {...register("ACholdername")}
             />
             <small className="text-red-600">{errors.ACholdername?.message}</small>
@@ -529,7 +520,6 @@ const Updateform = ({Profiledata}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.BankAccNo}
-              readOnly
               {...register("BankAccNo")}
             />
             <small className="text-red-600">{errors.BankAccNo?.message}</small>
@@ -547,7 +537,6 @@ const Updateform = ({Profiledata}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.PanNo}
-              readOnly
               {...register("PanNo")}
             />
             <small className="text-red-600">{errors.PanNo?.message}</small>
@@ -564,4 +553,4 @@ const Updateform = ({Profiledata}) => {
   );
 };
 
-export default Updateform;
+export default Updateallempolyeeform;
