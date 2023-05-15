@@ -545,31 +545,37 @@ Route.get(
 Route.patch(
   "/updatehomeloan",
   employeeTokenCheck,
+  multipleUploadForHomeLoan,
   editHomeLoanServiceController
 );
 Route.patch(
   "/updatebusinessloan",
   employeeTokenCheck,
+  multipleUploadForBusinessLoan,
   editBusinessLoanServiceController
 );
 Route.patch(
   "/updatepersonalloan",
   employeeTokenCheck,
+  multipleUploadForPersonalLoan,
   editPersonalLoanServiceController
 );
 Route.patch(
   "/updatemortgageloan",
   employeeTokenCheck,
+  multipleUploadForMortgageLoan,
   editMortgageLoanServiceController
 );
 Route.patch(
   "/updategoldloan",
   employeeTokenCheck,
+  multipleUploadForGoldLoan,
   editGoldLoanServiceController
 );
 Route.patch(
   "/updatecreditcard",
   employeeTokenCheck,
+  multipleUploadForCreditCard,
   editCreditCardServiceController
 );
 

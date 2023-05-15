@@ -925,9 +925,15 @@ export const editHomeLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await HomeLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -955,9 +961,15 @@ export const editBusinessLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await BusinessloanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -984,6 +996,12 @@ export const editPersonalLoanServiceController = async (req, res) => {
     }
 
     let valueToEdit = req.files[fieldToEdit][0];
+
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
 
     const updatedResponse = await PersonalLoanModel.updateOne(
       { _id: leadId },
@@ -1015,9 +1033,15 @@ export const editMortgageLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await MortgageLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1045,11 +1069,17 @@ export const editGoldLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await GoldLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
-
+    console.log(updatedResponse);
     if (updatedResponse.acknowledged) {
       return res
         .status(201)
@@ -1075,9 +1105,15 @@ export const editCreditCardServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await CreditCardModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1105,9 +1141,15 @@ export const editCarLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await CarLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1135,9 +1177,15 @@ export const editNewCorrectionPanApplication = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await NewCorrectionPanApplicationModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1165,9 +1213,15 @@ export const editPassportServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await PassportModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1195,9 +1249,15 @@ export const editGSTRegistrationController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await GSTResgistraionModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1225,9 +1285,15 @@ export const editShopActController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await ShopActModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1255,9 +1321,15 @@ export const editUdyamCertificateController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await UdyamCertificateModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1285,9 +1357,15 @@ export const editFoodLisenceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await FoodLisenceModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -2351,13 +2429,11 @@ export const getHomeLoanForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedHomeLoan,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedHomeLoan,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2377,20 +2453,17 @@ export const getBusinessLoanForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedBusinessLoan,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedBusinessLoan,
+    });
   } catch (error) {
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getPersonalLoanForAdmin = async (req, res) => {
   try {
@@ -2404,20 +2477,17 @@ export const getPersonalLoanForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedPersonalLoan,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedPersonalLoan,
+    });
   } catch (error) {
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getMortgageLoanForAdmin = async (req, res) => {
   try {
@@ -2431,20 +2501,17 @@ export const getMortgageLoanForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedMortgageLoan,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedMortgageLoan,
+    });
   } catch (error) {
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getGoldLoanForAdmin = async (req, res) => {
   try {
@@ -2458,20 +2525,17 @@ export const getGoldLoanForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedGoldLoan,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedGoldLoan,
+    });
   } catch (error) {
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
-
 
 export const getCreditCardForAdmin = async (req, res) => {
   try {
@@ -2485,13 +2549,11 @@ export const getCreditCardForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedCreditCard,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedCreditCard,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2511,13 +2573,11 @@ export const getCarLoanByForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedCarLoan,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedCarLoan,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2527,9 +2587,10 @@ export const getCarLoanByForAdmin = async (req, res) => {
 
 export const getNewCorrectionPanApplicationForAdmin = async (req, res) => {
   try {
-    const savedNewCorrectionPanApplication = await NewCorrectionPanApplicationModel.find({})
-      .populate(["service", "client", "employee"])
-      .exec();
+    const savedNewCorrectionPanApplication =
+      await NewCorrectionPanApplicationModel.find({})
+        .populate(["service", "client", "employee"])
+        .exec();
 
     if (savedNewCorrectionPanApplication < 1) {
       return res
@@ -2537,13 +2598,11 @@ export const getNewCorrectionPanApplicationForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedNewCorrectionPanApplication,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedNewCorrectionPanApplication,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2563,13 +2622,11 @@ export const getGSTRegistrationByForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedGSTRegistration,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedGSTRegistration,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2589,13 +2646,11 @@ export const getPassportForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedPassport,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedPassport,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2615,13 +2670,11 @@ export const getShopActForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedShopAct,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedShopAct,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2641,13 +2694,11 @@ export const getUdyamCertificateForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedUdyamCertificate,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedUdyamCertificate,
+    });
   } catch (error) {
     return res
       .status(500)
@@ -2667,13 +2718,11 @@ export const getFoodLisenceForAdmin = async (req, res) => {
         .json({ status: false, message: "no data found in database" });
     }
 
-    return res
-      .status(201)
-      .json({
-        status: true,
-        message: "successfully fetched data",
-        response: savedFoodLisence,
-      });
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedFoodLisence,
+    });
   } catch (error) {
     return res
       .status(500)
