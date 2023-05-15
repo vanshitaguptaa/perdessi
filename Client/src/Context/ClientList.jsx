@@ -1,9 +1,9 @@
 import { createContext, useEffect, useReducer } from "react";
 import { clientReducer } from "../reducer/clientReducer";
-import axios from "axios";
+import { clientAdminReducer } from "../reducer/clientAdminReducer";
 
 export const ClientListContext = createContext();
-
+export const ClientAdminContext = createContext();
 
 const ClientListProvider = ({ children }) => {
   const [clientState, dispatch] = useReducer(clientReducer, {
@@ -12,9 +12,15 @@ const ClientListProvider = ({ children }) => {
     clients: [],
   });
 
+  const [clientAdminState, adminDispatch] = useReducer(clientAdminReducer, {
+    isLoading: false,
+    isError: false,
+    clientAdmin: [],
+  });
+
   return (
-    <ClientListContext.Provider value={{clientState, dispatch}}>
-      {children}
+    <ClientListContext.Provider value={{ clientState, dispatch }}>
+      <ClientAdminContext.Provider value={{clientAdminState, adminDispatch}}>{children}</ClientAdminContext.Provider>
     </ClientListContext.Provider>
   );
 };

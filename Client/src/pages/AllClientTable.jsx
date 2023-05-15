@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { ClientListContext } from "../Context/ClientList";
+import { ClientAdminContext } from "../Context/ClientList";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const AllClientTable = () => {
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
-  const { clients, isError } = useContext(ClientListContext);
+  const { adminDispatch } = useContext(ClientAdminContext);
   const navigate = useNavigate();
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
@@ -45,13 +45,27 @@ const AllClientTable = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (isError === false) {
-      setData(clients.clients);
+   useEffect(() => {
+    adminDispatch({ type: "Loading" });
+    try {
+      axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getallclient",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.status) {
+          adminDispatch({ type: "Success", payload: res.data });
+        }
+        setData(res.data.already)
+      });
+    } catch (error) {
+      console.log(error);
+      adminDispatch({ type: "Failed" });
     }
-  }, [clients]);
+   }, [])
 
-  console.log(data);
 
   const viewclick = () => {
     console.log("CLICKED");

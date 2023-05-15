@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
-import { ClientListContext } from "../../Context/ClientList";
+import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,7 +12,9 @@ const Shop = () => {
   const {
     state: { serviceId, service },
   } = location;
+  const role = localStorage.getItem("role");
   const { clientState } = useContext(ClientListContext);
+  const { clientAdminState } = useContext(ClientAdminContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
@@ -27,7 +29,9 @@ const Shop = () => {
   const [CIN, setCIN] = useState(null);
 
   useEffect(() => {
-    if (clientState.isError === false) {
+    if(role === "admin"){
+     setClientData(clientAdminState.clientAdmin.already);
+    }else if (clientState.isError === false) {
      setClientData(clientState.clients.clients)
     }
   }, [])
