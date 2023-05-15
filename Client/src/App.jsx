@@ -49,11 +49,13 @@ import ShopActSchema from "./components/formdashborad/ShopActSchema";
 import FoodLicience from "./components/formdashborad/FoodLicience";
 import UdyamCertificate from "./components/formdashborad/UdyamCertificate";
 import Myleadtbloutter from "./pages/Myleadtbloutter";
+import UpdateLead from "./pages/UpdateLead";
 import Updateclient from "./pages/Updateemployee";
 import Updateallempolyee from "./pages/updateallempoye";
 import AllLead from "./pages/AllLead";
 import AllLeadtable from "./pages/AllLeadtable";
 import AllClient from "./pages/AllClient";
+
 
 
 
@@ -116,6 +118,7 @@ function App() {
         <Route exact path="/Shop Act" element={<ShopActSchema/>}/>
         <Route exact path="/Food Lisence" element={<FoodLicience/>}/>
         <Route exact path="/UDYAM Registration" element={<UdyamCertificate/>}/>
+        <Route exact path="/updatelead/:serviceName/:id" element={<UpdateLead/>}/>
       </Routes>
     </>
   );
