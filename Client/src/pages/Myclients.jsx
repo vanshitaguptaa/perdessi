@@ -5,6 +5,7 @@ import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
 import Tableclient from "./Tableclient";
 import { Link, useNavigate } from "react-router-dom";
 
+
 const Myclient = () => {
   const navigate = useNavigate();
   const [view, setview] = useState(false);
@@ -78,7 +79,6 @@ const Myclient = () => {
           </main>
         </div>
       </div>
-      
     </>
   );
 };

@@ -30,7 +30,7 @@ const Tableclient = () => {
   }
   let currentDate = new Date();
 
-  const { clients, isError } = useContext(ClientListContext);
+  const { clientState, dispatch } = useContext(ClientListContext);
 
   useEffect(() => {
     if (!tokenData) {
@@ -47,12 +47,26 @@ const Tableclient = () => {
   }, []);
 
   useEffect(() => {
-    if (isError === false) {
-      setData(clients.clients);
+    dispatch({ type: "Loading" });
+    try {
+      axios({
+        method: "get",
+        url: "http://localhost:5000/api/v1/crm/getclientforemployee",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        if (res.status) {
+          dispatch({ type: "Success", payload: res.data });
+        }
+        setData(res.data.clients)
+      });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "Failed" });
     }
-  }, [clients]);
+  }, []);
 
-  console.log(data);
 
   const viewclick = () => {
     console.log("CLICKED");

@@ -5,8 +5,6 @@ import { ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 const Business = () => {
   const tokenData = localStorage.getItem("token");
   const token = JSON.parse(tokenData).usertoken;
@@ -14,7 +12,7 @@ const Business = () => {
   const {
     state: { serviceId, service },
   } = location;
-  const { clients, isError } = useContext(ClientListContext);
+  const { clientState } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
@@ -41,14 +39,14 @@ const Business = () => {
     useState(null);
   const [TrueCopyBoardResolution, setTrueCopyBoardResolution] = useState(null);
 
-  useEffect(() => {
-   if (isError === false) {
-      setClientData(clients.clients);
-    }
-  }, []);
-
   console.log(LoanAmount);
   console.log(serviceId);
+
+  useEffect(() => {
+    if (clientState.isError === false) {
+     setClientData(clientState.clients.clients)
+    }
+  }, [])
 
   const handleLeadForm = async (e) => {
     e.preventDefault();

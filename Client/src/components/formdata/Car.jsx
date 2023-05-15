@@ -12,7 +12,7 @@ const Car = () => {
   const {
     state: { serviceId, service },
   } = location;
-  const { clients, isError } = useContext(ClientListContext);
+  const { clientState } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [Selectclient, setSelectClient] = useState("Select a client");
@@ -44,11 +44,11 @@ const Car = () => {
   const [SelfEmployeeProformaInvoice, setSelfEmployeeProformaInvoice] =
     useState(null);
 
-  useEffect(() => {
-    if (isError === false) {
-      setClientData(clients.clients);
-    }
-  }, []);
+    useEffect(() => {
+      if (clientState.isError === false) {
+       setClientData(clientState.clients.clients)
+      }
+    }, [])
 
   const handleLeadForm = async (e) => {
     e.preventDefault();

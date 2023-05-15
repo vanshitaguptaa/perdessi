@@ -1,14 +1,9 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { clientReducer } from "../reducer/clientReducer";
 import axios from "axios";
 
 export const ClientListContext = createContext();
 
-const tokenData = localStorage.getItem("token");
-let token;
-if (tokenData) {
-  token = JSON.parse(tokenData).usertoken;
-}
 
 const ClientListProvider = ({ children }) => {
   const [clientState, dispatch] = useReducer(clientReducer, {
@@ -17,33 +12,8 @@ const ClientListProvider = ({ children }) => {
     clients: [],
   });
 
-  const getClientList = async () => {
-    dispatch({ type: "Loading" });
-    try {
-      const savedResponse = await axios({
-        method: "get",
-        url: "http://localhost:5000/api/v1/crm/getclientforemployee",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (savedResponse.status) {
-        dispatch({ type: "Success", payload: savedResponse.data });
-      }
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "Failed" });
-    }
-  };
-
-  useEffect(() => {
-    getClientList();
-  }, []);
-
-  console.log(clientState);
   return (
-    <ClientListContext.Provider value={clientState}>
+    <ClientListContext.Provider value={{clientState, dispatch}}>
       {children}
     </ClientListContext.Provider>
   );

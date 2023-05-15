@@ -14,7 +14,7 @@ const Mortgage = () => {
   const {
     state: { serviceId, service },
   } = location;
-  const { clients, isError } = useContext(ClientListContext);
+  const { clientState } = useContext(ClientListContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
@@ -31,10 +31,10 @@ const Mortgage = () => {
   const [itReturns, setitReturns] = useState(null);
 
   useEffect(() => {
-   if (isError === false) {
-      setClientData(clients.clients);
+    if (clientState.isError === false) {
+     setClientData(clientState.clients.clients)
     }
-  }, []);
+  }, [])
 
   const handleLeadForm = async (e) => {
     e.preventDefault();
