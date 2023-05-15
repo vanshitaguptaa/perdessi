@@ -17,6 +17,7 @@ const UpdateLead = () => {
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("Select a client");
   // const [zip, setZip] = useState("");
+  // const [ view, setview ] = useState(false)
   const [SalariedProofOfIdentity, setIndentity] = useState(null);
   const [SalariedTwoPassportPhoto, setPassport] = useState(null);
   const [SelfEmployeedProofofIdentity, setSEIndentity] = useState(null);
@@ -33,6 +34,7 @@ const UpdateLead = () => {
     useState(null);
   const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
   const [popupdata, setpopupdata] = useState([]);
+  const [service, setService] = useState();
 
  const { id, serviceName } = useParams();
  
@@ -302,6 +304,8 @@ const UpdateLead = () => {
     }
   };
 
+  console.log(popupdata)
+console.log(service)
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   if (serviceName === "personal loan"){
     console.log("is working")
@@ -326,9 +330,10 @@ const UpdateLead = () => {
               id="grid-first-name"
               type="number"
               placeholder=""
-              onChange={(e) => {
-                setLoanAmount(e.target.value);
+              onChange={() => {
+                setLoanAmount(popupdata.LoanAmount);
               }}
+              // value={popupdata.LoanAmount}
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -420,7 +425,7 @@ const UpdateLead = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="text"
-              // defaultValue={service}
+              // // defaultValue={service}
               readOnly
             />
           </div>
@@ -735,7 +740,7 @@ if (serviceName === "Mortgage  Loan"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -1067,7 +1072,7 @@ if (serviceName === "Mortgage  Loan"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -1291,7 +1296,7 @@ if (serviceName === "Home  Loan") {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -1745,7 +1750,9 @@ if (serviceName === "Home  Loan") {
       );
 }
 if (serviceName === "Gold Loan"){ 
-    return (
+  return (
+    <div>
+  {popupdata && (
         <div className="flex justify-center items-center">
           <form
             onSubmit={(e) => {
@@ -1765,10 +1772,11 @@ if (serviceName === "Gold Loan"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   id="grid-first-name"
                   type="number"
-                  placeholder="Jane"
+                  placeholder=""
                   onChange={(e) => {
                     setLoanAmount(e.target.value);
                   }}
+                  defaultValue={popupdata.LoanAmount}
                 />
               </div>
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -1779,7 +1787,7 @@ if (serviceName === "Gold Loan"){
                   My Client*
                 </label>
                 <div className="relative">
-                  <select
+                  {/* <select
                     className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     id="grid-state"
                     onChange={(e) => {
@@ -1799,7 +1807,17 @@ if (serviceName === "Gold Loan"){
                           </>
                         );
                       })}
-                  </select>
+                  </select> */}
+                  <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="text"
+                  placeholder=""
+                  onChange={(e) => {
+                    setClient(e.target.value);
+                  }}
+                  defaultValue={popupdata.client.first_name}
+                />
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
                       className="fill-current h-4 w-4"
@@ -1824,13 +1842,15 @@ if (serviceName === "Gold Loan"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  onChange={()=>setService(popupdata.service.service_name)}
+                  defaultValue={popupdata.service.service_name}
                   readOnly
                 />
               </div>
             </div>
             <div className="flex flex-wrap -mx-3 mb-2">
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              {/* <img src={`http://localhost:5000/${popupdata.Pancard.split("public")[1].substring(1)}`} alt="" /> */}
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-city"
@@ -1841,13 +1861,15 @@ if (serviceName === "Gold Loan"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-city"
                   type="file"
-                  placeholder="Albuquerque"
+                  placeholder=""
                   onChange={(e) => {
                     setAadharcard(e.target.files[0]);
                   }}
+                  readOnly
                 />
               </div>
               <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              {/* <img src={`http://localhost:5000/${popupdata.Aadharcard.split("public")[1].substring(1)}`} alt="" /> */}
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-zip"
@@ -1862,6 +1884,7 @@ if (serviceName === "Gold Loan"){
                   onChange={(e) => {
                     setPancard(e.target.files[0]);
                   }}
+                  readOnly
                 />
               </div>
             </div>
@@ -1876,7 +1899,10 @@ if (serviceName === "Gold Loan"){
             </div>
           </form>
         </div>
-      );
+  )}
+
+  </div>
+  )   
 }
 if (serviceName === "Credit Card"){
     return (
@@ -1958,7 +1984,7 @@ if (serviceName === "Credit Card"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -2147,7 +2173,7 @@ if (serviceName === "Shop Act"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -2407,7 +2433,7 @@ if (serviceName === "passport"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -2541,7 +2567,7 @@ if (serviceName === "GST registration application"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -2556,7 +2582,7 @@ if (serviceName === "GST registration application"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -2963,7 +2989,7 @@ if (serviceName === "UDYAM Registration") {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -3241,7 +3267,7 @@ if (serviceName === "Car Loan"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
@@ -3633,7 +3659,7 @@ if (serviceName === "Food Lisence"){
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-zip"
                   type="text"
-                  defaultValue={service}
+                  // defaultValue={service}
                   readOnly
                 />
               </div>
