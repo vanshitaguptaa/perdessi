@@ -321,14 +321,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           </span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                          <RiFolderTransferFill className="ml-3 text-white text-2xl" />
-                          <span className="m-3 text-slate-200 ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                            <Link to="/transferlead">Transfer Leads</Link>
-                          </span>
-                        </div>
-                      </div>
                     </>
                   )}
                 </div>
