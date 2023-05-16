@@ -7,6 +7,7 @@ import {
 } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 const Passport = () => {
   const tokenData = localStorage.getItem("token");
@@ -23,6 +24,8 @@ const Passport = () => {
   const [client, setClient] = useState("");
   const [BirthProof, setBirthProof] = useState(null);
   const [AddressProof, setAddressProof] = useState(null);
+  const [bProof, setBProof] = useState(false);
+  const [addProof, setAddProf] = useState(false);
 
   useEffect(() => {
     if(role === "admin"){
@@ -155,6 +158,8 @@ const Passport = () => {
             >
               Birth Proof*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBProof(!bProof)}><GrFormEdit/></p>
+                {bProof &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -164,6 +169,7 @@ const Passport = () => {
                 setBirthProof(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -172,6 +178,8 @@ const Passport = () => {
             >
               Address Proof*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAddProf(!addProof)}><GrFormEdit/></p>
+                {addProof &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -181,6 +189,7 @@ const Passport = () => {
                 setAddressProof(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
 

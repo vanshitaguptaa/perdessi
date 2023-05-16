@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 
 const Food = () => {
@@ -28,6 +29,16 @@ const Food = () => {
     const [SampleFoodRecallPlanAndGuide, setSampleFoodRecallPlanAndGuide] = useState(null);
     const [BISLiscense, setBISLiscense] = useState(null);
     const [Repacker, setRepacker] = useState(null);
+    const [repackertoggle, setRepackertoggle] = useState(false);
+    const [bis, setBIS] = useState(false);
+    const [recall, setRecall] = useState(false);
+    const [expoters, setExpoters] = useState(false);
+    const [alcohol, setAlcohol] = useState(false);
+    const [onlinesale, setOnlinesale] = useState(false);
+    const [CSGWNoc, setCSGWNoc] = useState(false);
+    const [proprietorship, setProprietorship] = useState(false);
+    const [newregister, setNewregister] = useState(false);
+    const [nrm, setNrm] = useState(false);
   
     useEffect(() => {
       if(role === "admin"){
@@ -165,6 +176,8 @@ const Food = () => {
               >
                 NRM Of Lisence*
               </label>
+              <p className="cursor-pointer" onClick={()=>setNrm(!nrm)}><GrFormEdit/></p>
+                {nrm &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-city"
@@ -174,6 +187,7 @@ const Food = () => {
                   setNRMOfLisence(e.target.files[0]);
                 }}
               />
+                }
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -182,6 +196,8 @@ const Food = () => {
               >
                 New Registration*
               </label>
+              <p className="cursor-pointer" onClick={()=>setNewregister(!newregister)}><GrFormEdit/></p>
+                {newregister &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-zip"
@@ -191,6 +207,7 @@ const Food = () => {
                   setNewRegistration(e.target.files[0]);
                 }}
               />
+                }
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-2">
@@ -201,6 +218,8 @@ const Food = () => {
               >
                 Proprietorship Declaration*
               </label>
+              <p className="cursor-pointer" onClick={()=>setProprietorship(!proprietorship)}><GrFormEdit/></p>
+                {proprietorship &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-city"
@@ -210,6 +229,7 @@ const Food = () => {
                   setProprietorshipDeclaration(e.target.files[0]);
                 }}
               />
+                }
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -218,6 +238,8 @@ const Food = () => {
               >
                 CSGWNoc Noted*
               </label>
+              <p className="cursor-pointer" onClick={()=>setCSGWNoc(!CSGWNoc)}><GrFormEdit/></p>
+                {CSGWNoc &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-zip"
@@ -227,6 +249,7 @@ const Food = () => {
                   setCSGWNocNoted(e.target.files[0]);
                 }}
               />
+                }
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-2">
@@ -237,6 +260,8 @@ const Food = () => {
               >
                 Online Sale Of Alcohol*
               </label>
+              <p className="cursor-pointer" onClick={()=>setOnlinesale(!onlinesale)}><GrFormEdit/></p>
+                {onlinesale &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-city"
@@ -246,6 +271,7 @@ const Food = () => {
                   setOnlineSaleOfAlcohol(e.target.files[0]);
                 }}
               />
+                }
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -254,6 +280,8 @@ const Food = () => {
               >
                 Online Sale Of Alcohol*
               </label>
+              <p className="cursor-pointer" onClick={()=>setAlcohol(!alcohol)}><GrFormEdit/></p>
+                {alcohol &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-zip"
@@ -263,6 +291,7 @@ const Food = () => {
                   setOnlineSaleOfAlcohol(e.target.files[0]);
                 }}
               />
+                }
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-2">
@@ -273,6 +302,8 @@ const Food = () => {
               >
                 Additional Document For Expoters*
               </label>
+              <p className="cursor-pointer" onClick={()=>setExpoters(!expoters)}><GrFormEdit/></p>
+                {expoters &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-city"
@@ -282,6 +313,7 @@ const Food = () => {
                   setAdditionalDocumentForExpoters(e.target.files[0]);
                 }}
               />
+                }
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -290,6 +322,8 @@ const Food = () => {
               >
                 Sample Food Recall Plan And Guide*
               </label>
+              <p className="cursor-pointer" onClick={()=>setRecall(!recall)}><GrFormEdit/></p>
+                {recall &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-zip"
@@ -299,6 +333,7 @@ const Food = () => {
                   setSampleFoodRecallPlanAndGuide(e.target.files[0]);
                 }}
               />
+                }
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-2">
@@ -309,6 +344,8 @@ const Food = () => {
               >
                 BIS Liscense*
               </label>
+              <p className="cursor-pointer" onClick={()=>setBIS(!bis)}><GrFormEdit/></p>
+                {bis &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-city"
@@ -318,6 +355,7 @@ const Food = () => {
                   setBISLiscense(e.target.files[0]);
                 }}
               />
+                }
             </div>
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -326,6 +364,8 @@ const Food = () => {
               >
                 Repacker*
               </label>
+              <p className="cursor-pointer" onClick={()=>setRepackertoggle(!repackertoggle)}><GrFormEdit/></p>
+                {repackertoggle &&
               <input
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-zip"
@@ -335,6 +375,7 @@ const Food = () => {
                   setRepacker(e.target.files[0]);
                 }}
               />
+                }
             </div>
           </div>
   

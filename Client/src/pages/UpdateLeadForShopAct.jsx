@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 const Shop = () => {
   const tokenData = localStorage.getItem("token");
@@ -27,6 +28,15 @@ const Shop = () => {
   const [MOA, setMOA] = useState(null);
   const [AON, setAON] = useState(null);
   const [CIN, setCIN] = useState(null);
+  const [pncd, setPnCd] = useState(false);
+  const [adhar, setAdhar] = useState(false);
+  const [business, setBusiness] = useState(false);
+  const [nature, setNature] = useState(false);
+  const [bill, setBill] = useState(false);
+  const [rent, setRent] = useState(false);
+  const [mmm, setMmm] = useState(false);
+  const [aaa, setAaa] = useState(false);
+  const [ccc, setCcc] = useState(false);
 
   useEffect(() => {
     if(role === "admin"){
@@ -165,6 +175,8 @@ const Shop = () => {
             >
               Pan Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setPnCd(!pncd)}><GrFormEdit/></p>
+                {pncd &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -174,6 +186,7 @@ const Shop = () => {
                 setPanCard(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -182,6 +195,8 @@ const Shop = () => {
             >
               Adhar Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAdhar(!adhar)}><GrFormEdit/></p>
+                {adhar &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -191,6 +206,7 @@ const Shop = () => {
                 setAdharCard(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -201,6 +217,8 @@ const Shop = () => {
             >
               Details Of Business*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBusiness(!business)}><GrFormEdit/></p>
+                {business &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -210,6 +228,7 @@ const Shop = () => {
                 setDetailsOfBusiness(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -218,6 +237,8 @@ const Shop = () => {
             >
               Nature Of Business*
             </label>
+            <p className="cursor-pointer" onClick={()=>setNature(!nature)}><GrFormEdit/></p>
+                {nature &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -227,6 +248,7 @@ const Shop = () => {
                 setNatureOfBusiness(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -237,6 +259,8 @@ const Shop = () => {
             >
               Electricity Bill*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBill(!bill)}><GrFormEdit/></p>
+                {bill &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -246,6 +270,7 @@ const Shop = () => {
                 setElectricityBill(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -254,6 +279,8 @@ const Shop = () => {
             >
               Rent Agreement*
             </label>
+            <p className="cursor-pointer" onClick={()=>setRent(!rent)}><GrFormEdit/></p>
+                {rent &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -263,6 +290,7 @@ const Shop = () => {
                 setRentAgreement(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -273,6 +301,8 @@ const Shop = () => {
             >
               MOA*
             </label>
+            <p className="cursor-pointer" onClick={()=>setMmm(!mmm)}><GrFormEdit/></p>
+                {mmm &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -282,6 +312,7 @@ const Shop = () => {
                 setMOA(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -290,6 +321,8 @@ const Shop = () => {
             >
               AON*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAaa(!aaa)}><GrFormEdit/></p>
+                {aaa &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -299,6 +332,7 @@ const Shop = () => {
                 setAON(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -309,6 +343,8 @@ const Shop = () => {
             >
               CIN*
             </label>
+            <p className="cursor-pointer" onClick={()=>setCcc(!ccc)}><GrFormEdit/></p>
+                {ccc &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -318,6 +354,7 @@ const Shop = () => {
                 setCIN(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="mt-5 flex justify-center">

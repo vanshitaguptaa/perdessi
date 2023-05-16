@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 const Personal = () => {
   const tokenData = localStorage.getItem("token");
@@ -35,6 +36,35 @@ const Personal = () => {
   const [SelfEmployeedProofofContinuityofBusiness, setBusiness] =
     useState(null);
   const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
+  const [popupdata, setpopupdata] = useState("");
+  const [identity, setIdentity] = useState(false);
+  const [resident, setResident] = useState(false);
+  const [threeMonths, setThreeMonths] = useState(false);
+  const [monthSalary, setMonthSalary] = useState(false);
+  const [pass, setPass] = useState(false);
+  const [proof, setProof] = useState(false);
+  const [proofIncome, setProofIncome] = useState(false);
+  const [sixMon, setSixMon] = useState(false);
+  const [office, setOffice] = useState(false);
+  const [continuity, setContinuity] = useState(false);
+
+  useEffect(() => {
+    console.log("inside this effect");
+    try {
+      axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${serviceID}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res);
+        setpopupdata(res.data.response);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [serviceID]);
 
   useEffect(() => {
     if(role === "admin"){
@@ -44,70 +74,72 @@ const Personal = () => {
     }
   }, [])
 
-  const handleLeadForm = async (e) => {
-    e.preventDefault();
+  // const handleLeadForm = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const formData = new FormData();
-      formData.append("serviceId", serviceID);
-      formData.append("clientId", client);
-      formData.append("loanAmount", LoanAmount);
-      formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
-      formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
-      formData.append(
-        "SalariedThreeMonthsBankStatement",
-        SalariedThreeMonthsBankStatement
-      );
-      formData.append(
-        "SalariedThreeMonthSalarySlip",
-        SalariedThreeMonthSalarySlip
-      );
-      formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
-      formData.append(
-        "SelfEmployeedProofofIdentity",
-        SelfEmployeedProofofIdentity
-      );
-      formData.append(
-        "SelfEmployeedProofofResidence",
-        SelfEmployeedProofofResidence
-      );
-      formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
-      formData.append(
-        "SelfEmployeedSixMonthBankStatement",
-        SelfEmployeedSixMonthBankStatement
-      );
-      formData.append(
-        "SelfEmployeedOfficeAddressProof",
-        SelfEmployeedOfficeAddressProof
-      );
-      formData.append(
-        "SelfEmployeedProofofContinuityofBusiness",
-        SelfEmployeedProofofContinuityofBusiness
-      );
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("serviceId", serviceID);
+  //     formData.append("clientId", client);
+  //     formData.append("loanAmount", LoanAmount);
+  //     formData.append("SalariedProofOfIdentity", SalariedProofOfIdentity);
+  //     formData.append("SalariedProofOfResidence", SalariedProofOfResidence);
+  //     formData.append(
+  //       "SalariedThreeMonthsBankStatement",
+  //       SalariedThreeMonthsBankStatement
+  //     );
+  //     formData.append(
+  //       "SalariedThreeMonthSalarySlip",
+  //       SalariedThreeMonthSalarySlip
+  //     );
+  //     formData.append("SalariedTwoPassportPhoto", SalariedTwoPassportPhoto);
+  //     formData.append(
+  //       "SelfEmployeedProofofIdentity",
+  //       SelfEmployeedProofofIdentity
+  //     );
+  //     formData.append(
+  //       "SelfEmployeedProofofResidence",
+  //       SelfEmployeedProofofResidence
+  //     );
+  //     formData.append("SelfEmployeedIncomeProof", SelfEmployeedIncomeProof);
+  //     formData.append(
+  //       "SelfEmployeedSixMonthBankStatement",
+  //       SelfEmployeedSixMonthBankStatement
+  //     );
+  //     formData.append(
+  //       "SelfEmployeedOfficeAddressProof",
+  //       SelfEmployeedOfficeAddressProof
+  //     );
+  //     formData.append(
+  //       "SelfEmployeedProofofContinuityofBusiness",
+  //       SelfEmployeedProofofContinuityofBusiness
+  //     );
 
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforPersonalloan",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+  //     const leadApiCall = await axios({
+  //       method: "post",
+  //       url: "http://localhost:5000/api/v1/crm/createleadforPersonalloan",
+  //       data: formData,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
 
-      console.log(leadApiCall);
-    } catch (error) {
-      console.log(error);
-    }
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
-  };
+  //     console.log(leadApiCall);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   for (var pair of formData.entries()) {
+  //     console.log(pair[0] + ", " + pair[1]);
+  //   }
+  // };
 
   console.log(popupdata)
-console.log(service)
+console.log(serviceID )
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
+    <>
+    {popupdata &&   
     <div className="flex justify-center items-center">
       <form
         onSubmit={(e) => {
@@ -243,8 +275,10 @@ console.log(service)
                       className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                       for="grid-city"
                     >
-                      Proof Of Indentity*
+                      Proof Of Identity*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setIdentity(!identity)}><GrFormEdit/></p>
+                {identity &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -254,6 +288,7 @@ console.log(service)
                         setIndentity(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -262,6 +297,8 @@ console.log(service)
                     >
                       Proof Of Residence*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setResident(!resident)}><GrFormEdit/></p>
+                {resident &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -270,6 +307,7 @@ console.log(service)
                       placeholder="Albuquerque"
                       onChange={(e) => setResidence(e.target.files[0])}
                     />
+                }
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -280,6 +318,8 @@ console.log(service)
                     >
                       Three Months Bank Statement*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setThreeMonths(!threeMonths)}><GrFormEdit/></p>
+                {threeMonths &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -289,6 +329,7 @@ console.log(service)
                         setBankStatement(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -297,6 +338,8 @@ console.log(service)
                     >
                       Three Month Salary Slip*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setMonthSalary(!monthSalary)}><GrFormEdit/></p>
+                {monthSalary &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -306,6 +349,7 @@ console.log(service)
                         setThreesalaryslip(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -316,6 +360,8 @@ console.log(service)
                     >
                       Two Passport Photo*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setPass(!pass)}><GrFormEdit/></p>
+                {pass &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -325,6 +371,7 @@ console.log(service)
                         setPassport(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                 </div>
               </div>
@@ -341,6 +388,8 @@ console.log(service)
                     >
                       Proof Of Indentity*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setProof(!proof)}><GrFormEdit/></p>
+                {proof &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -350,6 +399,7 @@ console.log(service)
                         setSEIndentity(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -376,6 +426,8 @@ console.log(service)
                     >
                       Income Proof*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setProofIncome(!proofIncome)}><GrFormEdit/></p>
+                {proofIncome &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -385,6 +437,7 @@ console.log(service)
                         setIncome(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -393,6 +446,8 @@ console.log(service)
                     >
                       Six Month Bank Statement*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setSixMon(!sixMon)}><GrFormEdit/></p>
+                {sixMon &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -402,6 +457,7 @@ console.log(service)
                         setSeSixBankStatement(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -412,6 +468,8 @@ console.log(service)
                     >
                       Office Address Proof*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setOffice(!office)}><GrFormEdit/></p>
+                {office &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -421,6 +479,7 @@ console.log(service)
                         setAddressproof(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -429,6 +488,8 @@ console.log(service)
                     >
                       Proof Of Continuity Of Business*
                     </label>
+                    <p className="cursor-pointer" onClick={()=>setContinuity(!continuity)}><GrFormEdit/></p>
+                {continuity &&
                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
@@ -438,6 +499,7 @@ console.log(service)
                         setBusiness(e.target.files[0]);
                       }}
                     />
+                }
                   </div>
                 </div>
               </div>
@@ -455,6 +517,8 @@ console.log(service)
         </div>
       </form>
     </div>
+  }
+    </>
   );
 };
 

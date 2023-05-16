@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 const GSTregistration = () => {
   const tokenData = localStorage.getItem("token");
@@ -51,6 +52,35 @@ const GSTregistration = () => {
   const [CompanyBankAccountDetails, setCompanyBankAccountDetails] =
     useState(null);
   const [CompanyAddressProof, setCompanyAddressProofs] = useState(null);
+  const [popupdata, setpopupdata] = useState("");
+  const [individualpan, setIndividualPan] = useState(false);
+  const [adr, setAdr] = useState(false);
+  const [bnkdtl, setBnkDetail] = useState(false);
+  const [hufpan, setHufPan] = useState(false);
+  const [hufphoto, setHufPhoto] = useState(false);
+  const [hufAdd, setHufAdd] = useState(false);
+  const [incorporation, setIncorporation] = useState(false);
+  const [authorized, setAuthorized] = useState(false);
+  const [signatory, setSignatory] = useState(false);
+  const [companyAd, setCompanyAd] = useState(false);
+
+  useEffect(() => {
+    console.log("inside this effect");
+    try {
+      axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getGSTregistrationbyid?GSTRegistrationId=${serviceID}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res);
+        setpopupdata(res.data.response);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [serviceID]);
 
   useEffect(() => {
     if(role === "admin"){
@@ -60,69 +90,72 @@ const GSTregistration = () => {
     }
   }, [])
 
-  const handleLeadForm = async (e) => {
-    e.preventDefault();
+  // const handleLeadForm = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const formData = new FormData();
-      formData.append("clientId", client);
-      formData.append("loanAmount", LoanAmount);
-      formData.append("serviceId", serviceID);
-      formData.append("IndividualPanCard", IndividualPanCard);
-      formData.append("IndividualAdharCard", IndividualAdharCard);
-      formData.append("IndividualPhotograph", IndividualPhotograph);
-      formData.append(
-        "IndividualBankAccountDetails",
-        IndividualBankAccountDetails
-      );
-      formData.append("IndividualAddress", IndividualAddress);
-      formData.append("HUFPanCard", HUFPanCard);
-      formData.append("AdharcardOfKartaHUF", AdharcardOfKartaHUF);
-      formData.append("HUFPhotographOfTheOwner", HUFPhotographOfTheOwner);
-      formData.append("HUFBankAccountDetails", HUFBankAccountDetails);
-      formData.append("HUFAddressProof", HUFAddressProof);
-      formData.append("CompanyPanCard", CompanyPanCard);
-      formData.append(
-        "CompanyCertificateOfIncorporation",
-        CompanyCertificateOfIncorporation
-      );
-      formData.append(
-        "CompanyArticlesOfAssoication",
-        CompanyArticlesOfAssoication
-      );
-      formData.append(
-        "CompanyPanCardOfAuthorizedSignature",
-        CompanyPanCardOfAuthorizedSignature
-      );
-      formData.append(
-        "CompanyAdharCardOfAuthorizedSignature",
-        CompanyAdharCardOfAuthorizedSignature
-      );
-      formData.append(
-        "CompanyBoardresolutionappointingauthorizedsignatory",
-        CompanyBoardresolutionappointingauthorizedsignatory
-      );
-      formData.append("CompanyBankAccountDetails", CompanyBankAccountDetails);
-      formData.append("CompanyAddressProof", CompanyAddressProof);
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("clientId", client);
+  //     formData.append("loanAmount", LoanAmount);
+  //     formData.append("serviceId", serviceID);
+  //     formData.append("IndividualPanCard", IndividualPanCard);
+  //     formData.append("IndividualAdharCard", IndividualAdharCard);
+  //     formData.append("IndividualPhotograph", IndividualPhotograph);
+  //     formData.append(
+  //       "IndividualBankAccountDetails",
+  //       IndividualBankAccountDetails
+  //     );
+  //     formData.append("IndividualAddress", IndividualAddress);
+  //     formData.append("HUFPanCard", HUFPanCard);
+  //     formData.append("AdharcardOfKartaHUF", AdharcardOfKartaHUF);
+  //     formData.append("HUFPhotographOfTheOwner", HUFPhotographOfTheOwner);
+  //     formData.append("HUFBankAccountDetails", HUFBankAccountDetails);
+  //     formData.append("HUFAddressProof", HUFAddressProof);
+  //     formData.append("CompanyPanCard", CompanyPanCard);
+  //     formData.append(
+  //       "CompanyCertificateOfIncorporation",
+  //       CompanyCertificateOfIncorporation
+  //     );
+  //     formData.append(
+  //       "CompanyArticlesOfAssoication",
+  //       CompanyArticlesOfAssoication
+  //     );
+  //     formData.append(
+  //       "CompanyPanCardOfAuthorizedSignature",
+  //       CompanyPanCardOfAuthorizedSignature
+  //     );
+  //     formData.append(
+  //       "CompanyAdharCardOfAuthorizedSignature",
+  //       CompanyAdharCardOfAuthorizedSignature
+  //     );
+  //     formData.append(
+  //       "CompanyBoardresolutionappointingauthorizedsignatory",
+  //       CompanyBoardresolutionappointingauthorizedsignatory
+  //     );
+  //     formData.append("CompanyBankAccountDetails", CompanyBankAccountDetails);
+  //     formData.append("CompanyAddressProof", CompanyAddressProof);
 
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforgstregistration",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+  //     const leadApiCall = await axios({
+  //       method: "post",
+  //       url: "http://localhost:5000/api/v1/crm/createleadforgstregistration",
+  //       data: formData,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
 
-      console.log(leadApiCall);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     console.log(leadApiCall);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
+  console.log(popupdata)
   return (
+    <>
+    {popupdata &&
     <div className="flex justify-center items-center">
       <form
         onSubmit={(e) => {
@@ -142,10 +175,11 @@ const GSTregistration = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="grid-first-name"
               type="number"
-              placeholder="Jane"
+              placeholder=""
               onChange={(e) => {
                 setLoanAmount(e.target.value);
               }}
+              defaultValue={popupdata.LoanAmount}
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -155,7 +189,7 @@ const GSTregistration = () => {
             >
               My Client*
             </label>
-            <div className="relative">
+            {/* <div className="relative">
               <select
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
@@ -186,7 +220,17 @@ const GSTregistration = () => {
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                 </svg>
               </div>
-            </div>
+            </div> */}
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder=""
+              onChange={(e) => {
+                setClient(e.target.value);
+              }}
+              defaultValue={popupdata.client.first_name}
+            />
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -201,34 +245,58 @@ const GSTregistration = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="text"
-            //   defaultValue={service}
+              defaultValue={popupdata.service.service_name}
               readOnly
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.IndividualPanCard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
             >
               Individual Pan Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setIndividualPan(!individualpan)}><GrFormEdit/></p>
+                {individualpan &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
-              type="text"
+              type="file"
             //   defaultValue={service}
+            onChange={(e)=>setIndividualPanCard(e.target.files[0])}
               readOnly
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.IndividualAdharCard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Individual Adhar Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAdr(!adr)}><GrFormEdit/></p>
+                {adr &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -238,8 +306,18 @@ const GSTregistration = () => {
                 setIndividualAdharCard(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.IndividualPhotograph.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -259,12 +337,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.IndividualBankAccountDetails.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Individual Bank Account Details*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBnkDetail(!bnkdtl)}><GrFormEdit/></p>
+                {bnkdtl &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -274,8 +363,18 @@ const GSTregistration = () => {
                 setIndividualBankAccountDetails(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.IndividualAddress.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -295,12 +394,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.HUFPanCard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               HUF Pan Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setHufPan(!hufpan)}><GrFormEdit/></p>
+                {hufpan &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -310,8 +420,18 @@ const GSTregistration = () => {
                 setHUFPanCard(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.AdharcardOfKartaHUF.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -331,12 +451,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.HUFPhotographOfTheOwner.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               HUF Photograph Of The Owner*
             </label>
+            <p className="cursor-pointer" onClick={()=>setHufPhoto(!hufphoto)}><GrFormEdit/></p>
+                {hufphoto &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -346,8 +477,18 @@ const GSTregistration = () => {
                 setHUFPhotographOfTheOwner(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.HUFBankAccountDetails.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -367,12 +508,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.HUFAddressProof.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               HUF Address Proof*
             </label>
+            <p className="cursor-pointer" onClick={()=>setHufAdd(!hufAdd)}><GrFormEdit/></p>
+                {hufAdd &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -382,8 +534,18 @@ const GSTregistration = () => {
                 setHUFAddressProof(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyPanCard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -403,12 +565,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyCertificateOfIncorporation.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Company Certificate Of Incorporation*
             </label>
+            <p className="cursor-pointer" onClick={()=>setIncorporation(!incorporation)}><GrFormEdit/></p>
+                {incorporation &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -418,8 +591,18 @@ const GSTregistration = () => {
                 setCompanyCertificateOfIncorporation(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyArticlesOfAssoication.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -439,12 +622,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyPanCardOfAuthorizedSignature.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Company Pan Card Of Authorized Signature*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAuthorized(!authorized)}><GrFormEdit/></p>
+                {authorized &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -454,8 +648,18 @@ const GSTregistration = () => {
                 setCompanyPanCardOfAuthorizedSignature(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyAdharCardOfAuthorizedSignature.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -475,12 +679,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyBoardresolutionappointingauthorizedsignatory.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Company Board resolution appointing authorized signatory*
             </label>
+            <p className="cursor-pointer" onClick={()=>setSignatory(!signatory)}><GrFormEdit/></p>
+                {signatory &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -492,8 +707,18 @@ const GSTregistration = () => {
                 );
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyBankAccountDetails.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
@@ -513,12 +738,23 @@ const GSTregistration = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          {popupdata && (
+              <img
+                src={`http://localhost:5000/${popupdata.CompanyAddressProof.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Company Address Proof*
             </label>
+            <p className="cursor-pointer" onClick={()=>setCompanyAd(!companyAd)}><GrFormEdit/></p>
+                {companyAd &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -528,6 +764,7 @@ const GSTregistration = () => {
                 setCompanyAddressProofs(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
 
@@ -541,6 +778,8 @@ const GSTregistration = () => {
         </div>
       </form>
     </div>
+  }
+    </>
   );
 };
 

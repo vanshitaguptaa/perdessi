@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 
 
@@ -25,6 +26,12 @@ const CreditCard = () => {
   const [ThreeMonthsSalarySlip, setThreeMonthsSalarySlip] = useState(null);
   const [SixMonthsBankStatement, setSixMonthsBankStatement] = useState(null);
   const [FormSixteen, setFormSixteen] = useState(null);
+  const [SixBnk, setSixBnk] = useState(false);
+  const [thrsalary, setThrsalary] = useState(false);
+  const [pnCd, setPnCd] = useState(false);
+  const [adhrCd, setAdhrCd] = useState(false);
+  const [formSix, setFormSix] = useState(false);
+
 
   useEffect(() => {
     if(role === "admin"){
@@ -155,6 +162,8 @@ const CreditCard = () => {
             >
               Form Sixteen*
             </label>
+            <p className="cursor-pointer" onClick={()=>setFormSix(!formSix)}><GrFormEdit/></p>
+                {formSix &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -164,6 +173,7 @@ const CreditCard = () => {
                 setFormSixteen(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -174,6 +184,8 @@ const CreditCard = () => {
             >
               Aadhar Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAdhrCd(!adhrCd)}><GrFormEdit/></p>
+                {adhrCd &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -183,6 +195,7 @@ const CreditCard = () => {
                 setAadharCard(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -191,6 +204,8 @@ const CreditCard = () => {
             >
               Pan Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setPnCd(!pnCd)}><GrFormEdit/></p>
+                {pnCd &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -200,6 +215,7 @@ const CreditCard = () => {
                 setPanCard(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -210,6 +226,8 @@ const CreditCard = () => {
             >
               Three Months Salary Slip*
             </label>
+            <p className="cursor-pointer" onClick={()=>setThrsalary(!thrsalary)}><GrFormEdit/></p>
+                {thrsalary &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -219,6 +237,7 @@ const CreditCard = () => {
                 setThreeMonthsSalarySlip(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -227,6 +246,8 @@ const CreditCard = () => {
             >
               Six Months Bank Statement*
             </label>
+            <p className="cursor-pointer" onClick={()=>setSixBnk(!SixBnk)}><GrFormEdit/></p>
+                {SixBnk &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -236,6 +257,7 @@ const CreditCard = () => {
                 setSixMonthsBankStatement(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="mt-5 flex justify-center">

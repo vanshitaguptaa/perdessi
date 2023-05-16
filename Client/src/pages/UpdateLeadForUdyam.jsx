@@ -7,6 +7,7 @@ import {
 } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 const Udyam = () => {
   const tokenData = localStorage.getItem("token");
@@ -32,6 +33,14 @@ const Udyam = () => {
   const [InformationOfTheTurnOver, setInformationOfTheTurnOver] =
     useState(null);
   const [DuplicateBillOfSale, setDuplicateBillOfSaler] = useState(null);
+  const [adhar, setAadhar] = useState(false);
+  const [pan, setPan] = useState(false);
+  const [bankAccount, setBankAccount] = useState(false);
+  const [business, setBusiness] = useState(false);
+  const [activites, setActivites] = useState(false);
+  const [investment, setInvestment] = useState(false);
+  const [turnOver, setTurnOver] = useState(false);
+  const [bill, setBill] = useState(false);
 
   useEffect(() => {
     if (role === "admin") {
@@ -170,6 +179,8 @@ const Udyam = () => {
             >
               Aadhar Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAadhar(!adhar)}><GrFormEdit/></p>
+                {adhar &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -179,6 +190,7 @@ const Udyam = () => {
                 setAdharCard(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -187,6 +199,8 @@ const Udyam = () => {
             >
               Pan Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setPan(!pan)}><GrFormEdit/></p>
+                {pan &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -196,6 +210,7 @@ const Udyam = () => {
                 setPanCard(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -206,6 +221,8 @@ const Udyam = () => {
             >
               Bank Account Details*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBankAccount(!bankAccount)}><GrFormEdit/></p>
+                {bankAccount &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -215,6 +232,7 @@ const Udyam = () => {
                 setBankAccountDetails(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -223,6 +241,8 @@ const Udyam = () => {
             >
               Business Address*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBusiness(!business)}><GrFormEdit/></p>
+                {business &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -232,6 +252,7 @@ const Udyam = () => {
                 setBusinessAdress(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -242,6 +263,8 @@ const Udyam = () => {
             >
               Details Of Business Activites*
             </label>
+            <p className="cursor-pointer" onClick={()=>setActivites(!activites)}><GrFormEdit/></p>
+                {activites &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -251,6 +274,7 @@ const Udyam = () => {
                 setDetailsOfBusinessActivites(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -259,6 +283,8 @@ const Udyam = () => {
             >
               Information Of The Investment*
             </label>
+            <p className="cursor-pointer" onClick={()=>setInvestment(!investment)}><GrFormEdit/></p>
+                {investment &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -268,6 +294,7 @@ const Udyam = () => {
                 setInformationOfTheInvestment(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -278,6 +305,8 @@ const Udyam = () => {
             >
               Information Of The TurnOver*
             </label>
+            <p className="cursor-pointer" onClick={()=>setTurnOver(!turnOver)}><GrFormEdit/></p>
+                {turnOver &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -287,6 +316,7 @@ const Udyam = () => {
                 setInformationOfTheTurnOver(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -295,6 +325,8 @@ const Udyam = () => {
             >
               Duplicate Bill Of Saler*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBill(!bill)}><GrFormEdit/></p>
+                {bill &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -304,6 +336,7 @@ const Udyam = () => {
                 setDuplicateBillOfSaler(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
 
