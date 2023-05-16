@@ -38,7 +38,7 @@ const MyleadTable = ({ loandetail, length }) => {
 
   const handlenavigate = useNavigate();
 
-  console.log(loandetail)
+  console.log(loandetail);
 
   // Function for Fetch Data in Pop
   const Fetchpopdata = async (id, serviceName) => {
@@ -318,7 +318,7 @@ const MyleadTable = ({ loandetail, length }) => {
     }
   };
 
-  console.log(loandetail)
+  console.log(loandetail);
 
   if (authScreen) {
     return (
@@ -348,13 +348,7 @@ const MyleadTable = ({ loandetail, length }) => {
       ) : (
         <>
           <div className="flex flex-row gap-6">
-            {loandetail === "There is no data with this number" ? (
-              <div className="w-10/12 bg-red-400 text-center h-fit rounded-2xl">
-                <h1 className="py-10 px-10 text-5xl text-white">
-                  NO DATA FOUND
-                </h1>
-              </div>
-            ) : (
+            {loandetail &&
               loandetail.map((e, id) => {
                 return (
                   <div key={e._id}>
@@ -422,39 +416,35 @@ const MyleadTable = ({ loandetail, length }) => {
                         >
                           Delete
                         </button>
-                      </Link>
-                      <button
-                        type="button"
-                        className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                        data-te-ripple-init
-                        data-te-ripple-color="light"
-                      >
-                        Delete
-                      </button>
-                      {role == "admin"?
-                        <Link
-                        to={`/transferlead`}
-                        state={{ serviceID: e._id , number : e.client.phone, employee: e.employee.first_name + e.employee.last_name }}
-                      >
-                        <button
-                          type="button"
-                          className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                          data-te-ripple-init
-                          data-te-ripple-color="light"
-                        >
-                          Transfer Lead 
-                        </button>
-                      </Link>:<></>
-                      }
+                        {role == "admin" ? (
+                          <Link
+                            to={`/transferlead`}
+                            state={{
+                              serviceID: e._id,
+                              number: e.client.phone,
+                              employee:
+                                e.employee.first_name + e.employee.last_name,
+                            }}
+                          >
+                            <button
+                              type="button"
+                              className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                              data-te-ripple-init
+                              data-te-ripple-color="light"
+                            >
+                              Transfer Lead
+                            </button>
+                          </Link>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                       <div className="border-t-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50"></div>
-
                     </div>
                     <div className="border-t-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50"></div>
                   </div>
                 );
-              })
-            )}
+              })}
           </div>
         </>
       )}
