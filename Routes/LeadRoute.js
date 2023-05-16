@@ -78,6 +78,19 @@ import {
   getShopActForAdmin,
   getUdyamCertificateForAdmin,
   getFoodLisenceForAdmin,
+  getMortgageLoanByMobileNumberForAdmin,
+  getBusinessLoanByMobileNumberForAdmin,
+  getCarLoanByMobileNumberForAdmin,
+  getCreditCardByMobileForAdmin,
+  getFoodLisencebyMobileNumberForAdmin,
+  getGSTRegistrationByMobileNumberForAdmin,
+  getGoldLoanByMobileNumberForAdmin,
+  getHomeLoanLeadByMobileNoForAdmin,
+  getNewCorrectionPanApplicationbyMobileNumberForAdmin,
+  getPassportByMobileNumberForAdmin,
+  getPersonalLoanByMobileNumberForAdmin,
+  getShopActByMobileNumberForAdmin,
+  getUdyamCertificateByMobileNumberForAdmin,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -681,5 +694,72 @@ Route.get(
   getUdyamCertificateById
 );
 Route.get("/getfoodlisenceforadminbyId", adminTokenCheck, getFoodLisencebyId);
+
+// get mobile number for admin
+Route.get(
+  "/gethomeloanbymobileforadmin",
+  adminTokenCheck,
+  getHomeLoanLeadByMobileNoForAdmin
+);
+Route.get(
+  "/getbusinessloanbymobileforadmin",
+  adminTokenCheck,
+  getBusinessLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getpersonalloanbymobileforadmin",
+  adminTokenCheck,
+  getPersonalLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getmortgageloanbymobileforadmin",
+  adminTokenCheck,
+  getMortgageLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getgoldloanbymobileforadmin",
+  adminTokenCheck,
+  getGoldLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getcreditcardloanbymobileforadmin",
+  adminTokenCheck,
+  getCreditCardByMobileForAdmin
+);
+Route.get(
+  "/getcarloanbymobileforadmin",
+  adminTokenCheck,
+  getCarLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getnewcorrectionpanapplicationbymobileforadmin",
+  adminTokenCheck,
+  getNewCorrectionPanApplicationbyMobileNumberForAdmin
+);
+Route.get(
+  "/getpassportbymobileforadmin",
+  adminTokenCheck,
+  getPassportByMobileNumberForAdmin
+);
+Route.get(
+  "/getgstregistrationbymobileforadmin",
+  adminTokenCheck,
+  getGSTRegistrationByMobileNumberForAdmin
+);
+Route.get(
+  "/getshopactbymobileforadmin",
+  adminTokenCheck,
+  getShopActByMobileNumberForAdmin
+);
+Route.get(
+  "/getudyamcertificatebymobileforadmin",
+  adminTokenCheck,
+  getUdyamCertificateByMobileNumberForAdmin
+);
+Route.get(
+  "/getfoodlisencebymobilenumberforadmin",
+  adminTokenCheck,
+  getFoodLisencebyMobileNumberForAdmin
+);
 
 export default Route;

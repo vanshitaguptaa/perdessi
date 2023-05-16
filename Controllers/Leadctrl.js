@@ -2019,7 +2019,7 @@ export const getGoldLoanByMobileNumber = async (req, res) => {
     const queryString = mobileNo.toString();
     const regex = new RegExp(queryString, "i");
 
-    const savedMortgageLoan = await MortgageLoanModel.find({
+    const savedMortgageLoan = await GoldLoanModel.find({
       employee: req.user._id,
     })
       .populate(["service", "client", "employee"])
@@ -2724,6 +2724,584 @@ export const getFoodLisenceForAdmin = async (req, res) => {
       response: savedFoodLisence,
     });
   } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+// get lead by mobile number to admin
+
+export const getHomeLoanLeadByMobileNoForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedHomeLoan = await HomeLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedHomeLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedBusinessLoan = await BusinessloanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedBusinessLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedPersonalLoan = await PersonalLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedPersonalLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getMortgageLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedMortgageLoan = await MortgageLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedMortgageLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedMortgageLoan = await GoldLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedMortgageLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardByMobileForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedCreditCard = await CreditCardModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedCreditCard.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedCarLoan = await CarLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedCarLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationbyMobileNumberForAdmin = async (
+  req,
+  res
+) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedNewCcrrectionPanApplication =
+      await NewCorrectionPanApplicationModel.find({})
+        .populate(["service", "client", "employee"])
+        .exec();
+
+    const matchingEmployee = savedNewCcrrectionPanApplication.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedPassport = await PassportModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedPassport.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedGSTResgistration = await GSTResgistraionModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedGSTResgistration.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedShopAct = await ShopActModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedShopAct.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedUdyamCertificate = await UdyamCertificateModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedUdyamCertificate.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisencebyMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedFoodLisence = await FoodLisenceModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedFoodLisence.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
     return res
       .status(500)
       .json({ status: false, message: "something went wrong", err: error });

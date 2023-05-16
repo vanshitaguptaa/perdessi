@@ -235,19 +235,27 @@ function Myleadtbloutter() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }).then((res) => {});
+      }).then((res) => {
+        if (res.data.status) {
+          console.log(res.data.response);
+          setloandetail(res.data.response);
+        } else {
+          console.log(res.data.message);
+          setloandetail(res.data.message);
+        }
+      });
     }
     if (service === "Business Loan") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getbusinessloanbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getbusinessloanbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -257,14 +265,14 @@ function Myleadtbloutter() {
     if (service === "Mortgage  Loan") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getmortgageloanbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -274,14 +282,14 @@ function Myleadtbloutter() {
     if (service === "Home  Loan") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/gethomeloanbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -291,14 +299,14 @@ function Myleadtbloutter() {
     if (service === "Home Loan Balance Transfer") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/gethomeloanbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/gethomeloanbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -306,33 +314,38 @@ function Myleadtbloutter() {
       });
     }
     if (service === "Gold Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getgoldloanbymobile?mobileNo=${num}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
-        } else {
-          console.log(res.data.message);
-          setloandetail(res.data.message);
-        }
-      });
+      try {
+        axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getgoldloanbymobile?mobileNo=${number}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          if (res.data.status) {
+            console.log(res);
+            console.log(res.data.response);
+            setloandetail(res.data.response);
+          } else {
+            console.log(res.data.message);
+            setloandetail(res.data.message);
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
     if (service === "Credit Card") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getcreditcardloanbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getcreditcardloanbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -342,14 +355,14 @@ function Myleadtbloutter() {
     if (service === "New Correction Pan application") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplicationbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -359,14 +372,14 @@ function Myleadtbloutter() {
     if (service === "Shop Act") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getshopactbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getshopactbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -376,14 +389,14 @@ function Myleadtbloutter() {
     if (service === "passport") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getpassportbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getpassportbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -393,14 +406,14 @@ function Myleadtbloutter() {
     if (service === "GST registration application") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getgstregistrationbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getgstregistrationbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -410,14 +423,14 @@ function Myleadtbloutter() {
     if (service === "UDYAM Registration") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -427,14 +440,14 @@ function Myleadtbloutter() {
     if (service === "Car Loan") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getcarloanbymobile?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getcarloanbymobile?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -444,14 +457,14 @@ function Myleadtbloutter() {
     if (service === "Food Lisence") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getfoodlisencebymobilenumber?mobileNo=${num}`,
+        url: `http://localhost:5000/api/v1/crm/getfoodlisencebymobilenumber?mobileNo=${number}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
         if (res.data.status) {
-          console.log(res.data.savedLeads);
-          setloandetail(res.data.savedLeads);
+          console.log(res.data.response);
+          setloandetail(res.data.response);
         } else {
           console.log(res.data.message);
           setloandetail(res.data.message);
@@ -535,7 +548,7 @@ function Myleadtbloutter() {
                     </button>
                   </div>
                 </div>
-                <MyleadTable loandetail={loandetail}  length={length}/>
+                <MyleadTable loandetail={loandetail} length={length} />
               </div>
             </div>
           </div>
