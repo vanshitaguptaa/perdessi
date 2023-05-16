@@ -3307,3 +3307,393 @@ export const getFoodLisencebyMobileNumberForAdmin = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
+
+export const transferHomeLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await HomeLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferBusinessLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await BusinessloanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferPersonalLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await PersonalLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferMortgageLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await MortgageLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferGoldLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await GoldLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferCreditCardLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await CreditCardModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferCarLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await CarLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferGSTLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await GSTResgistraionModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferPassportLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await PassportModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferNewCorrectionPanApplicatonLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await NewCorrectionPanApplicationModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferShopActLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await ShopActModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferUdyamCertificate = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await UdyamCertificateModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferFoodLisenceLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await FoodLisenceModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};

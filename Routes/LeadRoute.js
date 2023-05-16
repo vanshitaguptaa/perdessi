@@ -91,6 +91,19 @@ import {
   getPersonalLoanByMobileNumberForAdmin,
   getShopActByMobileNumberForAdmin,
   getUdyamCertificateByMobileNumberForAdmin,
+  transferHomeLoanLead,
+  transferBusinessLoanLead,
+  transferPersonalLoanLead,
+  transferMortgageLoanLead,
+  transferGoldLoanLead,
+  transferCreditCardLead,
+  transferGSTLead,
+  transferNewCorrectionPanApplicatonLead,
+  transferPassportLead,
+  transferShopActLead,
+  transferUdyamCertificate,
+  transferFoodLisenceLead,
+  transferCarLoanLead,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -761,5 +774,32 @@ Route.get(
   adminTokenCheck,
   getFoodLisencebyMobileNumberForAdmin
 );
+
+// transfer lead to another employee
+Route.patch("/transferhomelead", adminTokenCheck, transferHomeLoanLead);
+Route.patch("/transferbusinesslead", adminTokenCheck, transferBusinessLoanLead);
+Route.patch("/transferpersonallead", adminTokenCheck, transferPersonalLoanLead);
+Route.patch("/transfermortgagelead", adminTokenCheck, transferMortgageLoanLead);
+Route.patch("/transfergoldlead", adminTokenCheck, transferGoldLoanLead);
+Route.patch("/transfercreditcardlead", adminTokenCheck, transferCreditCardLead);
+Route.patch("/transferGSTlead", adminTokenCheck, transferGSTLead);
+Route.patch(
+  "/transfernewcorrectionpanapplication",
+  adminTokenCheck,
+  transferNewCorrectionPanApplicatonLead
+);
+Route.patch("/transferpassportlead", adminTokenCheck, transferPassportLead);
+Route.patch("/transfershopactlead", adminTokenCheck, transferShopActLead);
+Route.patch(
+  "/transferudyamcertificate",
+  adminTokenCheck,
+  transferUdyamCertificate
+);
+Route.patch(
+  "/transferfoodlisencelead",
+  adminTokenCheck,
+  transferFoodLisenceLead
+);
+Route.patch("/transfercarlead", adminTokenCheck, transferCarLoanLead);
 
 export default Route;
