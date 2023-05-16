@@ -93,7 +93,7 @@ function App() {
         <Route exact path="/Allclient" element={<AllClient />} />
         <Route exact path="/mylead/service/:service" element={<Myleadtbloutter />} />
         <Route exact path="/allLead/service/:service" element={<AllLeadtable />} />
-        <Route exact path="/transferlead" element={<Transferlead />} />
+        <Route exact path="/transferlead/:id" element={<Transferlead />} />
         <Route exact path="/allemployee" element={<Allemployees />} />
         <Route exact path="/updateallemployee/:id" element={<Updateallempolyee />} />
         <Route exact path="/leadform" element={<Leadform />} />
