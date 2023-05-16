@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 const Business = () => {
   const tokenData = localStorage.getItem("token");
@@ -40,103 +41,138 @@ const Business = () => {
   const [TrueCopyArticleofAssociation, setTrueCopyArticleofAssociation] =
     useState(null);
   const [TrueCopyBoardResolution, setTrueCopyBoardResolution] = useState(null);
+  const [popupdata, setpopupdata] = useState([]);
+  const [show, setShow] = useState(false);
+  const [address, setAddress] = useState(false);
+  const [pan, setPan] = useState(false);
+  const [iproof, setIproof] = useState(false);
+  const [itr, setItr] = useState(false);
+  const [itr2, setItr2] = useState(false);
+  const [trade, setTrade] = useState(false);
+  const [establish, setEstablish] = useState(false);
+  const [tax, setTax] = useState(false);
+  const [decleration, setDecleration] = useState(false);
+  const [partner, setPartner] = useState(false);
+  const [memorandom, setMemorandom] = useState(false);
+  const [six, setSix] = useState(false);
+
 
   console.log(LoanAmount);
   console.log(serviceID);
 
+  // useEffect(() => {
+  //   console.log("inside this effect");
+  //   try {
+  //     axios({
+  //       method: "get",
+  //       url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${serviceID}`,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }).then((res) => {
+  //       console.log(res);
+  //       setpopupdata(res.data.response);
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [serviceID]);
+
   useEffect(() => {
-    if(role === "admin"){
-     setClientData(clientAdminState.clientAdmin.already);
-    }else if (clientState.isError === false) {
-     setClientData(clientState.clients.clients)
+    if (role === "admin") {
+      setClientData(clientAdminState.clientAdmin.already);
+    } else if (clientState.isError === false) {
+      setClientData(clientState.clients.clients);
     }
-  }, [])
+  }, []);
 
-  const handleLeadForm = async (e) => {
-    e.preventDefault();
+  // const handleLeadForm = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const formData = new FormData();
-      formData.append("clientId", client);
-      formData.append("loanAmount", LoanAmount);
-    //   formData.append("serviceId", serviceId);
-      formData.append("PanCard", PanCard);
-      formData.append("IdentityProof", IdentityProof);
-      formData.append("AddressProof", AddressProof);
-      formData.append("SixMonthBankStatement", SixMonthBankStatement);
-      formData.append("LatestITR", LatestITR);
-      formData.append("ProofOfContinuationITR", ProofOfContinuationITR);
-      formData.append(
-        "ProofOfContinuationEstablishment",
-        ProofOfContinuationEstablishment
-      );
-      formData.append(
-        "ProofOfContinuationTradeLiscense",
-        ProofOfContinuationTradeLiscense
-      );
-      formData.append(
-        "ProofOfContinuationSalesTax",
-        ProofOfContinuationSalesTax
-      );
-      formData.append("PropDeclaration", PropDeclaration);
-      formData.append("PartnershipDeed", PartnershipDeed);
-      formData.append("TrueCopyMemorandum", TrueCopyMemorandum);
-      formData.append(
-        "TrueCopyArticleofAssociation",
-        TrueCopyArticleofAssociation
-      );
-      formData.append("TrueCopyBoardResolution", TrueCopyBoardResolution);
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("clientId", client);
+  //     formData.append("loanAmount", LoanAmount);
+  //   //   formData.append("serviceId", serviceId);
+  //     formData.append("PanCard", PanCard);
+  //     formData.append("IdentityProof", IdentityProof);
+  //     formData.append("AddressProof", AddressProof);
+  //     formData.append("SixMonthBankStatement", SixMonthBankStatement);
+  //     formData.append("LatestITR", LatestITR);
+  //     formData.append("ProofOfContinuationITR", ProofOfContinuationITR);
+  //     formData.append(
+  //       "ProofOfContinuationEstablishment",
+  //       ProofOfContinuationEstablishment
+  //     );
+  //     formData.append(
+  //       "ProofOfContinuationTradeLiscense",
+  //       ProofOfContinuationTradeLiscense
+  //     );
+  //     formData.append(
+  //       "ProofOfContinuationSalesTax",
+  //       ProofOfContinuationSalesTax
+  //     );
+  //     formData.append("PropDeclaration", PropDeclaration);
+  //     formData.append("PartnershipDeed", PartnershipDeed);
+  //     formData.append("TrueCopyMemorandum", TrueCopyMemorandum);
+  //     formData.append(
+  //       "TrueCopyArticleofAssociation",
+  //       TrueCopyArticleofAssociation
+  //     );
+  //     formData.append("TrueCopyBoardResolution", TrueCopyBoardResolution);
 
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforBusinessLoan",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+  //     const leadApiCall = await axios({
+  //       method: "post",
+  //       url: "http://localhost:5000/api/v1/crm/createleadforBusinessLoan",
+  //       data: formData,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
 
-      console.log(leadApiCall);
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
+  //     console.log(leadApiCall);
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // };
+  console.log(popupdata);
   return (
-    <div className="flex justify-center items-center">
-      <form
-        onSubmit={(e) => {
-          handleLeadForm(e);
-        }}
-        className="w-full max-w-lg"
-      >
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
-            >
-              Loan Amount*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
-              type="number"
-              placeholder="Jane"
-              onChange={(e) => {
-                setLoanAmount(e.target.value);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
-            >
-              My Client*
-            </label>
-            <div className="relative">
+    
+        <div className="flex justify-center items-center">
+          <form
+            onSubmit={(e) => {
+              handleLeadForm(e);
+            }}
+            className="w-full max-w-lg"
+          >
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
+                >
+                  Loan Amount*
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="grid-first-name"
+                  type="number"
+                  placeholder=""
+                  onChange={(e) => {
+                    setLoanAmount(e.target.value);
+                  }}
+                  // defaultValue={popupdata.LoanAmount}
+                />
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-state"
+                >
+                  My Client*
+                </label>
+                {/* <div className="relative">
               <select
                 className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state"
@@ -167,271 +203,322 @@ const Business = () => {
                   <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                 </svg>
               </div>
+            </div> */}
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="grid-first-name"
+                  type="number"
+                  placeholder=""
+                  onChange={(e) => {
+                    setClient(e.target.value);
+                  }}
+                  // defaultValue={popupdata.client.first_name}
+                />
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-zip"
-            >
-              Service*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-zip"
-              type="text"
-            //   defaultValue={service}
-              readOnly
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              True Copy Article Of Association*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setTrueCopyArticleofAssociation(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Pan Card*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setPanCard(e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-zip"
-            >
-              Identity Proof*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-zip"
-              type="file"
-              placeholder=""
-              onChange={(e) => {
-                setIdentityProof(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Address Proof*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setAddressProof(e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Six Month Salary Slip*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setSixMonthBankStatement(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Latest ITR*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setLatestITR(e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Proof Of Continuation ITR*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setProofOfContinuationITR(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Proof Of Continuation Trade Liscense*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setProofOfContinuationTradeLiscense(e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Proof Of Continuation Establishment*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setProofOfContinuationEstablishment(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Proof Of Continuation Sales Tax*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setProofOfContinuationSalesTax(e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Prop Declaration*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setPropDeclaration(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              Partnership Deed*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setPartnershipDeed(e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-city"
-            >
-              True Copy Memorandum*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setTrueCopyBoardResolution(e.target.files[0]);
-              }}
-            />
-          </div>
-        </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-zip"
+                >
+                  Service*
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-zip"
+                  type="text"
+                  // defaultValue={popupdata.service.service_name}
+                  readOnly
+                />
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  True Copy Article Of Association*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setShow(!show)}><GrFormEdit/></p>
+                {show &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setTrueCopyArticleofAssociation(e.target.files[0]);
+                  }}
+                />
+                }
+                
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Pan Card*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setPan(!pan)}><GrFormEdit/></p>
+                {pan &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setPanCard(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-zip"
+                >
+                  Identity Proof*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setIproof(!iproof)}><GrFormEdit/></p>
+                {iproof &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-zip"
+                  type="file"
+                  placeholder=""
+                  onChange={(e) => {
+                    setIdentityProof(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Address Proof*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setAddress(!address)}><GrFormEdit/></p>
+                {address &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setAddressProof(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Six Month Salary Slip*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setSix(!six)}><GrFormEdit/></p>
+                {six &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setSixMonthBankStatement(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Latest ITR*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setItr(!itr)}><GrFormEdit/></p>
+                {itr &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setLatestITR(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Proof Of Continuation ITR*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setItr2(!itr2)}><GrFormEdit/></p>
+                {itr2 &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setProofOfContinuationITR(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Proof Of Continuation Trade Liscense*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setTrade(!trade)}><GrFormEdit/></p>
+                {trade &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setProofOfContinuationTradeLiscense(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Proof Of Continuation Establishment*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setEstablish(!establish)}><GrFormEdit/></p>
+                {establish &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setProofOfContinuationEstablishment(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Proof Of Continuation Sales Tax*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setTax(!tax)}><GrFormEdit/></p>
+                {tax &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setProofOfContinuationSalesTax(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Prop Declaration*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setDecleration(!decleration)}><GrFormEdit/></p>
+                {decleration &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setPropDeclaration(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+            </div>
+            <div className="flex flex-wrap -mx-3 mb-2">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  Partnership Deed*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setPartner(!partner)}><GrFormEdit/></p>
+                {partner &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setPartnershipDeed(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-city"
+                >
+                  True Copy Memorandum*
+                </label>
+                <p className="cursor-pointer" onClick={()=>setMemorandom(!memorandom)}><GrFormEdit/></p>
+                {memorandom &&
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setTrueCopyBoardResolution(e.target.files[0]);
+                  }}
+                />
+                }
+              </div>
+            </div>
 
-        <div className="mt-5 flex justify-center">
-          <button
-            type="submit"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            SUBMIT
-          </button>
+            <div className="mt-5 flex justify-center">
+              <button
+                type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                SUBMIT
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+     
   );
 };
 

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { GrFormEdit } from "react-icons/Gr";
 
 
 const UpdateLeadForHomeLoan = () => {
@@ -51,6 +52,29 @@ const UpdateLeadForHomeLoan = () => {
     approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed,
     setApprovedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed,
   ] = useState(null);
+  const [employeeIdentity, setEmployeeIdentity] = useState(false);
+  const [loanApp, setLoanApp] = useState(false);
+  const [proofOfId, setProofOfId] = useState(false);
+  const [residency, setResidency] = useState(false);
+  const [construction, setConstruction] = useState(false);
+  const [agreement, setAgreement] = useState(false);
+  const [allotment, setAllotment] = useState(false);
+  const [occupancy, setOccupancy] = useState(false);
+  const [share, setShare] = useState(false);
+  const [bill, setBill] = useState(false);
+  const [electBill, setElectBill] = useState(false);
+  const [property, setProperty] = useState(false);
+  const [plan, setPlan] = useState(false);
+  const [builder, setBuilder] = useState(false);
+  const [sixMonth, setSixMonth] = useState(false);
+  const [accountStatement, setAccountStatement] = useState(false);
+  const [threeMonth, setThreeMonth] = useState(false);
+  const [itReturn, setItReturn] = useState(false);
+  const [businessAd, setBusinessAd] = useState(false);
+  const [yearIt, setYearIt] = useState(false);
+  const [lisence, setLisence] = useState(false);
+  const [tds, setTDS] = useState(false);
+  const [qualification, setQualification] = useState(false);
 
   useEffect(() => {
     if(role === "admin"){
@@ -60,66 +84,66 @@ const UpdateLeadForHomeLoan = () => {
     }
   }, [])
 
-  const handleLeadForm = async (e) => {
-    e.preventDefault();
+  // const handleLeadForm = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const formData = new FormData();
-      formData.append("clientId", client);
-      formData.append("loanAmount", LoanAmount);
-      // formData.append("serviceId", serviceId);
-      formData.append("employeeIdentityCard", employeeIdentityCard);
-      formData.append("loanApplication", loanApplication);
-      formData.append("proofOfIdentity", proofOfIdentity);
-      formData.append("proofOfResidency", proofOfResidency);
-      formData.append("permissionOfConstruction", permissionOfConstruction);
-      formData.append(
-        "registeredAgreementForSales",
-        registeredAgreementForSales
-      );
-      formData.append("allotmentletter", allotmentletter);
-      formData.append("stampedAgreement", stampedAgreement);
-      formData.append("occupancyCertificate", occupancyCertificate);
-      formData.append("shareCertification", shareCertification);
-      formData.append("maintainanceBill", maintainanceBill);
-      formData.append("electricityBill", electricityBill);
-      formData.append("propertyTaxReceipt", propertyTaxReceipt);
-      formData.append("paymentMadetoBuilderRecept", paymentMadetoBuilderRecept);
-      formData.append("sixMonthBankStatement", sixMonthBankStatement);
-      formData.append("loanAccountStatement", loanAccountStatement);
-      formData.append("threeMonthSalarySlip", threeMonthSalarySlip);
-      formData.append(
-        "twoYearOfFormsixteenOrItReturn",
-        twoYearOfFormsixteenOrItReturn
-      );
-      formData.append("businessAddressProof", businessAddressProof);
-      formData.append("ThreeYearItReturn", ThreeYearItReturn);
-      formData.append("businessLisenceDetail", businessLisenceDetail);
-      formData.append("TDScertification", TDScertification);
-      formData.append(
-        "certificationOfQualification",
-        certificationOfQualification
-      );
-      formData.append(
-        "approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed",
-        approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed
-      );
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append("clientId", client);
+  //     formData.append("loanAmount", LoanAmount);
+  //     // formData.append("serviceId", serviceId);
+  //     formData.append("employeeIdentityCard", employeeIdentityCard);
+  //     formData.append("loanApplication", loanApplication);
+  //     formData.append("proofOfIdentity", proofOfIdentity);
+  //     formData.append("proofOfResidency", proofOfResidency);
+  //     formData.append("permissionOfConstruction", permissionOfConstruction);
+  //     formData.append(
+  //       "registeredAgreementForSales",
+  //       registeredAgreementForSales
+  //     );
+  //     formData.append("allotmentletter", allotmentletter);
+  //     formData.append("stampedAgreement", stampedAgreement);
+  //     formData.append("occupancyCertificate", occupancyCertificate);
+  //     formData.append("shareCertification", shareCertification);
+  //     formData.append("maintainanceBill", maintainanceBill);
+  //     formData.append("electricityBill", electricityBill);
+  //     formData.append("propertyTaxReceipt", propertyTaxReceipt);
+  //     formData.append("paymentMadetoBuilderRecept", paymentMadetoBuilderRecept);
+  //     formData.append("sixMonthBankStatement", sixMonthBankStatement);
+  //     formData.append("loanAccountStatement", loanAccountStatement);
+  //     formData.append("threeMonthSalarySlip", threeMonthSalarySlip);
+  //     formData.append(
+  //       "twoYearOfFormsixteenOrItReturn",
+  //       twoYearOfFormsixteenOrItReturn
+  //     );
+  //     formData.append("businessAddressProof", businessAddressProof);
+  //     formData.append("ThreeYearItReturn", ThreeYearItReturn);
+  //     formData.append("businessLisenceDetail", businessLisenceDetail);
+  //     formData.append("TDScertification", TDScertification);
+  //     formData.append(
+  //       "certificationOfQualification",
+  //       certificationOfQualification
+  //     );
+  //     formData.append(
+  //       "approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed",
+  //       approvedPlanCopyRegisteredDevelopmentAgreementofthebuilderConveyanceDeed
+  //     );
 
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforhomeloan",
-        data: formData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
+  //     const leadApiCall = await axios({
+  //       method: "post",
+  //       url: "http://localhost:5000/api/v1/crm/createleadforhomeloan",
+  //       data: formData,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
 
-      console.log(leadApiCall);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     console.log(leadApiCall);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
@@ -214,6 +238,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Employee Identity Card*
             </label>
+            <p className="cursor-pointer" onClick={()=>setEmployeeIdentity(!employeeIdentity)}><GrFormEdit/></p>
+                {employeeIdentity &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -223,6 +249,7 @@ const UpdateLeadForHomeLoan = () => {
                 setEmployeeIdentityCard(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -231,6 +258,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Loan Application*
             </label>
+            <p className="cursor-pointer" onClick={()=>setLoanApp(!loanApp)}><GrFormEdit/></p>
+                {loanApp &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -240,6 +269,7 @@ const UpdateLeadForHomeLoan = () => {
                 setLoanApplication(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -250,6 +280,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Proof Of Identity*
             </label>
+            <p className="cursor-pointer" onClick={()=>setProofOfId(!proofOfId)}><GrFormEdit/></p>
+                {proofOfId &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -259,6 +291,7 @@ const UpdateLeadForHomeLoan = () => {
                 setProofOfIdentity(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -267,6 +300,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Proof Of Residency*
             </label>
+            <p className="cursor-pointer" onClick={()=>setResidency(!residency)}><GrFormEdit/></p>
+                {residency &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -276,6 +311,7 @@ const UpdateLeadForHomeLoan = () => {
                 setProofOfResidency(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -286,6 +322,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Permission Of Construction*
             </label>
+            <p className="cursor-pointer" onClick={()=>setConstruction(!construction)}><GrFormEdit/></p>
+                {construction &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -295,6 +333,7 @@ const UpdateLeadForHomeLoan = () => {
                 setPermissionOfConstruction(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -303,6 +342,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Registered Agreement For Sales*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAgreement(!agreement)}><GrFormEdit/></p>
+                {agreement &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -312,6 +353,7 @@ const UpdateLeadForHomeLoan = () => {
                 setRegisteredAgreementForSales(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -322,6 +364,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Allotment Letter*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAllotment(!allotment)}><GrFormEdit/></p>
+                {allotment &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -331,6 +375,7 @@ const UpdateLeadForHomeLoan = () => {
                 setAllotmentletter(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -358,6 +403,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Occupancy Certificate*
             </label>
+            <p className="cursor-pointer" onClick={()=>setOccupancy(!occupancy)}><GrFormEdit/></p>
+                {occupancy &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -367,6 +414,7 @@ const UpdateLeadForHomeLoan = () => {
                 setOccupancyCertificate(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -375,6 +423,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Share Certification*
             </label>
+            <p className="cursor-pointer" onClick={()=>setShare(!share)}><GrFormEdit/></p>
+                {share &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -384,6 +434,7 @@ const UpdateLeadForHomeLoan = () => {
                 setShareCertification(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -394,6 +445,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Maintainance Bill*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBill(!bill)}><GrFormEdit/></p>
+                {bill &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -403,6 +456,7 @@ const UpdateLeadForHomeLoan = () => {
                 setMaintainanceBill(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -411,6 +465,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Electricity Bill*
             </label>
+            <p className="cursor-pointer" onClick={()=>setElectBill(!electBill)}><GrFormEdit/></p>
+                {electBill &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -420,6 +476,7 @@ const UpdateLeadForHomeLoan = () => {
                 setElectricityBill(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -430,6 +487,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Property Tax Receipt*
             </label>
+            <p className="cursor-pointer" onClick={()=>setProperty(!property)}><GrFormEdit/></p>
+                {property &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -439,6 +498,7 @@ const UpdateLeadForHomeLoan = () => {
                 setPropertyTaxReceipt(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -448,6 +508,8 @@ const UpdateLeadForHomeLoan = () => {
               Approved Plan Copy Registered Development Agreement Of The Builder
               Conveyance Deed*
             </label>
+            <p className="cursor-pointer" onClick={()=>setPlan(!plan)}><GrFormEdit/></p>
+                {plan &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -459,6 +521,7 @@ const UpdateLeadForHomeLoan = () => {
                 );
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -469,6 +532,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Payment Made To Builder Recept*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBuilder(!builder)}><GrFormEdit/></p>
+                {builder &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -478,6 +543,7 @@ const UpdateLeadForHomeLoan = () => {
                 setPaymentMadetoBuilderRecept(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -486,6 +552,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Six Month Bank Statement*
             </label>
+            <p className="cursor-pointer" onClick={()=>setSixMonth(!sixMonth)}><GrFormEdit/></p>
+                {sixMonth &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -495,6 +563,7 @@ const UpdateLeadForHomeLoan = () => {
                 setSixMonthBankStatement(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -505,6 +574,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Loan AccountStatement*
             </label>
+            <p className="cursor-pointer" onClick={()=>setAccountStatement(!accountStatement)}><GrFormEdit/></p>
+                {accountStatement &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -514,6 +585,7 @@ const UpdateLeadForHomeLoan = () => {
                 setLoanAccountStatement(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -522,6 +594,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Three Month Salary Slip*
             </label>
+            <p className="cursor-pointer" onClick={()=>setThreeMonth(!threeMonth)}><GrFormEdit/></p>
+                {threeMonth &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -531,6 +605,7 @@ const UpdateLeadForHomeLoan = () => {
                 setThreeMonthSalarySlip(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -541,6 +616,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Two Year Of Form sixteen Or It Return*
             </label>
+            <p className="cursor-pointer" onClick={()=>setItReturn(!itReturn)}><GrFormEdit/></p>
+                {itReturn &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -550,6 +627,7 @@ const UpdateLeadForHomeLoan = () => {
                 setTwoYearOfFormsixteenOrItReturn(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -558,6 +636,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Business Address Proof*
             </label>
+            <p className="cursor-pointer" onClick={()=>setBusinessAd(!businessAd)}><GrFormEdit/></p>
+                {businessAd &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -567,6 +647,7 @@ const UpdateLeadForHomeLoan = () => {
                 setBusinessAddressProof(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -577,6 +658,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Three YearIt Return*
             </label>
+            <p className="cursor-pointer" onClick={()=>setYearIt(!yearIt)}><GrFormEdit/></p>
+                {yearIt &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -586,6 +669,7 @@ const UpdateLeadForHomeLoan = () => {
                 setThreeYearItReturn(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -594,6 +678,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Business Lisence Detail*
             </label>
+            <p className="cursor-pointer" onClick={()=>setLisence(!lisence)}><GrFormEdit/></p>
+                {lisence &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -603,6 +689,7 @@ const UpdateLeadForHomeLoan = () => {
                 setBusinessLisenceDetail(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -613,6 +700,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               TDS Certification*
             </label>
+            <p className="cursor-pointer" onClick={()=>setTDS(!tds)}><GrFormEdit/></p>
+                {tds &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
@@ -622,6 +711,7 @@ const UpdateLeadForHomeLoan = () => {
                 setTDScertification(e.target.files[0]);
               }}
             />
+                }
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -630,6 +720,8 @@ const UpdateLeadForHomeLoan = () => {
             >
               Certification Of Qualification*
             </label>
+            <p className="cursor-pointer" onClick={()=>setQualification(!qualification)}><GrFormEdit/></p>
+                {qualification &&
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
@@ -639,6 +731,7 @@ const UpdateLeadForHomeLoan = () => {
                 setcertificationOfQualification(e.target.files[0]);
               }}
             />
+                }
           </div>
         </div>
 

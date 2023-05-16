@@ -58,11 +58,12 @@ import AllClient from "./pages/AllClient";
 import UpdateLeadForBusinessLoan from "./pages/UpdateLeadForBusinessLoan";
 import UpdateLeadForPersonalLoan from "./pages/UpdateLeadForPersonalLoan";
 import UpdateLeadForMortgageLoan from "./pages/UpdateLeadForMortgageLoan";
-import UpdateLeadForGoldLoan from "./pages/UpdateLeadForGoldLoan";
+
 import UpdateLeadForCreditCard from "./pages/UpdateLeadForCreditCard";
 import UpdateLeadForCarLoan from "./pages/UpdateLeadForCarLoan";
 import UpdateLeadForGSTLoan from "./pages/UpdateLeadForGST";
 import UpdateLeadForPassport from "./pages/UpdateLeadForPassport";
+import UpdateLeadForGoldLoan from "./pages/UpdateLeadForGoldLoan";
 import UpdateLeadForShopAct from "./pages/UpdateLeadForShopAct";
 import UpdateLeadForUdyamCertificate from "./pages/UpdateLeadForUdyam";
 import UpdateLeadForFoodLisece from "./pages/UpdateLeadForFoodLisence";
@@ -130,9 +131,9 @@ function App() {
         <Route exact path="/UDYAM Registration" element={<UdyamCertificate/>}/>
         <Route exact path="/updatelead/Home  Loan" element={<UpdateLeadForHomeLoan/>}/>
         <Route exact path="/updatelead/Business Loan" element={<UpdateLeadForBusinessLoan/>}/>
-        <Route exact path="/updatelead/personal Loan" element={<UpdateLeadForPersonalLoan/>}/>
+        <Route exact path="/updatelead/personal loan" element={<UpdateLeadForPersonalLoan/>}/>
+        <Route exact path="/updatelead/Gold loan" element={<UpdateLeadForGoldLoan/>}/>
         <Route exact path="/updatelead/Mortgage  Loan" element={<UpdateLeadForMortgageLoan/>}/>
-        <Route exact path="/updatelead/Gold Loan" element={<UpdateLeadForGoldLoan/>}/>
         <Route exact path="/updatelead/Credit Card" element={<UpdateLeadForCreditCard/>}/>
         <Route exact path="/updatelead/car Loan" element={<UpdateLeadForCarLoan/>}/>
         <Route exact path="/updatelead/GST registration application" element={<UpdateLeadForGSTLoan/>}/>

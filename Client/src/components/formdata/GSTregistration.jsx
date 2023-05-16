@@ -142,7 +142,7 @@ const GSTregistration = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="grid-first-name"
               type="number"
-              placeholder="Jane"
+              placeholder=""
               onChange={(e) => {
                 setLoanAmount(e.target.value);
               }}
@@ -215,8 +215,9 @@ const GSTregistration = () => {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
-              type="text"
-              defaultValue={service}
+              type="file"
+              onChange={(e)=>setIndividualPanCard(e.target.files[0])}
+              // defaultValue={service}
               readOnly
             />
           </div>
@@ -233,7 +234,7 @@ const GSTregistration = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
-              placeholder="Albuquerque"
+              placeholder=""
               onChange={(e) => {
                 setIndividualAdharCard(e.target.files[0]);
               }}
