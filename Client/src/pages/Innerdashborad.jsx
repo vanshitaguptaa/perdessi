@@ -114,7 +114,7 @@ const Innerdashborad = () => {
         <></>
       ) : (
         <>
-          <div className="z-60 absolute bottom-2 left-8  h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl">
+          <div className="z-60 sticky bottom-2 left-8  h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl">
             <div
               className="text-3xl p-4 cursor-pointer"
               onClick={() => {
@@ -122,41 +122,6 @@ const Innerdashborad = () => {
               }}
             >
               <AiTwotoneMail />
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* chatBox UI */}
-      {chatbox ? (
-        <>
-          <div className="z-60 absolute bottom-2 right-8 w-96 h-96 bg-white rounded-xl border-white border-solid border-3 shadow-2xl">
-            {/* top name and close button */}
-            <div className=" w-full  flex flex-row rounded-t-xl pb-2 pt-2 pr-2 bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500  justify-between border-b-2 border-gray-300 border-solid">
-              <h1 className="pl-2 font-semibold text-2xl"> EMOPYEE NAME </h1>
-              <p className="my-0 mr-2 font-semibold text-base"> 1234 </p>
-              <h1
-                className="font-extrabold order-last text-2xl cursor-pointer"
-                onClick={() => {
-                  setchatbox(false);
-                }}
-              >
-                {" "}
-                <AiOutlineClose />
-              </h1>
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="z-60 absolute bottom-2 right-8 h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl">
-            <div
-              className="text-3xl p-4 cursor-pointer"
-              onClick={() => {
-                setchatbox(true);
-              }}
-            >
-              <BsFillChatRightFill />
             </div>
           </div>
         </>

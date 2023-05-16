@@ -78,6 +78,32 @@ import {
   getShopActForAdmin,
   getUdyamCertificateForAdmin,
   getFoodLisenceForAdmin,
+  getMortgageLoanByMobileNumberForAdmin,
+  getBusinessLoanByMobileNumberForAdmin,
+  getCarLoanByMobileNumberForAdmin,
+  getCreditCardByMobileForAdmin,
+  getFoodLisencebyMobileNumberForAdmin,
+  getGSTRegistrationByMobileNumberForAdmin,
+  getGoldLoanByMobileNumberForAdmin,
+  getHomeLoanLeadByMobileNoForAdmin,
+  getNewCorrectionPanApplicationbyMobileNumberForAdmin,
+  getPassportByMobileNumberForAdmin,
+  getPersonalLoanByMobileNumberForAdmin,
+  getShopActByMobileNumberForAdmin,
+  getUdyamCertificateByMobileNumberForAdmin,
+  transferHomeLoanLead,
+  transferBusinessLoanLead,
+  transferPersonalLoanLead,
+  transferMortgageLoanLead,
+  transferGoldLoanLead,
+  transferCreditCardLead,
+  transferGSTLead,
+  transferNewCorrectionPanApplicatonLead,
+  transferPassportLead,
+  transferShopActLead,
+  transferUdyamCertificate,
+  transferFoodLisenceLead,
+  transferCarLoanLead,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -545,31 +571,37 @@ Route.get(
 Route.patch(
   "/updatehomeloan",
   employeeTokenCheck,
+  multipleUploadForHomeLoan,
   editHomeLoanServiceController
 );
 Route.patch(
   "/updatebusinessloan",
   employeeTokenCheck,
+  multipleUploadForBusinessLoan,
   editBusinessLoanServiceController
 );
 Route.patch(
   "/updatepersonalloan",
   employeeTokenCheck,
+  multipleUploadForPersonalLoan,
   editPersonalLoanServiceController
 );
 Route.patch(
   "/updatemortgageloan",
   employeeTokenCheck,
+  multipleUploadForMortgageLoan,
   editMortgageLoanServiceController
 );
 Route.patch(
   "/updategoldloan",
   employeeTokenCheck,
+  multipleUploadForGoldLoan,
   editGoldLoanServiceController
 );
 Route.patch(
   "/updatecreditcard",
   employeeTokenCheck,
+  multipleUploadForCreditCard,
   editCreditCardServiceController
 );
 
@@ -675,5 +707,99 @@ Route.get(
   getUdyamCertificateById
 );
 Route.get("/getfoodlisenceforadminbyId", adminTokenCheck, getFoodLisencebyId);
+
+// get mobile number for admin
+Route.get(
+  "/gethomeloanbymobileforadmin",
+  adminTokenCheck,
+  getHomeLoanLeadByMobileNoForAdmin
+);
+Route.get(
+  "/getbusinessloanbymobileforadmin",
+  adminTokenCheck,
+  getBusinessLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getpersonalloanbymobileforadmin",
+  adminTokenCheck,
+  getPersonalLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getmortgageloanbymobileforadmin",
+  adminTokenCheck,
+  getMortgageLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getgoldloanbymobileforadmin",
+  adminTokenCheck,
+  getGoldLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getcreditcardloanbymobileforadmin",
+  adminTokenCheck,
+  getCreditCardByMobileForAdmin
+);
+Route.get(
+  "/getcarloanbymobileforadmin",
+  adminTokenCheck,
+  getCarLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getnewcorrectionpanapplicationbymobileforadmin",
+  adminTokenCheck,
+  getNewCorrectionPanApplicationbyMobileNumberForAdmin
+);
+Route.get(
+  "/getpassportbymobileforadmin",
+  adminTokenCheck,
+  getPassportByMobileNumberForAdmin
+);
+Route.get(
+  "/getgstregistrationbymobileforadmin",
+  adminTokenCheck,
+  getGSTRegistrationByMobileNumberForAdmin
+);
+Route.get(
+  "/getshopactbymobileforadmin",
+  adminTokenCheck,
+  getShopActByMobileNumberForAdmin
+);
+Route.get(
+  "/getudyamcertificatebymobileforadmin",
+  adminTokenCheck,
+  getUdyamCertificateByMobileNumberForAdmin
+);
+Route.get(
+  "/getfoodlisencebymobilenumberforadmin",
+  adminTokenCheck,
+  getFoodLisencebyMobileNumberForAdmin
+);
+
+// transfer lead to another employee
+Route.patch("/transferhomelead", adminTokenCheck, transferHomeLoanLead);
+Route.patch("/transferbusinesslead", adminTokenCheck, transferBusinessLoanLead);
+Route.patch("/transferpersonallead", adminTokenCheck, transferPersonalLoanLead);
+Route.patch("/transfermortgagelead", adminTokenCheck, transferMortgageLoanLead);
+Route.patch("/transfergoldlead", adminTokenCheck, transferGoldLoanLead);
+Route.patch("/transfercreditcardlead", adminTokenCheck, transferCreditCardLead);
+Route.patch("/transferGSTlead", adminTokenCheck, transferGSTLead);
+Route.patch(
+  "/transfernewcorrectionpanapplication",
+  adminTokenCheck,
+  transferNewCorrectionPanApplicatonLead
+);
+Route.patch("/transferpassportlead", adminTokenCheck, transferPassportLead);
+Route.patch("/transfershopactlead", adminTokenCheck, transferShopActLead);
+Route.patch(
+  "/transferudyamcertificate",
+  adminTokenCheck,
+  transferUdyamCertificate
+);
+Route.patch(
+  "/transferfoodlisencelead",
+  adminTokenCheck,
+  transferFoodLisenceLead
+);
+Route.patch("/transfercarlead", adminTokenCheck, transferCarLoanLead);
 
 export default Route;
