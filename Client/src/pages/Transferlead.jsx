@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Transferlead = () => {
   const navigate = useNavigate();
   const [authScreen, setAuthScreen] = useState(true);
+  const location = useLocation();
+  const {
+    state: { serviceID, number, employee,}
+  } = location;
   let role = localStorage.getItem("role");
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
@@ -69,50 +73,27 @@ const Transferlead = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="w-full">
                   <div className="mt-2">
+                    <h3>Client numer:</h3>
                     <select
                       id="country"
                       name="country"
                       autoComplete="country-name"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option>Select From Staff</option>
-                      <option>Akash Perdessi</option>
-                      <option>Chinmai Manseta</option>
+                      <option> {number}</option>
                     </select>
                   </div>
                 </div>
                 <div className="">
                   <div className="mt-2">
+                    <h3>empolyee name:</h3>
                     <select
                       id="country"
                       name="country"
                       autoComplete="country-name"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
-                      <option>Select From Staff</option>
-                      <option>Akash Perdessi</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
-                      <option>Chinmai Manseta</option>
+                      <option>{employee}</option>
                     </select>
                   </div>
                 </div>
@@ -125,8 +106,6 @@ const Transferlead = () => {
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                     >
                       <option>Select Staff</option>
-                      <option>Akash Perdessi</option>
-                      <option>Chinmai Manseta</option>
                     </select>
                   </div>
                 </div>
