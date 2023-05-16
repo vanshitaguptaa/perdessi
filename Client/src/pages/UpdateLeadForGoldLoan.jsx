@@ -1,7 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
-import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -12,15 +10,15 @@ const Gold = () => {
   const {
     state: { serviceID },
   } = location;
-  const role = localStorage.getItem("role");
-  const { clientState } = useContext(ClientListContext);
-  const { clientAdminState } = useContext(ClientAdminContext);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
+  const [loading, setLoading] = useState(false);
   const [Aadharcard, setAadharcard] = useState(null);
   const [Pancard, setPancard] = useState(null);
   const [popupdata, setpopupdata] = useState("");
+  const [adharOpen, setAdharOpen] = useState(false);
+  const [panOpen, setPanOpen] = useState(false);
 
   useEffect(() => {
     console.log("inside this effect");
@@ -38,15 +36,38 @@ const Gold = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [serviceID]);
+  }, [serviceID, loading]);
 
-  useEffect(() => {
-    if (role === "admin") {
-      setClientData(clientAdminState.clientAdmin.already);
-    } else if (clientState.isError === false) {
-      setClientData(clientState.clients.clients);
+  const editGoldLoanLead = async (e, fieldToEdit) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      console.log(fieldToEdit);
+      const formData = new FormData();
+      formData.append("leadId", serviceID);
+      formData.append("fieldToEdit", fieldToEdit);
+      formData.append("Aadharcard", Aadharcard);
+      formData.append("Pancard", Pancard);
+
+      const editedResponse = await axios({
+        method: "patch",
+        url: "http://localhost:5000/api/v1/crm/updategoldloan",
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
+        },
+      });
+
+      if(editedResponse.data.status){
+        setLoading(false);
+        console.log("image updated")
+      }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
     }
-  }, []);
+  };
 
   // const handleLeadForm = async (e) => {
   //   e.preventDefault();
@@ -76,8 +97,6 @@ const Gold = () => {
   // };
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
-
-  console.log(serviceID);
 
   return (
     <div className="flex justify-center items-center">
@@ -163,7 +182,7 @@ const Gold = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            {popupdata && (
+            {popupdata.hasOwnProperty("Aadharcard") && (
               <img
                 src={`http://localhost:5000/${popupdata.Aadharcard.split(
                   "public"
@@ -178,20 +197,42 @@ const Gold = () => {
             >
               Aadhar Card*
             </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setAadharcard(e.target.files[0]);
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/fluency-systems-regular/48/edit--v1.png"
+              alt="edit--v1"
+              onClick={() => {
+                setAdharOpen(!adharOpen);
               }}
             />
+            {adharOpen && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setAadharcard(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {
+                    editGoldLoanLead(e, "Aadharcard");
+                  }}
+                />
+              </>
+            )}
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            {popupdata && (
+            {popupdata.hasOwnProperty("Pancard") && (
               <img
-                src={`http://localhost:5000/${popupdata.Aadharcard.split(
+                src={`http://localhost:5000/${popupdata.Pancard.split(
                   "public"
                 )[1].substring(1)}`}
                 alt=""
@@ -204,25 +245,36 @@ const Gold = () => {
             >
               Pan Card*
             </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-zip"
-              type="file"
-              placeholder=""
-              onChange={(e) => {
-                setPancard(e.target.files[0]);
+            <img
+              width="48"
+              height="48"
+              src="https://img.icons8.com/fluency-systems-regular/48/edit--v1.png"
+              alt="edit--v1"
+              onClick={() => {
+                setPanOpen(!panOpen);
               }}
             />
+            {panOpen && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-zip"
+                  type="file"
+                  placeholder=""
+                  onChange={(e) => {
+                    setPancard(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {editGoldLoanLead(e, "Pancard")}}
+                />
+              </>
+            )}
           </div>
-        </div>
-
-        <div className="mt-5 flex justify-center">
-          <button
-            type="submit"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            SUBMIT
-          </button>
         </div>
       </form>
     </div>
