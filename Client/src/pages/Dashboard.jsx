@@ -46,6 +46,7 @@ function Dashboard() {
         localStorage.removeItem("token");
         navigate("/login");
       }
+      console.log(token)
       setTimeout(() => {
         setAuthScreen(false);
       }, 500);

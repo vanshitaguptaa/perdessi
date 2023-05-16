@@ -42,6 +42,7 @@ function Myleadtbloutter() {
   }
   let currentDate = new Date();
 
+
   const FetchLoaddetail = async (service) => {
     if (service === "personal loan") {
       // console.log("personal loan is riunning");
@@ -535,7 +536,7 @@ function Myleadtbloutter() {
                     </button>
                   </div>
                 </div>
-                <MyleadTable loandetail={loandetail}  length={length}/>
+                <MyleadTable loandetail={loandetail} length={length} />
               </div>
             </div>
           </div>

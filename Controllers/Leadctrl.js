@@ -613,6 +613,26 @@ export const getHomeLoanForEmployee = async (req, resp) => {
   }
 };
 
+export const getHomeLoanNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await HomeLoanModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getBusinessLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await BusinessloanModel.find({
@@ -629,6 +649,47 @@ export const getBusinessLoanForEmployee = async (req, resp) => {
       status: true,
       message: "successfully fetched lead for you",
       savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await BusinessloanModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length;
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await PersonalLoanModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
     });
   } catch (error) {
     console.log(error);
@@ -688,6 +749,27 @@ export const getMortgageLoanForEmployee = async (req, resp) => {
   }
 };
 
+export const getMortgageLoanNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await MortgageLoanModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getGoldLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GoldLoanModel.find({
@@ -704,6 +786,27 @@ export const getGoldLoanForEmployee = async (req, resp) => {
       status: true,
       message: "successfully fetched lead for you",
       savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await GoldLoanModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
     });
   } catch (error) {
     console.log(error);
@@ -738,6 +841,27 @@ export const getCreditCardLoanForEmployee = async (req, resp) => {
   }
 };
 
+export const getCreditCardNumberLoanForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await CreditCardModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getCarLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CarLoanModel.find({
@@ -754,6 +878,27 @@ export const getCarLoanForEmployee = async (req, resp) => {
       status: true,
       message: "successfully fetched lead for you",
       savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await CarLoanModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
     });
   } catch (error) {
     console.log(error);
@@ -788,6 +933,27 @@ export const getNewCorrectionPanApplicationForEmployee = async (req, resp) => {
   }
 };
 
+export const getNewCorrectionPanApplicationNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await NewCorrectionPanApplicationModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getPassportForEmplyoee = async (req, resp) => {
   try {
     const savedMyLead = await PassportModel.find({
@@ -804,6 +970,27 @@ export const getPassportForEmplyoee = async (req, resp) => {
       status: true,
       message: "successfully fetched lead for you",
       savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportNumberForEmplyoee = async (req, resp) => {
+  try {
+    const savedMyLead = await PassportModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
     });
   } catch (error) {
     console.log(error);
@@ -838,6 +1025,27 @@ export const getGSTRegistrationForEmployee = async (req, resp) => {
   }
 };
 
+export const getGSTRegistrationNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await GSTResgistraionModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getShopActForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await ShopActModel.find({
@@ -854,6 +1062,48 @@ export const getShopActForEmployee = async (req, resp) => {
       status: true,
       message: "successfully fetched lead for you",
       savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await ShopActModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await UdyamCertificateModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
     });
   } catch (error) {
     console.log(error);
@@ -904,6 +1154,27 @@ export const getFoodLisenceForEmployee = async (req, resp) => {
       status: true,
       message: "successfully fetched lead for you",
       savedLeads: savedMyLead,
+    });
+  } catch (error) {
+    console.log(error);
+    return resp
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisenceNumberForEmployee = async (req, resp) => {
+  try {
+    const savedMyLead = await FoodLisenceModel.find({
+      employee: req.user._id,
+    }).populate(["service ", "client", "employee"]);
+
+    let Number = savedMyLead.length
+
+    return resp.status(202).json({
+      status: true,
+      message: "successfully fetched lead for you",
+      Number: Number,
     });
   } catch (error) {
     console.log(error);
@@ -2365,6 +2636,47 @@ export const getHomeLoanForAdmin = async (req, res) => {
   }
 };
 
+export const getHomeLoanNumberForAdmin = async (req, res) => {
+  try {
+    const savedHomeLoan = await HomeLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessNumberLoanForAdmin = async (req, res) => {
+  try {
+    const savedBusinessLoan = await BusinessloanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
 export const getBusinessLoanForAdmin = async (req, res) => {
   try {
     const savedBusinessLoan = await BusinessloanModel.find({})
@@ -2419,6 +2731,28 @@ export const getPersonalLoanForAdmin = async (req, res) => {
 };
 
 
+
+export const getPersonalNumberLoanForAdmin = async (req, res) => {
+  try {
+    const savedPersonalLoan = await PersonalLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
 export const getMortgageLoanForAdmin = async (req, res) => {
   try {
     const savedMortgageLoan = await MortgageLoanModel.find({})
@@ -2437,6 +2771,27 @@ export const getMortgageLoanForAdmin = async (req, res) => {
         status: true,
         message: "successfully fetched data",
         response: savedMortgageLoan,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const getMortgageNumberLoanForAdmin = async (req, res) => {
+  try {
+    const savedMortgageLoan = await MortgageLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
       });
   } catch (error) {
     return res
@@ -2473,6 +2828,27 @@ export const getGoldLoanForAdmin = async (req, res) => {
 };
 
 
+export const getGoldLoanNumberForAdmin = async (req, res) => {
+  try {
+    const savedGoldLoan = await GoldLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
 export const getCreditCardForAdmin = async (req, res) => {
   try {
     const savedCreditCard = await CreditCardModel.find({})
@@ -2491,6 +2867,26 @@ export const getCreditCardForAdmin = async (req, res) => {
         status: true,
         message: "successfully fetched data",
         response: savedCreditCard,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardNumberForAdmin = async (req, res) => {
+  try {
+    const savedCreditCard = await CreditCardModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
       });
   } catch (error) {
     return res
@@ -2525,6 +2921,26 @@ export const getCarLoanByForAdmin = async (req, res) => {
   }
 };
 
+export const getCarLoanByNumberForAdmin = async (req, res) => {
+  try {
+    const savedCarLoan = await CarLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getNewCorrectionPanApplicationForAdmin = async (req, res) => {
   try {
     const savedNewCorrectionPanApplication = await NewCorrectionPanApplicationModel.find({})
@@ -2543,6 +2959,26 @@ export const getNewCorrectionPanApplicationForAdmin = async (req, res) => {
         status: true,
         message: "successfully fetched data",
         response: savedNewCorrectionPanApplication,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationNumberForAdmin = async (req, res) => {
+  try {
+    const savedNewCorrectionPanApplication = await NewCorrectionPanApplicationModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
       });
   } catch (error) {
     return res
@@ -2577,6 +3013,26 @@ export const getGSTRegistrationByForAdmin = async (req, res) => {
   }
 };
 
+export const getGSTRegistrationByNumberForAdmin = async (req, res) => {
+  try {
+    const savedGSTRegistration = await GSTResgistraionModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getPassportForAdmin = async (req, res) => {
   try {
     const savedPassport = await PassportModel.find({})
@@ -2595,6 +3051,26 @@ export const getPassportForAdmin = async (req, res) => {
         status: true,
         message: "successfully fetched data",
         response: savedPassport,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportNumberForAdmin = async (req, res) => {
+  try {
+    const savedPassport = await PassportModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
       });
   } catch (error) {
     return res
@@ -2629,6 +3105,26 @@ export const getShopActForAdmin = async (req, res) => {
   }
 };
 
+export const getShopActNumberForAdmin = async (req, res) => {
+  try {
+    const savedShopAct = await ShopActModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getUdyamCertificateForAdmin = async (req, res) => {
   try {
     const savedUdyamCertificate = await UdyamCertificateModel.find({})
@@ -2655,6 +3151,26 @@ export const getUdyamCertificateForAdmin = async (req, res) => {
   }
 };
 
+export const getUdyamCertificateNumberForAdmin = async (req, res) => {
+  try {
+    const savedUdyamCertificate = await UdyamCertificateModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const getFoodLisenceForAdmin = async (req, res) => {
   try {
     const savedFoodLisence = await FoodLisenceModel.find({})
@@ -2673,6 +3189,26 @@ export const getFoodLisenceForAdmin = async (req, res) => {
         status: true,
         message: "successfully fetched data",
         response: savedFoodLisence,
+      });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisenceNumberForAdmin = async (req, res) => {
+  try {
+    const savedFoodLisence = await FoodLisenceModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+      let Number = savedMyLead.length
+  
+      return resp.status(202).json({
+        status: true,
+        message: "successfully fetched lead for you",
+        Number: Number,
       });
   } catch (error) {
     return res

@@ -78,6 +78,32 @@ import {
   getShopActForAdmin,
   getUdyamCertificateForAdmin,
   getFoodLisenceForAdmin,
+  getHomeLoanNumberForEmployee,
+  getBusinessLoanNumberForEmployee,
+  getPersonalLoanNumberForEmployee,
+  getMortgageLoanNumberForEmployee,
+  getGoldLoanNumberForEmployee,
+  getCreditCardNumberLoanForEmployee,
+  getCarLoanNumberForEmployee,
+  getNewCorrectionPanApplicationNumberForEmployee,
+  getPassportNumberForEmplyoee,
+  getGSTRegistrationNumberForEmployee,
+  getShopActNumberForEmployee,
+  getUdyamCertificateNumberForEmployee,
+  getFoodLisenceNumberForEmployee,
+  getHomeLoanNumberForAdmin,
+  getBusinessNumberLoanForAdmin,
+  getPersonalNumberLoanForAdmin,
+  getMortgageNumberLoanForAdmin,
+  getGoldLoanNumberForAdmin,
+  getCreditCardNumberForAdmin,
+  getCarLoanByNumberForAdmin,
+  getNewCorrectionPanApplicationNumberForAdmin,
+  getPassportNumberForAdmin,
+  getShopActNumberForAdmin,
+  getUdyamCertificateNumberForAdmin,
+  getFoodLisenceNumberForAdmin,
+  getGSTRegistrationByNumberForAdmin,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -541,6 +567,74 @@ Route.get(
   getFoodLisenceForEmployee
 );
 
+
+// Get My Lead number HERE IS THE NUMBER
+Route.get(
+  "/gethomeloanNumberforemployee",
+  employeeTokenCheck,
+  getHomeLoanNumberForEmployee
+);
+Route.get(
+  "/getbusinessloanNumberforemployee",
+  employeeTokenCheck,
+  getBusinessLoanNumberForEmployee
+);
+Route.get(
+  "/getpersonalloanNumberforemployee",
+  employeeTokenCheck,
+  getPersonalLoanNumberForEmployee
+);
+Route.get(
+  "/getmortgageloanNumberforemployee",
+  employeeTokenCheck,
+  getMortgageLoanNumberForEmployee
+);
+Route.get(
+  "/getgoldloanNumberforemployee",
+  employeeTokenCheck,
+  getGoldLoanNumberForEmployee
+);
+Route.get(
+  "/getcreditcardNumberforemployee",
+  employeeTokenCheck,
+  getCreditCardNumberLoanForEmployee
+);
+
+Route.get("/getcarloanNumberforemployee", employeeTokenCheck, getCarLoanNumberForEmployee);
+
+Route.get(
+  "/getnewcorrectionpanapplicationNumberforemployee",
+  employeeTokenCheck,
+  getNewCorrectionPanApplicationNumberForEmployee
+);
+
+Route.get(
+  "/getpassportNumberforemployee",
+  employeeTokenCheck,
+  getPassportNumberForEmplyoee
+);
+
+Route.get(
+  "/getGSTRegistrationNumberforemployee",
+  employeeTokenCheck,
+  getGSTRegistrationNumberForEmployee
+);
+
+Route.get("/getshopactNumberforemployee", employeeTokenCheck, getShopActNumberForEmployee);
+
+Route.get(
+  "/getudyamcertificateNumberforemployee",
+  employeeTokenCheck,
+  getUdyamCertificateNumberForEmployee
+);
+
+Route.get(
+  "/getfoodlisenceNumberforemployee",
+  employeeTokenCheck,
+  getFoodLisenceNumberForEmployee
+);
+
+
 // Edit Client List
 Route.patch(
   "/updatehomeloan",
@@ -648,6 +742,33 @@ Route.get(
   getUdyamCertificateForAdmin
 );
 Route.get("/getfoodlisenceforadmin", adminTokenCheck, getFoodLisenceForAdmin);
+
+// get lead Number data for admin
+Route.get("/gethomeloannumberforadmin", adminTokenCheck, getHomeLoanNumberForAdmin);
+Route.get("/getbusinessloannumberforadmin", adminTokenCheck, getBusinessNumberLoanForAdmin);
+Route.get("/getpersonalloannumberforadmin", adminTokenCheck, getPersonalNumberLoanForAdmin);
+Route.get("/getmortgageloannumberforadmin", adminTokenCheck, getMortgageNumberLoanForAdmin);
+Route.get("/getgoldloannumberforadmin", adminTokenCheck, getGoldLoanNumberForAdmin);
+Route.get("/getcreditcardnumberforadmin", adminTokenCheck, getCreditCardNumberForAdmin);
+Route.get("/getcarloannumberforadmin", adminTokenCheck, getCarLoanByNumberForAdmin);
+Route.get(
+  "/getnewcorrectionpanapplicationnumberforadmin",
+  adminTokenCheck,
+  getNewCorrectionPanApplicationNumberForAdmin
+);
+Route.get("/getpassportnumberforadmin", adminTokenCheck, getPassportNumberForAdmin);
+Route.get(
+  "/getGSTRegistrationnumberforadmin",
+  adminTokenCheck,
+  getGSTRegistrationByNumberForAdmin
+);
+Route.get("/getshopactnumberforadmin", adminTokenCheck, getShopActNumberForAdmin);
+Route.get(
+  "/getudyamcertificatenumberforadmin",
+  adminTokenCheck,
+  getUdyamCertificateNumberForAdmin
+);
+Route.get("/getfoodlisencenumberforadmin", adminTokenCheck, getFoodLisenceNumberForAdmin);
 
 // get single lead for admin
 Route.get("/gethomeloanforadminbyId", adminTokenCheck, getHomeLoanLeadById);

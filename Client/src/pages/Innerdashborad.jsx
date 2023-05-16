@@ -114,7 +114,7 @@ const Innerdashborad = () => {
         <></>
       ) : (
         <>
-          <div className="z-60 absolute bottom-2 left-8  h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl">
+          <div className="z-60 sticky bottom-2 left-8  h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl">
             <div
               className="text-3xl p-4 cursor-pointer"
               onClick={() => {
