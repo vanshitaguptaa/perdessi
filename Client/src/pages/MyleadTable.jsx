@@ -418,12 +418,12 @@ const MyleadTable = ({ loandetail, length }) => {
                         </button>
                         {role == "admin" ? (
                           <Link
-                            to={`/transferlead`}
+                            to={`/transferlead/${e.service.service_name}`}
                             state={{
                               serviceID: e._id,
                               number: e.client.phone,
-                              employee:
-                                e.employee.first_name + e.employee.last_name,
+                              employee: e.employee.first_name + e.employee.last_name,
+                              empolyeeID: e.employee._id
                             }}
                           >
                             <button
