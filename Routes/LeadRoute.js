@@ -627,7 +627,7 @@ Route.patch(
 );
 
 Route.patch(
-  "updateGSTRegistration",
+  "/updateGSTRegistration",
   employeeTokenCheck,
   multipleUploadForGSTRegistration,
   editGSTRegistrationController
@@ -648,7 +648,7 @@ Route.patch(
 );
 
 Route.patch(
-  "updatefoodlisence",
+  "/updatefoodlisence",
   employeeTokenCheck,
   multipleUploadForFoodLisence,
   editFoodLisenceController

@@ -69,35 +69,6 @@ const Gold = () => {
     }
   };
 
-  // const handleLeadForm = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("clientId", client);
-  //     formData.append("loanAmount", LoanAmount);
-  //     formData.append("serviceId", serviceID);
-  //     formData.append("Aadharcard", Aadharcard);
-  //     formData.append("Pancard", Pancard);
-
-  //     const leadApiCall = await axios({
-  //       method: "post",
-  //       url: "http://localhost:5000/api/v1/crm/createleadforGoldloan",
-  //       data: formData,
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-Type": "multipart/form-data",
-  //       },
-  //     });
-
-  //     console.log(leadApiCall);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
-
   return (
     <div className="flex justify-center items-center">
       <form

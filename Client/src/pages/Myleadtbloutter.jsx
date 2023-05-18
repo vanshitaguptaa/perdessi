@@ -160,7 +160,7 @@ function Myleadtbloutter() {
         setloandetail(res.data.savedLeads);
       });
     }
-    if (service === "passport") {
+    if (service === "Passport") {
       // console.log("personal loan is riunning");
       await axios({
         method: "get",

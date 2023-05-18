@@ -38,12 +38,12 @@ const MyleadTable = ({ loandetail, length }) => {
 
   const handlenavigate = useNavigate();
 
-  console.log(loandetail);
+  
 
   // Function for Fetch Data in Pop
   const Fetchpopdata = async (id, serviceName) => {
     console.log(`Pop is Working for this is ${id}`);
-
+    console.log(serviceName === "Passport")
     if (serviceName === "personal loan") {
       await axios({
         method: "get",
@@ -71,7 +71,7 @@ const MyleadTable = ({ loandetail, length }) => {
     if (serviceName === "Business Loan") {
       await axios({
         method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+        url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -176,7 +176,7 @@ const MyleadTable = ({ loandetail, length }) => {
         setpopupdata(res.data.response);
       });
     }
-    if (serviceName === "passport") {
+    if (serviceName === "Passport") {
       await axios({
         method: "get",
         url: `http://localhost:5000/api/v1/crm/getpassportbyid?passportById=${id}`,
