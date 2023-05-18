@@ -1,12 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useContext } from "react";
-import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { GrFormEdit } from "react-icons/Gr";
-
-
 
 const CreditCard = () => {
   const tokenData = localStorage.getItem("token");
@@ -15,9 +11,7 @@ const CreditCard = () => {
   const {
     state: { serviceID },
   } = location;
-  const role = localStorage.getItem("role");
-  const { clientState } = useContext(ClientListContext);
-  const { clientAdminState } = useContext(ClientAdminContext);
+  const [popupdata, setpopupdata] = useState([]);
   const [clientData, setClientData] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [client, setClient] = useState("");
@@ -31,33 +25,43 @@ const CreditCard = () => {
   const [pnCd, setPnCd] = useState(false);
   const [adhrCd, setAdhrCd] = useState(false);
   const [formSix, setFormSix] = useState(false);
-
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if(role === "admin"){
-     setClientData(clientAdminState.clientAdmin.already);
-    }else if (clientState.isError === false) {
-     setClientData(clientState.clients.clients)
-    }
-  }, [])
-
-  const handleLeadForm = async (e) => {
-    e.preventDefault();
-
+    console.log("inside this effect");
     try {
+      axios({
+        method: "get",
+        url: `http://localhost:5000/api/v1/crm/getcreditcardbyid?creditCardId=${serviceID}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        console.log(res);
+        setpopupdata(res.data.response);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, [serviceID, loading]);
+
+  const editBusinessLoanLead = async (e, fieldToEdit) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      console.log(fieldToEdit);
       const formData = new FormData();
-      formData.append("clientId", client);
-      formData.append("loanAmount", LoanAmount);
-      formData.append("serviceId", serviceID);
+      formData.append("leadId", serviceID);
+      formData.append("fieldToEdit", fieldToEdit);
       formData.append("AadharCard", AadharCard);
       formData.append("PanCard", PanCard);
       formData.append("ThreeMonthsSalarySlip", ThreeMonthsSalarySlip);
       formData.append("SixMonthsBankStatement", SixMonthsBankStatement);
       formData.append("FormSixteen", FormSixteen);
 
-      const leadApiCall = await axios({
-        method: "post",
-        url: "http://localhost:5000/api/v1/crm/createleadforCreditCard",
+      const editedResponse = await axios({
+        method: "patch",
+        url: "http://localhost:5000/api/v1/crm/updatecreditcard",
         data: formData,
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,68 +69,67 @@ const CreditCard = () => {
         },
       });
 
-      console.log(leadApiCall);
+      if (editedResponse.data.status) {
+        setLoading(false);
+        console.log("image updated");
+      }
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
 
-  // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
+  console.log(popupdata);
+
   return (
     <div className="flex justify-center items-center">
-      <form
-        onSubmit={(e) => {
-          handleLeadForm(e);
-        }}
-        className="w-full max-w-lg"
-      >
+      <form className="w-full max-w-lg">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-first-name"
-            >
-              Loan Amount*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
-              type="number"
-              placeholder=""
-              onChange={(e) => {
-                setLoanAmount(e.target.value);
-              }}
-            />
+            {popupdata && (
+              <>
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-first-name"
+                >
+                  Loan Amount*
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="grid-first-name"
+                  type="number"
+                  placeholder=""
+                  onChange={(e) => {
+                    setLoanAmount(e.target.value);
+                  }}
+                  defaultValue={popupdata.LoanAmount}
+                />
+              </>
+            )}
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-state"
-            >
-              My Client*
-            </label>
+            {popupdata.client && (
+              <>
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-state"
+                >
+                  My Client*
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  id="grid-first-name"
+                  type="text"
+                  placeholder=""
+                  onChange={(e) => {
+                    setLoanAmount(e.target.value);
+                  }}
+                  defaultValue={popupdata.client.first_name}
+                  readOnly
+                />
+              </>
+            )}
             <div className="relative">
-              <select
-                className="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="grid-state"
-                onChange={(e) => {
-                  setClient(e.target.value);
-                }}
-              >
-                <option value="" disabled selected>
-                  Select a client
-                </option>
-                {clientData &&
-                  clientData.map((client) => {
-                    return (
-                      <>
-                        <option key={client._id} value={client._id}>
-                          {client.first_name}
-                        </option>
-                      </>
-                    );
-                  })}
-              </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg
                   className="fill-current h-4 w-4"
@@ -141,132 +144,241 @@ const CreditCard = () => {
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              for="grid-zip"
-            >
-              Service*
-            </label>
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-zip"
-              type="text"
-            //   defaultValue={service}
-              readOnly
-            />
+            {popupdata.service && (
+              <>
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-zip"
+                >
+                  Service*
+                </label>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-zip"
+                  type="text"
+                  defaultValue={popupdata.service.service_name}
+                  readOnly
+                />
+              </>
+            )}
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata.hasOwnProperty("FormSixteen") && (
+              <img
+                src={`http://localhost:5000/${popupdata.FormSixteen.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Form Sixteen*
             </label>
-            <p className="cursor-pointer" onClick={()=>setFormSix(!formSix)}><GrFormEdit/></p>
-                {formSix &&
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setFormSixteen(e.target.files[0]);
-              }}
-            />
-                }
+            <p className="cursor-pointer" onClick={() => setFormSix(!formSix)}>
+              <GrFormEdit />
+            </p>
+            {formSix && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setFormSixteen(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {
+                    editBusinessLoanLead(e, "FormSixteen");
+                  }}
+                />
+              </>
+            )}
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata.hasOwnProperty("AadharCard") && (
+              <img
+                src={`http://localhost:5000/${popupdata.AadharCard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Aadhar Card*
             </label>
-            <p className="cursor-pointer" onClick={()=>setAdhrCd(!adhrCd)}><GrFormEdit/></p>
-                {adhrCd &&
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setAadharCard(e.target.files[0]);
-              }}
-            />
-                }
+            <p className="cursor-pointer" onClick={() => setAdhrCd(!adhrCd)}>
+              <GrFormEdit />
+            </p>
+            {adhrCd && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setAadharCard(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {
+                    editBusinessLoanLead(e, "AadharCard");
+                  }}
+                />
+              </>
+            )}
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata.hasOwnProperty("PanCard") && (
+              <img
+                src={`http://localhost:5000/${popupdata.PanCard.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
             >
               Pan Card*
             </label>
-            <p className="cursor-pointer" onClick={()=>setPnCd(!pnCd)}><GrFormEdit/></p>
-                {pnCd &&
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-zip"
-              type="file"
-              placeholder=""
-              onChange={(e) => {
-                setPanCard(e.target.files[0]);
-              }}
-            />
-                }
+            <p className="cursor-pointer" onClick={() => setPnCd(!pnCd)}>
+              <GrFormEdit />
+            </p>
+            {pnCd && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-zip"
+                  type="file"
+                  placeholder=""
+                  onChange={(e) => {
+                    setPanCard(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {
+                    editBusinessLoanLead(e, "PanCard");
+                  }}
+                />
+              </>
+            )}
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata.hasOwnProperty("ThreeMonthsSalarySlip") && (
+              <img
+                src={`http://localhost:5000/${popupdata.ThreeMonthsSalarySlip.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Three Months Salary Slip*
             </label>
-            <p className="cursor-pointer" onClick={()=>setThrsalary(!thrsalary)}><GrFormEdit/></p>
-                {thrsalary &&
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setThreeMonthsSalarySlip(e.target.files[0]);
-              }}
-            />
-                }
+            <p
+              className="cursor-pointer"
+              onClick={() => setThrsalary(!thrsalary)}
+            >
+              <GrFormEdit />
+            </p>
+            {thrsalary && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setThreeMonthsSalarySlip(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {
+                    editBusinessLoanLead(e, "ThreeMonthsSalarySlip");
+                  }}
+                />
+              </>
+            )}
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            {popupdata.hasOwnProperty("SixMonthsBankStatement") && (
+              <img
+                src={`http://localhost:5000/${popupdata.SixMonthsBankStatement.split(
+                  "public"
+                )[1].substring(1)}`}
+                alt=""
+                srcset=""
+              />
+            )}
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-city"
             >
               Six Months Bank Statement*
             </label>
-            <p className="cursor-pointer" onClick={()=>setSixBnk(!SixBnk)}><GrFormEdit/></p>
-                {SixBnk &&
-            <input
-              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-city"
-              type="file"
-              placeholder="Albuquerque"
-              onChange={(e) => {
-                setSixMonthsBankStatement(e.target.files[0]);
-              }}
-            />
-                }
+            <p className="cursor-pointer" onClick={() => setSixBnk(!SixBnk)}>
+              <GrFormEdit />
+            </p>
+            {SixBnk && (
+              <>
+                <input
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="grid-city"
+                  type="file"
+                  placeholder="Albuquerque"
+                  onChange={(e) => {
+                    setSixMonthsBankStatement(e.target.files[0]);
+                  }}
+                />
+                <img
+                  width="24"
+                  height="24"
+                  src="https://img.icons8.com/material/24/submit-progress--v2.png"
+                  alt="submit-progress--v2"
+                  onClick={(e) => {
+                    editBusinessLoanLead(e, "SixMonthsBankStatement");
+                  }}
+                />
+              </>
+            )}
           </div>
-        </div>
-        <div className="mt-5 flex justify-center">
-          <button
-            type="submit"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            SUBMIT
-          </button>
         </div>
       </form>
     </div>

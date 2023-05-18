@@ -3,9 +3,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup
   .object()
@@ -36,9 +35,10 @@ const schema = yup
     joiningdate: yup.date().required(),
     dob: yup.date().required(),
     PanNo: yup.string().required(),
-}).required();
+  })
+  .required();
 
-const Updateallempolyeeform = ({Profiledata,id}) => {
+const Updateallempolyeeform = ({ Profiledata, id }) => {
   const navigate = useNavigate();
   const {
     register,
@@ -49,20 +49,22 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
   });
 
   console.log(Profiledata);
-  const response= (data) =>{
+  const response = (data) => {
     console.log(data);
     if (data.success) {
       toast.success(data.message, {
-        position: toast.POSITION.TOP_RIGHT})
-        navigate('/allemployee');
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      navigate("/allemployee");
     } else {
       toast.error(data.message, {
-        position: toast.POSITION.TOP_RIGHT})
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
-  }
+  };
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     console.log("client");
     fetch(`http://localhost:5000/api/v1/crm/updateempolyee/${id}`, {
       method: "PATCH",
@@ -72,11 +74,18 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
       },
     })
       .then((response) => response.json())
-      .then((json) => { response(json)});
+      .then((json) => {
+        response(json);
+      });
   };
   return (
     <>
-      <form className="w-full mt-12" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="w-full mt-12"
+        onSubmit={(e) => {
+          handleSubmit(onSubmit);
+        }}
+      >
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -110,7 +119,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.first_name}
               {...register("middlename")}
             />
-             <small className="text-red-600">{errors.middlename?.message}</small>
+            <small className="text-red-600">{errors.middlename?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -170,7 +179,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Address 
+              Address
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -261,9 +270,9 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
                 </svg>
               </div>
             </div>
-          {errors.role && (
-            <small className="text-red-600">{errors.role.message}</small>
-          )}
+            {errors.role && (
+              <small className="text-red-600">{errors.role.message}</small>
+            )}
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -291,9 +300,9 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
                 </svg>
               </div>
             </div>
-          {errors.role && (
-            <small className="text-red-600">{errors.gender.message}</small>
-          )}
+            {errors.role && (
+              <small className="text-red-600">{errors.gender.message}</small>
+            )}
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -312,14 +321,16 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.nationality}
               {...register("nationality")}
             />
-            <small className="text-red-600">{errors.nationality?.message}</small>
+            <small className="text-red-600">
+              {errors.nationality?.message}
+            </small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Religion 
+              Religion
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -346,7 +357,9 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Date(Profiledata.joiningdate)}
               {...register("joiningdate")}
             />
-            <small className="text-red-600">{errors.joiningdate?.message}</small>
+            <small className="text-red-600">
+              {errors.joiningdate?.message}
+            </small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -363,7 +376,9 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.martialStatus}
               {...register("martialStatus")}
             />
-            <small className="text-red-600">{errors.martialStatus?.message}</small>
+            <small className="text-red-600">
+              {errors.martialStatus?.message}
+            </small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -382,14 +397,16 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.emergencyContactName}
               {...register("emergencyContactName")}
             />
-            <small className="text-red-600">{errors.emergencyContactName?.message}</small>
+            <small className="text-red-600">
+              {errors.emergencyContactName?.message}
+            </small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Emergency Contact Relationship 
+              Emergency Contact Relationship
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -399,7 +416,9 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.emergencyContactRelationship}
               {...register("emergencyContactRelationship")}
             />
-            <small className="text-red-600">{errors.emergencyContactRelationship?.message}</small>
+            <small className="text-red-600">
+              {errors.emergencyContactRelationship?.message}
+            </small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -416,7 +435,9 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.EmergencyContactNumber}
               {...register("EmergencyContactNumber")}
             />
-            <small className="text-red-600">{errors.EmergencyContactNumber?.message}</small>
+            <small className="text-red-600">
+              {errors.EmergencyContactNumber?.message}
+            </small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -442,7 +463,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Branch Name 
+              Branch Name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -505,14 +526,16 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.ACholdername}
               {...register("ACholdername")}
             />
-            <small className="text-red-600">{errors.ACholdername?.message}</small>
+            <small className="text-red-600">
+              {errors.ACholdername?.message}
+            </small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Bank Account Number 
+              Bank Account Number
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -542,7 +565,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
             <small className="text-red-600">{errors.PanNo?.message}</small>
           </div>
         </div>
-        <div className="flex justify-end mr-6 mt-5 ">   
+        <div className="flex justify-end mr-6 mt-5 ">
           <input
             type="submit"
             className="rounded-none bg-blue-600 text-white p-3 cursor-pointer"

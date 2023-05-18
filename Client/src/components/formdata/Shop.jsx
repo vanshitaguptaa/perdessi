@@ -45,13 +45,17 @@ const Shop = () => {
       formData.append("serviceId", serviceId);
       formData.append("PanCard", PanCard);
       formData.append("AdharCard", AdharCard);
-      formData.append("DetailsOfBusiness", DetailsOfBusiness);
-      formData.append("NatureOfBusiness", NatureOfBusiness);
+      formData.append("detailsOfBusiness", DetailsOfBusiness);
+      formData.append("natureOfBusiness", NatureOfBusiness);
       formData.append("ElectricityBill", ElectricityBill);
       formData.append("RentAgreement", RentAgreement);
       formData.append("MOA", MOA);
       formData.append("AON", AON);
       formData.append("CIN", CIN);
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
 
       const leadApiCall = await axios({
         method: "post",
@@ -67,9 +71,7 @@ const Shop = () => {
     } catch (error) {
       console.log(error);
     }
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    
   };
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
@@ -204,10 +206,10 @@ const Shop = () => {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
-              type="file"
+              type="text"
               placeholder="Albuquerque"
               onChange={(e) => {
-                setDetailsOfBusiness(e.target.files[0]);
+                setDetailsOfBusiness(e.target.value);
               }}
             />
           </div>
@@ -221,10 +223,10 @@ const Shop = () => {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
-              type="file"
+              type="text"
               placeholder=""
               onChange={(e) => {
-                setNatureOfBusiness(e.target.files[0]);
+                setNatureOfBusiness(e.target.value);
               }}
             />
           </div>

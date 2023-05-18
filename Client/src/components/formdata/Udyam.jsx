@@ -49,10 +49,10 @@ const Udyam = () => {
       formData.append("clientId", client);
       formData.append("loanAmount", LoanAmount);
       formData.append("serviceId", serviceId);
-      formData.append("Aadharcard", AdharCard);
-      formData.append("Pancard", PanCard);
+      formData.append("AdharCard", AdharCard);
+      formData.append("PanCard", PanCard);
       formData.append("BankAccountDetails", BankAccountDetails);
-      formData.append("BusinessAdress", BusinessAdress);
+      formData.append("businessAdress", BusinessAdress);
       formData.append("DetailsOfBusinessActivites", DetailsOfBusinessActivites);
       formData.append("InformationOfTheInvestment", InformationOfTheInvestment);
       formData.append("InformationOfTheTurnOver", InformationOfTheTurnOver);
@@ -226,10 +226,10 @@ const Udyam = () => {
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
-              type="file"
+              type="text"
               placeholder=""
               onChange={(e) => {
-                setBusinessAdress(e.target.files[0]);
+                setBusinessAdress(e.target.value);
               }}
             />
           </div>
