@@ -7,36 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const schema = yup
-  .object()
-  .shape({
-    first_name: yup.string().min(2).required(),
-    age: yup.number().positive().integer().required(),
-    last_name: yup.string().required(),
-    password: yup.string().optional(),
-    middlename: yup.string().optional(),
-    email: yup.string().email().required(),
-    reportto: yup.string().required(),
-    address: yup.string().required(),
-    number: yup.number().min(10).required(),
-    EmergencyContactNumber: yup.number().min(10).required(),
-    adharno: yup.number().required(),
-    role: yup.string().required(),
-    gender: yup.string().required(),
-    nationality: yup.string().required(),
-    religion: yup.string().required(),
-    martialStatus: yup.string().required(),
-    emergencyContactName: yup.string().required(),
-    emergencyContactRelationship: yup.string().required(),
-    BankName: yup.string().required(),
-    BranchName: yup.string().required(),
-    IFSCcode: yup.string().required(),
-    ACholdername: yup.string().required(),
-    BankAccNo: yup.number().required(),
-    joiningdate: yup.date().required(),
-    dob: yup.date().required(),
-    PanNo: yup.string().required(),
-}).required();
 
 const Updateallempolyeeform = ({Profiledata,id}) => {
   const navigate = useNavigate();
@@ -93,7 +63,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.first_name}
               {...register("first_name")}
             />
-            <small className="text-red-600">{errors.first_name?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -107,10 +76,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               id="grid-first-name"
               type="text"
               placeholder=""
-              defaultValue={Profiledata.first_name}
-              {...register("middlename")}
             />
-             <small className="text-red-600">{errors.middlename?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -127,7 +93,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.last_name}
               {...register("last_name")}
             />
-            <small className="text-red-600">{errors.last_name?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -142,9 +107,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.adharno}
-              {...register("adharno")}
             />
-            <small className="text-red-600">{errors.adharno?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -163,7 +126,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.email}
               {...register("email")}
             />
-            <small className="text-red-600">{errors.email?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -180,7 +142,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.address}
               {...register("address")}
             />
-            <small className="text-red-600">{errors.address?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -197,7 +158,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.reportto}
               {...register("reportto")}
             />
-            <small className="text-red-600">{errors.reportto?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -214,7 +174,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.number}
               {...register("number")}
             />
-            <small className="text-red-600">{errors.number?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-2">
@@ -233,7 +192,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.age}
               {...register("age")}
             />
-            <small className="text-red-600">{errors.age?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -251,14 +209,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               >
                 <option value="employee">{Profiledata.role}</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
               </div>
             </div>
           {errors.role && (
@@ -329,7 +279,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.religion}
               {...register("religion")}
             />
-            <small className="text-red-600">{errors.religion?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -346,7 +295,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Date(Profiledata.joiningdate)}
               {...register("joiningdate")}
             />
-            <small className="text-red-600">{errors.joiningdate?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -363,7 +311,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.martialStatus}
               {...register("martialStatus")}
             />
-            <small className="text-red-600">{errors.martialStatus?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -382,7 +329,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.emergencyContactName}
               {...register("emergencyContactName")}
             />
-            <small className="text-red-600">{errors.emergencyContactName?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -399,7 +345,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.emergencyContactRelationship}
               {...register("emergencyContactRelationship")}
             />
-            <small className="text-red-600">{errors.emergencyContactRelationship?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -416,7 +361,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.EmergencyContactNumber}
               {...register("EmergencyContactNumber")}
             />
-            <small className="text-red-600">{errors.EmergencyContactNumber?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -435,7 +379,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.BankName}
               {...register("BankName")}
             />
-            <small className="text-red-600">{errors.BankName?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -452,7 +395,6 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               defaultValue={Profiledata.BranchName}
               {...register("BranchName")}
             />
-            <small className="text-red-600">{errors.BranchName?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
