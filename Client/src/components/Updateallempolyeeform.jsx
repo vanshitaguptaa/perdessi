@@ -4,22 +4,35 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
-const Updateform = ({Profiledata,id}) => {
+const Updateform = ({ Profiledata, id }) => {
   const navigate = useNavigate();
-  const [first_name,setfirst_name] = useState("")
-  const [last_name,setlast_name] = useState("")
-  const [email,setemail] = useState("")
-  const [address,setaddress] = useState("")
-  const [number,setnumber] = useState("")
-  const [nationality,setnationality] = useState("")
-  const [religion,setreligion] = useState("")
-  const [martialStatus,setmartialStatus] = useState("")
-  const [emergencyContactName,setemergencyContactName] = useState("")
-  const [emergencyContactRelationship,setemergencyContactRelationship] = useState("")
-  const [EmergencyContactNumber,setEmergencyContactNumber] = useState("")
- 
-  
+  const [first_name, setfirst_name] = useState(Profiledata.first_name);
+  const [last_name, setlast_name] = useState(Profiledata.last_name);
+  const [email, setemail] = useState(Profiledata.email);
+  const [address, setaddress] = useState(Profiledata.address);
+  const [number, setnumber] = useState(Profiledata.number);
+  const [nationality, setnationality] = useState(Profiledata.nationality);
+  const [religion, setreligion] = useState(Profiledata.religion);
+  const [martialStatus, setmartialStatus] = useState(Profiledata.martialStatus);
+  const [emergencyContactName, setemergencyContactName] = useState(
+    Profiledata.emergencyContactName
+  );
+  const [emergencyContactRelationship, setemergencyContactRelationship] =
+    useState(Profiledata.emergencyContactRelationship);
+  const [EmergencyContactNumber, setEmergencyContactNumber] = useState(
+    Profiledata.EmergencyContactNumber
+  );
+  const [age, setAge] = useState(Profiledata.age);
+  const [bankName, setBankName] = useState(Profiledata.BankName);
+  const [branch, setBranchName] = useState(Profiledata.BranchName);
+  const [dateOfBirth, setDateOfBirth] = useState(Profiledata.BankName);
+  const [IFSC, setIFSC] = useState(Profiledata.IFSCcode);
+  const [accHolderName, setAccHolderName] = useState(Profiledata.ACholdername);
+  const [bankAccNumber, setBankAccNumber] = useState(Profiledata.BankAccNo);
+  const [panNumber, setPanNumber] = useState(Profiledata.PanNo);
+  const [employeerole, setEmployeeRole] = useState(Profiledata.BankName);
+  const [adhar, setAdhar] = useState(Profiledata.adharno);
+
   let role = localStorage.getItem("role");
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
@@ -30,7 +43,6 @@ const Updateform = ({Profiledata,id}) => {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
-
 
   useEffect(() => {
     if (!tokenData) {
@@ -66,41 +78,53 @@ const Updateform = ({Profiledata,id}) => {
   //     .then((res) => console.log(res.data));
   // };
 
-  const handleUpdate = async(e)=>{
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log("handleUpdate")
-    const formdata = new FormData();
-    formdata.append("first_name", first_name)
-    formdata.append("last_name", last_name)
-    formdata.append("email", email)
-    formdata.append("address", address)
-    formdata.append("number", number)
-    formdata.append("nationality", nationality)
-    formdata.append("religion", religion)
-    formdata.append("martialStatus", martialStatus)
-    formdata.append("emergencyContactName", emergencyContactName)
-    formdata.append("emergencyContactRelationship", emergencyContactRelationship)
-    formdata.append("EmergencyContactNumber", EmergencyContactNumber)
+    console.log("handleUpdate");
 
-    
     await axios({
       method: "patch",
       url: `http://localhost:5000/api/v1/crm/updateempolyee/${id}`,
-      data: formdata,
+      data: {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        address: address,
+        number: number,
+        nationality: nationality,
+        religion: religion,
+        martialStatus: martialStatus,
+        emergencyContactName: emergencyContactName,
+        emergencyContactRelationship: emergencyContactRelationship,
+        EmergencyContactNumber: EmergencyContactNumber,
+        adharno: adhar,
+        PanNo: panNumber,
+        age: age,
+        BankName: bankName,
+        BranchName: branch,
+        IFSCcode: IFSC,
+        ACholdername: accHolderName,
+        BankAccNo: bankAccNumber,
+      },
       headers: {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-        console.log(res.data);
-        if (res.data.Succes) {
-          navigate("/myprofile")
-        }
+      console.log(res);
+      // if (res.data.Succes) {
+      //   navigate("/myprofile")
+      // }
     });
-  }
+  };
 
   return (
     <>
-      <form className="w-full mt-12" onSubmit={handleUpdate}>
+      <form
+        className="w-full mt-12"
+        onSubmit={(e) => {
+          handleUpdate(e);
+        }}
+      >
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -115,7 +139,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.first_name}
-              onChange={(e)=>{setfirst_name(e.target.value)}}
+              onChange={(e) => {
+                setfirst_name(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -145,7 +171,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.last_name}
-              onChange={(e)=>{setlast_name(e.target.value)}}
+              onChange={(e) => {
+                setlast_name(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -161,6 +189,9 @@ const Updateform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.adharno}
+              onChange={(e) => {
+                setAdhar(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -178,7 +209,9 @@ const Updateform = ({Profiledata,id}) => {
               type="email"
               placeholder=""
               defaultValue={Profiledata.email}
-              onChange={(e)=>{setemail(e.target.value)}}
+              onChange={(e) => {
+                setemail(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -194,7 +227,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.address}
-              onChange={(e)=>{setaddress(e.target.value)}}
+              onChange={(e) => {
+                setaddress(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -210,7 +245,6 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.reportto}
-            
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -226,7 +260,9 @@ const Updateform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.number}
-              onChange={(e)=>{setnumber(e.target.value)}}
+              onChange={(e) => {
+                setnumber(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -244,7 +280,9 @@ const Updateform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.age}
-              
+              onChange={(e) => {
+                setAge(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -259,9 +297,8 @@ const Updateform = ({Profiledata,id}) => {
                 name=""
                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 id="grid-state"
-             
               >
-                <option value="employee">{Profiledata.role}</option>
+                <option defaultValue="employee">{Profiledata.role}</option>
               </select>
             </div>
           </div>
@@ -277,11 +314,9 @@ const Updateform = ({Profiledata,id}) => {
                 name=""
                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 id="grid-state"
-                
               >
-                <option value="">{Profiledata.gender}</option>
+                <option defaultValue="">{Profiledata.gender}</option>
               </select>
-              
             </div>
           </div>
         </div>
@@ -299,7 +334,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.nationality}
-              onChange={(e)=>{setnationality(e.target.value)}}
+              onChange={(e) => {
+                setnationality(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -315,7 +352,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.religion}
-              onChange={(e)=>{setreligion(e.target.value)}}
+              onChange={(e) => {
+                setreligion(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -331,7 +370,6 @@ const Updateform = ({Profiledata,id}) => {
               type="date"
               placeholder=""
               defaultValue={Date(Profiledata.joiningdate)}
-              
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -347,7 +385,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.martialStatus}
-              onChange={(e)=>{setmartialStatus(e.target.value)}}
+              onChange={(e) => {
+                setmartialStatus(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -365,7 +405,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.emergencyContactName}
-              onChange={(e)=>{setemergencyContactName(e.target.value)}}
+              onChange={(e) => {
+                setemergencyContactName(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -381,7 +423,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.emergencyContactRelationship}
-              onChange={(e)=>{setemergencyContactRelationship(e.target.value)}}
+              onChange={(e) => {
+                setemergencyContactRelationship(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -397,7 +441,9 @@ const Updateform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.EmergencyContactNumber}
-              onChange={(e)=>{setEmergencyContactNumber(e.target.value)}}
+              onChange={(e) => {
+                setEmergencyContactNumber(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -415,7 +461,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.BankName}
-              
+              onChange={(e) => {
+                setBankName(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -431,7 +479,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.BranchName}
-              
+              onChange={(e) => {
+                setBranchName(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -447,9 +497,10 @@ const Updateform = ({Profiledata,id}) => {
               type="date"
               placeholder=""
               defaultValue={Date(Profiledata.dob)}
-            
+              onChange={(e) => {
+                setDateOfBirth(e.target.value);
+              }}
             />
-           
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -464,9 +515,10 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.IFSCcode}
-            
+              onChange={(e) => {
+                setIFSC(e.target.value);
+              }}
             />
-           
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -483,7 +535,9 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.ACholdername}
-              
+              onChange={(e) => {
+                setAccHolderName(e.target.value);
+              }}
             />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -499,9 +553,10 @@ const Updateform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.BankAccNo}
-             
+              onChange={(e) => {
+                setBankAccNumber(e.target.value);
+              }}
             />
-           
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -516,9 +571,10 @@ const Updateform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.PanNo}
-            
+              onChange={(e) => {
+                setPanNumber(e.target.value);
+              }}
             />
-          
           </div>
         </div>
         <div className="flex justify-end mr-6 mt-5 ">

@@ -191,6 +191,7 @@ export const updatepass = async (req, resp) => {
   }
 };
 export const updateempolyeedata = async (req, resp) => {
+  console.log(req.body)
   try {
     const already = await employeeModel.findByIdAndUpdate(
       req.params.id,

@@ -3464,6 +3464,8 @@ export const transferCreditCardLead = async (req, res) => {
   try {
     const { leadId, employeeId } = req.query;
 
+    console.log(leadId, employeeId)
+
     if (!leadId || !employeeId) {
       return res.status(422).json({
         status: false,
