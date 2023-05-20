@@ -108,6 +108,8 @@ const Tableclient = () => {
     return newdate;
   };
 
+  console.log(popupdata)
+
   return (
     <>
       <table class="table-fixed w-full overflow-y-auto h-32 bg-white">
@@ -175,7 +177,7 @@ const Tableclient = () => {
                     </p>
                     <p className="font-semibold">
                       Date of Creating:{" "}
-                      {change_into_date(popupdata.joiningdate)}
+                      {change_into_date(popupdata.createdAt)}
                     </p>
                   </div>
                 </div>

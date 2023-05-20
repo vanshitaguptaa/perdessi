@@ -1,40 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const schema = yup
-  .object()
-  .shape({
-    first_name: yup.string().min(2).required(),
-    // age: yup.number().positive().integer().required(),
-    last_name: yup.string().required(),
-    middlename: yup.string().optional(),
-    city: yup.string().required(),
-    email: yup.string().email().required(),
-    phone: yup.number().min(10).required(),
-    aadhar: yup.number().min(12).required(),
-    pan: yup.string().min(10).required(),
-    gst: yup.string().min(6).required(),
-    zip: yup.number().min(6).required(),
-    state: yup.string().required(),
-  })
-  .required();
-
 const Updateclientform = () => {
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-  const {id}= useParams();
+
+  const { id } = useParams();
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
+  const [first_name, setfirstName] = useState(popupdata.first_name);
+  const [last_name, setlastName] = useState(popupdata.last_name);
+  const [pan, setPan] = useState(popupdata.pan);
+  const [gst, setGst] = useState(popupdata.gst);
+  const [phone, setPhone] = useState(popupdata.phone);
+  const [state, setState] = useState(popupdata.state);
+  const [zip, setZip] = useState(popupdata.zip);
+  const [gender, setGender ] = useState(popupdata.gender);
+  const [city, setCity] = useState(popupdata.city);
+  const [aadhar, setAadhar] = useState(popupdata.aadhar);
 
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
@@ -46,8 +29,8 @@ const Updateclientform = () => {
   }
   let currentDate = new Date();
 
-
   const singlefetch = async (id) => {
+
     await axios({
       method: "get",
       url: `http://localhost:5000/api/v1/crm/getclientbyid?clientId=${id}`,
@@ -55,11 +38,12 @@ const Updateclientform = () => {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-    //   console.log(res.data.response);
+        console.log(res.data.response);
       setpopupdata(res.data.response);
-
     });
   };
+
+  console.log(popupdata)
 
   useEffect(() => {
     if (!tokenData) {
@@ -69,19 +53,31 @@ const Updateclientform = () => {
         localStorage.removeItem("token");
         navigate("/login");
       }
-      singlefetch(id)
+      singlefetch(id);
       setTimeout(() => {
         setAuthScreen(false);
       }, 500);
     }
   }, []);
 
-  const onSubmit = async (data) => {
+  const handleSubmit = async (data) => {
+    data.preventDefault()
     try {
       const response = await axios({
         method: "patch",
         url: `http://localhost:5000/api/v1/crm/myclient/${id}`,
-        data: data,
+        data: {
+          first_name: first_name,
+          last_name: last_name,
+          pan:pan,
+          gst:gst,
+          gender:gender,
+          phone:phone,
+          state:state,
+          zip:zip,
+          city:city,
+          aadhar:aadhar
+        },
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -96,7 +92,7 @@ const Updateclientform = () => {
 
   return (
     <>
-      <form className="w-full mt-12" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-full mt-12" onSubmit={handleSubmit}>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -110,11 +106,9 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
-              
               defaultValue={popupdata.first_name}
-              {...register("first_name")}
+              onChange={(e)=>setfirstName(e.target.value)}
             />
-            <small className="text-red-600">{errors.first_name?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -128,11 +122,9 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
-              
               defaultValue={popupdata.middle_name}
-              {...register("middlename")}
+              onChange={(e)=>setmiddleName(e.target.value)}
             />
-            <small className="text-red-600">{errors.middlename?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -146,11 +138,9 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
-              
               defaultValue={popupdata.last_name}
-              {...register("last_name")}
+              onChange={(e)=>setlastName(e.target.value)}
             />
-            <small className="text-red-600">{errors.last_name?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -166,11 +156,9 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="email"
               placeholder=""
-              
               defaultValue={popupdata.email}
-              {...register("email")}
+              
             />
-            <small className="text-red-600">{errors.email?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -184,11 +172,9 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="number"
               placeholder=""
-              
               defaultValue={popupdata.phone}
-              {...register("phone")}
+              onChange={(e)=>setPhone(e.target.value)}
             />
-            <small className="text-red-600">{errors.phone?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -203,9 +189,8 @@ const Updateclientform = () => {
               type="text"
               placeholder=""
               defaultValue={popupdata.pan}
-              {...register("pan")}
+              onChange={(e)=>setPan(e.target.value)}
             />
-            <small className="text-red-600">{errors.pan?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -221,11 +206,9 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="number"
               placeholder=""
-              
               defaultValue={popupdata.aadhar}
-              {...register("aadhar")}
+              onChange={(e)=>setAadhar(e.target.value)}
             />
-            <small className="text-red-600">{errors.aadhar?.message}</small>
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -239,11 +222,42 @@ const Updateclientform = () => {
               id="grid-first-name"
               type="text"
               placeholder=""
-              
               defaultValue={popupdata.gst}
-              {...register("gst")}
+              onChange={(e)=>setGst(e.target.value)}
             />
-            <small className="text-red-600">{errors.gst?.message}</small>
+          </div>
+        </div>
+        <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              Gender
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder=""
+              defaultValue={popupdata.gender}
+              onChange={(e)=>setGender(e.target.value)}
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              htmlFor="grid-first-name"
+            >
+              DOB*
+            </label>
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+              id="grid-first-name"
+              type="text"
+              placeholder=""
+              defaultValue={popupdata.dob}
+            />
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-2">
@@ -259,11 +273,9 @@ const Updateclientform = () => {
               id="grid-city"
               type="text"
               placeholder=""
-              
               defaultValue={popupdata.city}
-              {...register("city")}
+              onChange={(e)=>setCity(e.target.value)}
             />
-            <small className="text-red-600">{errors.city?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -272,31 +284,14 @@ const Updateclientform = () => {
             >
               State
             </label>
-            <div className="relative">
-              <select
-                name=""
-                {...register("state")}
-                className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                id="grid-state"
-              >
-                <option value={popupdata.state}>{popupdata.state}</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Mumbai">Mumbai</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-              </div>
-            </div>
-            {errors.state && (
-              <small className="text-red-600">{errors.state.message}</small>
-            )}
+            <input
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              id="grid-city"
+              type="text"
+              placeholder=""
+              defaultValue={popupdata.state}
+              onChange={(e)=>setState(e.target.value)}
+            />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -310,11 +305,9 @@ const Updateclientform = () => {
               id="grid-zip"
               type="number"
               placeholder=""
-              
               defaultValue={popupdata.zip}
-              {...register("zip")}
+              onChange={(e)=>setZip(e.target.value)}
             />
-            <small className="text-red-600">{errors.zip?.message}</small>
           </div>
         </div>
         <div className="flex justify-end mr-6 mt-5">

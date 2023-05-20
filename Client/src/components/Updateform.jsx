@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const Updateform = ({ Profiledata }) => {
   const navigate = useNavigate();
   const [first_name, setfirst_name] = useState("");
@@ -28,6 +29,7 @@ const Updateform = ({ Profiledata }) => {
   const [age, setAge] = useState("");
   const [employeerole, setEmployeeRole] = useState("");
   const [adhar, setAdhar] = useState("");
+
 
   let role = localStorage.getItem("role");
   let tokenData = localStorage.getItem("token");
@@ -58,6 +60,7 @@ const Updateform = ({ Profiledata }) => {
   }, []);
 
   console.log(Profiledata);
+
   // const handleUpdate =  (data) => {
   //   data.preventDefault();
   //   console.log("handleUpdate")
@@ -108,6 +111,7 @@ const Updateform = ({ Profiledata }) => {
     });
   };
 
+
   return (
     <>
       <form className="w-full mt-12" onSubmit={handleUpdate}>
@@ -142,6 +146,7 @@ const Updateform = ({ Profiledata }) => {
               id="grid-first-name"
               type="text"
               placeholder=""
+              defaultValue={Profiledata.first_name}
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -160,6 +165,7 @@ const Updateform = ({ Profiledata }) => {
               onChange={(e) => {
                 setlast_name(e.target.value);
               }}
+
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -199,6 +205,7 @@ const Updateform = ({ Profiledata }) => {
               onChange={(e) => {
                 setemail(e.target.value);
               }}
+
             />
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
@@ -251,6 +258,7 @@ const Updateform = ({ Profiledata }) => {
               onChange={(e) => {
                 setnumber(e.target.value);
               }}
+
             />
           </div>
         </div>
@@ -309,7 +317,6 @@ const Updateform = ({ Profiledata }) => {
               >
                 <option value="">{Profiledata.gender}</option>
               </select>
-            </div>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -401,6 +408,7 @@ const Updateform = ({ Profiledata }) => {
               onChange={(e) => {
                 setemergencyContactName(e.target.value);
               }}
+
             />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -419,6 +427,7 @@ const Updateform = ({ Profiledata }) => {
               onChange={(e) => {
                 setemergencyContactRelationship(e.target.value);
               }}
+
             />
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -497,6 +506,7 @@ const Updateform = ({ Profiledata }) => {
                 setDateOfBirth(e.target.value);
               }}
             />
+
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -516,6 +526,7 @@ const Updateform = ({ Profiledata }) => {
                 setIFSC(e.target.value);
               }}
             />
+
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -556,6 +567,7 @@ const Updateform = ({ Profiledata }) => {
                 setBankAccNumber(e.target.value);
               }}
             />
+
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
