@@ -5,6 +5,7 @@ import CustomerRoutes from "./Routes/EmpolyeeRoute.js";
 import clientRoutes from "./Routes/ClientRoute.js";
 import LeadRoutes from "./Routes/LeadRoute.js";
 import ServiceRoutes from "./Routes/ServiceRoute.js";
+import DashboardRoutes from "./Routes/DashboardRoute.js";
 import cors from "cors";
 import config from "./config/Config.js";
 import path from "path"
@@ -37,6 +38,7 @@ app.use("/api/v1/crm", CustomerRoutes);
 app.use("/api/v1/crm", clientRoutes);
 app.use("/api/v1/crm", LeadRoutes);
 app.use("/api/v1/crm", ServiceRoutes);
+app.use("/api/v1/crm", DashboardRoutes);
 
 //PORT
 const PORT = process.env.PORT || 5000;

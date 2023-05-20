@@ -24,7 +24,6 @@ import Innerdashborad from "./Innerdashborad";
 import DashboardData from "../components/DashboardData";
 import AllleadGraph from "../components/AllleadGraph";
 
-
 function Dashboard() {
   const navigate = useNavigate();
   const [authScreen, setAuthScreen] = useState(true);
@@ -46,7 +45,7 @@ function Dashboard() {
         localStorage.removeItem("token");
         navigate("/login");
       }
-      console.log(token)
+      console.log(token);
       setTimeout(() => {
         setAuthScreen(false);
       }, 500);
@@ -69,7 +68,7 @@ function Dashboard() {
           <div></div>
         </div>
       </div>
-    );;
+    );
   }
   return (
     <div className="flex h-screen overflow-hidden">
@@ -86,15 +85,17 @@ function Dashboard() {
             <WelcomeBanner />
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
-              <DashboardData/>
+              <DashboardData />
             </div>
             <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-            <h1 className="font-bold text-2xl underline">All Leads Analysis Details:-</h1>
-              <AllleadGraph/>
+              <h1 className="font-bold text-2xl underline">
+                All Leads Analysis Details:-
+              </h1>
+              <AllleadGraph />
             </div>
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
-              <Innerdashborad/>
+              <Innerdashborad />
             </div>
           </div>
         </main>
