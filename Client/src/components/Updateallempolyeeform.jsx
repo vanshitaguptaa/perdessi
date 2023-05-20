@@ -1,82 +1,130 @@
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-
-const schema = yup
-  .object()
-  .shape({
-    first_name: yup.string().min(2).required(),
-    age: yup.number().positive().integer().required(),
-    last_name: yup.string().required(),
-    password: yup.string().optional(),
-    middlename: yup.string().optional(),
-    email: yup.string().email().required(),
-    reportto: yup.string().required(),
-    address: yup.string().required(),
-    number: yup.number().min(10).required(),
-    EmergencyContactNumber: yup.number().min(10).required(),
-    adharno: yup.number().required(),
-    role: yup.string().required(),
-    gender: yup.string().required(),
-    nationality: yup.string().required(),
-    religion: yup.string().required(),
-    martialStatus: yup.string().required(),
-    emergencyContactName: yup.string().required(),
-    emergencyContactRelationship: yup.string().required(),
-    BankName: yup.string().required(),
-    BranchName: yup.string().required(),
-    IFSCcode: yup.string().required(),
-    ACholdername: yup.string().required(),
-    BankAccNo: yup.number().required(),
-    joiningdate: yup.date().required(),
-    dob: yup.date().required(),
-    PanNo: yup.string().required(),
-}).required();
-
-const Updateallempolyeeform = ({Profiledata,id}) => {
+const Updateform = ({ Profiledata, id }) => {
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const [first_name, setfirst_name] = useState(Profiledata.first_name);
+  const [last_name, setlast_name] = useState(Profiledata.last_name);
+  const [email, setemail] = useState(Profiledata.email);
+  const [address, setaddress] = useState(Profiledata.address);
+  const [number, setnumber] = useState(Profiledata.number);
+  const [nationality, setnationality] = useState(Profiledata.nationality);
+  const [religion, setreligion] = useState(Profiledata.religion);
+  const [martialStatus, setmartialStatus] = useState(Profiledata.martialStatus);
+  const [emergencyContactName, setemergencyContactName] = useState(
+    Profiledata.emergencyContactName
+  );
+  const [emergencyContactRelationship, setemergencyContactRelationship] =
+    useState(Profiledata.emergencyContactRelationship);
+  const [EmergencyContactNumber, setEmergencyContactNumber] = useState(
+    Profiledata.EmergencyContactNumber
+  );
+  const [age, setAge] = useState(Profiledata.age);
+  const [bankName, setBankName] = useState(Profiledata.BankName);
+  const [branch, setBranchName] = useState(Profiledata.BranchName);
+  const [dateOfBirth, setDateOfBirth] = useState(Profiledata.BankName);
+  const [IFSC, setIFSC] = useState(Profiledata.IFSCcode);
+  const [accHolderName, setAccHolderName] = useState(Profiledata.ACholdername);
+  const [bankAccNumber, setBankAccNumber] = useState(Profiledata.BankAccNo);
+  const [panNumber, setPanNumber] = useState(Profiledata.PanNo);
+  const [employeerole, setEmployeeRole] = useState(Profiledata.BankName);
+  const [adhar, setAdhar] = useState(Profiledata.adharno);
+
+  let role = localStorage.getItem("role");
+  let tokenData = localStorage.getItem("token");
+  let tokenExpiry;
+  let token;
+  if (tokenData) {
+    // tokenExpiry = JSON.parse(tokenData).expiry;
+    tokenExpiry = new Date(JSON.parse(tokenData).expiry);
+    token = JSON.parse(tokenData).usertoken;
+  }
+  let currentDate = new Date();
+
+  useEffect(() => {
+    if (!tokenData) {
+      navigate("/login");
+    } else {
+      if (role === "employee") {
+        navigate("/login");
+      }
+      if (currentDate > tokenExpiry) {
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
+      setTimeout(() => {
+        setAuthScreen(false);
+      }, 500);
+    }
+  }, []);
 
   console.log(Profiledata);
-  const response= (data) =>{
-    console.log(data);
-    if (data.success) {
-      toast.success(data.message, {
-        position: toast.POSITION.TOP_RIGHT})
-        navigate('/allemployee');
-    } else {
-      toast.error(data.message, {
-        position: toast.POSITION.TOP_RIGHT})
-    }
-  }
+  // const handleUpdate =  (data) => {
+  //   data.preventDefault();
+  //   console.log("handleUpdate")
+  //   console.log(data)
+  //   console.log("client");
+  //   fetch("http://localhost:5000/api/v1/crm/updateempolyee/:id", {
+  //     method: "PATCH",
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((res) => console.log(res.data));
+  // };
 
-  const onSubmit = (data) => {
-    console.log(data)
-    console.log("client");
-    fetch(`http://localhost:5000/api/v1/crm/updateempolyee/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    console.log("handleUpdate");
+
+    await axios({
+      method: "patch",
+      url: `http://localhost:5000/api/v1/crm/updateempolyee/${id}`,
+      data: {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        address: address,
+        number: number,
+        nationality: nationality,
+        religion: religion,
+        martialStatus: martialStatus,
+        emergencyContactName: emergencyContactName,
+        emergencyContactRelationship: emergencyContactRelationship,
+        EmergencyContactNumber: EmergencyContactNumber,
+        adharno: adhar,
+        PanNo: panNumber,
+        age: age,
+        BankName: bankName,
+        BranchName: branch,
+        IFSCcode: IFSC,
+        ACholdername: accHolderName,
+        BankAccNo: bankAccNumber,
       },
-    })
-      .then((response) => response.json())
-      .then((json) => { response(json)});
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      console.log(res);
+      // if (res.data.Succes) {
+      //   navigate("/myprofile")
+      // }
+    });
   };
+
   return (
     <>
-      <form className="w-full mt-12" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="w-full mt-12"
+        onSubmit={(e) => {
+          handleUpdate(e);
+        }}
+      >
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -91,9 +139,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.first_name}
-              {...register("first_name")}
+              onChange={(e) => {
+                setfirst_name(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.first_name?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -107,10 +156,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               id="grid-first-name"
               type="text"
               placeholder=""
-              defaultValue={Profiledata.first_name}
-              {...register("middlename")}
             />
-             <small className="text-red-600">{errors.middlename?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -125,9 +171,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.last_name}
-              {...register("last_name")}
+              onChange={(e) => {
+                setlast_name(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.last_name?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -142,9 +189,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.adharno}
-              {...register("adharno")}
+              onChange={(e) => {
+                setAdhar(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.adharno?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -161,16 +209,17 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="email"
               placeholder=""
               defaultValue={Profiledata.email}
-              {...register("email")}
+              onChange={(e) => {
+                setemail(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.email?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Address 
+              Address
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -178,9 +227,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.address}
-              {...register("address")}
+              onChange={(e) => {
+                setaddress(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.address?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -195,9 +245,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.reportto}
-              {...register("reportto")}
             />
-            <small className="text-red-600">{errors.reportto?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -212,9 +260,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.number}
-              {...register("number")}
+              onChange={(e) => {
+                setnumber(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.number?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-2">
@@ -231,9 +280,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.age}
-              {...register("age")}
+              onChange={(e) => {
+                setAge(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.age?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -247,23 +297,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
                 name=""
                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 id="grid-state"
-                {...register("role")}
               >
-                <option value="employee">{Profiledata.role}</option>
+                <option defaultValue="employee">{Profiledata.role}</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-              </div>
             </div>
-          {errors.role && (
-            <small className="text-red-600">{errors.role.message}</small>
-          )}
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -277,23 +314,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
                 name=""
                 className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                 id="grid-state"
-                {...register("gender")}
               >
-                <option value="">{Profiledata.gender}</option>
+                <option defaultValue="">{Profiledata.gender}</option>
               </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-              </div>
             </div>
-          {errors.role && (
-            <small className="text-red-600">{errors.gender.message}</small>
-          )}
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -310,16 +334,17 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.nationality}
-              {...register("nationality")}
+              onChange={(e) => {
+                setnationality(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.nationality?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Religion 
+              Religion
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -327,9 +352,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.religion}
-              {...register("religion")}
+              onChange={(e) => {
+                setreligion(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.religion?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -344,9 +370,7 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="date"
               placeholder=""
               defaultValue={Date(Profiledata.joiningdate)}
-              {...register("joiningdate")}
             />
-            <small className="text-red-600">{errors.joiningdate?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -361,9 +385,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.martialStatus}
-              {...register("martialStatus")}
+              onChange={(e) => {
+                setmartialStatus(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.martialStatus?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -380,16 +405,17 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.emergencyContactName}
-              {...register("emergencyContactName")}
+              onChange={(e) => {
+                setemergencyContactName(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.emergencyContactName?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Emergency Contact Relationship 
+              Emergency Contact Relationship
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -397,9 +423,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.emergencyContactRelationship}
-              {...register("emergencyContactRelationship")}
+              onChange={(e) => {
+                setemergencyContactRelationship(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.emergencyContactRelationship?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -414,9 +441,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.EmergencyContactNumber}
-              {...register("EmergencyContactNumber")}
+              onChange={(e) => {
+                setEmergencyContactNumber(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.EmergencyContactNumber?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -433,16 +461,17 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.BankName}
-              {...register("BankName")}
+              onChange={(e) => {
+                setBankName(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.BankName?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Branch Name 
+              Branch Name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -450,9 +479,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.BranchName}
-              {...register("BranchName")}
+              onChange={(e) => {
+                setBranchName(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.BranchName?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -467,9 +497,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="date"
               placeholder=""
               defaultValue={Date(Profiledata.dob)}
-              {...register("dob")}
+              onChange={(e) => {
+                setDateOfBirth(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.dob?.message}</small>
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
@@ -484,9 +515,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.IFSCcode}
-              {...register("IFSCcode")}
+              onChange={(e) => {
+                setIFSC(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.IFSCcode?.message}</small>
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -503,16 +535,17 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.ACholdername}
-              {...register("ACholdername")}
+              onChange={(e) => {
+                setAccHolderName(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.ACholdername?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Bank Account Number 
+              Bank Account Number
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -520,9 +553,10 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="number"
               placeholder=""
               defaultValue={Profiledata.BankAccNo}
-              {...register("BankAccNo")}
+              onChange={(e) => {
+                setBankAccNumber(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.BankAccNo?.message}</small>
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -537,12 +571,13 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
               type="text"
               placeholder=""
               defaultValue={Profiledata.PanNo}
-              {...register("PanNo")}
+              onChange={(e) => {
+                setPanNumber(e.target.value);
+              }}
             />
-            <small className="text-red-600">{errors.PanNo?.message}</small>
           </div>
         </div>
-        <div className="flex justify-end mr-6 mt-5 ">   
+        <div className="flex justify-end mr-6 mt-5 ">
           <input
             type="submit"
             className="rounded-none bg-blue-600 text-white p-3 cursor-pointer"
@@ -553,4 +588,4 @@ const Updateallempolyeeform = ({Profiledata,id}) => {
   );
 };
 
-export default Updateallempolyeeform;
+export default Updateform;
