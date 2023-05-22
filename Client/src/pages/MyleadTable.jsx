@@ -38,8 +38,8 @@ const MyleadTable = ({ loandetail, length }) => {
 
   const handlenavigate = useNavigate();
 
-   // Function for Fetch Data in Pop
-   const Fetchpopdata = async (id, serviceName) => {
+  // Function for Fetch Data in Pop
+  const Fetchpopdata = async (id, serviceName) => {
     console.log(`Pop is Working for this is ${id}`);
     console.log(serviceName);
     try {
@@ -241,7 +241,6 @@ const MyleadTable = ({ loandetail, length }) => {
     }
   };
 
-
   const change_into_date = (dte) => {
     const data = new Date(dte);
     const newdate = data.toLocaleDateString();
@@ -253,7 +252,14 @@ const MyleadTable = ({ loandetail, length }) => {
     console.log(propsData);
     if (propsData.service.service_name === "personal loan") {
       return Object.entries(propsData).map(([key, value]) => {
-        if (key === "service" || key === "client" || key === "employee") {
+        if (
+          key === "service" ||
+          key === "client" ||
+          key === "employee" ||
+          key === "isFailed" ||
+          key === "isPending" ||
+          key === "isSuccess"
+        ) {
           return null;
         } else {
           return Object.entries(value).map(([keyOne, valueOne]) => {
@@ -299,7 +305,10 @@ const MyleadTable = ({ loandetail, length }) => {
           key === "employee" ||
           key === "_id" ||
           key === "__v" ||
-          key === "LoanAmount"
+          key === "LoanAmount" ||
+          key === "isFailed" ||
+          key === "isPending" ||
+          key === "isSuccess"
         ) {
           return null;
         } else {

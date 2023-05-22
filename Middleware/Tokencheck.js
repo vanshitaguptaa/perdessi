@@ -19,6 +19,7 @@ export const employeeTokenCheck = async (req, res, next) => {
 
       const decoded = JWT.verify(token, process.env.JWT_SECRET);
 
+
       req.user = await employeeModel.findById({ _id: decoded._id });
 
       next();

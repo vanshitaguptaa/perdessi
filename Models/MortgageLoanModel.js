@@ -37,6 +37,18 @@ const MortgageLoanSchema = new mongoose.Schema({
   itReturns: {
     type: String,
   },
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const MortgageLoanModel = mongoose.model("MortgageLoan", MortgageLoanSchema);

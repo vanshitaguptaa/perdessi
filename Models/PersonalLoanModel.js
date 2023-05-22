@@ -51,6 +51,18 @@ const PersonalLoanSchema = new mongoose.Schema({
   SelfEmployeedProofofContinuityofBusiness: {
     type: Object,
   },
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const PersonalLoanModel = mongoose.model("PersonalLoan", PersonalLoanSchema);

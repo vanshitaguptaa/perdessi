@@ -31,6 +31,18 @@ const CreditCardSchema = new mongoose.Schema({
   FormSixteen: {
     type: String,
   },
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: String,
+    default: false
+  }
 });
 
 const CreditCardModel = mongoose.model("CreditCardLoan", CreditCardSchema);

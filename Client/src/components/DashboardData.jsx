@@ -38,7 +38,7 @@ const DashboardData = () => {
       // Cleanup function to be executed on component unmount
       isMounted = false;
     };
-  }, [loading]);
+  }, []);
 
   return (
     <div className="grid grid-cols-5 gap-4">
