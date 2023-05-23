@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const Updateform = ({Profiledata,id}) => {
@@ -32,6 +30,7 @@ const Updateform = ({Profiledata,id}) => {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
+
 
   useEffect(() => {
     if (!tokenData) {
@@ -187,7 +186,7 @@ const Updateform = ({Profiledata,id}) => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Address 
+              Address
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -265,7 +264,6 @@ const Updateform = ({Profiledata,id}) => {
                 <option value="employee">{Profiledata.role}</option>
               </select>
             </div>
-         
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
@@ -285,7 +283,6 @@ const Updateform = ({Profiledata,id}) => {
               </select>
               
             </div>
-         
           </div>
         </div>
         <div className="flex flex-wrap mx-3 mb-6 justify-center items-center">
@@ -304,14 +301,13 @@ const Updateform = ({Profiledata,id}) => {
               defaultValue={Profiledata.nationality}
               onChange={(e)=>{setnationality(e.target.value)}}
             />
-            
           </div>
           <div className="w-full md:w-1/4 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Religion 
+              Religion
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -377,7 +373,7 @@ const Updateform = ({Profiledata,id}) => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Emergency Contact Relationship 
+              Emergency Contact Relationship
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -427,7 +423,7 @@ const Updateform = ({Profiledata,id}) => {
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Branch Name 
+              Branch Name
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -489,14 +485,13 @@ const Updateform = ({Profiledata,id}) => {
               defaultValue={Profiledata.ACholdername}
               
             />
-           
           </div>
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               htmlFor="grid-first-name"
             >
-              Bank Account Number 
+              Bank Account Number
             </label>
             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -526,7 +521,7 @@ const Updateform = ({Profiledata,id}) => {
           
           </div>
         </div>
-        <div className="flex justify-end mr-6 mt-5 ">   
+        <div className="flex justify-end mr-6 mt-5 ">
           <input
             type="submit"
             className="rounded-none bg-blue-600 text-white p-3 cursor-pointer"

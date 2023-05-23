@@ -8,7 +8,7 @@ import CarLoanModel from "../Models/CarLoanModel.js";
 import NewCorrectionPanApplicationModel from "../Models/NewCorrectionPanApplication.js";
 import PassportModel from "../Models/PassportModel.js";
 import GSTResgistraionModel from "../Models/GSTRegistrationModel.js";
-import ShopActModel from "../Models/ServiceModel.js";
+import ShopActModel from "../Models/ShopActModel.js";
 import UdyamCertificateModel from "../Models/UdyamCertificationModel.js";
 import FoodLisenceModel from "../Models/FoodLisenceModel.js";
 import Route from "../Routes/ClientRoute.js";
@@ -475,6 +475,8 @@ export const createLeadForShopAct = async (req, resp) => {
       DetailsOfBusiness: detailsOfBusiness,
       NatureOfBusiness: natureOfBusiness,
     };
+
+    console.log(ShopActData)
 
     for (const key in documentObject) {
       ShopActData[key] = documentObject[key][0].path;

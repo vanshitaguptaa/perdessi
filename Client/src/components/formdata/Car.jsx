@@ -16,6 +16,7 @@ const Car = () => {
   const { clientState } = useContext(ClientListContext);
   const { clientAdminState } = useContext(ClientAdminContext);
   const [clientData, setClientData] = useState("");
+  const [client, setClient] = useState("");
   const [LoanAmount, setLoanAmount] = useState("");
   const [Selectclient, setSelectClient] = useState("Select a client");
   const [SalariedIdentityProof, setSalariedIdentityProof] = useState(null);
