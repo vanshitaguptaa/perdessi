@@ -65,7 +65,7 @@ const Transferlead = () => {
     });
   };
 
-  const onSubmit = async () => {
+  const onSubmit = async (e) => {
     e.preventdefault()
     if (service === "personal loan") {
       await axios({
@@ -308,7 +308,7 @@ const Transferlead = () => {
                 <div className="">
                   <form
                     className="w-full mt-12"
-                    onSubmit={()=>onSubmit()}
+                    onSubmit={onSubmit}
                   >
                     <div className="flex flex-wrap mx-3 mb-2">
                       <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
