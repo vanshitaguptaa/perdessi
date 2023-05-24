@@ -86,7 +86,8 @@ const AllClientTable = () => {
 
   // single data fetch FUNCTION
 
-  const singlefetch = async (id) => {
+  const singlefetch = async (e, id) => {
+    e.preventDefault();
     await axios({
       method: "get",
       url: `http://localhost:5000/api/v1/crm/getclientbyid?clientId=${id}`,
@@ -143,8 +144,8 @@ const AllClientTable = () => {
                   <td class="border px-1 py-2 text-center">
                     <button
                       className="bg-blue-500 mx-2 p-2 text-white"
-                      onClick={() => {
-                        singlefetch(e._id);
+                      onClick={(event) => {
+                        singlefetch(event, e._id);
                       }}
                     >
                       View

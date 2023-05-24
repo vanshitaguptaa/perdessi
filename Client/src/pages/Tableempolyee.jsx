@@ -64,7 +64,7 @@ const Tableempolyee = () => {
   const singlefetch = async (id) => {
     await axios({
       method: "get",
-      url: `http://localhost:5000/api/v1/crm/getEmpolyeeID?clientId=${id}`,
+      url: `http://localhost:5000/api/v1/crm/getEmpolyeeIDforadmin/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -38,205 +38,207 @@ const MyleadTable = ({ loandetail, length }) => {
 
   const handlenavigate = useNavigate();
 
-  
-
   // Function for Fetch Data in Pop
   const Fetchpopdata = async (id, serviceName) => {
     console.log(`Pop is Working for this is ${id}`);
-    console.log(serviceName === "Passport")
-    if (serviceName === "personal loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
+    console.log(serviceName);
+    try {
+      if (serviceName === "personal loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getpersonalloanbyuid?personalLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Mortgage  Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Business Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Home  Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Business Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Mortgage  Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Home  Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Gold Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getgoldloanbyid?goldLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Credit Card") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getcreditcardbyid?creditCardId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "New Correction Pan application") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplication?newCorrectionPanApplicationId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Shop Act") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getshopactbyid?shopActId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Passport") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getpassportbyid?passportById=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "GST registration application") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getGSTregistrationbyid?GSTRegistrationId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "UDYAM Registration") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getudyamcertificatebyid?UdyamCertificateId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Car Loan") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getcarloanbyid?carLoanId=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      if (serviceName === "Food Lisence") {
+        await axios({
+          method: "get",
+          url: `http://localhost:5000/api/v1/crm/getfoodlisencebyid?foodlisenceById=${id}`,
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          console.log(res.data.response);
+          setpopupdata(res.data.response);
+        });
+      }
+      popupdata ? setview(true) : setview(false);
+    } catch (error) {
+      console.log(error);
     }
-    if (serviceName === "Mortgage  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Business Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Home  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Business Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getbusinessloanbyid?businessLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Mortgage  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getmortgageloanbyid?mortgageLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Home  Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/gethomeloanbyid?homeleadID=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Gold Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getgoldloanbyid?goldLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Credit Card") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getcreditcardbyid?creditCardId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "New Correction Pan application") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getnewcorrectionpanapplication?newCorrectionPanApplicationId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Shop Act") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getshopactbyid?shopActId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Passport") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getpassportbyid?passportById=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "GST registration application") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getGSTregistrationbyid?GSTRegistrationId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "UDYAM Registration") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getudyamcertificatebyid?UdyamCertificateId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Car Loan") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getcarloanbyid?carLoanId=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    if (serviceName === "Food Lisence") {
-      await axios({
-        method: "get",
-        url: `http://localhost:5000/api/v1/crm/getfoodlisencebyid?foodlisenceById=${id}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        console.log(res.data.response);
-        setpopupdata(res.data.response);
-      });
-    }
-    popupdata ? setview(true) : setview(false);
   };
 
   const change_into_date = (dte) => {
@@ -250,7 +252,14 @@ const MyleadTable = ({ loandetail, length }) => {
     console.log(propsData);
     if (propsData.service.service_name === "personal loan") {
       return Object.entries(propsData).map(([key, value]) => {
-        if (key === "service" || key === "client" || key === "employee") {
+        if (
+          key === "service" ||
+          key === "client" ||
+          key === "employee" ||
+          key === "isFailed" ||
+          key === "isPending" ||
+          key === "isSuccess"
+        ) {
           return null;
         } else {
           return Object.entries(value).map(([keyOne, valueOne]) => {
@@ -296,7 +305,10 @@ const MyleadTable = ({ loandetail, length }) => {
           key === "employee" ||
           key === "_id" ||
           key === "__v" ||
-          key === "LoanAmount"
+          key === "LoanAmount" ||
+          key === "isFailed" ||
+          key === "isPending" ||
+          key === "isSuccess"
         ) {
           return null;
         } else {
@@ -420,10 +432,12 @@ const MyleadTable = ({ loandetail, length }) => {
                           <Link
                             to={`/transferlead/${e.service.service_name}`}
                             state={{
+                              service: e.service.service_name,
                               serviceID: e._id,
                               number: e.client.phone,
-                              employee: e.employee.first_name + e.employee.last_name,
-                              empolyeeID: e.employee._id
+                              employee:
+                                e.employee.first_name + e.employee.last_name,
+                              empolyeeID: e.employee._id,
                             }}
                           >
                             <button
@@ -458,7 +472,6 @@ const MyleadTable = ({ loandetail, length }) => {
                   <div className="grid gap-4 ">
                     <div>
                       <h3 className="font-bold text-2xl uppercase">
-                        {" "}
                         client details
                       </h3>
                       <p className="font-bold uppercase">

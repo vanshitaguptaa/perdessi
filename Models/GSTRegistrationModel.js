@@ -70,6 +70,18 @@ const GSTRegistrationSchema = new mongoose.Schema({
   CompanyAddressProof: {
     type: String,
   },
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const GSTRegistrationModel = mongoose.model(

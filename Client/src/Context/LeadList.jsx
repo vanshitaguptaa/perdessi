@@ -17,31 +17,7 @@ const LeadListProvider = ({ children }) => {
     leads: [],
   });
 
-  const getLeadsforEmployee = async () => {
-    dispatch({ type: "Loading" });
-    try {
-      const savedLeads = await axios({
-        method: "get",
-        url: "http://localhost:5000/api/v1/crm/mylead",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (savedLeads.status) {
-        dispatch({ type: "Data", payload: savedLeads.data });
-      }
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: "Failed" });
-    }
-  };
-
-  useEffect(() => {
-    getLeadsforEmployee();
-  }, []);
-
-  console.log(leadState);
+  
   return (
     <LeadListContext.Provider value={leadState}>
       {children}

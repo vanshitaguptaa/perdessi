@@ -6,7 +6,7 @@ try {
    await mongoose.connect(URL);
     console.log('database Connected Successfully')
 } catch (err) {
-    console.log('Some Error occurs while Connecting database Successfully')
+    console.log('Some Error occurs while Connecting database Successfully', err)
 }
 } 
 

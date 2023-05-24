@@ -22,6 +22,18 @@ const PassportSchema = new mongoose.Schema({
   AddressProof: {
     type: String,
   },
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const PassportModel = mongoose.model("Passport", PassportSchema);

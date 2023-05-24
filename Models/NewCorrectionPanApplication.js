@@ -25,6 +25,18 @@ const NewCorrectionPanApplication = new mongoose.Schema({
   DateofBirthProof: {
     type: String,
   },
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  }
 });
 
 const NewCorrectionPanApplicationModel = mongoose.model(

@@ -549,7 +549,18 @@ function Myleadtbloutter() {
                     </button>
                   </div>
                 </div>
-                <MyleadTable loandetail={loandetail} length={length} />
+                {loandetail === "There is no data with this number" ? (
+                  <>
+                    <div className="w-10/12 bg-red-400 text-center h-fit rounded-2xl">
+                      <h1 className="py-10 px-10 text-5xl text-white">
+                        NO DATA FOUND
+                      </h1>
+                    </div>
+                  </>
+                ) : (
+                  <MyleadTable loandetail={loandetail} length={length} />
+                )}
+                {/* <MyleadTable loandetail={loandetail} length={length} /> */}
               </div>
             </div>
           </div>

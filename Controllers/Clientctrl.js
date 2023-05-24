@@ -174,7 +174,7 @@ export const getClientForCurrentUser = async (req, resp) => {
 
     if (savedClient < 1) {
       return resp
-        .status(401)
+        .status(404)
         .json({ status: false, message: "current employee has no client" });
     }
 
