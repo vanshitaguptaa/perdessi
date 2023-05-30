@@ -34,7 +34,9 @@ const PassportSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const PassportModel = mongoose.model("Passport", PassportSchema);
 

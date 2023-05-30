@@ -43,7 +43,9 @@ const CreditCardSchema = new mongoose.Schema({
     type: String,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const CreditCardModel = mongoose.model("CreditCardLoan", CreditCardSchema);
 

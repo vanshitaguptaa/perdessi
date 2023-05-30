@@ -63,7 +63,9 @@ const PersonalLoanSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const PersonalLoanModel = mongoose.model("PersonalLoan", PersonalLoanSchema);
 

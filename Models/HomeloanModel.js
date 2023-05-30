@@ -100,7 +100,9 @@ const homeLoanSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const HomeLoanModel = mongoose.model("Homeloan", homeLoanSchema);
 

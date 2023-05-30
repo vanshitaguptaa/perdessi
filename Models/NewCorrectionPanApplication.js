@@ -37,7 +37,9 @@ const NewCorrectionPanApplication = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const NewCorrectionPanApplicationModel = mongoose.model(
   "NewCorrectionPanApplication",

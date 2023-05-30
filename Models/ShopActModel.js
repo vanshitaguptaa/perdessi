@@ -55,7 +55,9 @@ const ShopActSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 
 const ShopActModel = mongoose.model("ShopAct", ShopActSchema);

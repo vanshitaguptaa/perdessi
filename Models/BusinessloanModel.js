@@ -70,7 +70,9 @@ const BusinesLoanSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const BusinessLoanModel = mongoose.model("BusinessLoan", BusinesLoanSchema);
 

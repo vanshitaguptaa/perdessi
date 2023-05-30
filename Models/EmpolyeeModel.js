@@ -103,6 +103,10 @@ const employeeSchema = new mongoose.Schema(
             type: String,
             required: true,
             default: "empolyee"
+        },
+        employeeid:{
+            type: Number,
+            required: true
         }
     },
     { timestamps: true }

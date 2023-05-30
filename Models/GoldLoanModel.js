@@ -34,7 +34,9 @@ const GoldLoanSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const GoldLoanModel = mongoose.model("GoldLoan", GoldLoanSchema);
 

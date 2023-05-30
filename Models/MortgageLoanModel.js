@@ -49,7 +49,9 @@ const MortgageLoanSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const MortgageLoanModel = mongoose.model("MortgageLoan", MortgageLoanSchema);
 

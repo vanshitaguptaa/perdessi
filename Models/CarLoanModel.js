@@ -73,7 +73,9 @@ const CarLoanSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const CarLoanModel = mongoose.model("CarLoan", CarLoanSchema);
 

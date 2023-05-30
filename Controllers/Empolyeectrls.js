@@ -4,10 +4,11 @@ import JWT from "jsonwebtoken";
 
 export const getallemployee = async (req, resp) => {
   try {
-    const fetchdata = await employeeModel.find({}).select("-password");
+    const fetchdata = await employeeModel.find({}).sort({'createdAt': 'desc'}).select("-password");
     resp.status(200).send({
       fetchdata: fetchdata,
     });
+    console.log(fetchdata.employeeId);
   } catch (error) {
     resp.status(500).send({
       success: false,
@@ -70,6 +71,8 @@ export const addemployee = async (req, resp) => {
         const hashedPassword = await bcrypt.hash(passw, 10);
         req.body.password = hashedPassword;
       }
+      // const E_ID = await employeeModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+      // console.log(E_ID.employeeId);
       const Createdata = await employeeModel.create(req.body);
       resp.status(200).send({
         success: true,
