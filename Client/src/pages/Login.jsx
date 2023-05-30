@@ -7,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const schema = yup
   .object()
   .shape({
@@ -21,11 +22,6 @@ const schema = yup
 
 const Login = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-  }, []);
 
   const {
     register,
@@ -43,9 +39,10 @@ const Login = () => {
       console.log(res);
       if (res.data.success) {
         localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
         toast.success(data.message, {
           position: toast.POSITION.TOP_RIGHT})
-        navigate("/");
+        navigate("/dashboard");
       } else {
         toast.error(res.data.message, {
           position: toast.POSITION.TOP_RIGHT});

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Allemployees = () => {
   const navigate = useNavigate();
   const [authScreen, setAuthScreen] = useState(true);
+  let role = localStorage.getItem("role");
   let tokenData = localStorage.getItem("token");
   let tokenExpiry;
   let token;
@@ -22,6 +23,9 @@ const Allemployees = () => {
     if (!tokenData) {
       navigate("/login");
     } else {
+      if (role === "employee") {
+        navigate("/login");
+      }
       if (currentDate > tokenExpiry) {
         localStorage.removeItem("token");
         navigate("/login");

@@ -58,7 +58,8 @@ const ClientSchema = new mongoose.Schema(
             ref: 'employee',
             // required: true
         }
-    }
+    },
+    { timestamps: true }
 )
 
 const Clientmodel = mongoose.model("clients",ClientSchema,"clients");

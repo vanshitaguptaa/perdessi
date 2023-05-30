@@ -14,12 +14,13 @@ import GSTResgistraionModel from "../Models/GSTRegistrationModel.js";
 import ShopActModel from "../Models/ServiceModel.js";
 import UdyamCertificateModel from "../Models/UdyamCertificationModel.js";
 import FoodLisenceModel from "../Models/FoodLisenceModel.js";
+import Route from "../Routes/ClientRoute.js";
 
 export const CreateLeadctrlForHomeLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -31,7 +32,7 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
     const homeLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -60,9 +61,9 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
 
 export const createLeadForBusinessLoanModel = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -74,7 +75,7 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
     const businessLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -103,9 +104,9 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
 
 export const createLeadForPersonalLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -117,13 +118,15 @@ export const createLeadForPersonalLoan = async (req, resp) => {
     const PersonalLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
     for (const key in documentObject) {
       PersonalLoanData[key] = documentObject[key][0];
     }
+
+    console.log(PersonalLoanData);
 
     const newPersonalLoanData = new PersonalLoanModel(PersonalLoanData);
 
@@ -146,9 +149,9 @@ export const createLeadForPersonalLoan = async (req, resp) => {
 
 export const createLeadForMortgageLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -160,7 +163,7 @@ export const createLeadForMortgageLoan = async (req, resp) => {
     const MortgageLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -189,9 +192,9 @@ export const createLeadForMortgageLoan = async (req, resp) => {
 
 export const createLeadForGoldLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -203,7 +206,7 @@ export const createLeadForGoldLoan = async (req, resp) => {
     const GoldLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -232,9 +235,9 @@ export const createLeadForGoldLoan = async (req, resp) => {
 
 export const createLeadForCreditCard = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -246,7 +249,7 @@ export const createLeadForCreditCard = async (req, resp) => {
     const CreditCardData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -275,9 +278,9 @@ export const createLeadForCreditCard = async (req, resp) => {
 
 export const createLeadForCarLoan = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -289,7 +292,7 @@ export const createLeadForCarLoan = async (req, resp) => {
     const CarLoanData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -318,9 +321,9 @@ export const createLeadForCarLoan = async (req, resp) => {
 
 export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -332,7 +335,7 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
     const NewCorrectionPanApplicationData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -362,9 +365,9 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
 
 export const createLeadForPassport = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -376,7 +379,7 @@ export const createLeadForPassport = async (req, resp) => {
     const PassportData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -405,9 +408,9 @@ export const createLeadForPassport = async (req, resp) => {
 
 export const createLeadForGSTRegistration = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -419,7 +422,7 @@ export const createLeadForGSTRegistration = async (req, resp) => {
     const GSTRegistrationData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -453,13 +456,12 @@ export const createLeadForShopAct = async (req, resp) => {
     const {
       serviceId,
       clientId,
-      employeeId,
       loanAmount,
       detailsOfBusiness,
       natureOfBusiness,
     } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -471,7 +473,7 @@ export const createLeadForShopAct = async (req, resp) => {
     const ShopActData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
       DetailsOfBusiness: detailsOfBusiness,
       NatureOfBusiness: natureOfBusiness,
@@ -502,10 +504,9 @@ export const createLeadForShopAct = async (req, resp) => {
 
 export const createLeadForUdyamCertificate = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount, businessAdress } =
-      req.body;
+    const { serviceId, clientId, loanAmount, businessAdress } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -517,7 +518,7 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
     const UdyamCertificateData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
       BusinessAdress: businessAdress,
     };
@@ -549,9 +550,9 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
 
 export const createLeadForFoodLisence = async (req, resp) => {
   try {
-    const { serviceId, clientId, employeeId, loanAmount } = req.body;
+    const { serviceId, clientId, loanAmount } = req.body;
 
-    if (!serviceId || !clientId || !employeeId || !loanAmount) {
+    if (!serviceId || !clientId || !loanAmount) {
       return resp.status(422).json({
         status: false,
         message: "Please provide service, client and employeeID properly",
@@ -563,7 +564,7 @@ export const createLeadForFoodLisence = async (req, resp) => {
     const FoodLisenceData = {
       service: serviceId,
       client: clientId,
-      employee: employeeId,
+      employee: req.user._id,
       LoanAmount: loanAmount,
     };
 
@@ -594,7 +595,7 @@ export const getHomeLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await HomeLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -619,7 +620,7 @@ export const getBusinessLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await BusinessloanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -644,7 +645,7 @@ export const getPersonalLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await PersonalLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -669,7 +670,7 @@ export const getMortgageLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await MortgageLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -694,7 +695,7 @@ export const getGoldLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GoldLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -719,7 +720,7 @@ export const getCreditCardLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CreditCardModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -744,7 +745,7 @@ export const getCarLoanForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await CarLoanModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -769,7 +770,7 @@ export const getNewCorrectionPanApplicationForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await NewCorrectionPanApplicationModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -794,7 +795,7 @@ export const getPassportForEmplyoee = async (req, resp) => {
   try {
     const savedMyLead = await PassportModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -819,7 +820,7 @@ export const getGSTRegistrationForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await GSTResgistraionModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -844,7 +845,7 @@ export const getShopActForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await ShopActModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -869,7 +870,7 @@ export const getUdyamCertificateForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await UdyamCertificateModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -894,7 +895,7 @@ export const getFoodLisenceForEmployee = async (req, resp) => {
   try {
     const savedMyLead = await FoodLisenceModel.find({
       employee: req.user._id,
-    }).populate(["empolyeeid", "serviceid", "Client"]);
+    }).populate(["service ", "client", "employee"]);
 
     if (savedMyLead < 1) {
       return resp
@@ -927,9 +928,15 @@ export const editHomeLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await HomeLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -957,9 +964,15 @@ export const editBusinessLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await BusinessloanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -986,6 +999,12 @@ export const editPersonalLoanServiceController = async (req, res) => {
     }
 
     let valueToEdit = req.files[fieldToEdit][0];
+
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
 
     const updatedResponse = await PersonalLoanModel.updateOne(
       { _id: leadId },
@@ -1017,9 +1036,15 @@ export const editMortgageLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await MortgageLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1047,11 +1072,17 @@ export const editGoldLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await GoldLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
-
+    console.log(updatedResponse);
     if (updatedResponse.acknowledged) {
       return res
         .status(201)
@@ -1077,9 +1108,15 @@ export const editCreditCardServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await CreditCardModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1107,9 +1144,15 @@ export const editCarLoanServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await CarLoanModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1137,9 +1180,15 @@ export const editNewCorrectionPanApplication = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await NewCorrectionPanApplicationModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1167,9 +1216,15 @@ export const editPassportServiceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await PassportModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1197,9 +1252,15 @@ export const editGSTRegistrationController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await GSTResgistraionModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1227,9 +1288,15 @@ export const editShopActController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await ShopActModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1257,9 +1324,15 @@ export const editUdyamCertificateController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await UdyamCertificateModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
@@ -1287,15 +1360,2338 @@ export const editFoodLisenceController = async (req, res) => {
 
     let valueToEdit = req.files[fieldToEdit][0];
 
+    if (!valueToEdit) {
+      return res
+        .status(422)
+        .json({ status: false, message: "No Files are Given to store" });
+    }
+
     const updatedResponse = await FoodLisenceModel.updateOne(
       { _id: leadId },
-      { $set: { [fieldToEdit]: valueToEdit } }
+      { $set: { [fieldToEdit]: valueToEdit.path } }
     );
 
     if (updatedResponse.acknowledged) {
       return res
         .status(201)
         .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getHomeLoanLeadById = async (req, res) => {
+  try {
+    const { homeleadID } = req.query;
+
+    if (!homeleadID) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedHomeLoan = await HomeLoanModel.findById(homeleadID).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedHomeLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedHomeLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanById = async (req, res) => {
+  try {
+    const { personalLoanId } = req.query;
+
+    if (!personalLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedPersonalLoan = await PersonalLoanModel.findById(
+      personalLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedPersonalLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedPersonalLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanById = async (req, res) => {
+  try {
+    const { businessLoanId } = req.query;
+
+    if (!businessLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedBusinessLoan = await BusinessloanModel.findById(
+      businessLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedBusinessLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedBusinessLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getMortgageLoanById = async (req, res) => {
+  try {
+    const { mortgageLoanId } = req.query;
+
+    if (!mortgageLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedMortgageLoan = await MortgageLoanModel.findById(
+      mortgageLoanId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedMortgageLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedMortgageLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanById = async (req, res) => {
+  try {
+    const { goldLoanId } = req.query;
+
+    if (!goldLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedGoldLoan = await GoldLoanModel.findById(goldLoanId).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedGoldLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedGoldLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardById = async (req, res) => {
+  try {
+    const { creditCardId } = req.query;
+
+    if (!creditCardId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedCreditCard = await CreditCardModel.findById(
+      creditCardId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedCreditCard) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedCreditCard,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanById = async (req, res) => {
+  try {
+    const { carLoanId } = req.query;
+
+    if (!carLoanId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedCarLoan = await CarLoanModel.findById(carLoanId).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedCarLoan) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedCarLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationbyId = async (req, res) => {
+  try {
+    const { newCorrectionPanApplicationId } = req.query;
+
+    if (!newCorrectionPanApplicationId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedNewCcrrectionPanApplication =
+      await NewCorrectionPanApplicationModel.findById(
+        newCorrectionPanApplicationId
+      ).populate(["service", "client", "employee"]);
+
+    if (!savedNewCcrrectionPanApplication) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedNewCcrrectionPanApplication,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportById = async (req, res) => {
+  try {
+    const { passportById } = req.query;
+
+    if (!passportById) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedPassport = await PassportModel.findById(passportById).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedPassport) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedPassport,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationById = async (req, res) => {
+  try {
+    const { GSTRegistrationId } = req.query;
+
+    if (!GSTRegistrationId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedGSTResgistration = await GSTResgistraionModel.findById(
+      GSTRegistrationId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedGSTResgistration) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedGSTResgistration,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActById = async (req, res) => {
+  try {
+    const { shopActId } = req.query;
+
+    if (!shopActId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedShopAct = await ShopActModel.findById(shopActId).populate([
+      "service",
+      "client",
+      "employee",
+    ]);
+
+    if (!savedShopAct) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedShopAct,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateById = async (req, res) => {
+  try {
+    const { UdyamCertificateId } = req.query;
+
+    if (!UdyamCertificateId) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedUdyamCertificate = await UdyamCertificateModel.findById(
+      UdyamCertificateId
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedUdyamCertificate) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedUdyamCertificate,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisencebyId = async (req, res) => {
+  try {
+    const { foodlisenceById } = req.query;
+
+    if (!foodlisenceById) {
+      return res
+        .status(422)
+        .json({ status: false, message: "no home lead id is giving" });
+    }
+
+    const savedFoodLisence = await FoodLisenceModel.findById(
+      foodlisenceById
+    ).populate(["service", "client", "employee"]);
+
+    if (!savedFoodLisence) {
+      return res.status(422).json({
+        status: false,
+        message: "no such data in database with given id",
+      });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched single lead data",
+      response: savedFoodLisence,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+// get leads by mobile number
+
+export const getHomeLoanLeadByMobileNo = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedHomeLoan = await HomeLoanModel.find({ employee: req.user._id })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedHomeLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedBusinessLoan = await BusinessloanModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedBusinessLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedPersonalLoan = await PersonalLoanModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedPersonalLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getMortgageLoanByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedMortgageLoan = await MortgageLoanModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedMortgageLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedMortgageLoan = await GoldLoanModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedMortgageLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardByMobile = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedCreditCard = await CreditCardModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedCreditCard.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedCarLoan = await CarLoanModel.find({ employee: req.user._id })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedCarLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationbyMobileNumber = async (
+  req,
+  res
+) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedNewCcrrectionPanApplication =
+      await NewCorrectionPanApplicationModel.find({ employee: req.user._id })
+        .populate(["service", "client", "employee"])
+        .exec();
+
+    const matchingEmployee = savedNewCcrrectionPanApplication.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedPassport = await PassportModel.find({ employee: req.user._id })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedPassport.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedGSTResgistration = await GSTResgistraionModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedGSTResgistration.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedShopAct = await ShopActModel.find({ employee: req.user._id })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedShopAct.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateByMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedUdyamCertificate = await UdyamCertificateModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedUdyamCertificate.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisencebyMobileNumber = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedFoodLisence = await FoodLisenceModel.find({
+      employee: req.user._id,
+    })
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedFoodLisence.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+// get lead for admin
+
+export const getHomeLoanForAdmin = async (req, res) => {
+  try {
+    const savedHomeLoan = await HomeLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedHomeLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedHomeLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanForAdmin = async (req, res) => {
+  try {
+    const savedBusinessLoan = await BusinessloanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedBusinessLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedBusinessLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanForAdmin = async (req, res) => {
+  try {
+    const savedPersonalLoan = await PersonalLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedPersonalLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedPersonalLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getMortgageLoanForAdmin = async (req, res) => {
+  try {
+    const savedMortgageLoan = await MortgageLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedMortgageLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedMortgageLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanForAdmin = async (req, res) => {
+  try {
+    const savedGoldLoan = await GoldLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedGoldLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedGoldLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardForAdmin = async (req, res) => {
+  try {
+    const savedCreditCard = await CreditCardModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedCreditCard < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedCreditCard,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanByForAdmin = async (req, res) => {
+  try {
+    const savedCarLoan = await CarLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedCarLoan < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedCarLoan,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationForAdmin = async (req, res) => {
+  try {
+    const savedNewCorrectionPanApplication =
+      await NewCorrectionPanApplicationModel.find({})
+        .populate(["service", "client", "employee"])
+        .exec();
+
+    if (savedNewCorrectionPanApplication < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedNewCorrectionPanApplication,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationByForAdmin = async (req, res) => {
+  try {
+    const savedGSTRegistration = await GSTResgistraionModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedGSTRegistration < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedGSTRegistration,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportForAdmin = async (req, res) => {
+  try {
+    const savedPassport = await PassportModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedPassport < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedPassport,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActForAdmin = async (req, res) => {
+  try {
+    const savedShopAct = await ShopActModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedShopAct < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedShopAct,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateForAdmin = async (req, res) => {
+  try {
+    const savedUdyamCertificate = await UdyamCertificateModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedUdyamCertificate < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedUdyamCertificate,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisenceForAdmin = async (req, res) => {
+  try {
+    const savedFoodLisence = await FoodLisenceModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    if (savedFoodLisence < 1) {
+      return res
+        .status(404)
+        .json({ status: false, message: "no data found in database" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: savedFoodLisence,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+// get lead by mobile number to admin
+
+export const getHomeLoanLeadByMobileNoForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedHomeLoan = await HomeLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedHomeLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getBusinessLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedBusinessLoan = await BusinessloanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedBusinessLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPersonalLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedPersonalLoan = await PersonalLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedPersonalLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getMortgageLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedMortgageLoan = await MortgageLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedMortgageLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGoldLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedMortgageLoan = await GoldLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedMortgageLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCreditCardByMobileForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedCreditCard = await CreditCardModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedCreditCard.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getCarLoanByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedCarLoan = await CarLoanModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedCarLoan.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getNewCorrectionPanApplicationbyMobileNumberForAdmin = async (
+  req,
+  res
+) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedNewCcrrectionPanApplication =
+      await NewCorrectionPanApplicationModel.find({})
+        .populate(["service", "client", "employee"])
+        .exec();
+
+    const matchingEmployee = savedNewCcrrectionPanApplication.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getPassportByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedPassport = await PassportModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedPassport.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getGSTRegistrationByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedGSTResgistration = await GSTResgistraionModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedGSTResgistration.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getShopActByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedShopAct = await ShopActModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedShopAct.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getUdyamCertificateByMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedUdyamCertificate = await UdyamCertificateModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedUdyamCertificate.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const getFoodLisencebyMobileNumberForAdmin = async (req, res) => {
+  try {
+    const { mobileNo } = req.query;
+
+    if (!mobileNo) {
+      return res.status(422).json({
+        status: false,
+        message: "mobile number is not giving in query",
+      });
+    }
+
+    const queryString = mobileNo.toString();
+    const regex = new RegExp(queryString, "i");
+
+    const savedFoodLisence = await FoodLisenceModel.find({})
+      .populate(["service", "client", "employee"])
+      .exec();
+
+    const matchingEmployee = savedFoodLisence.filter((curr) => {
+      let mobileNumber = curr.client.phone;
+      if (regex.test(mobileNumber)) {
+        return curr;
+      }
+    });
+
+    if (matchingEmployee.length < 1) {
+      return res
+        .status(201)
+        .json({ status: false, message: "There is no data with this number" });
+    }
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched data",
+      response: matchingEmployee,
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferHomeLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await HomeLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferBusinessLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await BusinessloanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferPersonalLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await PersonalLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferMortgageLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await MortgageLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferGoldLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await GoldLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferCreditCardLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await CreditCardModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferCarLoanLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await CarLoanModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferGSTLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await GSTResgistraionModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferPassportLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await PassportModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferNewCorrectionPanApplicatonLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await NewCorrectionPanApplicationModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferShopActLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await ShopActModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferUdyamCertificate = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await UdyamCertificateModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const transferFoodLisenceLead = async (req, res) => {
+  try {
+    const { leadId, employeeId } = req.query;
+
+    if (!leadId || !employeeId) {
+      return res.status(422).json({
+        status: false,
+        message: "leadId or employeeId is not given to transfer",
+      });
+    }
+
+    const transferLead = await FoodLisenceModel.updateOne(
+      { _id: leadId },
+      { $set: { employee: employeeId } }
+    );
+
+    if (transferLead.acknowledged) {
+      return res.status(201).json({
+        status: false,
+        message: "successfully transferred lead to another employee",
+      });
     }
   } catch (error) {
     console.log(error);

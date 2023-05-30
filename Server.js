@@ -8,6 +8,8 @@ import ServiceRoutes from "./Routes/ServiceRoute.js";
 import cors from "cors";
 import config from "./config/Config.js";
 import path from "path"
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 //configure env
 dotenv.config({ path: path.resolve("./config.env")});
@@ -18,11 +20,17 @@ config();
 //rest object
 const app = Express();
 
+// path config 
+let fileName = fileURLToPath(import.meta.url);
+let __dirname = dirname(fileName);
+
+
 //middelwares
-app.use(Express.urlencoded({extended: true}));
+app.use(Express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(Express.json());
 app.use(morgan("dev"));
+app.use(Express.static(path.join(__dirname, "public")));
 
 //routes
 app.use("/api/v1/crm", CustomerRoutes);

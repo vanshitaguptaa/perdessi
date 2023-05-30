@@ -10,6 +10,13 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
+  function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    setIsLogged(false);
+  }
+
   return (
     <div>
       <Disclosure as="nav" className=" bg-[#172236]">
@@ -29,9 +36,7 @@ const Navbar = () => {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
-                  
-                  </div>
+                  <div className="flex flex-shrink-0 items-center"></div>
                   <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
                       <Link
@@ -74,8 +79,8 @@ const Navbar = () => {
                     type="button"
                     className="rounded-full bg-orange-700 p-1 text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   > */}
-                    {/* <span className="sr-only">View notifications</span> */}
-                    {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
+                  {/* <span className="sr-only">View notifications</span> */}
+                  {/* <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
                   {/* </button> */}
 
                   {/* Profile dropdown */}
@@ -134,6 +139,9 @@ const Navbar = () => {
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
+                              onClick={(e) => {
+                                handleLogout(e);
+                              }}
                             >
                               Sign out
                             </a>

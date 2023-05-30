@@ -64,8 +64,8 @@ const Updateform = ({Profiledata}) => {
   const onSubmit = (data) => {
     console.log(data)
     console.log("client");
-    fetch("http://localhost:5000/api/v1/crm/addemployee", {
-      method: "POST",
+    fetch("http://localhost:5000/api/v1/crm/updateempolyee/:id", {
+      method: "PATCH",
       body: JSON.stringify(data),
       headers: {
         "Content-type": "application/json; charset=UTF-8",

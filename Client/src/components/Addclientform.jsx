@@ -59,8 +59,9 @@ const Addclientform = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log(response);
+      if (response) {
+        navigate("/myclient")
+      }
     } catch (error) {
       console.log(error);
     }

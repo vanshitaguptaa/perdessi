@@ -39,12 +39,78 @@ import {
   editFoodLisenceController,
   editShopActController,
   editUdyamCertificateController,
+  getHomeLoanLeadById,
+  getPersonalLoanById,
+  getBusinessLoanById,
+  getMortgageLoanById,
+  getGoldLoanById,
+  getCarLoanById,
+  getNewCorrectionPanApplicationbyId,
+  getGSTRegistrationById,
+  getPassportById,
+  getShopActById,
+  getUdyamCertificateById,
+  getFoodLisencebyId,
+  getHomeLoanLeadByMobileNo,
+  getBusinessLoanByMobileNumber,
+  getPersonalLoanByMobileNumber,
+  getMortgageLoanByMobileNumber,
+  getCreditCardByMobile,
+  getGoldLoanByMobileNumber,
+  getCarLoanByMobileNumber,
+  getNewCorrectionPanApplicationbyMobileNumber,
+  getPassportByMobileNumber,
+  getGSTRegistrationByMobileNumber,
+  getShopActByMobileNumber,
+  getUdyamCertificateByMobileNumber,
+  getFoodLisencebyMobileNumber,
+  getCreditCardById,
+  getHomeLoanForAdmin,
+  getBusinessLoanForAdmin,
+  getPersonalLoanForAdmin,
+  getMortgageLoanForAdmin,
+  getGoldLoanForAdmin,
+  getCreditCardForAdmin,
+  getCarLoanByForAdmin,
+  getNewCorrectionPanApplicationForAdmin,
+  getPassportForAdmin,
+  getGSTRegistrationByForAdmin,
+  getShopActForAdmin,
+  getUdyamCertificateForAdmin,
+  getFoodLisenceForAdmin,
+  getMortgageLoanByMobileNumberForAdmin,
+  getBusinessLoanByMobileNumberForAdmin,
+  getCarLoanByMobileNumberForAdmin,
+  getCreditCardByMobileForAdmin,
+  getFoodLisencebyMobileNumberForAdmin,
+  getGSTRegistrationByMobileNumberForAdmin,
+  getGoldLoanByMobileNumberForAdmin,
+  getHomeLoanLeadByMobileNoForAdmin,
+  getNewCorrectionPanApplicationbyMobileNumberForAdmin,
+  getPassportByMobileNumberForAdmin,
+  getPersonalLoanByMobileNumberForAdmin,
+  getShopActByMobileNumberForAdmin,
+  getUdyamCertificateByMobileNumberForAdmin,
+  transferHomeLoanLead,
+  transferBusinessLoanLead,
+  transferPersonalLoanLead,
+  transferMortgageLoanLead,
+  transferGoldLoanLead,
+  transferCreditCardLead,
+  transferGSTLead,
+  transferNewCorrectionPanApplicatonLead,
+  transferPassportLead,
+  transferShopActLead,
+  transferUdyamCertificate,
+  transferFoodLisenceLead,
+  transferCarLoanLead,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { adminTokenCheck } from "../Middleware/TokencheckAdmin.js";
 
 const app = Express();
 
@@ -232,7 +298,7 @@ const multipleUploadForShopAct = upload.fields([
   { name: "MOA", maxCount: 1 },
   { name: "AON", maxCount: 1 },
   { name: "CIN", maxCount: 1 },
-])
+]);
 
 const multipleUploadForUdyamCertificate = upload.fields([
   { name: "AdharCard", maxCount: 1 },
@@ -242,7 +308,7 @@ const multipleUploadForUdyamCertificate = upload.fields([
   { name: "DetailsOfBusinessActivites", maxCount: 1 },
   { name: "InformationOfTheInvestment", maxCount: 1 },
   { name: "InformationOfTheTurnOver", maxCount: 1 },
-])
+]);
 
 const multipleUploadForFoodLisence = upload.fields([
   { name: "NRMOfLisence", maxCount: 1 },
@@ -254,11 +320,11 @@ const multipleUploadForFoodLisence = upload.fields([
   { name: "SampleFoodRecallPlanAndGuide", maxCount: 1 },
   { name: "BISLiscense", maxCount: 1 },
   { name: "Repacker", maxCount: 1 },
-])
+]);
 
 // Lead Created
 Route.post(
-  "/createleadforHomeloan",
+  "/createleadforhomeloan",
   employeeTokenCheck,
   multipleUploadForHomeLoan,
   CreateLeadctrlForHomeLoan
@@ -348,6 +414,92 @@ Route.post(
   createLeadForFoodLisence
 );
 
+// get lead by ID
+Route.get("/gethomeloanbyid", employeeTokenCheck, getHomeLoanLeadById);
+Route.get("/getpersonalloanbyuid", employeeTokenCheck, getPersonalLoanById);
+Route.get("/getbusinessloanbyid", employeeTokenCheck, getBusinessLoanById);
+Route.get("/getmortgageloanbyid", employeeTokenCheck, getMortgageLoanById);
+Route.get("/getgoldloanbyid", employeeTokenCheck, getGoldLoanById);
+Route.get("/getcreditcardbyid", employeeTokenCheck, getCreditCardById);
+Route.get("/getcarloanbyid", employeeTokenCheck, getCarLoanById);
+Route.get(
+  "/getnewcorrectionpanapplication",
+  employeeTokenCheck,
+  getNewCorrectionPanApplicationbyId
+);
+Route.get("/getpassportbyid", employeeTokenCheck, getPassportById);
+Route.get(
+  "/getGSTregistrationbyid",
+  employeeTokenCheck,
+  getGSTRegistrationById
+);
+Route.get("/getshopactbyid", employeeTokenCheck, getShopActById);
+Route.get(
+  "/getudyamcertificatebyid",
+  employeeTokenCheck,
+  getUdyamCertificateById
+);
+Route.get("/getfoodlisencebyid", employeeTokenCheck, getFoodLisencebyId);
+
+// Get by Mobile Number
+Route.get(
+  "/gethomeloanbymobile",
+  employeeTokenCheck,
+  getHomeLoanLeadByMobileNo
+);
+Route.get(
+  "/getbusinessloanbymobile",
+  employeeTokenCheck,
+  getBusinessLoanByMobileNumber
+);
+Route.get(
+  "/getpersonalloanbymobile",
+  employeeTokenCheck,
+  getPersonalLoanByMobileNumber
+);
+Route.get(
+  "/getmortgageloanbymobile",
+  employeeTokenCheck,
+  getMortgageLoanByMobileNumber
+);
+Route.get(
+  "/getgoldloanbymobile",
+  employeeTokenCheck,
+  getGoldLoanByMobileNumber
+);
+Route.get(
+  "/getcreditcardloanbymobile",
+  employeeTokenCheck,
+  getCreditCardByMobile
+);
+Route.get("/getcarloanbymobile", employeeTokenCheck, getCarLoanByMobileNumber);
+Route.get(
+  "/getnewcorrectionpanapplicationbymobile",
+  employeeTokenCheck,
+  getNewCorrectionPanApplicationbyMobileNumber
+);
+Route.get(
+  "/getpassportbymobile",
+  employeeTokenCheck,
+  getPassportByMobileNumber
+);
+Route.get(
+  "/getgstregistrationbymobile",
+  employeeTokenCheck,
+  getGSTRegistrationByMobileNumber
+);
+Route.get("/getshopactbymobile", employeeTokenCheck, getShopActByMobileNumber);
+Route.get(
+  "/getudyamcertificatebymobile",
+  employeeTokenCheck,
+  getUdyamCertificateByMobileNumber
+);
+Route.get(
+  "/getfoodlisencebymobilenumber",
+  employeeTokenCheck,
+  getFoodLisencebyMobileNumber
+);
+
 // Get My Lead
 // Route.get("/mylead", employeeTokenCheck, MyLeadsctrl);
 Route.get(
@@ -401,11 +553,7 @@ Route.get(
   getGSTRegistrationForEmployee
 );
 
-Route.get(
-  "/getshopactforemployee",
-  employeeTokenCheck,
-  getShopActForEmployee
-);
+Route.get("/getshopactforemployee", employeeTokenCheck, getShopActForEmployee);
 
 Route.get(
   "/getudyamcertificateforemployee",
@@ -423,31 +571,37 @@ Route.get(
 Route.patch(
   "/updatehomeloan",
   employeeTokenCheck,
+  multipleUploadForHomeLoan,
   editHomeLoanServiceController
 );
 Route.patch(
   "/updatebusinessloan",
   employeeTokenCheck,
+  multipleUploadForBusinessLoan,
   editBusinessLoanServiceController
 );
 Route.patch(
   "/updatepersonalloan",
   employeeTokenCheck,
+  multipleUploadForPersonalLoan,
   editPersonalLoanServiceController
 );
 Route.patch(
   "/updatemortgageloan",
   employeeTokenCheck,
+  multipleUploadForMortgageLoan,
   editMortgageLoanServiceController
 );
 Route.patch(
   "/updategoldloan",
   employeeTokenCheck,
+  multipleUploadForGoldLoan,
   editGoldLoanServiceController
 );
 Route.patch(
   "/updatecreditcard",
   employeeTokenCheck,
+  multipleUploadForCreditCard,
   editCreditCardServiceController
 );
 
@@ -499,5 +653,153 @@ Route.patch(
   multipleUploadForFoodLisence,
   editFoodLisenceController
 );
+
+// get lead data for admin
+Route.get("/gethomeloanforadmin", adminTokenCheck, getHomeLoanForAdmin);
+Route.get("/getbusinessloanforadmin", adminTokenCheck, getBusinessLoanForAdmin);
+Route.get("/getpersonalloanforadmin", adminTokenCheck, getPersonalLoanForAdmin);
+Route.get("/getmortgageloanforadmin", adminTokenCheck, getMortgageLoanForAdmin);
+Route.get("/getgoldloanforadmin", adminTokenCheck, getGoldLoanForAdmin);
+Route.get("/getcreditcardforadmin", adminTokenCheck, getCreditCardForAdmin);
+Route.get("/getcarloanforadmin", adminTokenCheck, getCarLoanByForAdmin);
+Route.get(
+  "/getnewcorrectionpanapplicationforadmin",
+  adminTokenCheck,
+  getNewCorrectionPanApplicationForAdmin
+);
+Route.get("/getpassportforadmin", adminTokenCheck, getPassportForAdmin);
+Route.get(
+  "/getGSTRegistrationforadmin",
+  adminTokenCheck,
+  getGSTRegistrationByForAdmin
+);
+Route.get("/getshopactforadmin", adminTokenCheck, getShopActForAdmin);
+Route.get(
+  "/getudyamcertificateforadmin",
+  adminTokenCheck,
+  getUdyamCertificateForAdmin
+);
+Route.get("/getfoodlisenceforadmin", adminTokenCheck, getFoodLisenceForAdmin);
+
+// get single lead for admin
+Route.get("/gethomeloanforadminbyId", adminTokenCheck, getHomeLoanLeadById);
+Route.get("/getbusinessloanforadminbyId", adminTokenCheck, getBusinessLoanById);
+Route.get("/getpersonalloanforadmibyId", adminTokenCheck, getPersonalLoanById);
+Route.get("/getmortgageloanforadminbyId", adminTokenCheck, getMortgageLoanById);
+Route.get("/getgoldloanforadminbyId", adminTokenCheck, getGoldLoanById);
+Route.get("/getcreditcardforadminbyId", adminTokenCheck, getCreditCardById);
+Route.get("/getcarloanforadminbyId", adminTokenCheck, getCarLoanById);
+Route.get(
+  "/getnewcorrectionpanapplicationforadminbyId",
+  adminTokenCheck,
+  getNewCorrectionPanApplicationbyId
+);
+Route.get("/getpassportforadminbyId", adminTokenCheck, getPassportById);
+Route.get(
+  "/getGSTRegistrationforadminbyId",
+  adminTokenCheck,
+  getGSTRegistrationById
+);
+Route.get("/getshopactforadminbyId", adminTokenCheck, getShopActById);
+Route.get(
+  "/getudyamcertificateforadmibyId",
+  adminTokenCheck,
+  getUdyamCertificateById
+);
+Route.get("/getfoodlisenceforadminbyId", adminTokenCheck, getFoodLisencebyId);
+
+// get mobile number for admin
+Route.get(
+  "/gethomeloanbymobileforadmin",
+  adminTokenCheck,
+  getHomeLoanLeadByMobileNoForAdmin
+);
+Route.get(
+  "/getbusinessloanbymobileforadmin",
+  adminTokenCheck,
+  getBusinessLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getpersonalloanbymobileforadmin",
+  adminTokenCheck,
+  getPersonalLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getmortgageloanbymobileforadmin",
+  adminTokenCheck,
+  getMortgageLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getgoldloanbymobileforadmin",
+  adminTokenCheck,
+  getGoldLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getcreditcardloanbymobileforadmin",
+  adminTokenCheck,
+  getCreditCardByMobileForAdmin
+);
+Route.get(
+  "/getcarloanbymobileforadmin",
+  adminTokenCheck,
+  getCarLoanByMobileNumberForAdmin
+);
+Route.get(
+  "/getnewcorrectionpanapplicationbymobileforadmin",
+  adminTokenCheck,
+  getNewCorrectionPanApplicationbyMobileNumberForAdmin
+);
+Route.get(
+  "/getpassportbymobileforadmin",
+  adminTokenCheck,
+  getPassportByMobileNumberForAdmin
+);
+Route.get(
+  "/getgstregistrationbymobileforadmin",
+  adminTokenCheck,
+  getGSTRegistrationByMobileNumberForAdmin
+);
+Route.get(
+  "/getshopactbymobileforadmin",
+  adminTokenCheck,
+  getShopActByMobileNumberForAdmin
+);
+Route.get(
+  "/getudyamcertificatebymobileforadmin",
+  adminTokenCheck,
+  getUdyamCertificateByMobileNumberForAdmin
+);
+Route.get(
+  "/getfoodlisencebymobilenumberforadmin",
+  adminTokenCheck,
+  getFoodLisencebyMobileNumberForAdmin
+);
+
+// transfer lead to another employee
+Route.patch("/transferhomelead", adminTokenCheck, transferHomeLoanLead);
+Route.patch("/transferbusinesslead", adminTokenCheck, transferBusinessLoanLead);
+Route.patch("/transferpersonallead", adminTokenCheck, transferPersonalLoanLead);
+Route.patch("/transfermortgagelead", adminTokenCheck, transferMortgageLoanLead);
+Route.patch("/transfergoldlead", adminTokenCheck, transferGoldLoanLead);
+Route.patch("/transfercreditcardlead", adminTokenCheck, transferCreditCardLead);
+Route.patch("/transferGSTlead", adminTokenCheck, transferGSTLead);
+Route.patch(
+  "/transfernewcorrectionpanapplication",
+  adminTokenCheck,
+  transferNewCorrectionPanApplicatonLead
+);
+Route.patch("/transferpassportlead", adminTokenCheck, transferPassportLead);
+Route.patch("/transfershopactlead", adminTokenCheck, transferShopActLead);
+Route.patch(
+  "/transferudyamcertificate",
+  adminTokenCheck,
+  transferUdyamCertificate
+);
+Route.patch(
+  "/transferfoodlisencelead",
+  adminTokenCheck,
+  transferFoodLisenceLead
+);
+Route.patch("/transfercarlead", adminTokenCheck, transferCarLoanLead);
 
 export default Route;

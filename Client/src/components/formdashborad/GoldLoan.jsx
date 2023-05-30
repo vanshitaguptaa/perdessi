@@ -3,8 +3,6 @@ import Sidebar from "../../partials/Sidebar";
 import Header from "../../partials/Header";
 import WelcomeBanner from "../../partials/dashboard/WelcomeBanner";
 import { useNavigate } from "react-router-dom";
-import Business from "../formdata/Business";
-import CreditCard from "../formdata/CreditCard";
 import Gold from "../formdata/Gold";
 
 const GoldLoan = () => {
