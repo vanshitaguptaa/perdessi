@@ -104,6 +104,19 @@ import {
   transferUdyamCertificate,
   transferFoodLisenceLead,
   transferCarLoanLead,
+  editHomeLoanServiceControllerFPS,
+  editBusinessLoanServiceControllerFPS,
+  editPersonalLoanServiceControllerFPS,
+  editMortgageLoanServiceControllerFPS,
+  editGoldLoanServiceControllerFPS,
+  editCreditCardServiceControllerFPS,
+  editNewCorrectionPanApplicationFPS,
+  editPassportServiceControllerFPS,
+  editGSTRegistrationControllerFPS,
+  editShopActControllerFPS,
+  editUdyamCertificateControllerFPS,
+  editFoodLisenceControllerFPS,
+  editCarLoanServiceControllerFPS,
 } from "../Controllers/Leadctrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import multer from "multer";
@@ -653,6 +666,95 @@ Route.patch(
   multipleUploadForFoodLisence,
   editFoodLisenceController
 );
+
+
+// Edit Client List (Pending,Failed,Success)
+Route.patch(
+  "/updatehomeloanPDS",
+  employeeTokenCheck,
+  multipleUploadForHomeLoan,
+  editHomeLoanServiceControllerFPS
+);
+Route.patch(
+  "/updatebusinessloanPDS",
+  employeeTokenCheck,
+  multipleUploadForBusinessLoan,
+  editBusinessLoanServiceControllerFPS
+);
+Route.patch(
+  "/updatepersonalloanPDS",
+  employeeTokenCheck,
+  multipleUploadForPersonalLoan,
+  editPersonalLoanServiceControllerFPS
+);
+Route.patch(
+  "/updatemortgageloanPDS",
+  employeeTokenCheck,
+  multipleUploadForMortgageLoan,
+  editMortgageLoanServiceControllerFPS
+);
+Route.patch(
+  "/updategoldloanPDS",
+  employeeTokenCheck,
+  multipleUploadForGoldLoan,
+  editGoldLoanServiceControllerFPS
+);
+Route.patch(
+  "/updatecreditcardPDS",
+  employeeTokenCheck,
+  multipleUploadForCreditCard,
+  editCreditCardServiceControllerFPS
+);
+
+Route.patch(
+  "/updatecarloanPDS",
+  employeeTokenCheck,
+  multipleUploadForCarLoan,
+  editCarLoanServiceControllerFPS
+);
+
+Route.patch(
+  "/updatenewcorrectionpanapplicationPDS",
+  employeeTokenCheck,
+  multipleUploadForNewCorrectionPanApplication,
+  editNewCorrectionPanApplicationFPS
+);
+
+Route.patch(
+  "/updatepassportPDS",
+  employeeTokenCheck,
+  multipleUploadForPassport,
+  editPassportServiceControllerFPS
+);
+
+Route.patch(
+  "/updateGSTRegistrationPDS",
+  employeeTokenCheck,
+  multipleUploadForGSTRegistration,
+  editGSTRegistrationControllerFPS
+);
+
+Route.patch(
+  "/updateshopactPDS",
+  employeeTokenCheck,
+  multipleUploadForShopAct,
+  editShopActControllerFPS
+);
+
+Route.patch(
+  "/updateudyamcertificatePDS",
+  employeeTokenCheck,
+  multipleUploadForUdyamCertificate,
+  editUdyamCertificateControllerFPS
+);
+
+Route.patch(
+  "/updatefoodlisencePDS",
+  employeeTokenCheck,
+  multipleUploadForFoodLisence,
+  editFoodLisenceControllerFPS
+);
+
 
 // get lead data for admin
 Route.get("/gethomeloanforadmin", adminTokenCheck, getHomeLoanForAdmin);
