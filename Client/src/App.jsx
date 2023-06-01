@@ -44,6 +44,7 @@ import Contactus from "../src/pages/Contactus";
 import MortgageLoanlp from "./components/servicespages/MortageLonelp";
 import CreditCardlp from "./components/servicespages/CreditCardlp";
 import GSTRegFormlp from "./components/servicespages/GSTRegFormlp";
+import Applyloanlp from "./components/servicespages/Applyloanlp";
 import PassportSchema from "./components/formdashborad/PassportSchema";
 import ShopActSchema from "./components/formdashborad/ShopActSchema";
 import FoodLicience from "./components/formdashborad/FoodLicience";
@@ -125,6 +126,8 @@ function App() {
         <Route exact path="/foodlicense" element={<Foodlicenselp/>}/>
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
+        <Route exact path="/applyloanlp" element={<Applyloanlp/>}/>
+      
         <Route exact path="/passport" element={<PassportSchema/>}/>
         <Route exact path="/Shop Act" element={<ShopActSchema/>}/>
         <Route exact path="/Food Lisence" element={<FoodLicience/>}/>
