@@ -147,3 +147,451 @@ export const dashboardForTotolNumberofDocumentForAdmin = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
+
+export const dashboardForTotolNumberofSuccessDocumentForAdmin = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res
+        .status(401)
+        .json({ status: false, message: "user is not admin" });
+    }
+    const savedHomeLoanDocument = await HomeLoanModel.find({isSuccess: true}).countDocuments();
+    const savedBusiessLoanDocument = await BusinessLoanModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+    const savedPersonalLoanDocument = await PersonalLoanModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+    const savedMortgageLoanDocument = await MortgageLoanModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+    const savedGoldLoanDocument = await GoldLoanModel.find({isSuccess: true}).countDocuments();
+    const savedCreditCardDocument = await CreditCardModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+    const savedCarLoanDocument = await CarLoanModel.find({isSuccess: true}).countDocuments();
+    const savedGSTLoanDocument = await GSTLoanModel.find({isSuccess: true}).countDocuments();
+    const savedPassportLoanDocument = await PassportModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+    const savedNewCorrectionPanDocument =
+      await NewCorrectionPanApplicationModel.find({isSuccess: true}).countDocuments();
+    const savedShopActDocument = await ShopActModel.find({isSuccess: true}).countDocuments();
+    const savedUdyamCertificateDocument = await UdyamCertificateModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+    const savedFoodLisenceDocument = await FoodLisenceModel.find(
+      {isSuccess: true}
+    ).countDocuments();
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched count",
+      response: {
+        savedBusiessLoanDocument,
+        savedCarLoanDocument,
+        savedCreditCardDocument,
+        savedFoodLisenceDocument,
+        savedGSTLoanDocument,
+        savedGoldLoanDocument,
+        savedHomeLoanDocument,
+        savedMortgageLoanDocument,
+        savedNewCorrectionPanDocument,
+        savedPassportLoanDocument,
+        savedPersonalLoanDocument,
+        savedShopActDocument,
+        savedUdyamCertificateDocument,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const dashboardForTotolNumberofFailedDocumentForAdmin = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res
+        .status(401)
+        .json({ status: false, message: "user is not admin" });
+    }
+    const savedHomeLoanDocument = await HomeLoanModel.find({isFailed: true}).countDocuments();
+    const savedBusiessLoanDocument = await BusinessLoanModel.find(
+      {isFailed: true}
+    ).countDocuments();
+    const savedPersonalLoanDocument = await PersonalLoanModel.find(
+      {isFailed: true}
+    ).countDocuments();
+    const savedMortgageLoanDocument = await MortgageLoanModel.find(
+      {isFailed: true}
+    ).countDocuments();
+    const savedGoldLoanDocument = await GoldLoanModel.find({isFailed: true}).countDocuments();
+    const savedCreditCardDocument = await CreditCardModel.find(
+      {isFailed: true}
+    ).countDocuments();
+    const savedCarLoanDocument = await CarLoanModel.find({isFailed: true}).countDocuments();
+    const savedGSTLoanDocument = await GSTLoanModel.find({isFailed: true}).countDocuments();
+    const savedPassportLoanDocument = await PassportModel.find(
+      {isFailed: true}
+    ).countDocuments();
+    const savedNewCorrectionPanDocument =
+      await NewCorrectionPanApplicationModel.find({isFailed: true}).countDocuments();
+    const savedShopActDocument = await ShopActModel.find({isFailed: true}).countDocuments();
+    const savedUdyamCertificateDocument = await UdyamCertificateModel.find(
+      {isFailed: true}
+    ).countDocuments();
+    const savedFoodLisenceDocument = await FoodLisenceModel.find(
+      {isFailed: true}
+    ).countDocuments();
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched count",
+      response: {
+        savedBusiessLoanDocument,
+        savedCarLoanDocument,
+        savedCreditCardDocument,
+        savedFoodLisenceDocument,
+        savedGSTLoanDocument,
+        savedGoldLoanDocument,
+        savedHomeLoanDocument,
+        savedMortgageLoanDocument,
+        savedNewCorrectionPanDocument,
+        savedPassportLoanDocument,
+        savedPersonalLoanDocument,
+        savedShopActDocument,
+        savedUdyamCertificateDocument,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const dashboardForTotolNumberofPendingDocumentForAdmin = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res
+        .status(401)
+        .json({ status: false, message: "user is not admin" });
+    }
+    const savedHomeLoanDocument = await HomeLoanModel.find({isPending: true}).countDocuments();
+    const savedBusiessLoanDocument = await BusinessLoanModel.find(
+      {isPending: true}
+    ).countDocuments();
+    const savedPersonalLoanDocument = await PersonalLoanModel.find(
+      {isPending: true}
+    ).countDocuments();
+    const savedMortgageLoanDocument = await MortgageLoanModel.find(
+      {isPending: true}
+    ).countDocuments();
+    const savedGoldLoanDocument = await GoldLoanModel.find({isPending: true}).countDocuments();
+    const savedCreditCardDocument = await CreditCardModel.find(
+      {isPending: true}
+    ).countDocuments();
+    const savedCarLoanDocument = await CarLoanModel.find({isPending: true}).countDocuments();
+    const savedGSTLoanDocument = await GSTLoanModel.find({isPending: true}).countDocuments();
+    const savedPassportLoanDocument = await PassportModel.find(
+      {isPending: true}
+    ).countDocuments();
+    const savedNewCorrectionPanDocument =
+      await NewCorrectionPanApplicationModel.find({isPending: true}).countDocuments();
+    const savedShopActDocument = await ShopActModel.find({isPending: true}).countDocuments();
+    const savedUdyamCertificateDocument = await UdyamCertificateModel.find(
+      {isPending: true}
+    ).countDocuments();
+    const savedFoodLisenceDocument = await FoodLisenceModel.find(
+      {isPending: true}
+    ).countDocuments();
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched count",
+      response: {
+        savedBusiessLoanDocument,
+        savedCarLoanDocument,
+        savedCreditCardDocument,
+        savedFoodLisenceDocument,
+        savedGSTLoanDocument,
+        savedGoldLoanDocument,
+        savedHomeLoanDocument,
+        savedMortgageLoanDocument,
+        savedNewCorrectionPanDocument,
+        savedPassportLoanDocument,
+        savedPersonalLoanDocument,
+        savedShopActDocument,
+        savedUdyamCertificateDocument,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+
+export const dashboardForTotolNumberSuccessofDocument = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ status: false, message: "Invalid Auth" });
+    }
+    const savedHomeLoanDocument = await HomeLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedBusiessLoanDocument = await BusinessLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedPersonalLoanDocument = await PersonalLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedMortgageLoanDocument = await MortgageLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedGoldLoanDocument = await GoldLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedCreditCardDocument = await CreditCardModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedCarLoanDocument = await CarLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedGSTLoanDocument = await GSTLoanModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedPassportLoanDocument = await PassportModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedNewCorrectionPanDocument =
+      await NewCorrectionPanApplicationModel.find({
+        employee: req.user._id,
+        isSuccess: true
+      }).countDocuments();
+    const savedShopActDocument = await ShopActModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedUdyamCertificateDocument = await UdyamCertificateModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+    const savedFoodLisenceDocument = await FoodLisenceModel.find({
+      employee: req.user._id,
+      isSuccess: true
+    }).countDocuments();
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched count",
+      response: {
+        savedBusiessLoanDocument,
+        savedCarLoanDocument,
+        savedCreditCardDocument,
+        savedFoodLisenceDocument,
+        savedGSTLoanDocument,
+        savedGoldLoanDocument,
+        savedHomeLoanDocument,
+        savedMortgageLoanDocument,
+        savedNewCorrectionPanDocument,
+        savedPassportLoanDocument,
+        savedPersonalLoanDocument,
+        savedShopActDocument,
+        savedUdyamCertificateDocument,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const dashboardForTotolNumberFailedofDocument = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ status: false, message: "Invalid Auth" });
+    }
+    const savedHomeLoanDocument = await HomeLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedBusiessLoanDocument = await BusinessLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedPersonalLoanDocument = await PersonalLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedMortgageLoanDocument = await MortgageLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedGoldLoanDocument = await GoldLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedCreditCardDocument = await CreditCardModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedCarLoanDocument = await CarLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedGSTLoanDocument = await GSTLoanModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedPassportLoanDocument = await PassportModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedNewCorrectionPanDocument =
+      await NewCorrectionPanApplicationModel.find({
+        employee: req.user._id,
+        isFailed: true
+      }).countDocuments();
+    const savedShopActDocument = await ShopActModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedUdyamCertificateDocument = await UdyamCertificateModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+    const savedFoodLisenceDocument = await FoodLisenceModel.find({
+      employee: req.user._id,
+      isFailed: true
+    }).countDocuments();
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched count",
+      response: {
+        savedBusiessLoanDocument,
+        savedCarLoanDocument,
+        savedCreditCardDocument,
+        savedFoodLisenceDocument,
+        savedGSTLoanDocument,
+        savedGoldLoanDocument,
+        savedHomeLoanDocument,
+        savedMortgageLoanDocument,
+        savedNewCorrectionPanDocument,
+        savedPassportLoanDocument,
+        savedPersonalLoanDocument,
+        savedShopActDocument,
+        savedUdyamCertificateDocument,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const dashboardForTotolNumberPendingofDocument = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ status: false, message: "Invalid Auth" });
+    }
+    const savedHomeLoanDocument = await HomeLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedBusiessLoanDocument = await BusinessLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedPersonalLoanDocument = await PersonalLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedMortgageLoanDocument = await MortgageLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedGoldLoanDocument = await GoldLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedCreditCardDocument = await CreditCardModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedCarLoanDocument = await CarLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedGSTLoanDocument = await GSTLoanModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedPassportLoanDocument = await PassportModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedNewCorrectionPanDocument =
+      await NewCorrectionPanApplicationModel.find({
+        employee: req.user._id,
+        isPending: true
+      }).countDocuments();
+    const savedShopActDocument = await ShopActModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedUdyamCertificateDocument = await UdyamCertificateModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+    const savedFoodLisenceDocument = await FoodLisenceModel.find({
+      employee: req.user._id,
+      isPending: true
+    }).countDocuments();
+
+    return res.status(201).json({
+      status: true,
+      message: "successfully fetched count",
+      response: {
+        savedBusiessLoanDocument,
+        savedCarLoanDocument,
+        savedCreditCardDocument,
+        savedFoodLisenceDocument,
+        savedGSTLoanDocument,
+        savedGoldLoanDocument,
+        savedHomeLoanDocument,
+        savedMortgageLoanDocument,
+        savedNewCorrectionPanDocument,
+        savedPassportLoanDocument,
+        savedPersonalLoanDocument,
+        savedShopActDocument,
+        savedUdyamCertificateDocument,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};

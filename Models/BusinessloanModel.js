@@ -69,8 +69,14 @@ const BusinesLoanSchema = new mongoose.Schema({
   isSuccess: {
     type: Boolean,
     default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
   }
-});
+},
+{ timestamps: true }
+);
 
 const BusinessLoanModel = mongoose.model("BusinessLoan", BusinesLoanSchema);
 

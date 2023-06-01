@@ -1,5 +1,5 @@
 import Express from "express";
-import { dashboardForTotolNumberofDocument, dashboardForTotolNumberofDocumentForAdmin } from "../Controllers/DashboardCtrl.js";
+import { dashboardForTotolNumberFailedofDocument, dashboardForTotolNumberPendingofDocument, dashboardForTotolNumberSuccessofDocument, dashboardForTotolNumberofDocument, dashboardForTotolNumberofDocumentForAdmin, dashboardForTotolNumberofFailedDocumentForAdmin, dashboardForTotolNumberofPendingDocumentForAdmin, dashboardForTotolNumberofSuccessDocumentForAdmin } from "../Controllers/DashboardCtrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import { adminTokenCheck } from "../Middleware/TokencheckAdmin.js";
 
@@ -13,6 +13,52 @@ Route.get(
   dashboardForTotolNumberofDocument
 );
 
-Route.get("/getnumberofleadforallserviceadmin", adminTokenCheck, dashboardForTotolNumberofDocumentForAdmin)
+Route.get(
+  "/getnumberofleadforallserviceadmin", 
+  adminTokenCheck, 
+  dashboardForTotolNumberofDocumentForAdmin
+)
+
+// Success -- Failed -- Pending
+
+Route.get(
+  "/getnumberofsuccessleadforallserviceadmin", 
+  adminTokenCheck, 
+  dashboardForTotolNumberofSuccessDocumentForAdmin
+)
+
+Route.get(
+  "/getnumberofsuccesfailedleadforallserviceadmin", 
+  adminTokenCheck, 
+  dashboardForTotolNumberofFailedDocumentForAdmin
+)
+
+Route.get(
+  "/getnumberofpendingleadforallserviceadmin", 
+  adminTokenCheck, 
+  dashboardForTotolNumberofPendingDocumentForAdmin
+)
+
+
+// Success -- Failed -- Pending
+
+
+Route.get(
+  "/getnumberofSuccerssleadforallservice",
+  employeeTokenCheck,
+  dashboardForTotolNumberSuccessofDocument
+);
+
+Route.get(
+  "/getnumberoffailedleadforallservice",
+  employeeTokenCheck,
+  dashboardForTotolNumberFailedofDocument
+);
+
+Route.get(
+  "/getnumberofpendingleadforallservice",
+  employeeTokenCheck,
+  dashboardForTotolNumberPendingofDocument
+);
 
 export default Route;

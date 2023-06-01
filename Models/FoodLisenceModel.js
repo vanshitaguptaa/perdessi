@@ -55,7 +55,9 @@ const FoodLisenceSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   }
-});
+},
+{ timestamps: true }
+);
 
 const FoodLisenceModel = mongoose.model("FoodLisence", FoodLisenceSchema);
 
