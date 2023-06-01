@@ -33,8 +33,14 @@ const GoldLoanSchema = new mongoose.Schema({
   isSuccess: {
     type: Boolean,
     default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
   }
-});
+},
+{ timestamps: true }
+);
 
 const GoldLoanModel = mongoose.model("GoldLoan", GoldLoanSchema);
 

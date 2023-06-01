@@ -54,8 +54,14 @@ const ShopActSchema = new mongoose.Schema({
   isSuccess: {
     type: Boolean,
     default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
   }
-});
+},
+{ timestamps: true }
+);
 
 
 const ShopActModel = mongoose.model("ShopAct", ShopActSchema);

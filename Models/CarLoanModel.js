@@ -72,8 +72,14 @@ const CarLoanSchema = new mongoose.Schema({
   isSuccess: {
     type: Boolean,
     default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
   }
-});
+},
+{ timestamps: true }
+);
 
 const CarLoanModel = mongoose.model("CarLoan", CarLoanSchema);
 

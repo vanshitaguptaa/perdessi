@@ -36,8 +36,14 @@ const NewCorrectionPanApplication = new mongoose.Schema({
   isSuccess: {
     type: Boolean,
     default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
   }
-});
+},
+{ timestamps: true }
+);
 
 const NewCorrectionPanApplicationModel = mongoose.model(
   "NewCorrectionPanApplication",

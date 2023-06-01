@@ -52,7 +52,13 @@ const UdyamCertificateSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-});
+  L_ID: {
+    type: Number,
+    required: true,
+  }
+},
+{ timestamps: true }
+);
 
 const UdyamCertificateModel = mongoose.model(
   "UdyamCertification",
