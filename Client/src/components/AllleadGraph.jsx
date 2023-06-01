@@ -11,7 +11,7 @@ import {
 
 const data = [
   {
-    name: "Page A",
+    name: "Business Loan",
     uv: 4000,
     pv: 2400,
     amt: 2400
