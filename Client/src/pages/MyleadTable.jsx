@@ -258,7 +258,10 @@ const MyleadTable = ({ loandetail, length }) => {
           key === "employee" ||
           key === "isFailed" ||
           key === "isPending" ||
-          key === "isSuccess"
+          key === "isSuccess" ||
+          key === "createdAt" ||
+          key === "updatedAt" ||
+          key === "L_ID"
         ) {
           return null;
         } else {
@@ -308,7 +311,10 @@ const MyleadTable = ({ loandetail, length }) => {
           key === "LoanAmount" ||
           key === "isFailed" ||
           key === "isPending" ||
-          key === "isSuccess"
+          key === "isSuccess" || 
+          key === "createdAt" ||
+          key === "updatedAt" ||
+          key === "L_ID"
         ) {
           return null;
         } else {

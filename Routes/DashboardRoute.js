@@ -1,5 +1,5 @@
 import Express from "express";
-import { dashboardForTotolNumberFailedofDocument, dashboardForTotolNumberPendingofDocument, dashboardForTotolNumberSuccessofDocument, dashboardForTotolNumberofDocument, dashboardForTotolNumberofDocumentForAdmin, dashboardForTotolNumberofFailedDocumentForAdmin, dashboardForTotolNumberofPendingDocumentForAdmin, dashboardForTotolNumberofSuccessDocumentForAdmin } from "../Controllers/DashboardCtrl.js";
+import { dashboardForTotolNumberFailedofDocument, dashboardForTotolNumberPendingofDocument, dashboardForTotolNumberSuccessofDocument, dashboardForTotolNumberofDocument, dashboardForTotolNumberofDocumentForAdmin, dashboardForTotolNumberofFailedDocumentForAdmin, dashboardForTotolNumberofPendingDocumentForAdmin, dashboardForTotolNumberofSuccessDocumentForAdmin, totalLeadForParticularEmployee } from "../Controllers/DashboardCtrl.js";
 import { employeeTokenCheck } from "../Middleware/Tokencheck.js";
 import { adminTokenCheck } from "../Middleware/TokencheckAdmin.js";
 
@@ -60,5 +60,11 @@ Route.get(
   employeeTokenCheck,
   dashboardForTotolNumberPendingofDocument
 );
+
+
+// all lead for particular employee for admin
+Route.get("/getemployeenumberoflead", adminTokenCheck, totalLeadForParticularEmployee)
+
+
 
 export default Route;

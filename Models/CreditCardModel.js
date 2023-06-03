@@ -40,7 +40,7 @@ const CreditCardSchema = new mongoose.Schema({
     default: false
   },
   isSuccess: {
-    type: String,
+    type: Boolean,
     default: false
   },
   L_ID: {
