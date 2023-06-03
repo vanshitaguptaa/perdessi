@@ -43,7 +43,21 @@ const FoodLisenceSchema = new mongoose.Schema({
   Repacker: {
     type: String,
   },
-});
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  }
+},
+{ timestamps: true }
+);
 
 const FoodLisenceModel = mongoose.model("FoodLisence", FoodLisenceSchema);
 

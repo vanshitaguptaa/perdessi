@@ -21,14 +21,23 @@ import DashboardCard12 from "../partials/dashboard/DashboardCard12";
 import DashboardCard13 from "../partials/dashboard/DashboardCard13";
 import Banner from "../partials/Banner";
 import Innerdashborad from "./Innerdashborad";
+import BarChart from "../components/graphs/BarChart";
+import ShapeChart from "../components/graphs/ShapeGraph";
+import LoanInfoCard from "../utils/LoanInfoCard";
 import DashboardData from "../components/DashboardData";
 import AllleadGraph from "../components/AllleadGraph";
 import MistableEmp from "../components/MistableEmp";
+import { useContext } from "react";
+import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 
 function Dashboard() {
   const navigate = useNavigate();
   const [authScreen, setAuthScreen] = useState(true);
+  const { clientState } = useContext(ClientListContext);
+  const { clientAdminState } = useContext(ClientAdminContext);
+  const [clientData, setClientData] = useState("");
   let tokenData = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
   let tokenExpiry;
   let token;
   if (tokenData) {
@@ -37,6 +46,14 @@ function Dashboard() {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
+
+  useEffect(() => {
+    if (role === "admin") {
+      setClientData(clientAdminState.clientAdmin.already);
+    } else if (clientState.isError === false) {
+      setClientData(clientState.clients.clients);
+    }
+  }, []);
 
   useEffect(() => {
     if (!tokenData) {
@@ -53,7 +70,6 @@ function Dashboard() {
     }
   }, []);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
 
   if (authScreen) {
     return (
@@ -91,18 +107,53 @@ function Dashboard() {
             <div className="sm:flex sm:justify-between sm:items-center mb-8 overflow-x-scroll">
               <MistableEmp />
             </div>
-            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto my-5">
               <h1 className="font-bold text-2xl underline">
                 All Leads Analysis Details:-
               </h1>
-              <AllleadGraph />
+              <div className="sm:flex sm:justify-between sm:items-center my-12">
+                <div className="">
+                  <input type="date" name="" id="" />
+                  <input type="date" name="" id="" />
+                  <button className="bg-slate-500 text-white p-2 mx-2">
+                    Search
+                  </button>
+                </div>
+                {role === "admin" ? (
+                  <select
+                    name=""
+                    id=""
+                    onChange={(e) => {
+                      setClient(e.target.value);
+                    }}
+                  >
+                    <option value="Select Employee">Select Employee</option>
+                    {clientData &&
+                      clientData.map((client) => {
+                        return (
+                          <>
+                            <option key={client._id} value={client._id}>
+                              {client.first_name}
+                            </option>
+                          </>
+                        );
+                      })}
+                  </select>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
+              <AllleadGraph className="overflow-x-scroll w-full" />
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               <Innerdashborad />
             </div>
           </div>
         </main>
+        {/* <LoanInfoCard />
+        <BarChart />
+        <ShapeChart /> */}
       </div>
     </div>
   );

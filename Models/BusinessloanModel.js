@@ -58,7 +58,25 @@ const BusinesLoanSchema = new mongoose.Schema({
   TrueCopyBoardResolution: {
     type: String,
   },
-});
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
+  }
+},
+{ timestamps: true }
+);
 
 const BusinessLoanModel = mongoose.model("BusinessLoan", BusinesLoanSchema);
 

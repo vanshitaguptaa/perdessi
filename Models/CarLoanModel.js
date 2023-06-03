@@ -61,7 +61,25 @@ const CarLoanSchema = new mongoose.Schema({
   SelfEmployeeProformaInvoice: {
     type: String,
   },
-});
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
+  }
+},
+{ timestamps: true }
+);
 
 const CarLoanModel = mongoose.model("CarLoan", CarLoanSchema);
 

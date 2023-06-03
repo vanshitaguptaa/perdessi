@@ -4,6 +4,8 @@ import axios from "axios";
 const DashboardData = () => {
   const [allLeadData, setAllLeadData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [Url, setUrl] = useState("");
+  let role = localStorage.getItem("role");
   let tokenData = localStorage.getItem("token");
   let token;
   if (tokenData) {
@@ -14,21 +16,46 @@ const DashboardData = () => {
     let isMounted = true; // Flag to track component mount status
 
     try {
-      setLoading(true);
-      axios({
-        method: "get",
-        url: "http://localhost:5000/api/v1/crm/getnumberofleadforallservice",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        if (isMounted) {
-          // Check if component is still mounted before updating state
-          console.log(res);
-          setLoading(false);
-          setAllLeadData(res.data.response);
-        }
-      });
+      if (role == "admin") {
+        // For admin
+        setLoading(true);
+        axios({
+          method: "get",
+          url: "http://localhost:5000/api/v1/crm/getnumberofleadforallserviceadmin",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          if (isMounted) {
+            // Check if component is still mounted before updating state
+            console.log(res.data.response);
+            setLoading(false);
+            setAllLeadData(res.data.response);
+            if (allLeadData) {
+              console.log(allLeadData);
+            }
+          }
+        });
+      } else {
+        setLoading(true);
+        axios({
+          method: "get",
+          url: "http://localhost:5000/api/v1/crm/getnumberofleadforallservice",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => {
+          if (isMounted) {
+            // Check if component is still mounted before updating state
+            console.log(res.data.response);
+            setLoading(false);
+            setAllLeadData(res.data.response);
+            if (allLeadData) {
+              console.log(allLeadData);
+            }
+          }
+        });
+      }
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -38,88 +65,114 @@ const DashboardData = () => {
       // Cleanup function to be executed on component unmount
       isMounted = false;
     };
-  }, [loading]);
+  }, []);
 
   return (
     <div className="grid grid-cols-5 gap-4">
       {allLeadData && (
         <>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedPersonalLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
               Personal Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedBusiessLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Busiess Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedCarLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Car Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedCreditCardDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Credit Card
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedFoodLisenceDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Food Lisence
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedGSTLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              GST Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedGoldLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Gold Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedHomeLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Home Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedMortgageLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Mortgage Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedNewCorrectionPanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              New Correction Pan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedPassportLoanDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Passport Loan
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedShopActDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Shop Act
             </span>
           </div>
           <div className="w-48 rounded-md shadow-xl bg-white p-5 h-44 cursor-pointer">
-            <h2 className="font-black text-3xl leading-loose">50</h2>
+            <h2 className="font-black text-3xl leading-loose">
+              {allLeadData.savedUdyamCertificateDocument}
+            </h2>
             <span className="text-xl leading-loose tracking-wide">
-              Personal Loan
+              Udyam Certificate
             </span>
           </div>
         </>

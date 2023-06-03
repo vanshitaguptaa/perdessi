@@ -22,7 +22,25 @@ const GoldLoanSchema = new mongoose.Schema({
   Pancard: {
     type: String,
   },
-});
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
+  }
+},
+{ timestamps: true }
+);
 
 const GoldLoanModel = mongoose.model("GoldLoan", GoldLoanSchema);
 

@@ -88,7 +88,25 @@ const homeLoanSchema = new mongoose.Schema({
   certificationOfQualification: {
     type: String,
   },
-});
+  isPending: {
+    type: Boolean,
+    default: true
+  },
+  isFailed: {
+    type: Boolean,
+    default: false
+  },
+  isSuccess: {
+    type: Boolean,
+    default: false
+  },
+  L_ID: {
+    type: Number,
+    required: true,
+  }
+},
+{ timestamps: true }
+);
 
 const HomeLoanModel = mongoose.model("Homeloan", homeLoanSchema);
 

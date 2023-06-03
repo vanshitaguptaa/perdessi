@@ -1,3 +1,6 @@
+
+
+
 import HomeLoanModel from "../Models/HomeloanModel.js";
 import BusinessloanModel from "../Models/BusinessloanModel.js";
 import PersonalLoanModel from "../Models/PersonalLoanModel.js";
@@ -24,6 +27,12 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
       });
     }
 
+    
+    const E_ID = await HomeLoanModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
     const documentObject = req.files;
 
     const homeLoanData = {
@@ -31,6 +40,7 @@ export const CreateLeadctrlForHomeLoan = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -66,7 +76,12 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
-
+    
+    const E_ID = await BusinessloanModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
     const documentObject = req.files;
 
     const businessLoanData = {
@@ -74,6 +89,7 @@ export const createLeadForBusinessLoanModel = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -109,6 +125,12 @@ export const createLeadForPersonalLoan = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await PersonalLoanModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -117,6 +139,7 @@ export const createLeadForPersonalLoan = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -154,6 +177,13 @@ export const createLeadForMortgageLoan = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await MortgageLoanModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
+
 
     const documentObject = req.files;
 
@@ -162,6 +192,7 @@ export const createLeadForMortgageLoan = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -197,7 +228,12 @@ export const createLeadForGoldLoan = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
-
+    
+    const E_ID = await GoldLoanModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
     const documentObject = req.files;
 
     const GoldLoanData = {
@@ -205,6 +241,7 @@ export const createLeadForGoldLoan = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -240,6 +277,12 @@ export const createLeadForCreditCard = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await CreditCardModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -248,6 +291,7 @@ export const createLeadForCreditCard = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -283,6 +327,12 @@ export const createLeadForCarLoan = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await CarLoanModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -291,6 +341,7 @@ export const createLeadForCarLoan = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -326,6 +377,12 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await NewCorrectionPanApplicationModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -334,6 +391,7 @@ export const createLeadForNewCorrectionPanApplication = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -370,6 +428,12 @@ export const createLeadForPassport = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await PassportModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -378,6 +442,7 @@ export const createLeadForPassport = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -413,6 +478,12 @@ export const createLeadForGSTRegistration = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await GSTResgistraionModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -421,6 +492,7 @@ export const createLeadForGSTRegistration = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -464,6 +536,12 @@ export const createLeadForShopAct = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await ShopActModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -474,6 +552,7 @@ export const createLeadForShopAct = async (req, resp) => {
       LoanAmount: loanAmount,
       DetailsOfBusiness: detailsOfBusiness,
       NatureOfBusiness: natureOfBusiness,
+      L_ID: L_ID,
     };
 
     console.log(ShopActData)
@@ -511,6 +590,12 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await UdyamCertificateModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -520,6 +605,7 @@ export const createLeadForUdyamCertificate = async (req, resp) => {
       employee: req.user._id,
       LoanAmount: loanAmount,
       BusinessAdress: businessAdress,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -557,6 +643,12 @@ export const createLeadForFoodLisence = async (req, resp) => {
         message: "Please provide service, client and employeeID properly",
       });
     }
+    
+    const E_ID = await UdyamCertificateModel.find({}).sort({'createdAt': 'desc'}).select("-password");
+    var L_ID= 1000110001;
+    if (E_ID != 0) {
+      L_ID = E_ID[0].L_ID + 1;
+    }
 
     const documentObject = req.files;
 
@@ -565,6 +657,7 @@ export const createLeadForFoodLisence = async (req, resp) => {
       client: clientId,
       employee: req.user._id,
       LoanAmount: loanAmount,
+      L_ID: L_ID,
     };
 
     for (const key in documentObject) {
@@ -914,6 +1007,7 @@ export const getFoodLisenceForEmployee = async (req, resp) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
+
 
 export const editHomeLoanServiceController = async (req, res) => {
   try {
@@ -1382,6 +1476,281 @@ export const editFoodLisenceController = async (req, res) => {
       .json({ status: false, message: "something went wrong", err: error });
   }
 };
+
+// UPDATE SUCCESS, FAILED AND PANDING CONTROLLER
+export const editHomeLoanServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await HomeLoanModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editBusinessLoanServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await BusinessloanModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editPersonalLoanServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await PersonalLoanModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editMortgageLoanServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await MortgageLoanModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editGoldLoanServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await GoldLoanModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+    console.log(updatedResponse);
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editCreditCardServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await CreditCardModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editCarLoanServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await CarLoanModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editNewCorrectionPanApplicationFPS = async (req, res) => {
+  try {
+    const updatedResponse = await NewCorrectionPanApplicationModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editPassportServiceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await PassportModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editGSTRegistrationControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await GSTResgistraionModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editShopActControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await ShopActModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editUdyamCertificateControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await UdyamCertificateModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const editFoodLisenceControllerFPS = async (req, res) => {
+  try {
+    const updatedResponse = await FoodLisenceModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    );
+
+    if (updatedResponse.acknowledged) {
+      return res
+        .status(201)
+        .json({ status: true, message: "This field is successfully updated" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 
 export const getHomeLoanLeadById = async (req, res) => {
   try {
