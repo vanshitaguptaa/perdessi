@@ -1,6 +1,6 @@
 import React from "react";
 
-const MistableEmp = () => {
+const MistableEmp = ({data}) => {
   return (
     <table className="table-fixed h-32 overflow-y-auto bg-white">
       <thead>
@@ -27,9 +27,13 @@ const MistableEmp = () => {
         </tr>
       </thead>
       <tbody>
+      {data.map((e, id) => {
+            return (
         <tr>
           <td className="border px-1 py-2 text-center"></td>
-          <td className="border px-1 py-2 text-center"></td>
+          <td className="border px-1 py-2 text-center">
+          {e.first_name || e.firstName} {e.last_name || e.lastname}
+          </td>
           <td className="border px-1 py-2 text-center"></td>
           <td className="border px-1 py-2 text-center"></td>
           <td className="border px-1 py-2 text-center"></td>
@@ -48,6 +52,8 @@ const MistableEmp = () => {
           <td className="border px-1 py-2 text-center"></td>
           <td className="border px-1 py-2 text-center"></td>
         </tr>
+        );
+          })}
       </tbody>
     </table>
   );

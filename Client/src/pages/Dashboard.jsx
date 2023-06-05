@@ -28,6 +28,7 @@ import DashboardData from "../components/DashboardData";
 import AllleadGraph from "../components/AllleadGraph";
 import MistableEmp from "../components/MistableEmp";
 import { useContext } from "react";
+import axios from "axios";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
 
 function Dashboard() {
@@ -35,6 +36,9 @@ function Dashboard() {
   const [authScreen, setAuthScreen] = useState(true);
   const { clientState } = useContext(ClientListContext);
   const { clientAdminState } = useContext(ClientAdminContext);
+  const [data, setData] = useState([]);
+  const [empId, setEmpId] = useState();
+  const [employee, setEmployee] = useState();
   const [clientData, setClientData] = useState("");
   let tokenData = localStorage.getItem("token");
   const role = localStorage.getItem("role");
@@ -46,6 +50,20 @@ function Dashboard() {
     token = JSON.parse(tokenData).usertoken;
   }
   let currentDate = new Date();
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/v1/crm/getallemployee").then((res) => {
+      console.log(res.data.fetchdata);
+      setData(res.data.fetchdata);
+      setEmpId(res.data.fetchdata);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/v1/crm/getmisreportofleads").then((response) => {
+      console.log(response);
+    });
+  }, []);
 
   useEffect(() => {
     if (role === "admin") {
@@ -87,6 +105,9 @@ function Dashboard() {
       </div>
     );
   }
+
+  console.log(data);
+  console.log(employee);
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -105,7 +126,7 @@ function Dashboard() {
               <DashboardData />
             </div>
             <div className="sm:flex sm:justify-between sm:items-center mb-8 overflow-x-scroll">
-              <MistableEmp />
+              <MistableEmp data={data}/>
             </div>
             <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto my-5">
               <h1 className="font-bold text-2xl underline">
@@ -124,27 +145,26 @@ function Dashboard() {
                     name=""
                     id=""
                     onChange={(e) => {
-                      setClient(e.target.value);
+                      setEmployee(e.target.value);
                     }}
                   >
                     <option value="Select Employee">Select Employee</option>
-                    {clientData &&
-                      clientData.map((client) => {
-                        return (
-                          <>
-                            <option key={client._id} value={client._id}>
-                              {client.first_name}
-                            </option>
-                          </>
-                        );
-                      })}
+                    {data.map((e, id) => {
+                      return (
+                        <>
+                          <option key={e._id} value={e._id}>
+                          {e.first_name || e.firstName}
+                          </option>
+                        </>
+                      );
+                    })}
                   </select>
                 ) : (
                   <></>
                 )}
               </div>
             </div>
-              <AllleadGraph className="overflow-x-scroll w-full" />
+            <AllleadGraph className="overflow-x-scroll w-full" employee={employee}/>
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               <Innerdashborad />
