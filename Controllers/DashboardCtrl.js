@@ -11,6 +11,7 @@ import PassportModel from "../Models/PassportModel.js";
 import ShopActModel from "../Models/ShopActModel.js";
 import UdyamCertificateModel from "../Models/UdyamCertificationModel.js";
 import FoodLisenceModel from "../Models/FoodLisenceModel.js";
+import { employeeModel } from "../Models/EmpolyeeModel.js";
 
 export const dashboardForTotolNumberofDocument = async (req, res) => {
   try {
@@ -651,7 +652,9 @@ export const totalLeadForParticularEmployee = async (req, res) => {
     }
 
     if (!currentUserId) {
-      return res.status(401).json({ status: false, message: "No Id is present to query" });
+      return res
+        .status(401)
+        .json({ status: false, message: "No Id is present to query" });
     }
 
     const homeLoanLeadCount = await HomeLoanModel.find({
@@ -711,6 +714,101 @@ export const totalLeadForParticularEmployee = async (req, res) => {
       shopActLeadCount,
       udyamCertificateLoanLeadCount,
       foodLisenceLoanLeadCount,
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
+export const totalEmployeeAndLead = async (req, res) => {
+  try {
+    if (req.user.role !== "admin") {
+      return res
+        .status(401)
+        .json({ status: false, message: "user is not admin" });
+    }
+
+    const totalEmployee = await employeeModel.find({});
+    const totalEmployeeCount = await employeeModel.find({}).countDocuments();
+
+    let misObject = [];
+
+    for (let index = 0; index < totalEmployee.length; index++) {
+      const homeLoanLeadCount = await HomeLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const businessLoanLeadCount = await BusinessLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const personalLoanLeadCount = await PersonalLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const mortgageLoanLeadCount = await MortgageLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const goldLoanLeadCount = await GoldLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const creditLoanLeadCount = await CreditCardModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const carLoanLeadCount = await CarLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const gstLoanLeadCount = await GSTLoanModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const passportLoanLeadCount = await PassportModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const newCorrectionPanApplicationCount =
+        await NewCorrectionPanApplicationModel.find({
+          employee: totalEmployee[index]._id,
+        }).countDocuments();
+      const shopActLeadCount = await ShopActModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const udyamCertificateLoanLeadCount = await UdyamCertificateModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+      const foodLisenceLoanLeadCount = await FoodLisenceModel.find({
+        employee: totalEmployee[index]._id,
+      }).countDocuments();
+
+      const newobj = {
+        employeeName: `${totalEmployee[index].first_name} ${totalEmployee[index].last_name}`,
+        homeLoanLeadCount: homeLoanLeadCount,
+        businessLoanLeadCount: businessLoanLeadCount,
+        personalLoanLeadCount: personalLoanLeadCount,
+        mortgageLoanLeadCount: mortgageLoanLeadCount,
+        goldLoanLeadCount: goldLoanLeadCount,
+        creditLoanLeadCount: creditLoanLeadCount,
+        passportLoanLeadCount: passportLoanLeadCount,
+        carLoanLeadCount: carLoanLeadCount,
+        gstLoanLeadCount: gstLoanLeadCount,
+        udyamCertificateLoanLeadCount: udyamCertificateLoanLeadCount,
+        shopActLeadCount: shopActLeadCount,
+        foodLisenceLoanLeadCount: foodLisenceLoanLeadCount,
+        newCorrectionPanApplicationCount: newCorrectionPanApplicationCount,
+      };
+
+      misObject.push(newobj);
+    }
+
+    if (misObject.length < 1) {
+      return res.status(404).json({
+        status: false,
+        message: "No data is present to sent as a response",
+      });
+    }
+
+    return res.status(202).json({
+      status: true,
+      message: "sucessfully fetched mis report",
+      response: misObject,
+      totalEmployeeCount: totalEmployeeCount,
     });
   } catch (error) {
     return res
