@@ -35,7 +35,7 @@ function Contactusdetails() {
             transition
             ease-in-out
             m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
             placeholder="Name"
       />
       {/* <label htmlFor="email">Email Address</label> */}
@@ -53,7 +53,7 @@ function Contactusdetails() {
             transition
             ease-in-out
             m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
             placeholder="Email"
       />
        <input id="email" type="text" name="loan-typr" 
@@ -70,7 +70,7 @@ function Contactusdetails() {
             transition
             ease-in-out
             m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput7"
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" 
             placeholder="Loan Type"
       />
       <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -91,7 +91,7 @@ function Contactusdetails() {
             ease-in-out
             m-0
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-             id="exampleFormControlTextarea13" rows="3" placeholder="Message" />
+              rows="3" placeholder="Message" />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
 
 
