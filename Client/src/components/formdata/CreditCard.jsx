@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const CreditCard = () => {
@@ -64,6 +65,32 @@ const CreditCard = () => {
     }
   };
 
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/createleadforCreditCard",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 2000);
+
+      } else {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went  Wrong", {
+        position: toast.POSITION.TOP_RIGHT});
+    }
+  };
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
     <div className="flex justify-center items-center">
@@ -242,9 +269,12 @@ const CreditCard = () => {
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
+         
+
+ onClick={onSubmit} >
             SUBMIT
           </button>
+          <ToastContainer/>
         </div>
       </form>
     </div>

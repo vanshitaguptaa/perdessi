@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Personal = () => {
   const tokenData = localStorage.getItem("token");
@@ -36,10 +38,10 @@ const Personal = () => {
   const [SelfEmployeedOfficeAddressProof, setAddressproof] = useState(null);
 
   useEffect(() => {
-    if(role === "admin"){
-     setClientData(clientAdminState.clientAdmin.already);
-    }else if (clientState.isError === false) {
-     setClientData(clientState.clients.clients)
+    if (role === "admin") {
+      setClientData(clientAdminState.clientAdmin.already);
+    } else if (clientState.isError === false) {
+      setClientData(clientState.clients.clients)
     }
   }, [])
 
@@ -100,6 +102,33 @@ const Personal = () => {
     }
     for (var pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
+    }
+  };
+
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/createleadforPersonalloan",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/addlead");
+        }, 2000);
+
+      } else {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went  Wrong", {
+        position: toast.POSITION.TOP_RIGHT});
     }
   };
 
@@ -248,8 +277,9 @@ const Personal = () => {
                       placeholder="Albuquerque"
                       onChange={(e) => {
                         setIndentity(e.target.files[0]);
-                      }}
+                      }} 
                     />
+                    
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -336,8 +366,8 @@ const Personal = () => {
                       for="grid-city"
                     >
                       Proof Of Indentity*
-                    </label>
-                    <input
+                     </label>
+                   <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
                       type="file"
@@ -345,7 +375,8 @@ const Personal = () => {
                       onChange={(e) => {
                         setSEIndentity(e.target.files[0]);
                       }}
-                    />
+                    /> 
+                    
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -354,14 +385,15 @@ const Personal = () => {
                     >
                       Proof Of Residence*
                     </label>
-                    <input
+                     <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
                       type="file"
                       name="residence"
                       placeholder="Albuquerque"
                       onChange={(e) => setseResidence(e.target.files[0])}
-                    />
+                    /> 
+                    
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -380,7 +412,8 @@ const Personal = () => {
                       onChange={(e) => {
                         setIncome(e.target.files[0]);
                       }}
-                    />
+                    /> 
+                   
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -397,7 +430,8 @@ const Personal = () => {
                       onChange={(e) => {
                         setSeSixBankStatement(e.target.files[0]);
                       }}
-                    />
+                    /> 
+                  
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2">
@@ -408,7 +442,7 @@ const Personal = () => {
                     >
                       Office Address Proof*
                     </label>
-                    <input
+                   <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
                       type="file"
@@ -416,7 +450,8 @@ const Personal = () => {
                       onChange={(e) => {
                         setAddressproof(e.target.files[0]);
                       }}
-                    />
+                    /> 
+                  
                   </div>
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
@@ -425,7 +460,7 @@ const Personal = () => {
                     >
                       Proof Of Continuity Of Business*
                     </label>
-                    <input
+                   <input
                       className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       id="grid-city"
                       type="file"
@@ -433,7 +468,8 @@ const Personal = () => {
                       onChange={(e) => {
                         setBusiness(e.target.files[0]);
                       }}
-                    />
+                    /> 
+                  
                   </div>
                 </div>
               </div>
@@ -445,9 +481,12 @@ const Personal = () => {
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
+            onClick={onSubmit}>
             SUBMIT
           </button>
+        
+
+<ToastContainer/>
         </div>
       </form>
     </div>

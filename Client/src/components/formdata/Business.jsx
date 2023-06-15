@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Business = () => {
   const tokenData = localStorage.getItem("token");
@@ -103,6 +105,33 @@ const Business = () => {
     }
   };
 
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/createLeadForBusinessLoanModel",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success("submitted", {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 2000);
+
+
+      } else {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went  Wrong", {
+        position: toast.POSITION.TOP_RIGHT});
+    }
+  };
   return (
     <div className="flex justify-center items-center">
       <form
@@ -127,6 +156,7 @@ const Business = () => {
               onChange={(e) => {
                 setLoanAmount(e.target.value);
               }}
+           required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -164,7 +194,8 @@ const Business = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  required<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                   />
                 </svg>
               </div>
             </div>
@@ -185,6 +216,7 @@ const Business = () => {
               type="text"
               defaultValue={service}
               readOnly
+           required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -194,7 +226,7 @@ const Business = () => {
             >
               True Copy Article Of Association*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -202,7 +234,9 @@ const Business = () => {
               onChange={(e) => {
                 setTrueCopyArticleofAssociation(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -213,7 +247,7 @@ const Business = () => {
             >
               Pan Card*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -221,7 +255,9 @@ const Business = () => {
               onChange={(e) => {
                 setPanCard(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -230,7 +266,7 @@ const Business = () => {
             >
               Identity Proof*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -238,7 +274,9 @@ const Business = () => {
               onChange={(e) => {
                 setIdentityProof(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -249,7 +287,7 @@ const Business = () => {
             >
               Address Proof*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -257,7 +295,9 @@ const Business = () => {
               onChange={(e) => {
                 setAddressProof(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -266,7 +306,7 @@ const Business = () => {
             >
               Six Month Salary Slip*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -274,7 +314,9 @@ const Business = () => {
               onChange={(e) => {
                 setSixMonthBankStatement(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -285,7 +327,7 @@ const Business = () => {
             >
               Latest ITR*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -293,7 +335,9 @@ const Business = () => {
               onChange={(e) => {
                 setLatestITR(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -302,7 +346,7 @@ const Business = () => {
             >
               Proof Of Continuation ITR*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -310,7 +354,9 @@ const Business = () => {
               onChange={(e) => {
                 setProofOfContinuationITR(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -321,7 +367,7 @@ const Business = () => {
             >
               Proof Of Continuation Trade Liscense*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -329,7 +375,9 @@ const Business = () => {
               onChange={(e) => {
                 setProofOfContinuationTradeLiscense(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -346,7 +394,9 @@ const Business = () => {
               onChange={(e) => {
                 setProofOfContinuationEstablishment(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -357,7 +407,7 @@ const Business = () => {
             >
               Proof Of Continuation Sales Tax*
             </label>
-            <input
+          <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -365,7 +415,9 @@ const Business = () => {
               onChange={(e) => {
                 setProofOfContinuationSalesTax(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -382,7 +434,9 @@ const Business = () => {
               onChange={(e) => {
                 setPropDeclaration(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -401,7 +455,9 @@ const Business = () => {
               onChange={(e) => {
                 setPartnershipDeed(e.target.files[0]);
               }}
-            />
+           required
+            /> 
+          
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -418,7 +474,8 @@ const Business = () => {
               onChange={(e) => {
                 setTrueCopyBoardResolution(e.target.files[0]);
               }}
-            />
+           required
+            /> 
           </div>
         </div>
 
@@ -426,9 +483,11 @@ const Business = () => {
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={onSubmit}
           >
             SUBMIT
           </button>
+          <ToastContainer/>
         </div>
       </form>
     </div>
