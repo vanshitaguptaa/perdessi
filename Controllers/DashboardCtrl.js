@@ -780,120 +780,36 @@ export const totalMISreport = async (req, res) => {
 
     let businessLoanLeadAmout = await BusinessLoanModel.find({
     })
-    businessLoanLeadAmout = businessLoanLeadAmout.LoanAmount
-    let businessLoanLeadAmoutadd = 0
-    if(businessLoanLeadAmout.length>0){
-    for (let index = 0; index < businessLoanLeadAmout.length; index++) {
-      businessLoanLeadAmoutadd = businessLoanLeadAmoutadd + businessLoanLeadAmout[index];
-    }
-    }
 
     let personalLoanLeadAmout = await PersonalLoanModel.find({
     })
-    personalLoanLeadAmout = personalLoanLeadAmout.LoanAmount
-    let personalLoanLeadAmoutadd = 0
-    if(personalLoanLeadAmout.length>0){
-    for (let index = 0; index < personalLoanLeadAmout.length; index++) {
-      personalLoanLeadAmoutadd = personalLoanLeadAmoutadd + personalLoanLeadAmout[index];
-    }
-    }
 
     let mortgageLoanLeadAmout = await MortgageLoanModel.find({
     })
-    mortgageLoanLeadAmout = mortgageLoanLeadAmout.LoanAmount
-    let mortgageLoanLeadAmoutadd = 0
-    if(mortgageLoanLeadAmout.length>0){
-    for (let index = 0; index < mortgageLoanLeadAmout.length; index++) {
-      mortgageLoanLeadAmoutadd = mortgageLoanLeadAmoutadd + mortgageLoanLeadAmout[index];
-    }
-    }
 
     let goldLoanLeadAmout = await GoldLoanModel.find({
     })
-    goldLoanLeadAmout = goldLoanLeadAmout.LoanAmount
-    let goldLoanLeadAmoutadd = 0
-    if(goldLoanLeadAmout.length>0){
-    for (let index = 0; index < goldLoanLeadAmout.length; index++) {
-      goldLoanLeadAmoutadd = goldLoanLeadAmoutadd + goldLoanLeadAmout[index];
-    }
-    }
 
     let creditLoanLeadAmout = await CreditCardModel.find({
     })
-    creditLoanLeadAmout = creditLoanLeadAmout.LoanAmount
-    let creditLoanLeadAmoutadd = 0
-    if(creditLoanLeadAmout.length>0){
-    for (let index = 0; index < creditLoanLeadAmout.length; index++) {
-      creditLoanLeadAmoutadd = creditLoanLeadAmoutadd + creditLoanLeadAmout[index];
-    }
-  }
 
     let carLoanLeadAmout = await CarLoanModel.find({
     })
-    carLoanLeadAmout = carLoanLeadAmout.LoanAmount
-    let carLoanLeadAmoutadd = 0
-    if(carLoanLeadAmout.length>0){
-    for (let index = 0; index < carLoanLeadAmout.length; index++) {
-      carLoanLeadAmoutadd = carLoanLeadAmoutadd + carLoanLeadAmout[index];
-    }
-  }
     let gstLoanLeadAmout = await GSTLoanModel.find({
     })
-    gstLoanLeadAmout = gstLoanLeadAmout.LoanAmount
-    let gstLoanLeadAmoutadd = 0
-    if(gstLoanLeadAmout.length>0){
-    for (let index = 0; index < gstLoanLeadAmout.length; index++) {
-      gstLoanLeadAmoutadd = gstLoanLeadAmoutadd + gstLoanLeadAmout[index];
-    }
-  }
 
     let passportLoanLeadAmout = await PassportModel.find({
     })
-    passportLoanLeadAmout = passportLoanLeadAmout.LoanAmount
-    let passportLoanLeadAmoutadd = 0
-    if(passportLoanLeadAmout.length>0){
-    for (let index = 0; index < passportLoanLeadAmout.length; index++) {
-      passportLoanLeadAmoutadd = passportLoanLeadAmoutadd + passportLoanLeadAmout[index];
-    }
-  }
     let newCorrectionPanApplication = await NewCorrectionPanApplicationModel.find({
     })
-    newCorrectionPanApplication = newCorrectionPanApplication.LoanAmount
-    let newCorrectionPanApplicationadd = 0
-    if(newCorrectionPanApplication.length>0){
-    for (let index = 0; index < newCorrectionPanApplication.length; index++) {
-      newCorrectionPanApplicationadd = newCorrectionPanApplicationadd + newCorrectionPanApplication[index];
-    }
-  }
 
     let shopActLeadAmout = await ShopActModel.find({
     })
-    shopActLeadAmout = shopActLeadAmout.LoanAmount
-    let shopActLeadAmoutadd = 0
-    if(shopActLeadAmout.length>0){
-    for (let index = 0; index < shopActLeadAmout.length; index++) {
-      shopActLeadAmoutadd = shopActLeadAmoutadd + shopActLeadAmout[index];
-    }
-  }
     let udyamCertificateLoanLeadAmout = await UdyamCertificateModel.find({
     })
-    udyamCertificateLoanLeadAmout = udyamCertificateLoanLeadAmout.LoanAmount
-    let udyamCertificateLoanLeadAmoutadd = 0
-    if(udyamCertificateLoanLeadAmout.length>0){
-    for (let index = 0; index < udyamCertificateLoanLeadAmout.length; index++) {
-      udyamCertificateLoanLeadAmoutadd = udyamCertificateLoanLeadAmoutadd + udyamCertificateLoanLeadAmout[index];
-    }
-  }
     let foodLisenceLoanLeadAmout = await FoodLisenceModel.find({
     })
-    foodLisenceLoanLeadAmout = foodLisenceLoanLeadAmout.LoanAmount
-    let foodLisenceLoanLeadAmoutadd = 0
     
-    if(foodLisenceLoanLeadAmout.length>0){
-    for (let index = 0; index < foodLisenceLoanLeadAmout.length; index++) {
-      foodLisenceLoanLeadAmoutadd = foodLisenceLoanLeadAmoutadd + foodLisenceLoanLeadAmout[index];
-    }
-    }
 
     return res.status(202).json({
       status: true,

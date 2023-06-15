@@ -127,7 +127,6 @@ function App() {
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
         <Route exact path="/applyloanlp" element={<Applyloanlp/>}/>
-      
         <Route exact path="/passport" element={<PassportSchema/>}/>
         <Route exact path="/Shop Act" element={<ShopActSchema/>}/>
         <Route exact path="/Food Lisence" element={<FoodLicience/>}/>
