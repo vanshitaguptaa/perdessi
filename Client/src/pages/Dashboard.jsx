@@ -30,6 +30,8 @@ import MistableEmp from "../components/MistableEmp";
 import { useContext } from "react";
 import axios from "axios";
 import { ClientAdminContext, ClientListContext } from "../Context/ClientList";
+import MistableReport from "../components/MistableReport";
+
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -37,6 +39,8 @@ function Dashboard() {
   const { clientState } = useContext(ClientListContext);
   const { clientAdminState } = useContext(ClientAdminContext);
   const [data, setData] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [misdata, setMisData] = useState([]);
   const [empId, setEmpId] = useState();
   const [employee, setEmployee] = useState();
   const [clientData, setClientData] = useState("");
@@ -52,16 +56,25 @@ function Dashboard() {
   let currentDate = new Date();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v1/crm/getallemployee").then((res) => {
+    (async function() {
+      await axios.get("http://localhost:5000/api/v1/crm/getallemployee").then((res) => {
       console.log(res.data.fetchdata);
       setData(res.data.fetchdata);
       setEmpId(res.data.fetchdata);
     });
+  })();
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/v1/crm/getmisreportofleads").then((response) => {
-      console.log(response);
+    axios({
+      method: "get",
+      url: `http://localhost:5000/api/v1/crm/getmisreportofleads`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      console.log(res.data.response);
+      setMisData(res.data.response);
     });
   }, []);
 
@@ -87,7 +100,6 @@ function Dashboard() {
       }, 500);
     }
   }, []);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   if (authScreen) {
     return (
@@ -108,6 +120,7 @@ function Dashboard() {
 
   console.log(data);
   console.log(employee);
+  console.log("EmpId", empId);
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
@@ -125,21 +138,26 @@ function Dashboard() {
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               <DashboardData />
             </div>
+
             <div className="sm:flex sm:justify-between sm:items-center mb-8 overflow-x-scroll">
-              <MistableEmp data={data}/>
+              {role === "admin" ? <MistableEmp misdata={misdata} /> : <></>}
             </div>
+            <div className="sm:flex sm:justify-between sm:items-center mb-8">
+              {role === "admin" ? <MistableReport /> : <></>}
+            </div>
+
             <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto my-5">
               <h1 className="font-bold text-2xl underline">
                 All Leads Analysis Details:-
               </h1>
-              <div className="sm:flex sm:justify-between sm:items-center my-12">
-                <div className="">
+              <div className="mt-5">
+                {/* <div className="">
                   <input type="date" name="" id="" />
                   <input type="date" name="" id="" />
                   <button className="bg-slate-500 text-white p-2 mx-2">
                     Search
                   </button>
-                </div>
+                </div> */}
                 {role === "admin" ? (
                   <select
                     name=""
@@ -148,12 +166,12 @@ function Dashboard() {
                       setEmployee(e.target.value);
                     }}
                   >
-                    <option value="Select Employee">Select Employee</option>
+                    <option selected>select Employee</option>
                     {data.map((e, id) => {
                       return (
                         <>
-                          <option key={e._id} value={e._id}>
-                          {e.first_name || e.firstName}
+                          <option key={e._id} value={e._id} >
+                            {e.first_name || e.firstName}
                           </option>
                         </>
                       );
@@ -164,7 +182,10 @@ function Dashboard() {
                 )}
               </div>
             </div>
-            <AllleadGraph className="overflow-x-scroll w-full" employee={employee}/>
+            <AllleadGraph
+              className="overflow-x-scroll w-full"
+              employee={employee}
+            />
 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
               <Innerdashborad />

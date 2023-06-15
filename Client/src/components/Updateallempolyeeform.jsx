@@ -26,6 +26,7 @@ const Updateform = ({ Profiledata, id }) => {
   const [bankName, setBankName] = useState(Profiledata.BankName);
   const [branch, setBranchName] = useState(Profiledata.BranchName);
   const [dateOfBirth, setDateOfBirth] = useState(Profiledata.BankName);
+  const [authScreen, setAuthScreen] = useState(true);
   const [IFSC, setIFSC] = useState(Profiledata.IFSCcode);
   const [accHolderName, setAccHolderName] = useState(Profiledata.ACholdername);
   const [bankAccNumber, setBankAccNumber] = useState(Profiledata.BankAccNo);

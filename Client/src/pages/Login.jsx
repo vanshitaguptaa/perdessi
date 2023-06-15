@@ -63,7 +63,7 @@ const Login = () => {
         <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-2">
             <label
-              for="email"
+              htmlFor="email"
               className="block text-sm font-semibold text-gray-800"
             >
               Email
@@ -77,7 +77,7 @@ const Login = () => {
           </div>
           <div className="mb-2">
             <label
-              for="password"
+              htmlFor="password"
               className="block text-sm font-semibold text-gray-800"
             >
               Password
