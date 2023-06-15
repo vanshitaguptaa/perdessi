@@ -722,6 +722,115 @@ export const totalLeadForParticularEmployee = async (req, res) => {
   }
 };
 
+export const totalMISreport = async (req, res) => {
+  try {
+    const { currentUserId } = req.query;
+
+    if (req.user.role !== "admin") {
+      return res
+        .status(401)
+        .json({ status: false, message: "user is not admin" });
+    }
+
+    if (!currentUserId) {
+      return res
+        .status(401)
+        .json({ status: false, message: "No Id is present to query" });
+    }
+
+    // For All Lead 
+    const homeLoanLeadCount = await HomeLoanModel.find({
+    }).countDocuments();
+    const businessLoanLeadCount = await BusinessLoanModel.find({
+    }).countDocuments();
+    const personalLoanLeadCount = await PersonalLoanModel.find({
+    }).countDocuments();
+    const mortgageLoanLeadCount = await MortgageLoanModel.find({
+    }).countDocuments();
+    const goldLoanLeadCount = await GoldLoanModel.find({
+    }).countDocuments();
+    const creditLoanLeadCount = await CreditCardModel.find({
+    }).countDocuments();
+    const carLoanLeadCount = await CarLoanModel.find({
+    }).countDocuments();
+    const gstLoanLeadCount = await GSTLoanModel.find({
+    }).countDocuments();
+    const passportLoanLeadCount = await PassportModel.find({
+    }).countDocuments();
+    const newCorrectionPanApplicationCount =
+      await NewCorrectionPanApplicationModel.find({
+      }).countDocuments();
+    const shopActLeadCount = await ShopActModel.find({
+    }).countDocuments();
+    const udyamCertificateLoanLeadCount = await UdyamCertificateModel.find({
+    }).countDocuments();
+    const foodLisenceLoanLeadCount = await FoodLisenceModel.find({
+    }).countDocuments();
+
+// For Total Amount76
+
+    let homeLoanLeadAmout = await HomeLoanModel.find({
+    })
+
+    let businessLoanLeadAmout = await BusinessLoanModel.find({
+    })
+
+    let personalLoanLeadAmout = await PersonalLoanModel.find({
+    })
+
+    let mortgageLoanLeadAmout = await MortgageLoanModel.find({
+    })
+
+    let goldLoanLeadAmout = await GoldLoanModel.find({
+    })
+
+    let creditLoanLeadAmout = await CreditCardModel.find({
+    })
+
+    let carLoanLeadAmout = await CarLoanModel.find({
+    })
+    let gstLoanLeadAmout = await GSTLoanModel.find({
+    })
+
+    let passportLoanLeadAmout = await PassportModel.find({
+    })
+    let newCorrectionPanApplication = await NewCorrectionPanApplicationModel.find({
+    })
+
+    let shopActLeadAmout = await ShopActModel.find({
+    })
+    let udyamCertificateLoanLeadAmout = await UdyamCertificateModel.find({
+    })
+    let foodLisenceLoanLeadAmout = await FoodLisenceModel.find({
+    })
+    
+
+    return res.status(202).json({
+      status: true,
+      message: "successfully fetched lead count for particular employee",
+      data: {
+        homeLoanLeadCount: { homeLoanLeadCount, homeLoanLeadAmout },
+        businessLoanLeadCount: { businessLoanLeadCount, businessLoanLeadAmout },
+        personalLoanLeadCount: { personalLoanLeadCount, personalLoanLeadAmout },
+        mortgageLoanLeadCount: { personalLoanLeadCount, personalLoanLeadAmout },
+        creditLoanLeadCount: { creditLoanLeadCount, creditLoanLeadAmout },
+        goldLoanLeadCount: { goldLoanLeadCount, goldLoanLeadAmout },
+        carLoanLeadCount: { carLoanLeadCount, carLoanLeadAmout },
+        gstLoanLeadCount: { gstLoanLeadCount, gstLoanLeadAmout },
+        passportLoanLeadCount: { passportLoanLeadCount, passportLoanLeadAmout },
+        newCorrectionPanApplicationCount: { newCorrectionPanApplicationCount, newCorrectionPanApplicationAmout },
+        shopActLeadCount: { shopActLeadCount, shopActLeadAmout },
+        udyamCertificateLoanLeadCount: { udyamCertificateLoanLeadCount, udyamCertificateLoanLeadAmout },
+        foodLisenceLoanLeadCount: { foodLisenceLoanLeadCount, foodLisenceLoanLeadAmout },
+      }
+    });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ status: false, message: "something went wrong", err: error });
+  }
+};
+
 export const totalEmployeeAndLead = async (req, res) => {
   try {
     if (req.user.role !== "admin") {
@@ -730,8 +839,12 @@ export const totalEmployeeAndLead = async (req, res) => {
         .json({ status: false, message: "user is not admin" });
     }
 
-    const totalEmployee = await employeeModel.find({});
-    const totalEmployeeCount = await employeeModel.find({}).countDocuments();
+    const totalEmployee = await employeeModel.find({
+
+    });
+    const totalEmployeeCount = await employeeModel.find({
+
+    }).countDocuments();
 
     let misObject = [];
 
@@ -779,6 +892,7 @@ export const totalEmployeeAndLead = async (req, res) => {
 
       const newobj = {
         employeeName: `${totalEmployee[index].first_name} ${totalEmployee[index].last_name}`,
+        employee_Id: `${totalEmployee[index].employeeid}`,
         homeLoanLeadCount: homeLoanLeadCount,
         businessLoanLeadCount: businessLoanLeadCount,
         personalLoanLeadCount: personalLoanLeadCount,

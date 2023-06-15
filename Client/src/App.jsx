@@ -116,7 +116,7 @@ function App() {
         <Route exact path="/personalloan" element={<PersonalLoanlp />} />
         <Route exact path="/mortageloan" element={<MortgageLoanlp />} />
         <Route exact path="/goldloan" element={<GoldLoanlp />} />
-        <Route exact path="/homeloanbalancetransfer" element={<Balancetransferlp />}/>
+        <Route exact path="/HomeLoanBalanceTransfer" element={<Balancetransferlp />}/>
         <Route exact path="/creditcard" element={<CreditCardlp />}/>
         <Route exact path="/passportlp" element={<Passportlp />}/>
         <Route exact path="/panapplication" element={<PanApplicationlp />}/>
@@ -127,7 +127,6 @@ function App() {
         <Route exact path="/aboutus" element={<Aboutus/>}/>
         <Route exact path="/contactus" element={<Contactus/>}/>
         <Route exact path="/applyloanlp" element={<Applyloanlp/>}/>
-      
         <Route exact path="/passport" element={<PassportSchema/>}/>
         <Route exact path="/Shop Act" element={<ShopActSchema/>}/>
         <Route exact path="/Food Lisence" element={<FoodLicience/>}/>
