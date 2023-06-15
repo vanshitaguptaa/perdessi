@@ -769,14 +769,8 @@ export const totalMISreport = async (req, res) => {
 
 // For Total Amount76
 
-    let homeLoanLeadAmout = await HomeLoanModel.find({})
-    homeLoanLeadAmout = homeLoanLeadAmout.LoanAmount
-    let homeLoanLeadAmoutadd = 0
-    if(homeLoanLeadAmout.length>0){
-    for (let index = 0; index < homeLoanLeadAmout.length; index++) {
-      homeLoanLeadAmoutadd = homeLoanLeadAmoutadd + homeLoanLeadAmout[index];
-    }
-    }
+    let homeLoanLeadAmout = await HomeLoanModel.find({
+    })
 
     let businessLoanLeadAmout = await BusinessLoanModel.find({
     })
@@ -815,19 +809,19 @@ export const totalMISreport = async (req, res) => {
       status: true,
       message: "successfully fetched lead count for particular employee",
       data: {
-        homeLoanLeadCount: { homeLoanLeadCount, homeLoanLeadAmoutadd },
-        businessLoanLeadCount: { businessLoanLeadCount, businessLoanLeadAmoutadd },
-        personalLoanLeadCount: { personalLoanLeadCount, personalLoanLeadAmoutadd },
-        mortgageLoanLeadCount: { personalLoanLeadCount, personalLoanLeadAmoutadd },
-        creditLoanLeadCount: { creditLoanLeadCount, creditLoanLeadAmoutadd },
-        goldLoanLeadCount: { goldLoanLeadCount, goldLoanLeadAmoutadd },
-        carLoanLeadCount: { carLoanLeadCount, carLoanLeadAmoutadd },
-        gstLoanLeadCount: { gstLoanLeadCount, gstLoanLeadAmoutadd },
-        passportLoanLeadCount: { passportLoanLeadCount, passportLoanLeadAmoutadd },
-        newCorrectionPanApplicationCount: { newCorrectionPanApplicationCount, newCorrectionPanApplicationAmoutadd },
-        shopActLeadCount: { shopActLeadCount, shopActLeadAmoutadd },
-        udyamCertificateLoanLeadCount: { udyamCertificateLoanLeadCount, udyamCertificateLoanLeadAmoutadd },
-        foodLisenceLoanLeadCount: { foodLisenceLoanLeadCount, foodLisenceLoanLeadAmoutadd },
+        homeLoanLeadCount: { homeLoanLeadCount, homeLoanLeadAmout },
+        businessLoanLeadCount: { businessLoanLeadCount, businessLoanLeadAmout },
+        personalLoanLeadCount: { personalLoanLeadCount, personalLoanLeadAmout },
+        mortgageLoanLeadCount: { personalLoanLeadCount, personalLoanLeadAmout },
+        creditLoanLeadCount: { creditLoanLeadCount, creditLoanLeadAmout },
+        goldLoanLeadCount: { goldLoanLeadCount, goldLoanLeadAmout },
+        carLoanLeadCount: { carLoanLeadCount, carLoanLeadAmout },
+        gstLoanLeadCount: { gstLoanLeadCount, gstLoanLeadAmout },
+        passportLoanLeadCount: { passportLoanLeadCount, passportLoanLeadAmout },
+        newCorrectionPanApplicationCount: { newCorrectionPanApplicationCount, newCorrectionPanApplicationAmout },
+        shopActLeadCount: { shopActLeadCount, shopActLeadAmout },
+        udyamCertificateLoanLeadCount: { udyamCertificateLoanLeadCount, udyamCertificateLoanLeadAmout },
+        foodLisenceLoanLeadCount: { foodLisenceLoanLeadCount, foodLisenceLoanLeadAmout },
       }
     });
   } catch (error) {
@@ -845,8 +839,12 @@ export const totalEmployeeAndLead = async (req, res) => {
         .json({ status: false, message: "user is not admin" });
     }
 
-    const totalEmployee = await employeeModel.find({});
-    const totalEmployeeCount = await employeeModel.find({}).countDocuments();
+    const totalEmployee = await employeeModel.find({
+
+    });
+    const totalEmployeeCount = await employeeModel.find({
+
+    }).countDocuments();
 
     let misObject = [];
 
@@ -894,6 +892,7 @@ export const totalEmployeeAndLead = async (req, res) => {
 
       const newobj = {
         employeeName: `${totalEmployee[index].first_name} ${totalEmployee[index].last_name}`,
+        employee_Id: `${totalEmployee[index].employeeid}`,
         homeLoanLeadCount: homeLoanLeadCount,
         businessLoanLeadCount: businessLoanLeadCount,
         personalLoanLeadCount: personalLoanLeadCount,
