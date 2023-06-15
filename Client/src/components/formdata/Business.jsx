@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Business = () => {
   const tokenData = localStorage.getItem("token");
@@ -102,6 +104,9 @@ const Business = () => {
       console.log(error)
     }
   };
+  const toastMsg =()=>{
+    toast("Submitted Succesfully");
+  }
 
   return (
     <div className="flex justify-center items-center">
@@ -425,10 +430,12 @@ const Business = () => {
         <div className="mt-5 flex justify-center">
           <button
             type="submit"
+            onClick = {toastMsg}
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             SUBMIT
           </button>
+          <ToastContainer/>
         </div>
       </form>
     </div>

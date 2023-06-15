@@ -4,6 +4,8 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -79,6 +81,9 @@ const Mortgage = () => {
     }
    
   };
+  const toastMsg =()=>{
+    toast("Submitted Succesfully");
+  }
 
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
@@ -294,11 +299,13 @@ const Mortgage = () => {
 
         <div className="mt-5 flex justify-center">
           <button
+          onClick={toastMsg}
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             SUBMIT
           </button>
+          <ToastContainer/>
         </div>
       </form>
     </div>
