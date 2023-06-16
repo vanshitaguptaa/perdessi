@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -126,6 +126,41 @@ const Home = () => {
     toast("Submitted Succesfully");
   }
 
+  // const toastMsg = ()=>
+  // {
+  //   toast("Submitted Succesfully");
+  //   {
+  //     position: toast.POSITION.TOP_CENTER
+  //   }
+
+
+  // }
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/createleadforhomeloan",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 2000);
+
+      } else {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went Wrong", {
+        position: toast.POSITION.TOP_RIGHT});
+    }
+  };
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
     <div className="flex justify-center items-center">
@@ -228,6 +263,7 @@ const Home = () => {
                 setEmployeeIdentityCard(e.target.files[0]);
               }}
             />
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -244,7 +280,9 @@ const Home = () => {
               onChange={(e) => {
                 setLoanApplication(e.target.files[0]);
               }}
-            />
+
+            /> 
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -255,15 +293,18 @@ const Home = () => {
             >
               Proof Of Identity*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
               placeholder="Albuquerque"
               onChange={(e) => {
                 setProofOfIdentity(e.target.files[0]);
-              }}
+              }} 
             />
+            
+            
+   
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -280,7 +321,8 @@ const Home = () => {
               onChange={(e) => {
                 setProofOfResidency(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -291,7 +333,7 @@ const Home = () => {
             >
               Permission Of Construction*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -299,7 +341,8 @@ const Home = () => {
               onChange={(e) => {
                 setPermissionOfConstruction(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -308,7 +351,7 @@ const Home = () => {
             >
               Registered Agreement For Sales*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -317,6 +360,7 @@ const Home = () => {
                 setRegisteredAgreementForSales(e.target.files[0]);
               }}
             />
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -335,7 +379,8 @@ const Home = () => {
               onChange={(e) => {
                 setAllotmentletter(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -344,7 +389,7 @@ const Home = () => {
             >
               Stamped Agreement*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -352,7 +397,8 @@ const Home = () => {
               onChange={(e) => {
                 setStampedAgreement(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -372,6 +418,7 @@ const Home = () => {
                 setOccupancyCertificate(e.target.files[0]);
               }}
             />
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -380,7 +427,7 @@ const Home = () => {
             >
               Share Certification*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -389,6 +436,7 @@ const Home = () => {
                 setShareCertification(e.target.files[0]);
               }}
             />
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -399,7 +447,7 @@ const Home = () => {
             >
               Maintainance Bill*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -407,7 +455,8 @@ const Home = () => {
               onChange={(e) => {
                 setMaintainanceBill(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -416,7 +465,7 @@ const Home = () => {
             >
               Electricity Bill*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -424,7 +473,8 @@ const Home = () => {
               onChange={(e) => {
                 setElectricityBill(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -435,7 +485,7 @@ const Home = () => {
             >
               Property Tax Receipt*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -443,7 +493,8 @@ const Home = () => {
               onChange={(e) => {
                 setPropertyTaxReceipt(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -453,7 +504,7 @@ const Home = () => {
               Approved Plan Copy Registered Development Agreement Of The Builder
               Conveyance Deed*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -463,7 +514,8 @@ const Home = () => {
                   e.target.files[0]
                 );
               }}
-            />
+            /> 
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -482,7 +534,8 @@ const Home = () => {
               onChange={(e) => {
                 setPaymentMadetoBuilderRecept(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -491,7 +544,7 @@ const Home = () => {
             >
               Six Month Bank Statement*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -500,6 +553,7 @@ const Home = () => {
                 setSixMonthBankStatement(e.target.files[0]);
               }}
             />
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -519,6 +573,7 @@ const Home = () => {
                 setLoanAccountStatement(e.target.files[0]);
               }}
             />
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -536,6 +591,7 @@ const Home = () => {
                 setThreeMonthSalarySlip(e.target.files[0]);
               }}
             />
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -554,7 +610,8 @@ const Home = () => {
               onChange={(e) => {
                 setTwoYearOfFormsixteenOrItReturn(e.target.files[0]);
               }}
-            />
+            /> 
+             
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -572,6 +629,7 @@ const Home = () => {
                 setBusinessAddressProof(e.target.files[0]);
               }}
             />
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -582,7 +640,7 @@ const Home = () => {
             >
               Three YearIt Return*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-city"
               type="file"
@@ -590,7 +648,8 @@ const Home = () => {
               onChange={(e) => {
                 setThreeYearItReturn(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -599,7 +658,7 @@ const Home = () => {
             >
               Business Lisence Detail*
             </label>
-            <input
+             <input
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-zip"
               type="file"
@@ -607,7 +666,8 @@ const Home = () => {
               onChange={(e) => {
                 setBusinessLisenceDetail(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -626,7 +686,8 @@ const Home = () => {
               onChange={(e) => {
                 setTDScertification(e.target.files[0]);
               }}
-            />
+            /> 
+            
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -644,14 +705,16 @@ const Home = () => {
                 setcertificationOfQualification(e.target.files[0]);
               }}
             />
+            {/*  */}
           </div>
         </div>
 
         <div className="mt-5 flex justify-center">
           <button
             type="submit"
-            onClick = {toastMsg}
+            
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={onSubmit}
           >
             SUBMIT
           </button>
