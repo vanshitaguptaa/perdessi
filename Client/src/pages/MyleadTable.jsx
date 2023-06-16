@@ -323,9 +323,7 @@ const MyleadTable = ({ loandetail, length }) => {
               <h1>{`${key} :-`}</h1>
               <img
                 className="w-72"
-                src={`http://localhost:5000/${value
-                  .split("public")[1]
-                  .substring(1)}`}
+                src={`http://localhost:5000/${value.split("public")[1].substring(1)}`}
                 alt=""
                 srcset=""
               />
@@ -401,41 +399,39 @@ const MyleadTable = ({ loandetail, length }) => {
                           PAN Number : {"  "}
                           {e.client.pan}
                         </h5>
-                        <div className="flex my-2">
-                          <button
-                            type="button"
-                            className="inline-block rounded bg-blue-300 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                            data-te-ripple-init
-                            data-te-ripple-color="light"
-                            onClick={() => {
-                              Fetchpopdata(e._id, e.service.service_name);
-                              // setview(true);
-                            }}
-                          >
-                            View
-                          </button>
-                          <Link
-                            to={`/updatelead/${e.service.service_name}`}
-                            state={{ serviceID: e._id }}
-                          >
-                            <button
-                              type="button"
-                              className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                              data-te-ripple-init
-                              data-te-ripple-color="light"
-                            >
-                              Update
-                            </button>
-                          </Link>
+                        <button
+                          type="button"
+                          className="inline-block rounded bg-blue-300 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                          data-te-ripple-init
+                          data-te-ripple-color="light"
+                          onClick={() => {
+                            Fetchpopdata(e._id, e.service.service_name);
+                            // setview(true);
+                          }}
+                        >
+                          View
+                        </button>
+                        <Link
+                          to={`/updatelead/${e.service.service_name}`}
+                          state={{ serviceID: e._id }}
+                        >
                           <button
                             type="button"
                             className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                             data-te-ripple-init
                             data-te-ripple-color="light"
                           >
-                            Delete
+                            Update
                           </button>
-                        </div>
+                        </Link>
+                        <button
+                          type="button"
+                          className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                          data-te-ripple-init
+                          data-te-ripple-color="light"
+                        >
+                          Delete
+                        </button>
                         {role == "admin" ? (
                           <Link
                             to={`/transferlead/${e.service.service_name}`}
@@ -557,25 +553,6 @@ const MyleadTable = ({ loandetail, length }) => {
                       </div>
                     </div>
                   </div>
-                  {/* <div className="">
-                  <h5 className="font-bold text-2xl uppercase">
-                    Bank information
-                  </h5>
-                  <div className="grid grid-cols-2">
-                    <div>
-                      <p className="font-semibold">Account Holder Name</p>
-                      <p className="font-semibold">Bank Account No</p>
-                      <p className="font-semibold">IFSC Code</p>
-                      <p className="font-semibold">Pan Number</p>
-                    </div>
-                    <div className="">
-                      <p className="font-semibold">{}</p>
-                      <p className="font-semibold">{}</p>
-                      <p className="font-semibold">{}</p>
-                      <p className="font-semibold">{}</p>
-                    </div>
-                  </div>
-                </div> */}
                 </div>
                 <div className=" w-full">
                   <h5 className="font-bold text-2xl uppercase">
@@ -602,6 +579,7 @@ const MyleadTable = ({ loandetail, length }) => {
       ) : (
         <></>
       )}
+
       {/* Above Code is for POP_UP */}
     </>
   );
