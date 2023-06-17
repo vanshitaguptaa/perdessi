@@ -3,11 +3,20 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import './popstyle.css'
+// import './popstyle.css'
 const MyleadTable = ({ loandetail, length }) => {
   const [view, setview] = useState(false);
   const [popupdata, setpopupdata] = useState([]);
   const [authScreen, setAuthScreen] = useState(true);
+  const [isSuccess, setisSuccess] = useState(false);
+  const [isPending, setisPending] = useState(true);
+  const [isFailed, setisFailed] = useState(false);
+  const changeStatus=(id,Status)=>
+  {
+    Status=="Success"?(setisPending(false),setisFailed(false),setisSuccess(true)):(setisPending(true),setisFailed(false),setisSuccess(false));
+    Status=="Failed"?(setisPending(false),setisFailed(true),setisSuccess(false)):(setisPending(true),setisFailed(false),setisSuccess(false));
+  }
+  
 
   const url =
     "https://i0.wp.com/www.society19.com/wp-content/uploads/2020/04/pinterest__tbhjessica-%E2%98%BC-%E2%98%BE%E2%99%A1.png?w=1024&ssl=1";
@@ -364,11 +373,11 @@ const MyleadTable = ({ loandetail, length }) => {
         </>
       ) : (
         <>
-          <div className="flex flex-wrap flex-row gap-4 w-full justify-justify-evenly">
+          <div className="flex flex-wrap flex-row gap-4 w-full justify-evenly">
             {loandetail &&
               loandetail.map((e, id) => {
                 return (
-                  <div key={e._id} style={{width:"320px"}} >
+                  <div key={e._id} style={{width:"400px"}} >
                     <div className="w-full rounded-2xl bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-auto">
                       <div className="rounded-t-xl bg-blue-200 border-b-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50">
                         <h4 className="mb-2 text-xl  font-medium leading-tight text-neutral-900 dark:text-neutral-70">
@@ -419,7 +428,7 @@ const MyleadTable = ({ loandetail, length }) => {
                           >
                             <button
                               type="button"
-                              className="inline-block rounded bg-blue-300 mx-3 px-6 pb-2 mr-3 pt-2 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                              className="inline-block rounded h-20 bg-blue-300 mx-3 px-6 pb-2 mr-3 pt-2 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                               data-te-ripple-init
                               data-te-ripple-color="light"
                             >
@@ -432,17 +441,30 @@ const MyleadTable = ({ loandetail, length }) => {
                             data-te-ripple-init
                             data-te-ripple-color="light"
                           >
-                            Update
+                            <label for="cars">Status</label>
+
+                          <select name="cars" id="cars" onChange={(e)=>{changeStatus(e.target.value)}} style={{width:"7.5rem"}}>
+                            <option value="Success">Success</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Failed">Failed</option>
+                         
+                          </select>
+                           
+                            {/* <div className="dropdown"><button className="pages">Status</button>
+                            <div className="dropdown-content"><a href="#">Success<br/></a>
+                            <a href="#">Pending</a><br/>
+                            <a href="#">Failed</a><br/></div></div> */}
                           </button>
-                        </Link>
-                        <button
+                          
+                        </div>
+                        {/* <button
                           type="button"
                           className="inline-block rounded bg-blue-300 mx-4 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                           data-te-ripple-init
                           data-te-ripple-color="light"
                         >
                           Delete
-                        </button>
+                        </button> */}
                         {role == "admin" ? (
                           <Link
                             to={`/transferlead/${e.service.service_name}`}
@@ -481,7 +503,7 @@ const MyleadTable = ({ loandetail, length }) => {
       {view ? (
         <>
           {
-            <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-full w-11/12 z-20  top-24 left-10 rounded-2xl popup">
+            <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-full w-11/12 z-20  top-24 left-10 rounded-2xl popup" style={{position:"fixed",top:"170px",width:"60rem",left:"280px",height:"560px"}}>
               <div className="pt-8 pl-10 h-fit w-full text-white">
                 <div className="backdrop-blur-md h-52 grid gap-20 grid-cols-3">
                   <div className="grid gap-4 ">

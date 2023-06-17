@@ -151,13 +151,7 @@ function Dashboard() {
                 All Leads Analysis Details:-
               </h1>
               <div className="mt-5">
-                {/* <div className="">
-                  <input type="date" name="" id="" />
-                  <input type="date" name="" id="" />
-                  <button className="bg-slate-500 text-white p-2 mx-2">
-                    Search
-                  </button>
-                </div> */}
+              <div className="new"> 
                 {role === "admin" ? (
                   <select
                     name=""
@@ -166,6 +160,7 @@ function Dashboard() {
                       setEmployee(e.target.value);
                     }}
                   >
+                    
                     <option selected>select Employee</option>
                     {data.map((e, id) => {
                       return (
@@ -176,11 +171,21 @@ function Dashboard() {
                         </>
                       );
                     })}
+                    
                   </select>
                 ) : (
                   <></>
                 )}
+                </div>
               </div>
+                {/* <div className="">
+                  <input type="date" name="" id="" />
+                  <input type="date" name="" id="" />
+                  <button className="bg-slate-500 text-white p-2 mx-2">
+                    Search
+                  </button>
+                </div> */}
+               
             </div>
             <AllleadGraph
               className="overflow-x-scroll w-full"

@@ -162,7 +162,7 @@ const Tableclient = () => {
       {/* detail POP-UP */}
       {view ? (
         <>
-          <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-11/12 w-11/12 z-20 absolute top-48 left-10 rounded-2xl">
+          <div className="bg-gradient-to-br from-violet-600 via-violet-400 to-gray-600 h-11/12 w-11/12 z-20 absolute top-48 left-10 rounded-2xl" style={{position:"fixed",left:"450px",top:"350px",width:"60%",height:"300px"}}>
             <div className="pt-8 pl-10 h-fit w-full text-white">
               <div className="backdrop-blur-md grid gap-24 grid-cols-2">
                 <div className="grid gap-4 grid-cols-2">
