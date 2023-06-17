@@ -7,6 +7,8 @@ import {
 } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Passport = () => {
   const tokenData = localStorage.getItem("token");
@@ -62,6 +64,37 @@ const Passport = () => {
     }
   };
 
+  
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/createleadforpassport",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 2000);
+
+      } else {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went  Wrong", {
+        position: toast.POSITION.TOP_RIGHT});
+    }
+  };
+//   const ToastMsg = ()=>
+// {
+//   toast("Submitted Succesfully");
+// }
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
     <div className="flex justify-center items-center">
@@ -87,6 +120,7 @@ const Passport = () => {
               onChange={(e) => {
                 setLoanAmount(e.target.value);
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -144,6 +178,7 @@ const Passport = () => {
               type="text"
               defaultValue={service}
               readOnly
+              required
             />
           </div>
         </div>
@@ -163,6 +198,7 @@ const Passport = () => {
               onChange={(e) => {
                 setBirthProof(e.target.files[0]);
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -180,6 +216,7 @@ const Passport = () => {
               onChange={(e) => {
                 setAddressProof(e.target.files[0]);
               }}
+              required
             />
           </div>
         </div>
@@ -188,9 +225,12 @@ const Passport = () => {
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={onSubmit}
           >
             SUBMIT
           </button>
+          
+    <ToastContainer/>
         </div>
       </form>
     </div>

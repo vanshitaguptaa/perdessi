@@ -294,7 +294,33 @@ const Addclientform = () => {
                 <option value="Uttar Pradesh">Select State</option>
                 <option value="Uttar Pradesh">Uttar Pradesh</option>
                 <option value="Delhi">Delhi</option>
+                <option value="Delhi">Madhya Pradesh</option>
                 <option value="Mumbai">Mumbai</option>
+                <option value="Mumbai">Bihar</option>
+                <option value="Mumbai">Chhattishgarh</option>
+                <option value="Mumbai">Goa</option>
+                <option value="Mumbai">Nagaland</option>
+                <option value="Mumbai">Tamil Nadu</option>
+                <option value="Mumbai">Maharashtra</option>
+                <option value="Mumbai">Punjab</option>
+                <option value="Mumbai">Andra Pradesh</option>
+                <option value="Mumbai">Karnataka</option>
+                <option value="Mumbai">Rajasthan</option>
+                <option value="Mumbai">Mizoran</option>
+                <option value="Mumbai">Himanchal Pradesh</option>
+                <option value="Mumbai">West bengal</option>
+                <option value="Mumbai">Haryana</option>
+                <option value="Mumbai">Kerla</option>
+                <option value="Mumbai">Odisha</option>
+                <option value="Mumbai">Arunachal Pradesh</option>
+                <option value="Mumbai">Tripura</option>
+                <option value="Mumbai">Gujarat</option>
+                <option value="Mumbai">Meghalaya</option>
+                <option value="Mumbai">Manipur</option>
+                <option value="Mumbai">Jharkhand</option>
+                <option value="Mumbai">Uttarakhand</option>
+                <option value="Mumbai">Assam</option>
+                <option value="Mumbai">Jummu & kashmir</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg

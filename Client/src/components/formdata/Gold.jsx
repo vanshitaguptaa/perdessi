@@ -4,7 +4,8 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const Gold = () => {
   const tokenData = localStorage.getItem("token");
   const token = JSON.parse(tokenData).usertoken;
@@ -55,7 +56,36 @@ const Gold = () => {
       console.log(error);
     }
   };
+  const toastMsg =()=>{
+    toast("Submitted Succesfully");
+  }
 
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/createLeadForGoldLoan",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success("Submitted", {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/addlead");
+        }, 2000);
+// alert("submit");
+      } else {
+        toast.error("Something Went  Wrong", {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Catch Block Error ", {
+        position: toast.POSITION.TOP_RIGHT});
+    }
+  };
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
     <div className="flex justify-center items-center">
@@ -77,11 +107,13 @@ const Gold = () => {
               className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
               id="grid-first-name"
               type="number"
-              placeholder="Jane"
+              
               onChange={(e) => {
                 setLoanAmount(e.target.value);
               }}
-            />
+
+          
+          required  />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -138,7 +170,8 @@ const Gold = () => {
               type="text"
               defaultValue={service}
               readOnly
-            />
+          
+          required  />
           </div>
         </div>
         <div className="flex flex-wrap -mx-3 mb-2">
@@ -157,7 +190,8 @@ const Gold = () => {
               onChange={(e) => {
                 setAadharcard(e.target.files[0]);
               }}
-            />
+          
+          required  />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
@@ -174,17 +208,23 @@ const Gold = () => {
               onChange={(e) => {
                 setPancard(e.target.files[0]);
               }}
-            />
+          
+          required  />
           </div>
         </div>
 
         <div className="mt-5 flex justify-center">
           <button
             type="submit"
+          
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={onSubmit}
+
           >
             SUBMIT
           </button>
+          
+<ToastContainer/>
         </div>
       </form>
     </div>

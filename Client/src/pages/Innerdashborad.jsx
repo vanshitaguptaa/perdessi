@@ -55,9 +55,11 @@ const Innerdashborad = () => {
           <></>
         ) : (
           <>
-            <div className="z-60 sticky bottom-2 left-8 w-3/4 h-fit bg-white rounded-xl border-white border-solid border-3 shadow-2xl">
+            <div className="z-60 sticky bottom-2 left-8 w-3/4 h-fit bg-white rounded-xl border-white border-solid border-3 shadow-2xl"style={{position:"fixed",bottom:"0px",left:"280px",width:"500px"}}
+             >
               {/* top name and close button */}
-              <div className=" w-full flex flex-row rounded-t-xl pb-2 pt-2 pr-2 bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 justify-between border-b-2 border-gray-300 border-solid">
+              <div className=" w-full flex flex-row rounded-t-xl pb-2 pt-2 pr-2 bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 justify-between border-b-2 border-gray-300 border-solid"
+                >
                 <h1 className="pl-4 font-semibold text-xl">Mail</h1>
                 <h1
                   className="font-extrabold order-last text-2xl cursor-pointer"
@@ -114,7 +116,7 @@ const Innerdashborad = () => {
         <></>
       ) : (
         <>
-          <div className="z-60 sticky bottom-2 left-8  h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl">
+          <div className="z-60 sticky bottom-2 left-8  h-fit bg-gradient-to-br from-cyan-300 via-violet-300 to-violet-500 rounded-full border-white border-solid border-3 shadow-2xl" style={{position:"fixed",bottom:"0px",left:"280px"}}>
             <div
               className="text-3xl p-4 cursor-pointer"
               onClick={() => {

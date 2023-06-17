@@ -4,6 +4,10 @@ import { useContext } from "react";
 import { ClientAdminContext, ClientListContext } from "../../Context/ClientList";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { data } from "autoprefixer";
+
 
 const Shop = () => {
   const tokenData = localStorage.getItem("token");
@@ -74,6 +78,37 @@ const Shop = () => {
     
   };
 
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/crm/employeelogin",
+        data
+      );
+      console.log(res.data.success);
+      if (res.data.success) {
+        localStorage.setItem("token", JSON.stringify(res.data.Token));
+        localStorage.setItem("role", (res.data.role));
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT})
+        setTimeout(() => {
+            navigate("/dashboard");
+        }, 2000);
+
+      } else {
+        toast.error(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT});
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something Went  Wrong", {
+        position: toast.POSITION.TOP_RIGHT});
+    }
+  };
+
+// const ToastMsg = ()=>
+// {
+//   toast("Submitted Succesfully");
+// }
   // console.log(loanAmount, client, gender, mobile, DOB, pan, zip);
   return (
     <div className="flex justify-center items-center">
@@ -88,6 +123,7 @@ const Shop = () => {
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-first-name"
+              required
             >
               Loan Amount*
             </label>
@@ -97,8 +133,10 @@ const Shop = () => {
               type="number"
               placeholder=""
               onChange={(e) => {
-                setLoanAmount(e.target.value);
+                setLoanAmount(e.target.value)
+               
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -115,6 +153,7 @@ const Shop = () => {
                 onChange={(e) => {
                   setClient(e.target.value);
                 }}
+                required
               >
                 <option value="" disabled selected>
                   Select a client
@@ -147,6 +186,7 @@ const Shop = () => {
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
               for="grid-zip"
+              required
             >
               Service*
             </label>
@@ -156,6 +196,7 @@ const Shop = () => {
               type="text"
               defaultValue={service}
               readOnly
+              required
             />
           </div>
         </div>
@@ -175,6 +216,7 @@ const Shop = () => {
               onChange={(e) => {
                 setPanCard(e.target.files[0]);
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -192,6 +234,7 @@ const Shop = () => {
               onChange={(e) => {
                 setAdharCard(e.target.files[0]);
               }}
+              required
             />
           </div>
         </div>
@@ -211,6 +254,7 @@ const Shop = () => {
               onChange={(e) => {
                 setDetailsOfBusiness(e.target.value);
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -228,6 +272,7 @@ const Shop = () => {
               onChange={(e) => {
                 setNatureOfBusiness(e.target.value);
               }}
+              required
             />
           </div>
         </div>
@@ -247,6 +292,7 @@ const Shop = () => {
               onChange={(e) => {
                 setElectricityBill(e.target.files[0]);
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -264,6 +310,7 @@ const Shop = () => {
               onChange={(e) => {
                 setRentAgreement(e.target.files[0]);
               }}
+              required
             />
           </div>
         </div>
@@ -283,6 +330,7 @@ const Shop = () => {
               onChange={(e) => {
                 setMOA(e.target.files[0]);
               }}
+              required
             />
           </div>
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -300,6 +348,7 @@ const Shop = () => {
               onChange={(e) => {
                 setAON(e.target.files[0]);
               }}
+              required
             />
           </div>
         </div>
@@ -319,6 +368,7 @@ const Shop = () => {
               onChange={(e) => {
                 setCIN(e.target.files[0]);
               }}
+              required
             />
           </div>
         </div>
@@ -326,9 +376,11 @@ const Shop = () => {
           <button
             type="submit"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={onSubmit}
           >
             SUBMIT
           </button>
+          <ToastContainer/>
         </div>
       </form>
     </div>
